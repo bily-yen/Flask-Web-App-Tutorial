@@ -1,28 +1,168 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
-<form method="POST">
-  <h3 align="center">Login</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter email"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      name="password"
-      placeholder="Enter password"
-    />
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
+{% extends "base.html" %}
+
+{% block title %}Blog Page{% endblock %}
+
+{% block content %}
+<!-- Blog Page Content -->
+
+<div class="navbar-one flex">
+    <div class="left flex">
+        <div class="email">
+            <i class="fa fa-envelope"></i>
+            <span>homemovers@yourdoor.com  ||</span>
+        </div>
+        <div class="phone">
+            <i class="fa fa-phone-alt"></i>
+            <span>+254 97575723</span>
+        </div>
+        <div class="phone">
+            <i class="fa fa-phone-alt"></i>
+            <span>+254 716470665</span>
+        </div>
+    </div>
+    <div class="right flex">
+        <div class="twitter">
+            <i class="fab fa-twitter"></i>
+        </div>
+        <div class="fb">
+            <i class="fab fa-facebook"></i>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar-second flex">
+    <div class="logo">
+        <h1>STAR MOVERS</h1>
+        <p>Home and Office Relocations</p>
+    </div>
+    <ul class="flexx">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/aboutus">About Us</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </ul>
+    <div class="flexpart">
+        <div class="flexpl">
+            <a href="/aboutus" class="flexplbtn">send request</a>
+        </div>
+    </div>
+    <div class="flexpart">
+        <div class="flexpl">
+            <a href="/aboutus" class="flexplbtn">call</a>
+        </div>
+    </div>
+</nav>
+
+<div class="padding">
+    <div class="topback">
+        <div class="tbackitems">
+            <h1>Blog Page</h1>
+            <p>Welcome to the Star Movers blog! Here, we explore the latest trends in relocation, offer tips on finding the perfect home, and provide insights into making your move as smooth as possible. Stay tuned for expert advice and updates to help you navigate your relocation journey with ease.</p>
+        </div>
+    </div>
+</div>
+
+<section id="home_relocationblog">
+    <div class="hrbigclassblog">
+        <div class="hrheadblog">
+            <div class="hrsp">
+                <div class="hrsmorecont">
+                    <h2>Relocation options Kenya</h2> 
+                    <h2><img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" > </h2>
+                    <p>Experience a stress-free move with our expert home relocation services. From meticulous packing and efficient transportation to careful unpacking, seamless setup, and personalized support, we handle every detail with precision. Our dedicated team ensures that your move is smooth and your new home feels welcoming from day one. Get a free quote today and discover how we can make your transition effortless and your new space truly feel like home.</p>
+                    <div class="hrsmorefnote">
+                        <a href="/readmoreblogone" class="btn">read more</a>
+                    </div>
+                </div>
+                <div class="hrsmorecont">
+                    <h2>Packing equipment and their evolution</h2> 
+                    <h2><img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" > </h2>
+                    <p>Experience a stress-free move with our expert home relocation services. From meticulous packing and efficient transportation to careful unpacking, seamless setup, and personalized support, we handle every detail with precision. Our dedicated team ensures that your move is smooth and your new home feels welcoming from day one. Get a free quote today and discover how we can make your transition effortless and your new space truly feel like home.</p>
+                    <div class="hrsmorefnote">
+                        <a href="/readmoreblogtwo" class="btn">read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="foot">
+    <div class="reasons">
+        <h1>Why Trucks on Tracks?</h1>
+        <p>The birth of TOT was administered under paramount ethical and legal processions to secure elite and convenient courier service in and around East Africa</p>
+        <div class="email">
+            <div class="mail">
+                <p>send us an email</p>
+                <i class="fa fa-envelope"></i>
+                <span>homemovers@yourdoor.com</span>
+            </div>
+            <div class="callus">
+                <p>call us</p>
+                <i class="fa fa-phone-alt"></i>
+                <span>+25497575723 <br>+25416470665</span>
+            </div>
+        </div>
+    </div>
+    <div class="affiliates">
+        <span>
+            <h1>Affiliates</h1>
+            <p><i class="fab fa-twitter"></i>Skyly</p>
+            <p><i class="fab fa-twitter"></i>Faster</p>
+            <p><i class="fab fa-twitter"></i>S-MILE</p>
+        </span>
+    </div>
+    <div class="otherservices">
+        <h3></h3>
+        <h5></h5>
+        <a href="/customers" class="btn btn-primary">Real Estate Advertisement</a>
+        <a href="/home" class="btn btn-primary">Real Estate Consultancy</a>
+        <a href="/home" class="btn btn-primary">Hire Truck Drivers</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    let scrollContainer = document.querySelector(".gallery")
+    let backbtn = document.getElementById("backbtn")
+    let nextbtn = document.getElementById("nextbtn")
+
+    scrollContainer.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+        scrollContainer.style.scrollBehavior = "animate";
+    });
+
+    nextbtn.addEventListener("click", () => {
+        scrollContainer.style.scrollBehavior = "smooth";
+        scrollContainer.scrollLeft += 300;
+    });
+
+    backbtn.addEventListener("click", () => {
+        scrollContainer.style.scrollBehavior = "smooth";
+        scrollContainer.scrollLeft -= 300;
+    });
+
+    const bedroomInput = document.getElementById('bedroom_numbers');
+    const bedroomTypedText = document.getElementById('typed-text-bedrooms');
+    const dateInput = document.getElementById('moving_date');
+    const dateTypedText = document.getElementById('typed-text-date');
+
+    bedroomInput.addEventListener('input', function() {
+        bedroomTypedText.textContent = this.value || " ";
+    });
+
+    dateInput.addEventListener('input', function() {
+        dateTypedText.textContent = this.value || " ";
+    });
+
+    bedroomInput.addEventListener('blur', function() {
+        bedroomTypedText.textContent = "";
+    });
+
+    dateInput.addEventListener('blur', function() {
+        dateTypedText.textContent = "";
+    });
+</script>
 {% endblock %}
