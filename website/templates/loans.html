@@ -10,14 +10,19 @@
         color: white; /* Optional: change text color to white for better contrast */
     }
 </style>
+ <!-- Refund Section -->
+  
+<section id="lorecords">
+    <div class="lorec">
 
 <div class="container-fluid page-background">
     <h1 class="text-center alert alert-danger">DUE-LOANS DASHBOARD</h1>
     <div class="row">
         <div class="col-sm-2"></div>
         
-        <!-- content goes here -->
+        <!-- Content goes here -->
         <div class="container-fluid page-background">
+            <!-- Loan Records Section -->
             <h2>
                 Local Loan Records
                 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalnewrecord">New Record</button>
@@ -36,7 +41,7 @@
                 {% endif %}
             {% endwith %}
 
-            <!-- New Record Modal -->
+            <!-- New Loan Record Modal -->
             <div id="modalnewrecord" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -48,6 +53,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="{{ url_for('views.newloanrecord') }}" method="POST">
+                                <!-- Loan Record Form Fields -->
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" name="Name" class="form-control" id="name" placeholder="Customer Name">
@@ -87,45 +93,117 @@
                 </div>
             </div>
 
-            <!-- Loan Records Table -->
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col" style="color: black;">ID</th>
-                        <th scope="col" style="color: black;">Name</th>
-                        <th scope="col" style="color: black;">Item</th>
-                        <th scope="col" style="color: black;">Phone</th>
-                        <th scope="col" style="color: black;">Address</th>
-                        <th scope="col" style="color: black;">Amount Borrowed</th>
-                        <th scope="col" style="color: black;">Amount Due</th>
-                        <th scope="col" style="color: black;">Date Borrowed</th>
-                        <th scope="col" style="color: black;">Date Due</th>
-                        <th scope="col" style="color: black;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for record in loanrecords %}
-                        <tr>
-                            <td class="text-black">{{ record.LoanrecordID }}</td>
-                            <td class="text-black">{{ record.Name }}</td>
-                            <td class="text-black">{{ record.Item }}</td>
-                            <td class="text-black">{{ record.Phone }}</td>
-                            <td class="text-black">{{ record.Address }}</td>
-                            <td class="text-black">{{ record.Amount_Borrowed }}</td>
-                            <td class="text-black">{{ record.Amount_Due }}</td>
-                            <td class="text-black">{{ record.Date_Borrowed.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                            <td class="text-black">{{ record.Date_Due.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                            <td>
+           <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" style="color: black;">ID</th>
+            <th scope="col" style="color: black;">Name</th>
+            <th scope="col" style="color: black;">Item</th>
+            <th scope="col" style="color: black;">Phone</th>
+            <th scope="col" style="color: black;">Address</th>
+            <th scope="col" style="color: black;">Amount Borrowed</th>
+            <th scope="col" style="color: black;">Amount Due</th>
+            <th scope="col" style="color: black;">Pending Balance</th>
+            <th scope="col" style="color: black;">Date Borrowed</th>
+            <th scope="col" style="color: black;">Date Due</th>
+            <th scope="col" style="color: black;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in loanrecords %}
+            {% with is_paid=record.pending_balance == 0 %}
+                <tr>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                <i class="fa fa-check" aria-hidden="true"></i> {{ record.LoanrecordID }}
+                            </span>
+                        {% else %}
+                            {{ record.LoanrecordID }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Name }}
+                            </span>
+                        {% else %}
+                            {{ record.Name }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Item }}
+                            </span>
+                        {% else %}
+                            {{ record.Item }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Phone }}
+                            </span>
+                        {% else %}
+                            {{ record.Phone }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Address }}
+                            </span>
+                        {% else %}
+                            {{ record.Address }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Amount_Borrowed }}
+                            </span>
+                        {% else %}
+                            {{ record.Amount_Borrowed }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {% if is_paid %}
+                            <span class="text-success font-weight-bold">
+                                {{ record.Amount_Due }}
+                            </span>
+                        {% else %}
+                            {{ record.Amount_Due }}
+                        {% endif %}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        <span style="{% if record.pending_balance > 0 %}color: red; font-weight: bold;{% endif %}">
+                            {% if is_paid %}
+                                {{ record.pending_balance }}
+                            {% else %}
+                                {{ record.pending_balance }}
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {{ record.Date_Borrowed.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </td>
+                    <td class="text-black" style="background-color: {% if is_paid %}#f0f0f0{% endif %};">
+                        {{ record.Date_Due.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </td>
+                    <td>
+                <!-- Add content or actions for this column -->
+        
                                 <a href="/updateloanrecords/{{ record.LoanrecordID }}" 
-                                class="btn btn-warning btn-sm" 
-                                style="padding: 10px 15px; margin-top: 10px; background-color: #ffc107; color: #fff; border: none;" 
-                                data-toggle="modal" data-target="#modaledit{{ record.LoanrecordID }}">Edit</a>
-
+                                   class="btn btn-warning btn-sm" 
+                                   style="padding: 10px 15px; margin-top: 10px; background-color: #ffc107; color: #fff; border: none;" 
+                                   data-toggle="modal" data-target="#modaledit{{ record.LoanrecordID }}">Edit</a>
                                 <a href="/remove/{{ record.LoanrecordID }}" 
-                                onclick="return confirm('Are you sure you want to delete this record?')" 
-                                class="btn btn-danger btn-sm" 
-                                style="padding: 10px 15px; margin-top: 10px; background-color: #dc3545; color: #fff; border: none;">Delete</a>
+                                   onclick="return confirm('Are you sure you want to delete this record?')" 
+                                   class="btn btn-danger btn-sm" 
+                                   style="padding: 10px 15px; margin-top: 10px; background-color: #dc3545; color: #fff; border: none;">Delete</a>
                             </td>
+                            {% endwith %}
                         </tr>
                         <!-- Edit Record Modal -->
                         <div id="modaledit{{ record.LoanrecordID }}" class="modal fade" role="dialog">
@@ -142,7 +220,7 @@
                                             <input type="hidden" name="LoanrecordID" value="{{ record.LoanrecordID }}">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input value="{{ record.Name  }}" type="text" name="Name" class="form-control" id="name">
+                                                <input value="{{ record.Name }}" type="text" name="Name" class="form-control" id="name">
                                             </div>
                                             <div class="form-group">
                                                 <label>Item</label>
@@ -166,7 +244,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Date Borrowed</label>
-                                                <input value="{{ record.Date_Borrowed}}" name="Date_Borrowed" type="datetime-local" class="form-control" id="date-borrowed">
+                                                <input value="{{ record.Date_Borrowed }}" name="Date_Borrowed" type="datetime-local" class="form-control" id="date-borrowed">
                                             </div>
                                             <div class="form-group">
                                                 <label>Date Due</label>
@@ -179,14 +257,159 @@
                             </div>
                         </div>
                     {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+        <section id="home_relocationblog">
+            <div class="hrbigclassblog">
+                <div class="container-fluid page-background">
+                    <h1 class="text-center alert alert-danger">DUE-LOANS DASHBOARD</h1>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="container-fluid page-background">
+            <!-- Refunds Section -->
+            <h2>
+                Refund Records
+                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalnewrefund">New Refund</button>
+            </h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" style="color: black;">Refund ID</th>
+                        <th scope="col" style="color: black;">Loan ID</th>
+                        <th scope="col" style="color: black;">Refund Amount</th>
+                        <th scope="col" style="color: black;">Refund Date</th>
+                        <th scope="col" style="color: black;">Status</th>
+                        <th scope="col" style="color: black;">Reason</th>
+                        <th scope="col" style="color: black;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if refunds %}
+                        {% for refund in refunds %}
+                            <tr>
+                                <td class="text-black">{{ refund.RefundID }}</td>
+                                <td class="text-black">{{ refund.LoanID }}</td>
+                                <td class="text-black">{{ refund.RefundAmount }}</td>
+                                <td class="text-black">{{ refund.RefundDate.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                <td class="text-black">{{ refund.Status }}</td>
+                                <td class="text-black">{{ refund.Reason }}</td>
+                                <td>
+                                    <a href="#modaleditrefund{{ refund.RefundID }}" 
+                                       class="btn btn-warning btn-sm" 
+                                       data-toggle="modal" 
+                                       style="padding: 10px 15px; margin-top: 10px; background-color: #ffc107; color: #fff; border: none;">Edit</a>
+                                    <a href="/remove/{{ refund.RefundID }}" 
+                                       onclick="return confirm('Are you sure you want to delete this record?')" 
+                                       class="btn btn-danger btn-sm" 
+                                       style="padding: 10px 15px; margin-top: 10px; background-color: #dc3545; color: #fff; border: none;">Delete</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Edit Refund Modal -->
+                            <div id="modaleditrefund{{ refund.RefundID }}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-info" style="text-align: center;">Update Refund Data</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form  method="POST">
+                                                <input type="hidden" name="RefundID" value="{{ refund.RefundID }}">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Loan ID</label>
+                                                    <input value="{{ refund.LoanID }}" type="number" name="LoanID" class="form-control" style="padding: 10px;">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Refund Amount</label>
+                                                    <input value="{{ refund.RefundAmount }}" type="number" step="0.01" name="RefundAmount" class="form-control" style="padding: 10px;">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Refund Date</label>
+                                                    <input value="{{ refund.RefundDate.strftime('%Y-%m-%dT%H:%M') }}" type="datetime-local" name="RefundDate" class="form-control" style="padding: 10px;">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Status</label>
+                                                    <input value="{{ refund.Status }}" type="text" name="Status" class="form-control" style="padding: 10px;">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Reason</label>
+                                                    <textarea name="Reason" class="form-control" rows="3" style="padding: 10px;">{{ refund.Reason }}</textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Update Refund</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No refunds found.</td>
+                        </tr>
+                    {% endif %}
                 </tbody>
             </table>
-        </div>
-        <div class="col-sm-2"></div>
+        </tbody>
+    </table>
     </div>
-</div>
+    </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-{% endblock %}
+            </div>
+            </section>
+            
+            <!-- New Refund Modal -->
+            <div id="modalnewrefund" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-info" style="text-align: center;">Add New Refund</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url_for('views.newrefund') }}" method="POST">
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Loan ID</label>
+                                    <input type="number" name="LoanID" class="form-control" placeholder="Loan ID" required style="padding: 10px;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Refund Amount</label>
+                                    <input type="number" step="0.01" name="RefundAmount" class="form-control" placeholder="Refund Amount" required style="padding: 10px;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Refund Date</label>
+                                    <input type="datetime-local" name="RefundDate" class="form-control" style="padding: 10px;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Status</label>
+                                    <select class="form-control" name="Status" style="padding: 10px;">
+                                        <option value="Pending" selected>Pending</option>
+                                        <option value="Refuded">Fully refunded</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Reason</label>
+                                    <textarea name="Reason" class="form-control" rows="3" style="padding: 10px;"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Add Refund</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            
+            {% endblock %}

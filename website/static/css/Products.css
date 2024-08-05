@@ -179,16 +179,7 @@ nav .navigation ul li a:hover{
   border-radius: 22px;
   background-color: goldenrod;
   color: white;
-}
 
-.container {
-  display: flex;
-  width: 70%;
-  margin-bottom: 30px;
-  margin: auto; 
-  margin-top: 30px;
-  offset-distance: 30px;
-}
 
 #root {
   width: 60%;

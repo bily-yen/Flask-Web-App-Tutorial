@@ -1597,11 +1597,10 @@ a{
     font-size: 24px;
     padding: 20px;  
     border-radius: 60px;
-    padding: 20px; 
+    padding: 2px; 
 
   }
   .colsm{
-    display: flex;
     margin-top: 40px;
 
     justify-content: center;
@@ -1610,9 +1609,9 @@ a{
   
 .container.first{
     background: rgba(255, 228, 181, 0.115);
-    padding:15px 9%;
+    padding:25px 9%;
     padding-bottom: 100px;
-    margin-top: 70px;
+    margin-top: 7px;
 }
 
 .container.first .heading{
@@ -1621,21 +1620,20 @@ a{
     color:#052f5c;
     text-shadow: 0 5px 10px rgb(255, 255, 255);
     font-size: 30px;
-    padding-block: 20px;
 }
 
 .container .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap:15px;
 }
 
 .container .box-container .box{
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     border-radius: 5px;
-    background: goldenrod;
+    background: white;
     text-align: center;
-    padding:30px 20px;
+    padding:50px 20px;
 }
 
 .container .box-container .box img{
@@ -1643,9 +1641,10 @@ a{
 }
 
 .container .box-container .box h3{
-    color:white;
+    color:#052f5c;
     font-size: 22px;
     padding:10px 0;
+    font-weight: 800;
 }
 
 .container .box-container .box p{
@@ -1657,13 +1656,16 @@ a{
 
 .container .box-container .box .btn{
     margin-top: 10px;
-    display: inline-block;
     background:#052f5c;
     color:#fff;
     font-size: 17px;
     border-radius: 5px;
-    padding: 8px 25px;
+    padding: 18px 25px;
     width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    margin-left:25% ;
+
 }
 
 .container .box-container .box .btn:hover{
