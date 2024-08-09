@@ -477,23 +477,53 @@ a{
 
 
 }
+#wcuindextop  {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 8px; /* Adjust the border-radius as needed */
+    overflow: hidden; /* Ensure that the content respects the border-radius */
+    background-color: #fff; /* Optional: Set a background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visual depth */
+}
+#indexwcu{
+    width: 100%;
+}
+
+#wcuindextop .reasons h1{
+    align-items: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: xx-large;
+    color: goldenrod;
+    margin-top: 10px;
+    padding: 20px;
+    margin-left: 20px;
+        
+}
+#wcuindextop .reasons p{
+    margin: 0;
+    margin-left: 40px;
+    align-items: center;
+    
+}
+
 #wcu{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 20px 40px;
-    margin-top: 40px;
     background-color:gainsboro;
-
+    width: 100%;
 }
 #wcu .reasons h1{
     align-items: center;
     text-align: center;
-    width: 50%;
-    height: 50%;
+    width: 100%;
     font-weight: 700;
     font-size: xx-large;
-        color: goldenrod;
+    color: goldenrod;
+    margin-top: 10px;
+    padding: 20px;
         
 }
 #wcu .reasons p{
@@ -695,6 +725,10 @@ a{
     text-align: center;
     color: black;
 }
+#indextop{
+    margin-top: 30px;
+    padding: 50px;
+}
 .padding{
     margin: 0;
     height: 65%;
@@ -723,7 +757,6 @@ a{
 .topback:before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -1248,94 +1281,76 @@ a{
 }
 
 
-  .gallerywrap{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    margin-bottom: 10px;
-    background-color: none;
-    width: 100%;
-    height: 20%;
-    margin-bottom: 100px;
-    margin-top: 20px;
+.gallerywrap {
+    position: relative;
   }
-  .gallery{
-    width: 900px;
+  
+  .gallery {
     display: flex;
-    overflow-x: scroll;
-    
+    flex-wrap: wrap;
+    gap: 10px; /* Space between gallery items */
   }
-  .gallery div{
+  
+  .gallery-item {
+    position: relative;
+    width: 200px; /* Adjust width as needed */
+    border: 1px solid #ddd; /* Optional border around each item */
+  }
+  
+  .gallery-item img {
     width: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 30%px;
+    display: block;
+  }
+  
+  .gallery-info {
     padding: 10px;
-    justify-content: space-between space-evenly;
-  }
-  .gallery div img{
-    width: 200px;
-    margin-top: 50px;
-  }
-  .gallery::-webkit-scrollbar{
-    display: none;
-  }
-  .gallery div img:hover{
-    filter: grayscale(0);
-    cursor: pointer;
-    transform: scale(1.1);
-  }
-  #backbtn,#nextbtn{
-    width: 50px;
-    cursor: pointer;
-    margin: 40px;
+    background-color: #fff; /* Background color for the info section */
+    display: flex;
+    flex-direction: row;
+}
   
+  .info-content {
+    display: flex;
+    justify-content: space-between; /* Space between price and button */
+    align-items: center; /* Center items vertically */
   }
-  .gallerywrapabout{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    margin-bottom: 10px;
-    background-color: none;
-    width: 100%;
-  }
-  .galleryabout{
-    width: 900px;
-    display: flex;
-    overflow-x: scroll;
-    display: flex;
-    overflow-x: scroll;
   
+  .price {
+    font-size: 18px;
+    color: #333; /* Color for the price */
+    margin: 0; /* Remove default margin */
   }
-  .galleryabout div{
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 30%px;
+  
+  .details-btn {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
     padding: 10px;
-    justify-content: space-between space-evenly;
-  }
-  .galleryabout div img{
-    width: 150px;
-    margin-top: 20px;
-  }
-  .galleryabout::-webkit-scrollbar{
-    display: none;
-  }
-  .galleryabout div img:hover{
-    filter: grayscale(0);
+    font-size: 14px;
     cursor: pointer;
-    transform: scale(1.1);
+    border-radius: 5px; /* Rounded corners */
+    white-space: nowrap; /* Prevent text from wrapping */
   }
-  #backbtn,#nextbtn{
-    width: 50px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
   
+  .details-btn:hover {
+    background-color: #0056b3; /* Darker background on hover */
+  }
+  
+  #backbtn, #nextbtn {
+    width: 50px; /* Adjust button size as needed */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  #backbtn {
+    left: 10px; /* Adjust position */
+  }
+  
+  #nextbtn {
+    right: 10px; /* Adjust position */
   }
 
   .services{
@@ -1608,18 +1623,26 @@ a{
   }
   
 .container.first{
-    background: rgba(255, 228, 181, 0.115);
+    background: #f0f0f0;
     padding:25px 9%;
     padding-bottom: 100px;
-    margin-top: 7px;
+    margin-top: 30px;
 }
 
-.container.first .heading{
+.container.first .heading {
     text-align: center;
     padding-bottom: 15px;
-    color:#052f5c;
-    text-shadow: 0 5px 10px rgb(255, 255, 255);
+    color:goldenrod;
+    text-shadow: 0 2px 4px black;
     font-size: 30px;
+}
+.container.first p{
+    text-align: center;
+    padding-bottom: 15px;
+    color:rgb(0, 0, 0);
+    
+    font-size: 24;
+
 }
 
 .container .box-container{
@@ -1631,7 +1654,7 @@ a{
 .container .box-container .box{
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     border-radius: 5px;
-    background: white;
+    background: azure;
     text-align: center;
     padding:50px 20px;
 }
@@ -1641,14 +1664,14 @@ a{
 }
 
 .container .box-container .box h3{
-    color:#052f5c;
+    color:goldenrod;
     font-size: 22px;
     padding:10px 0;
     font-weight: 800;
 }
 
 .container .box-container .box p{
-    color:#052f5c;
+    color: black;
     font-size: 15px;
     line-height: 1.8;
     font-weight: 700;
@@ -1656,7 +1679,7 @@ a{
 
 .container .box-container .box .btn{
     margin-top: 10px;
-    background:#052f5c;
+    background-color: #007bff;
     color:#fff;
     font-size: 17px;
     border-radius: 5px;

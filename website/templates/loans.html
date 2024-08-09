@@ -9,24 +9,38 @@
         background-color: #003366; /* Dark blue background */
         color: white; /* Optional: change text color to white for better contrast */
     }
+
+    .scrollable-section {
+        max-height: 400px; /* Adjust this value as needed */
+        overflow-y: auto;
+        background-color: azure;
+    }
+
+    .modal-content {
+        max-height: 80vh; /* Make sure modals don't exceed viewport height */
+        overflow-y: auto;
+    }
 </style>
  <!-- Refund Section -->
+ <div class="scrollable-section">
   
 <section id="lorecords">
     <div class="lorec">
 
 <div class="container-fluid page-background">
-    <h1 class="text-center alert alert-danger">DUE-LOANS DASHBOARD</h1>
+    <h4 class="text-center alert alert-danger"  style="font-weight: 900; background-color: beige; font-size: 24px; color: black; padding: 10px; margin-left: 15px;">
+        LOAN RECORDS WITH PENDING BALANCE
+      </h4>
     <div class="row">
         <div class="col-sm-2"></div>
         
         <!-- Content goes here -->
         <div class="container-fluid page-background">
             <!-- Loan Records Section -->
-            <h2>
-                Local Loan Records
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalnewrecord">New Record</button>
-            </h2>
+            <h4  style="font-size: 22px; color: white; padding: 10px; margin-left: 15px; font-weight: 900;">
+               click on new record button to add data >>
+                <button class="btn btn-primary pull-right"  style="font-size: 16px;background-color: goldenrod; height: max-content; color: white; padding: 5px; margin-left: 15px;" data-toggle="modal" data-target="#modalnewrecord">New Record</button>
+            </h4>
 
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -53,6 +67,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="{{ url_for('views.newloanrecord') }}" method="POST">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <!-- Loan Record Form Fields -->
                                 <div class="form-group">
                                     <label>Name</label>
@@ -217,6 +232,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form  method="POST">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="LoanrecordID" value="{{ record.LoanrecordID }}">
                                             <div class="form-group">
                                                 <label>Name</label>
@@ -263,18 +279,22 @@
 </div>
 </div>
 </section>
+</div>
         <section id="home_relocationblog">
             <div class="hrbigclassblog">
                 <div class="container-fluid page-background">
-                    <h1 class="text-center alert alert-danger">DUE-LOANS DASHBOARD</h1>
+                    <h4 class="text-center alert alert-danger"  style="background-color: beige; font-weight: 900;font-size: 24px; color: black; padding: 10px; margin-left: 15px;">
+                        REPAYMENTS AND LOAN STATUS
+                      </h4>
                     <div class="row">
                         <div class="col-sm-2"></div>
                         <div class="container-fluid page-background">
             <!-- Refunds Section -->
-            <h2>
-                Refund Records
-                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalnewrefund">New Refund</button>
-            </h2>
+            <h4  style="font-size: 22px; color: white; padding: 10px; margin-left: 15px; font-weight: 900;">
+                click on button to add new Repayment >>
+                 <button class="btn btn-primary pull-right"  style="font-weight: 900;font-size: 16px;background-color: goldenrod; height: max-content; color: white; padding: 5px; margin-left: 15px;" data-toggle="modal" data-target="#modalnewrefund">New repayment</button>
+             </h4>
+           
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -283,7 +303,7 @@
                         <th scope="col" style="color: black;">Refund Amount</th>
                         <th scope="col" style="color: black;">Refund Date</th>
                         <th scope="col" style="color: black;">Status</th>
-                        <th scope="col" style="color: black;">Reason</th>
+                        <th scope="col" style="color: black;">Refund on</th>
                         <th scope="col" style="color: black;">Action</th>
                     </tr>
                 </thead>
@@ -321,6 +341,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form  method="POST">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="RefundID" value="{{ refund.RefundID }}">
                                                 <div class="form-group">
                                                     <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Loan ID</label>
@@ -377,6 +398,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="{{ url_for('views.newrefund') }}" method="POST">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Loan ID</label>
                                     <input type="number" name="LoanID" class="form-control" placeholder="Loan ID" required style="padding: 10px;">
@@ -393,12 +415,12 @@
                                     <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Status</label>
                                     <select class="form-control" name="Status" style="padding: 10px;">
                                         <option value="Pending" selected>Pending</option>
-                                        <option value="Refuded">Fully refunded</option>
+                                        <option value="Processed">Completed</option>
 
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Reason</label>
+                                    <label style="font-weight: bold; color: #333; padding-bottom: 5px;">Refund On</label>
                                     <textarea name="Reason" class="form-control" rows="3" style="padding: 10px;"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2">Add Refund</button>

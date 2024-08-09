@@ -4,47 +4,90 @@
 
 {% block content %}
 <!-- Blog Page Content -->
+ <style>
+    img {
+  display: flex;
+  width: 100%;
+}
 
 
-<div class="padding">
-    <div class="topback">
-        <div class="tbackitems">
-            <h1>Blog Page</h1>
-            <p>Welcome to the Star Movers blog! Here, we explore the latest trends in relocation, offer tips on finding the perfect home, and provide insights into making your move as smooth as possible. Stay tuned for expert advice and updates to help you navigate your relocation journey with ease.</p>
-        </div>
-    </div>
+ </style>
+ 
+ <div class="formhead">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
 </div>
 
-<section id="wcu">
-    <div class="reasons">
-         <h1>STAR MOVERS</h1>
-         <p>The birth of TOT was administered under paramount ethical and legal processions <br>
-             to secure elite and convenient courier service in and <br>around East Africa <br>
-             Together with our professional and diligent staff <br>
-
-            we are capable and willing to help you carry your load across roads</p>
+<header class="header__container">
+    <div class="header__image">
+        <div class="header__image__card header__image__card-1">
+            <span><i class="fas fa-hand-holding-usd"></i></span>
+            Microfinance
+          </div>
+          <div class="header__image__card header__image__card-2">
+            <span><i class="fas fa-book"></i></span>
+            Logbook
+          </div>
+          <div class="header__image__card header__image__card-3">
+            <span><i class="fas fa-box"></i></span>
+            Buy or Sell
+          </div>
+          <div class="header__image__card header__image__card-4">
+            <span><i class="fas fa-sync-alt"></i></span>
+            Resale & Repossession
+          </div>
+      <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" alt="header" />
     </div>
-    <div class="wcuicons">
-        <div class="affordability">
-            <i class="fab fa-twitter"></i>
-            <span><p>dicounts</p>
-                <p>free consultation</p>
-                <p>dicounts</p>
-                <p>free consultation</p>
+    
+         
+
+  </header>
+  
+
+
+
+  <section id="wcuindextop">
+    <div class="reasons">
+         <h1>Why Choose Us</h1>
+         <p>At Rong Rende Holdings, we ensure the highest level of service through ethical and professional standards.<br>
+             Our offerings include premium financial solutions to meet your needs.<br>
+             With our expert team and reliable services,<br>
+             we are here to assist you in achieving your financial goals.</p>
+    </div>
+    <div class="wcuicons" >
+        <div class="affordability" >
+            <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
+            <span >
+                <p>Item Insurance</p>
+                <p>Discounts</p>
+                <p>Instant Loans</p>
+                <p>convenient payment terms</p>
             </span>
         </div>
         <div class="security">
             <span>
-                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" >
-
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" alt="Financial Services">
             </span>
         </div>
-      
-        
     </div>
+    
 </section>
 
-    
+  
+
+
 
     <div class="container first">
 
@@ -133,332 +176,126 @@
 
 
     </div>
-    <div class="formhead">
-        {%with messages = get_flashed_messages()%}
-        {%if messages%}
-        {% for message in messages %}
-        <div class="alert alert-success alert-dismissable" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-             <span aria-hidden="true">&times;</span>
-            </button>
-            {{message}}
+    <section class="index-product-section" id="product-section">
+        <h2 class="index-section-title">Our Products</h2>
+        <div id="product-list" class="index-product-list">
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 2</h3>
+                <p class="index-product-price">$149.99</p>
+                <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <!-- Add more product items as needed -->
         </div>
-        {%endfor%}
-        {%endif%}
-        {%endwith%}
-        
     </div>
+    <div class="nexticon">
+        <i id="scroll-arrow" class="fa fa-arrow-right"></i>
+        <span class="scroll-text">More</span>
+    </div>
+        
+        
+    </section>
+
+    <!-- More products section -->
+   
   
-    <section class="contacts">
-        <div class="chead">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, dicta? Labore, perferendis fuga obcaecati enim modi dolorem! Sint ab nihil reiciendis in, nesciunt deserunt unde, ut, nobis obcaecati perspiciatis placeat?</p>
-        </div>
-
-        
-        <div class="container second">
-            <div class="form-and-contact">
-                <div class="contact-form">
-                    <div class="cfqf">
-                        <h2>quotation form</h2>
-                
-                    </div>
-                    <form  method="POST">
-                        <fieldset>
-                            <legend>Send an enquiry by filling in the form <br>Feel free to express any concerns in your message</legend>
     
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Full name</label>
-                                    <input type="text" name="name" class="form-control" id="name" required>
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" required>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone_number">Phone number</label>
-                                    <input type="text" name="phone_number" class="form-control" id="phone_number" required>
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="moving_from">Moving From (state, town, and estate)</label>
-                                    <input type="text" name="moving_from" class="form-control" id="moving_from" required>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="moving_to">Moving To (state, town, and estate)</label>
-                                    <input type="text" name="moving_to" class="form-control" id="moving_to" required>
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="type_of_house">Type of house</label>
-                                    <input type="text" name="type_of_house" placeholder="maisontte,flat/apartment,bungalow" class="form-control" id="type_of_house" required>
-                                </div>
-                            </div>
-    
-                            <div class="form-row" id="bedroom-group">
-                                <div class="form-group">
-                                    <label for="state_floor_number">State floor number (if apartment)</label>
-                                    <div class="input-container">
-                                    <input type="number" name="state_floor_number" class="form-control" id="state_floor_number" required>
-                                    </div>
-                                </div>
-    
-                                <div class="form-group" id="bedroom-group">
-                                    <label for="bedroom_numbers">Number of bedrooms</label>
-                                    <div class="input-container">
-                                        <input type="number" name="bedroom_numbers" class="form-control small-input" id="bedroom_numbers" required>
-                                        <div class="typed-text" id="typed-text-bedrooms"></div>
-                                    </div>
-                                </div>
-                        
-                        
-                            <div class="form-row">
-                                <div class="form-group centralized-checkbox">
-                                    <label>TV Mounting</label>
-                                    <div class="yes-no-options">
-                                        <input type="radio" id="tv_mounting_yes" name="tv_mounting" value="yes">
-                                        <label for="tv_mounting_yes">Yes</label>
-                                        <input type="radio" id="tv_mounting_no" name="tv_mounting" value="no" checked>
-                                        <label for="tv_mounting_no">No</label>
-                                    </div>
-                                </div>
-                    
-                                <div class="form-group centralized-checkbox">
-                                    <label>WiFi Installation/Reconnection</label>
-                                    <div class="yes-no-options">
-                                        <input type="radio" id="wifi_installation_yes" name="wifi_installation" value="yes">
-                                        <label for="wifi_installation_yes">Yes</label>
-                                        <input type="radio" id="wifi_installation_no" name="wifi_installation" value="no" checked>
-                                        <label for="wifi_installation_no">No</label>
-                                    </div>
-                                </div>
-                    
-                                <div class="form-group centralized-checkbox">
-                                    <label>Cleaning</label>
-                                    <div class="yes-no-options">
-                                        <input type="radio" id="cleaning_yes" name="cleaning" value="yes">
-                                        <label for="cleaning_yes">Yes</label>
-                                        <input type="radio" id="cleaning_no" name="cleaning" value="no" checked>
-                                        <label for="cleaning_no">No</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="date-group">
-                                    <label for="moving_date">Moving Date</label>
-                                    <div class="input-container">
-                                        <input type="date" name="moving_date" class="form-control small-input" id="moving_date" required>
-                                        <div class="typed-text" id="typed-text-date"></div>
-                                    </div>
-                                </div>
-    
-                            <div class="form-group">
-                                <label for="type_message">Type your message...</label>
-                                <textarea name="message" class="form-control" id="type_message" rows="4" required></textarea>
-                            </div>
-    
-                            <button type="submit" class="btn btn-white mb-2">Send</button>
-                        </fieldset>
-                    </form>
-                   
-                </div>
-    
-            </div>
-            <div class="conlogo">
-               
-            <div class="conimg">
-                <p>visit us in person</p>
-                <img src="{{ url_for('static', filename='SPAPHOTOS/mover4.jpeg') }}" >
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia rerum 
-                    sunt sequi pariatur minus dolor reprehenderit cumque id magni officiis voluptatem accusantium temporibus voluptatibus, 
-                    culpa architecto quidem dolore. Laudantium, nisi.</p>
-            
-            
-
-        </div>
-        </div>
    
-            
-            <div class="contact-info">
-                <p>Contact Info</p>
-                <div class="email">
-                    <div class="mail">
-                    <p>send us an email</p>
-                    <i class="fa fa-envelope"></i>
-                    <span>homemovers@yourdoor.com"</span>
-                </div>
-                <div class="callus">
-                    <p>call us</p>
-                    <i class="fa fa-phone-alt"></i>
-                    <span>+25497575723 <br>+25416470665</span>
-                </div>
-            </div>
-            </div>
-        </div>
-    </section>
-   
-     <div class="lhsheader">
-        <div class="lhsheaderitems">
-        <h1> Reviews</h1>
-        <p>Choosing a reliable relocation company may prove to be stress <br>leaving you under immense presseure. <br>
-            However,with the availability of 
-            S-mile Movers,relocation has been simplified and designed to suit your desires. <br>
-             feel free to select any service.
-            Use the request button for enquiries or fill the form below this section.s
-        </p>
-     </div>
-    </div>
+          
     
-    <section id="lhs">
-        <div class="lhsclass">
-        <div class="snips">
-        <div class="sec">
-            
-                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" >
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Similique doloremque labor <br>perspiciatis voluptatem reprehenderit quaerat <br> alias dolore explicabo provident?
-                    <br> Dignissimos accusantium porro voluptatem. <br>
-                     Culpa ipsum veritatis delectus <br> suscipit, rerum minima.
-                     Lorem ipsum dolor sit, <br> amet consectetur adipisicing elit.
-                     Similique doloremque labor <br>perspiciatis voluptatem reprehenderit quaerat <br> alias dolore explicabo provident?
-                     <br> Dignissimos accusantium porro voluptatem. <br>
-                      Culpa ipsum veritatis delectus <br> suscipit, rerum minima.</p>
-
-                      <div class="spby">
-                         <div class="secfnote">
-                    
-                            <h1>DRIVEN BY</h1>
-                            <img src="{{ url_for('static', filename='SPAPHOTOS/VOLVO.JPG') }}" >
-                            <p>Roadrunner<br>Total persistence</p>  
-                         </div>
-                     </div>
-        </div>
-            <div class="sectwo">
-                
-                    <img src="{{ url_for('static', filename='SPAPHOTOS/mover4.JPEG') }}" >
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Similique doloremque labor <br>perspiciatis voluptatem reprehenderit quaerat <br> alias dolore explicabo provident?
-                        <br> Dignissimos accusantium porro voluptatem. <br>
-                         Culpa ipsum veritatis delectus <br> suscipit, rerum minima.
-                         Lorem ipsum dolor sit, <br> amet consectetur adipisicing elit.
-                         Similique doloremque labor <br>perspiciatis voluptatem reprehenderit quaerat <br> alias dolore explicabo provident?
-                         <br> Dignissimos accusantium porro voluptatem. <br>
-                          Culpa ipsum veritatis delectus <br> suscipit, rerum minima.</p>
-                
-                 <div class="fnote">
-                    <div class="sectwofnote">
-                
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/VOLVO.JPG') }}" >
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Similique do labor <br>perspiciatis reprehenderit quaerat <br> alias dolore explicabo provident?
-                            <br>  Culpa ipsum veritatis delectus <br> suscipit, rerum minima.
-                             Lorem ipsum dolor sit, <br> amet consectetur adipisicing elit.
-                             Similique doloremque labor</p>  
-                    </div>
     
-                 </div>
-            </div>
-
-        </div>
-    </div>
-    </section>
-
-    
-        <div class="galleryhead">
-            <h1>gallery</h1>
-
-        </div>
-        <div class="gallerywrap">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/back.png')}}" id="backbtn">
-    
-        <div class="gallery">
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-            <div>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-                <span><img src="{{ url_for('static', filename='SPAPHOTOS/movers18.jpeg') }}"></span>
-            </div>
-        </div>
-        <img src="{{ url_for('static', filename='SPAPHOTOS/next.png')}}" id="nextbtn">
-    </div>
-        </div>
-    </div>
        
-        <section id="foot">
-            <div class="reasons">
-                 <h1>Why Trucks on tracks?</h1>
-                 <p>The birth of TOT was administered under paramount ethical and legal processions <br>
-                     to secure elite and convenient courier service in and <br>around East Africa</p>
-                     <div class="email">
-                        <div class="mail">
-                        <p>send us an email</p>
-                        <i class="fa fa-envelope"></i>
-                        <span>homemovers@yourdoor.com"</span>
-                    </div>
-                    <div class="callus">
-                        <p>call us</p>
-                        <i class="fa fa-phone-alt"></i>
-                        <span>+25497575723 <br>+25416470665</span>
-                    </div>
-                </div>
+    <section id="wcu">
+        <div class="reasons">
+             <h1>STAR MOVERS</h1>
+             <p>The birth of TOT was administered under paramount ethical and legal processions <br>
+                 to secure elite and convenient courier service in and <br>around East Africa <br>
+                 Together with our professional and diligent staff <br>
+    
+                we are capable and willing to help you carry your load across roads</p>
+        </div>
+        <div class="wcuicons">
+            <div class="affordability">
+                <i class="fab fa-twitter"></i>
+                <span><p>dicounts</p>
+                    <p>free consultation</p>
+                    <p>dicounts</p>
+                    <p>free consultation</p>
+                </span>
             </div>
-
-
+            <div class="security">
+                <span>
+                    <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" >
+    
+                </span>
+            </div>
+          
             
-                <div class="affiliates">
-                    <span><h1>Affiliates</h1>
-                        <p><i class="fab fa-twitter"></i>Skyly</p>
-                        <p><i class="fab fa-twitter"></i>Faster</p>
-                        <p><i class="fab fa-twitter"></i>S-MILE</p>
+        </div>
+    </section>
 
-                    </span>
-                </div>
-
-                <div class="otherservices">
-                    <h3>              </h3>
-                    <h5>                              </h5>
-                    <a href="/customers" class="btn btn-primary">real estate advertisement</a>
-                    <a href="/home" class="btn btn-primary">real estate consultancy</a>
-                    <a href="/home" class="btn btn-primary">Hire Truck Drivers</a>
-
-                
-                </div>
+    <section id="fut">
+       
+    <div class="index-reasons">
+        <h1>Why Trucks on Tracks?</h1>
+        <p>The birth of TOT was administered under paramount ethical and legal processions <br>
+            to secure elite and convenient courier service in and <br>around East Africa</p>
+        <div class="index-email">
+            <div class="index-mail">
+                <p>Send us an email</p>
+                <i class="fa fa-envelope"></i>
+                <span>homemovers@yourdoor.com</span>
             </div>
-        </section>
+            <div class="index-callus">
+                <p>Call us</p>
+                <i class="fa fa-phone-alt"></i>
+                <span>+25497575723 <br>+25416470665</span>
+            </div>
+        </div>
+        <div class="index-affiliates">
+            <h1>Affiliates</h1>
+            <p><i class="fab fa-twitter"></i>Skyly</p>
+            <p><i class="fab fa-twitter"></i>Faster</p>
+            <p><i class="fab fa-twitter"></i>S-MILE</p>
+        </div>
+    </div>
+</section>
 
 
 
@@ -473,11 +310,20 @@
 
 
 
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const scrollArrow = document.getElementById('scroll-arrow');
+        const productList = document.getElementById('product-list');
 
-
-
-
-
+        scrollArrow.addEventListener('click', () => {
+            const scrollAmount = 300; // Amount to scroll each time the arrow is clicked
+            productList.scrollBy({
+                left: scrollAmount, // Scroll to the right
+                behavior: 'smooth'  // Smooth scrolling
+            });
+        });
+    });
+    </script>
         <script>
             let scrollContainer = document.querySelector(".gallery")
             let backbtn = document.getElementById("backbtn")
@@ -502,6 +348,40 @@
         
 
         </script>
+         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+              const modalId = '#loginModal'; // The ID of the modal
+              let clickCount = 0;
+              let clickTimer = null;
+              const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
+          
+              function showModal() {
+                const modal = document.querySelector(modalId);
+                if (modal) {
+                  $(modal).modal('show'); // Use jQuery to show the modal
+                }
+              }
+          
+              modalTrigger.addEventListener('click', function(event) {
+                clickCount++;
+          
+                if (clickCount === 1) {
+                  // Set up a timer to reset clickCount if the second click doesn't occur in time
+                  clickTimer = setTimeout(function() {
+                    clickCount = 0; // Reset clickCount
+                  }, DOUBLE_CLICK_DELAY);
+                } else if (clickCount === 2) {
+                  // Clear the timer and show the modal
+                  clearTimeout(clickTimer);
+                  clickCount = 0;
+                  showModal();
+                }
+          
+                event.preventDefault(); // Prevent default action of the link
+              });
+            });
+          </script>
        
         <script>
        const bedroomInput = document.getElementById('bedroom_numbers');
@@ -531,6 +411,10 @@
            
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
-        
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+            <script src="https://unpkg.com/scrollreveal"></script>
+            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+      
+           
             {% endblock %}

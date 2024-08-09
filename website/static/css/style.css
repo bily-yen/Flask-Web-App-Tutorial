@@ -1,4 +1,8 @@
+/* Import Poppins and Roboto fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+/* Styling for the header logo */
 * {
   margin: 0;
   padding: 0;
@@ -13,22 +17,433 @@ body {
 #topfinancehead{
   margin-top: 50px;
   margin-bottom: 10%;
+  
 }
 /* Add this CSS to your stylesheet or within a <style> tag in your HTML */
 #lorecords {
-  padding: 70px; /* Adjust padding as needed */
-  border-top: 8px solid #333; /* Top border with color and thickness */
   border-bottom: 5px solid #333; /* Bottom border with color and thickness */
-  margin-top: 80px;
   position: relative;
+  margin-top: 45px;
+
   
 }
+.lorec{
+  background-color: black;
+}
+.index-product-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin-bottom: 30px;
+}
+
+.index-section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.index-product-list {
+  display: flex;
+  overflow-x: auto; /* Allows horizontal scrolling */
+  padding: 10px 0;
+  gap: 20px; /* Adjust the gap between items as needed */
+  scroll-snap-type: x mandatory; /* Enables snap scrolling */
+}
+#product-list {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+}
+.index-product-list::-webkit-scrollbar {
+  display: none;
+}
+
+.index-product-item {
+  flex: 0 0 auto; /* Ensures items don't shrink and take up fixed space */
+  width: 300px; /* Adjust width as needed */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  scroll-snap-align: center; /* Ensures items snap into place */
+}
+
+.index-product-image {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.index-product-name {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.index-product-price {
+  font-size: 1.1rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.index-product-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.index-view-more-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.nexticon {
+  display: inline-flex; /* Allows centering and alignment */
+  align-items: center; /* Vertically centers the icon */
+  justify-content: center; /* Horizontally centers the icon */
+  margin: 20px; /* Adds space around the icon */
+  float: right;
+  margin-bottom: 50px;
+}
+
+.nexticon i {
+  font-size: 2rem; /* Adjust the size of the arrow icon */
+  color: #007bff; /* Set the icon color */
+  cursor: pointer; /* Makes the icon clickable */
+}
+
+.nexticon i:hover {
+  color: #0056b3; /* Change icon color on hover */
+}
+#fut{
+  width: 100%;
+  display: flex;
+  background-color: azure;
+  margin-top: 20px;
+}
+.index-reasons {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px; /* Centers the block horizontally */
+  width: 100%;
+  margin-left: 25%;
+
+}
+
+.index-reasons h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.index-reasons p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  width: max-content;
+
+}
+
+.index-email {
+  gap: 30px;
+  margin-bottom: 30px;
+  width: max-content;
+}
+
+.index-mail, .index-callus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  width: max-content;
+}
+
+.index-mail i, .index-callus i {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+.index-callus{
+  width: max-content;
+  margin-top: 20px;
+}
+
+.index-mail span, .index-callus span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.index-affiliates {
+  margin-top: 20px;
+}
+
+.index-affiliates h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.index-affiliates p {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.index-affiliates i {
+  margin-right: 8px;
+  color: #007bff;
+}
+.header__container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: auto;
+  padding-block: 8rem 2rem;
+  padding-inline: 1rem;
+  display: grid;
+  gap: 2rem;
+  position: relative; /* Ensure the pseudo-element is positioned relative to this container */
+  overflow: hidden; /* Hide any overflow caused by the pseudo-element */
+  height: 50%;
+}
+
+.header__container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: url("/static/SPAPHOTOS/face15.jpeg");
+  background-position: center;
+  background-size: cover;
+  filter: blur(10px); /* Adjust the blur intensity as needed */
+  z-index: -1; /* Place the pseudo-element behind the content */
+  /* Add additional properties to ensure the pseudo-element covers the container */
+  transform: scale(1.1); /* Slightly scale up the pseudo-element to avoid visible edges */
+  margin-top: 90px;
+  padding: 20px;
+}
+
+.header__container > * {
+  position: relative; /* Ensure child elements are on top of the pseudo-element */
+}
+.header__container::-webkit-scrollbar {
+  display: none;
+}
+
+.header__image {
+  position: relative;
+  isolation: isolate;
+}
+
+.header__image::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.header__image img {
+  max-width: 520px;
+  margin-inline: auto;
+  border-radius: 20px;
+}
+
+.header__image__card {
+  position: absolute;
+  padding-left: 20px;
+  display: flex;
+  gap: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background-color: var(--white);
+  white-space: nowrap;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-left:5px;
+  width: max-content;
+}
+
+.header__image__card span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.header__image__card-1 {
+  top: 25%;
+  left: 0;
+  transform: translate(-5%, -50%);
+  padding: 20px;
+  background-color: aliceblue;
+  font-weight: 700;
+}
+
+.header__image__card-2 {
+  top: 10%;
+  right: 2rem;
+  transform: translateY(-50%);
+  padding: 15px;
+  background-color: aliceblue;
+  font-weight: 700;
+  margin-right: 40px;
+}
+
+.header__image__card-3 {
+  top: 60%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: aliceblue;
+  font-weight: 700;
+}
+
+.header__image__card-4 {
+  top: 70%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 20px;
+  background-color: aliceblue;
+  font-weight: 700;
+}
+
+.header__content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: var(--header-font);
+  color: var(--text-dark);
+  line-height: 2.5rem;
+  text-align: center;
+  margin-top: 30px;
+ 
+}
+.header__content{
+background-color: bisque;
+border-radius: 5px;
+}
+
+.header__content h1 span {
+  color: var(--primary-color);
+}
+
+.header__content p {
+  margin-bottom: 2rem;
+  columns: var(--text-light);
+  line-height: 1.75rem;
+  text-align: center;
+}
+
+.header__content form {
+  margin-bottom: 4rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem 0;
+  border-radius: calc(1rem + 10px);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header__content .input__row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.header__content .input__group {
+  flex: 1;
+}
+
+.header__content .input__group h5 {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.header__content .input__group > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__content input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.header__content input::placeholder {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.header__content .input__group span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.header__content button {
+  width: 100%;
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.header__content button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.header__content .bar {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+}
 .fixed-container {
-  margin-bottom: 20%;
+    margin-bottom: 20%;
     position: fixed;
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Offset by half of its width and height */
-    width: 80%; /* Adjust width as needed */
     z-index: 9999; /* Ensure it’s above other content */
     background-color: white; /* Or any background color you prefer */
     padding: 20px; /* Add some padding */
@@ -222,6 +637,108 @@ nav .navigation ul li a:hover{
 #home a.yellow:hover{
   color: goldenrod;
   background:#fff;
+}
+/* Top Header Styles */
+/* Top Header Styles */
+
+/* Professional Header Styles */
+.laiheader-top-header {
+  background-color: #0080ff; /* Background color */
+  padding-top: 90px; /* Increased padding for top/bottom and left/right */
+  display: flex;
+  justify-content: center; /* Center the header content horizontally */
+  align-items: center; /* Center items vertically */
+  border-bottom: 1px solid #ddd; /* Light border at the bottom */
+}
+
+.laiheader-header-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between; /* Space out items evenly within the header */
+  align-items: center;
+  width: 100%; /* Full width to use the available space */
+  max-width: 1200px; /* Optional: Max width for better alignment on large screens */
+  padding: 30px;
+}
+
+.laiheader-header-logo h1 {
+  font-size: 48px; /* Increased font size for better visibility */
+  color: #ff000034; /* White color for contrast with blue background */
+  font-weight: bold; /* Bold font weight */
+  font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+  position: relative; /* Needed for positioning pseudo-elements */
+  overflow: hidden; /* Ensures text does not overflow its container */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3); /* Basic shadow for 3D effect */
+  transform: perspective(500px) rotateX(10deg); /* Adds perspective and rotation for 3D effect */
+}
+
+
+
+/* Small tag/footer styling */
+.laiheader-header-logo h1::after {
+  content: "Empowering Your Financial Future"; /* Tag text */
+  display: block;
+  font-size: 16px; /* Font size for the tag */
+  color: rgba(255, 255, 255, 0.7); /* Faint white color */
+  font-weight: normal; /* Normal font weight */
+  font-family: 'Roboto', sans-serif; /* Same font for consistency */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle shadow for clarity */
+  margin-top: 10px; /* Space between the heading and the tag */
+  text-align: center; /* Center the tag text */
+}
+
+/* Create the wavy effect with a CSS animation */
+.laiheader-header-logo h1::after {
+  animation: wave 3s infinite; /* Apply wave animation */
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.laiheader-header-contact {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: row; /* Align contact numbers in a row */
+  align-items: center; /* Center contact numbers vertically */
+  margin: 0 20px; /* Space between contact section and social media */
+}
+
+.laiheader-contact-text {
+  font-size: 16px; /* Font size for "Call Us" text */
+  color: #fff; /* White color for visibility */
+  margin-right: 10px; /* Space between "Call Us" text and contact numbers */
+}
+
+.laiheader-contact-number {
+  font-size: 16px; /* Font size */
+  color: #fff; /* White color for contact numbers */
+  margin: 0 10px; /* Margin between contact numbers */
+}
+
+.laiheader-header-social-media {
+  display: flex;
+  align-items: center; /* Center social media icons vertically */
+}
+
+.laiheader-header-social-media a {
+  color: #fff; /* White color for icons */
+  margin-left: 15px; /* Space between icons */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.laiheader-header-social-media i {
+  font-size: 18px; /* Adjust icon size */
+  transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.laiheader-header-social-media a:hover i {
+  color: black; /* Change icon color on hover */
 }
 .gallery{
   width: 900px;
