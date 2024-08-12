@@ -98,7 +98,8 @@
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <form id="add-note-form" method="POST">
+                            <form id="add-note-form" method="POST" action="{{ url_for('views.add_note') }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <textarea name="note" id="note" class="form-control" placeholder="Write your note here..." rows="3"></textarea>
                                 </div>
@@ -196,16 +197,18 @@
       event.preventDefault(); // Prevent default form submission
 
       const noteContent = document.getElementById('note').value;
+      const csrfToken = document.querySelector('input[name="csrf_token"]').value;
 
-      fetch("{{ url_for('views.add_note') }}", { // Use Flask's url_for function for URL generation
+      fetch("{{ url_for('views.add_note') }}", {
           method: "POST",
           body: JSON.stringify({ note: noteContent }),
           headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "X-CSRFToken": csrfToken // Include the CSRF token in headers
           }
       }).then(response => {
           if (response.ok) {
-              window.location.reload();
+              window.location.reload(); // Reload the page to show the new note
           } else {
               console.error('Failed to add note');
           }
@@ -214,6 +217,7 @@
       });
   });
 
+  
   function deleteNote(noteId) {
       fetch("{{ url_for('views.delete_note') }}", { // Use Flask's url_for function for URL generation
           method: "POST",

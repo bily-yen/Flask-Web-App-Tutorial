@@ -65,7 +65,7 @@ rel="stylesheet"
     right: 0;
     border-bottom: none;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
-    background-color: azure;
+    background-color: white;
     z-index: 999;
 }
 
@@ -170,7 +170,7 @@ rel="stylesheet"
           {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
-            <h4 class="text-center alert alert-warning"  style="background-color: darkblue; font-size: 24px; color: rgb(255, 255, 255); padding: 10px; margin-left: 25px;">Admin and finance</h4>
+            <h4 class="text-center alert alert-warning"  style="background-color: rgba(0, 0, 0, 0.845); font-size: 24px; color: azure; padding: 10px; margin-left: 25px;">Admin and finance</h4>
            
             {% if request.path == '/loandata' %}
               <div class="text-center">

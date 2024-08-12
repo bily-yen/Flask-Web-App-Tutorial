@@ -108,18 +108,19 @@ def products():
     return render_template('products.html')
 
 @views.route('/add-note', methods=['POST'])
-@limiter.limit("10 per minute")  # Apply rate limit to this endpoint
 @login_required
 def add_note():
     try:
         data = request.get_json()
         note_content = sanitize_input(data.get('note'))
-        if note_content:
-            new_note = Note(data=note_content, user_id=current_user.id)
-            db.session.add(new_note)
-            db.session.commit()
-            return jsonify({'message': 'Note added!'}), 200
-        return jsonify({'message': 'No note content provided!'}), 400
+
+        if not note_content or len(note_content) < 1:
+            return jsonify({'message': 'Note is too short!'}), 400
+        
+        new_note = Note(data=note_content, user_id=current_user.id)
+        db.session.add(new_note)
+        db.session.commit()
+        return jsonify({'message': 'Note added!'}), 200
     except Exception as e:
         return jsonify({'message': f'Error: {str(e)}'}), 500
 
