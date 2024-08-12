@@ -103,6 +103,10 @@ def newloanrecord():
 def index():
     return render_template('index.html')
 
+@views.route('/products', methods=['GET'])
+def products():
+    return render_template('products.html')
+
 @views.route('/add-note', methods=['POST'])
 @limiter.limit("10 per minute")  # Apply rate limit to this endpoint
 @login_required

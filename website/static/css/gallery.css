@@ -356,13 +356,25 @@ a{
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap:15px;
 }
+.fimgbox{
+
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    width: 100%;
+}
+.feature_box img{
+    text-align: center;
+    width: 100%;
+}
+
 
 .feature_box {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     border-radius: 5px;
-    background: #052f5c;
+    background:azure;
     text-align: center;
-    padding:30px 20px;
+    padding:10px 5px;
 }
 
 .feature_box:hover {
@@ -443,21 +455,27 @@ a{
 
 .feature_box h3{
     font-weight: bold;
-    padding: 10px 20px;
-    color: white;
-    font-size: 16.5px;
+    color: black;
+    font-size: 24px;
+    font-weight: 900px;
+    background-color:transparent;
+    border-radius: 0 4px 5px blue;
+    flex: auto;
 }
 .feature_box h5{
     color: black;
 }
 
 .feature_box h4 {
-    margin-bottom: 5px; 
-    font-size: 14px; 
-    font-weight: 500;
-    text-align: center;
+    font-size: 16px; 
+    font-weight: 800;
+    text-align:start;
     position: relative;
     color: whitesmoke; 
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    color: goldenrod;
 }
 .feature_box h5 {
     font-weight: bold; 
@@ -477,14 +495,41 @@ a{
 
 
 }
+.securityimgp{
+
+    width:200px;
+    margin-left: 0;
+    padding-right: 40px;
+    height: 100px;
+    margin-right: auto;
+  }
+  .pcontainer-fluid{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 90px;
+  box-shadow: 0 0px 7px black;
+  overflow-y: auto;
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+  scroll-snap-type: y mandatory; 
+  height: 50%;
+  margin-top: 40px;
+
+  }
+  .pcontainer-fluid::-webkit-scrollbar {
+    color: #000000;
+  }
 #wcuindextop  {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: min-content;
     border-radius: 8px; /* Adjust the border-radius as needed */
     overflow: hidden; /* Ensure that the content respects the border-radius */
     background-color: #fff; /* Optional: Set a background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visual depth */
+    margin-top: 40px;
 }
 #indexwcu{
     width: 100%;
@@ -502,10 +547,66 @@ a{
         
 }
 #wcuindextop .reasons p{
+    margin-left: 4px;
+    display: flex;
+    
+}
+#wcuh{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color:gainsboro;
+    width: 100%;
+    height: max-content;
+}
+#wcuh .hreasons h1{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: xx-large;
+    color: goldenrod;
+    margin-top: 10px;
+    padding: 20px;
+        
+}
+#wcuh .hreasons p{
     margin: 0;
     margin-left: 40px;
     align-items: center;
     
+}
+.wcuiconsh{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.affordabilityh,
+.securityh {
+    margin-left: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    
+}
+.affordabilityh {
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 100px;
+}
+
+.securityh {
+    margin-top: 5px;
+    margin-right: 0;
+    background-color: none;
+    margin-left: 20px;
+    padding: 20px;
+
+}
+.securityh img{
+    border-radius: 10px;
 }
 
 #wcu{
@@ -514,6 +615,7 @@ a{
     justify-content: center;
     background-color:gainsboro;
     width: 100%;
+    height: 50%;
 }
 #wcu .reasons h1{
     align-items: center;
@@ -527,7 +629,7 @@ a{
         
 }
 #wcu .reasons p{
-    margin: 0;
+
     margin-left: 40px;
     align-items: center;
     
@@ -693,8 +795,9 @@ a{
 .wcuicons .integrity p,
 .wcuicons .follow-up p {
     margin: 0; 
-    color: rgb(255, 0, 0);
-    font-weight: 600;
+    color: brown; 
+    font-weight: 700;
+    padding: 5px; 
 }
 
 .lhsheader{
@@ -1623,7 +1726,7 @@ a{
   }
   
 .container.first{
-    background: #f0f0f0;
+    background:  rgba(222, 159, 0, 0.879);
     padding:25px 9%;
     padding-bottom: 100px;
     margin-top: 30px;
@@ -1632,16 +1735,17 @@ a{
 .container.first .heading {
     text-align: center;
     padding-bottom: 15px;
-    color:goldenrod;
+    color:azure;
     text-shadow: 0 2px 4px black;
     font-size: 30px;
 }
 .container.first p{
     text-align: center;
     padding-bottom: 15px;
-    color:rgb(0, 0, 0);
+    color:black;
+    font-weight: 700;
     
-    font-size: 24;
+    font-size: 21;
 
 }
 
