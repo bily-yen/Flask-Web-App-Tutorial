@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h2 class="my-4">Daily Transactions Summary for {{ date }}</h2>
+<div class="container" style="text-align: center ;">
+    <h1 class="my-4" style="display: flex; padding: 10px; font-weight: 800; font-size: 21px; color: black; text-align: center; justify-content: center;
+    background-color: white;">Daily Transactions Summary for {{ date }}</h1>
 
     <!-- Summary Section -->
-    <div class="alert alert-info">
-        <h4>Summary</h4>
-        <p><strong>Total Loans:</strong> {{ total_loans | round(2) | currency }}</p>
-        <p><strong>Total Refunds:</strong> {{ total_refunds | round(2) | currency }}</p>
-        <p><strong>Difference:</strong> {{ difference | round(2) | currency }}</p>
+    <div class="summary-container d-flex flex-wrap justify-content-between mb-4">
+        <div class="summary-card bg-light p-3 border rounded">
+            <h4>Total Loans</h4>
+            <p class="amount">Ksh {{ total_loans | round(2) }}</p>
+        </div>
+        <div class="summary-card bg-light p-3 border rounded">
+            <h4>Total Refunds</h4>
+            <p class="amount">Ksh {{ total_refunds | round(2) }}</p>
+        </div>
+        <div class="summary-card bg-light p-3 border rounded">
+            <h4>Difference</h4>
+            <p class="amount">Ksh {{ difference | round(2) }}</p>
+        </div>
     </div>
 
     <!-- Transactions Table -->
@@ -25,21 +34,47 @@
         </thead>
         <tbody>
             {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.transaction_id }}</td>
-                    <td>{{ transaction.type }}</td>
-                    <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                    <td>{{ transaction.amount | round(2) | currency }}</td>
-                    <td>
-                        {% if transaction.pending_balance is not none %}
-                            {{ transaction.pending_balance | round(2) | currency }}
-                        {% else %}
-                            N/A
-                        {% endif %}
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ transaction.transaction_id }}</td>
+                <td>{{ transaction.type }}</td>
+                <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td> {{ transaction.amount | round(2) }}</td>
+                <td>
+                    {% if transaction.pending_balance is not none %}
+                        {{ transaction.pending_balance | round(2) }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 {% endblock %}
+
+<style>
+    .summary-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+    }
+    .summary-card {
+        flex: 1 1 30%;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgb(255, 0, 0);
+
+    }
+    .summary-card h4 {
+        margin-bottom: 10px;
+    }
+    .summary-card .amount {
+        font-size: 1.5em;
+        font-weight: bold;}
+    
+    table {
+        margin-top: 20px;
+    }
+</style>

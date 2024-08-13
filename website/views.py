@@ -264,6 +264,22 @@ def backtoadmin():
     """
     return render_template('home.html', user=current_user)
 
+@views.route('/myproducts', methods=['GET'])
+@login_required
+def myproducts():
+    """
+    Return to the admin page.
+    """
+    return render_template('myproducts.html', user=current_user)
+
+@views.route('/myshops', methods=['GET'])
+@login_required
+def myshops():
+    """
+    Return to the admin page.
+    """
+    return render_template('myshops.html', user=current_user)
+
 # Route to display the home page
 @views.route('/', methods=['GET', 'POST'])
 @login_required

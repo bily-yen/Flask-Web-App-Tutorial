@@ -14,6 +14,7 @@
         max-height: 400px; /* Adjust this value as needed */
         overflow-y: auto;
         background-color: azure;
+        margin: 70px;
     }
 
     .modal-content {
@@ -21,40 +22,40 @@
         overflow-y: auto;
     }
 </style>
- <!-- Refund Section -->
- <div class="scrollable-section">
-  
-<section id="lorecords">
-    <div class="lorec">
 
-<div class="container-fluid page-background">
-    <h4 class="text-center alert alert-danger"  style="font-weight: 900; background-color: beige; font-size: 24px; color: black; padding: 10px; margin-left: 15px;">
-        LOAN RECORDS WITH PENDING BALANCE
-      </h4>
+
+
+    
+
+
+
+<div class="lr" style="margin-bottom: 8px;">
+<h4 class="text-center" style="display: flex; padding: auto; color: brown; font-weight: 700;">
+    LOAN RECORDS WITH PENDING BALANCE
+  </h4>
+<div>
+
+ <!-- Refund Section -->
+ <div class="scrollable-section" style="margin-top: 35px; width: 100%; margin: 0;">
+    
+<section id="lorecords">
+    
+    <div class="lorec">
+       
+<div class="container-fluid page-background" style="margin-top: 50px; width: 100%;">
+   
     <div class="row">
         <div class="col-sm-2"></div>
         
         <!-- Content goes here -->
-        <div class="container-fluid page-background">
+        <div class="container-fluid page-background" style="width: 100%;">
             <!-- Loan Records Section -->
-            <h4  style="font-size: 22px; color: white; padding: 10px; margin-left: 15px; font-weight: 900;">
+            <h4  style="font-size: 22px; color: white; padding: 5px; margin-left: 15px; font-weight: 900;">
                click on new record button to add data >>
                 <button class="btn btn-primary pull-right"  style="font-size: 16px;background-color: goldenrod; height: max-content; color: white; padding: 5px; margin-left: 15px;" data-toggle="modal" data-target="#modalnewrecord">New Record</button>
             </h4>
 
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-success alert-dismissable" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
+           
             <!-- New Loan Record Modal -->
             <div id="modalnewrecord" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -292,12 +293,18 @@
 </div>
 </section>
 </div>
+<div class="container">
+<h4 class="text-center" style="display: flex; padding: auto; color: brown; font-weight: 700;margin-bottom: 0; margin-top: 40px;">
+    REPAYMENTS AND REFUNDS
+   </h4>
+
+<div class="scrollable-section" style="margin-top: 35px; width: 100%;">
         <section id="home_relocationblog">
+            
+            <div>
             <div class="hrbigclassblog">
                 <div class="container-fluid page-background">
-                    <h4 class="text-center alert alert-danger"  style="background-color: beige; font-weight: 900;font-size: 24px; color: black; padding: 10px; margin-left: 15px;">
-                        REPAYMENTS AND LOAN STATUS
-                      </h4>
+                    
                     <div class="row">
                         <div class="col-sm-2"></div>
                         <div class="container-fluid page-background">
@@ -397,7 +404,8 @@
 
             </div>
             </section>
-            
+            </div>
+        </div>
             <!-- New Refund Modal -->
             <div id="modalnewrefund" class="modal fade" role="dialog">
                 <div class="modal-dialog">

@@ -3,51 +3,33 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid"  style="padding: 5px;">
+    <div class="row" style="width: 100%; padding:0;">
         <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-2 d-md-block bg-light sidebar">
+        <nav id="sidebar" class="col-md-2 d-md-block bg-light sidebar" style="padding: 0px; margin-left: -10px; width: max-content;">
             <div class="position-sticky">
-                <h4 class="text-center mt-3" style="font-weight: bold; color: gold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">
+                <h4 class="text-center mt-3" style="font-weight: bold; color: rgb(0, 0, 0); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); margin-bottom: 20px; font-size: 18px;">
                     TASSIA LOANS AND ITEMS
                 </h4>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <i class="bi bi-house-door"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-person"></i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-file-earmark-text"></i> Notes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-box"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/loandata">
-                            <i class="bi bi-file-earmark"></i> Loan Records
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-bag"></i> Products
-                        </a>
-                    </li>
-                </ul>
+                <div class="d-flex flex-column" >
+                    <a class="btn btn-light mb-2 d-flex align-items-center " style="width: max-content;" href="/transactions">
+                        <i class="bi bi-house-door me-2"></i> Today's  Transactions
+                    </a>
+                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/loandata">
+                        <i class="bi bi-file-earmark me-2"></i> Loan Records
+                    </a>
+                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/myproducts">
+                        <i class="bi bi-bag me-2"></i> My Products
+                    </a>
+                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/myshops">
+                        <i class="bi bi-shop me-2"></i> My Shops
+                    </a>
+                </div>
             </div>
         </nav>
 
         <!-- Main Content -->
-        <main role="main" class="col-md-10 ms-sm-auto col-lg-10 px-4">
+        <main role="main" class="col-md-10 ms-sm-auto col-lg-10 px-4" style="width: 75%;">
             <h1 class="mt-3" style="color: black; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
                 Logistics Dashboard
             </h1>
