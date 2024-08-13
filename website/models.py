@@ -25,7 +25,7 @@ class LoanRecord(db.Model):
     Address = db.Column(db.String(255), nullable=False)
     Amount_Borrowed = db.Column(db.Float, nullable=False)
     Amount_Due = db.Column(db.Float, nullable=False)
-    Date_Borrowed = db.Column(db.DateTime, default=datetime.utcnow)
+    Date_Borrowed = db.Column(db.DateTime(timezone=True), default=func.now())
     Date_Due = db.Column(db.DateTime, nullable=False)
 
     # Define relationship with Refund
@@ -47,6 +47,6 @@ class Refund(db.Model):
     RefundID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     LoanID = db.Column(db.Integer, db.ForeignKey('loanrecords.LoanrecordID'), nullable=False)
     RefundAmount = db.Column(db.Float, nullable=False)
-    RefundDate = db.Column(db.DateTime, default=datetime.utcnow)
+    RefundDate = db.Column(db.DateTime(timezone=True), default=func.now())
     Status = db.Column(db.String(50), default='Pending')
     Reason = db.Column(db.Text, nullable=True)

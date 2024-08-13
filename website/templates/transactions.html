@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Daily Transactions Summary for {{ date }}</h2>
+
+    <!-- Summary Section -->
+    <div class="alert alert-info">
+        <h4>Summary</h4>
+        <p><strong>Total Loans:</strong> {{ total_loans | round(2) | currency }}</p>
+        <p><strong>Total Refunds:</strong> {{ total_refunds | round(2) | currency }}</p>
+        <p><strong>Difference:</strong> {{ difference | round(2) | currency }}</p>
+    </div>
+
+    <!-- Transactions Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Pending Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_id }}</td>
+                    <td>{{ transaction.type }}</td>
+                    <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ transaction.amount | round(2) | currency }}</td>
+                    <td>
+                        {% if transaction.pending_balance is not none %}
+                            {{ transaction.pending_balance | round(2) | currency }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

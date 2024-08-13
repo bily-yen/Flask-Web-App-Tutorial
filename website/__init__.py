@@ -9,6 +9,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from logging.handlers import RotatingFileHandler
 import logging
+import locale
 
 # Initialize extensions
 db = SQLAlchemy()
@@ -76,5 +77,16 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+    
+    locale.setlocale(locale.LC_ALL, '')
+
+    def currency(value):
+        try:
+            return locale.currency(value, grouping=True)
+        except (ValueError, TypeError):
+            return value
+
+    # Register the custom currency filter
+    app.jinja_env.filters['currency'] = currency
     
     return app
