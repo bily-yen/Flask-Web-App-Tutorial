@@ -280,6 +280,14 @@ def myshops():
     """
     return render_template('myshops.html', user=current_user)
 
+@views.route('/aboutus', methods=['GET'])
+def aboutus():
+    """
+    Return to the admin page.
+    """
+    return render_template('aboutus.html', user=current_user)
+
+
 # Route to display the home page
 @views.route('/', methods=['GET', 'POST'])
 @login_required

@@ -12,7 +12,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: gold;
+  background-color: rgba(0, 7, 203, 0.348);
 }
 #topfinancehead{
   margin-top: 50px;
@@ -56,15 +56,15 @@ body {
 }
 .index-product-section {
   padding: 20px;
-  background-color: black;
   
 }
 
 .index-section-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
   text-align: center;
-  color: white;
-  background-color: rgb(0, 0, 0);
+  color: black;
+  padding: 4px;
+  font-weight: 900;
 }
 
 .index-product-list {
@@ -138,14 +138,13 @@ body {
   display: inline-flex; /* Allows centering and alignment */
   align-items: center; /* Vertically centers the icon */
   justify-content: center; /* Horizontally centers the icon */
-  margin: 20px; /* Adds space around the icon */
   float: right;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 }
 
 .nexticon i {
   font-size: 2rem; /* Adjust the size of the arrow icon */
-  color: #007bff; /* Set the icon color */
+  color: black; /* Set the icon color */
   cursor: pointer; /* Makes the icon clickable */
 }
 
@@ -155,7 +154,7 @@ body {
 #fut{
   width: 100%;
   display: flex;
-  background-color: azure;
+  background-color: black;
   margin-top: 20px;
 }
 .index-reasons {
@@ -166,18 +165,19 @@ body {
   margin-top: 30px; /* Centers the block horizontally */
   width: 100%;
   margin-left: 25%;
+  background-color: rgba(0, 0, 0, 0.227);
 
 }
 
 .index-reasons h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #333;
+  color: #6a6a6a;
 }
 
 .index-reasons p {
   font-size: 1rem;
-  color: #666;
+  color: #949494;
   line-height: 1.6;
   margin-bottom: 20px;
   width: max-content;
@@ -224,7 +224,7 @@ body {
 .index-affiliates h1 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #333;
+  color: #676767;
 }
 
 .index-affiliates p {
@@ -478,7 +478,7 @@ border-radius: 5px;
   gap: 2rem;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   overflow: hidden; /* Hide any overflow caused by the pseudo-element */
-  height: 50%;
+  height: 75%;
 }
 
 .header__container::before {
@@ -795,6 +795,70 @@ section#wcuindextop {
   margin-left: 0;
 }
 
+.hometop-container {
+  margin: 20px;
+  margin-top: 5px;
+}
+.hometop-item {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex: 1 1 150px; /* Adjust size as needed */
+  margin: 10px;
+}
+.hometop-icon {
+  font-size: 3rem;
+  color: #007bff; /* Adjust color as needed */
+}
+.hometop-title {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 15px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.search-button i {
+  margin-right: 5px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
 .reasons {
   flex: 3;
   height: min-content;
@@ -1041,12 +1105,12 @@ nav .navigation ul li a:hover{
 
 /* Professional Header Styles */
 .laiheader-top-header {
-  background-color: #0080ff; /* Background color */
+  background-color: white; /* Background color */
   padding-top: 90px; /* Increased padding for top/bottom and left/right */
   display: flex;
   justify-content: center; /* Center the header content horizontally */
   align-items: center; /* Center items vertically */
-  border-bottom: 1px solid #ddd; /* Light border at the bottom */
+  border-bottom: 5px solid brown; /* Light border at the bottom */
 }
 
 .laiheader-header-content {
@@ -1060,14 +1124,15 @@ nav .navigation ul li a:hover{
 }
 
 .laiheader-header-logo h1 {
-  font-size: 48px; /* Increased font size for better visibility */
-  color: #ff000034; /* White color for contrast with blue background */
+  font-size: 28px; /* Increased font size for better visibility */
+  color: white; /* White color for contrast with blue background */
   font-weight: bold; /* Bold font weight */
   font-family: 'Roboto', sans-serif; /* Use the Roboto font */
   position: relative; /* Needed for positioning pseudo-elements */
   overflow: hidden; /* Ensures text does not overflow its container */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3); /* Basic shadow for 3D effect */
   transform: perspective(500px) rotateX(10deg); /* Adds perspective and rotation for 3D effect */
+  padding: 2px;
 }
 
 
@@ -1100,7 +1165,6 @@ nav .navigation ul li a:hover{
 }
 
 .laiheader-header-contact {
-  padding-top: 40px;
   display: flex;
   flex-direction: row; /* Align contact numbers in a row */
   align-items: center; /* Center contact numbers vertically */
@@ -1108,17 +1172,17 @@ nav .navigation ul li a:hover{
 }
 
 .laiheader-contact-text {
-  font-size: 26px; /* Font size for "Call Us" text */
-  color: white; /* White color for visibility */
+  font-size: 16px; /* Font size for "Call Us" text */
+  color: black; /* White color for visibility */
   margin-right: 10px; /* Space between "Call Us" text and contact numbers */
   font-weight: 600;
 }
 
 .laiheader-contact-number {
   font-size: 16px; /* Font size */
-  color: white; /* White color for contact numbers */
+  color: black; /* White color for contact numbers */
   padding: 30px;
-  font-weight: 700;
+  font-weight: 900;
 
 }
 

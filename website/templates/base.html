@@ -65,7 +65,7 @@ rel="stylesheet"
     right: 0;
     border-bottom: none;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
-    background-color: white;
+    background-color: brown;
     z-index: 999;
 }
 
@@ -79,6 +79,16 @@ rel="stylesheet"
     display: flex;
     flex-direction: row;
     align-items: center; /* Center items vertically */
+    
+}
+.navbar-nav a {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Center items vertically */
+
+    padding: 20px;
+    font-size: 16px;
+    
 }
 
 .nav-item {
@@ -158,12 +168,14 @@ rel="stylesheet"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="laiheader-header-logo">
+        <h1>BILLS HOLDINGS</h1>
+      </div>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
           <a class="nav-item nav-link" id="trending-products" href="/products">Trending Products</a>
-          <a class="nav-item nav-link" id="about-us" href="/about-us">About Us</a>
-          <a class="nav-item nav-link" id="visit-us" href="/visit-us">Visit Us</a>
+          <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
           <a href="https://facebook.com" target="_blank" style="color: black;"><i class="bi bi-facebook"></i></a>
           <a href="https://twitter.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-twitter"></i></a>
           <a href="https://instagram.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-instagram"></i></a>
@@ -193,10 +205,6 @@ rel="stylesheet"
     <!-- Top Header -->
     <div class="laiheader-top-header">
       <div class="laiheader-header-content">
-        <!-- Logo Section -->
-        <div class="laiheader-header-logo">
-          <h1>BILLS HOLDINGS</h1>
-        </div>
     
         <!-- Contact Section -->
         <div class="laiheader-header-contact">
