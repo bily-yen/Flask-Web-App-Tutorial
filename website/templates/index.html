@@ -34,9 +34,11 @@
 <section id="wcuh">
     <div class="hreasons">
         <h1>We Buy and Sell Items</h1>
-        <p>
-            Find the products of your choice from our catalogue. Contact us if you have items you want to sell.
-        </p>
+    </div>
+    <div class="hreasons">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit ullam distinctio mollitia fugit 
+            consectetur nulla, quam eligendi, corrupti labore, soluta tenetur vel eos. 
+            Explicabo doloribus dolorum cumque iure sapiente earum!</p>
     </div>
     <div class="wcuiconsh">
         <div class="search-bar-container">
@@ -119,7 +121,8 @@
   <div class="container" style="margin-bottom: 20px; padding: 3px;">
 <section class="index-product-section" id="product-section">
     <h2 class="index-section-title">Our Products</h2>
-    <div id="product-list" class="index-product-list">
+    <div id="container-product-list" class="index-product-list">
+        
         <div class="index-product-item">
             <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
             <h3 class="index-product-name">Product Name 1</h3>
@@ -150,7 +153,14 @@
         </div>
         <div class="index-product-item">
             <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
+            <h3 class="index-product-name">Product Name 6</h3>
+            <p class="index-product-price">$99.99</p>
+            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+            <a href="#more-products" class="index-view-more-btn">View More</a>
+        </div>
+        <div class="index-product-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+            <h3 class="index-product-name">Product Name 3</h3>
             <p class="index-product-price">$99.99</p>
             <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
             <a href="#more-products" class="index-view-more-btn">View More</a>
@@ -162,7 +172,22 @@
             <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             <a href="#more-products" class="index-view-more-btn">View More</a>
         </div>
-        <!-- Add more product items as needed -->
+        <div class="index-product-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+            <h3 class="index-product-name">Product Name 2</h3>
+            <p class="index-product-price">$149.99</p>
+            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <a href="#more-products" class="index-view-more-btn">View More</a>
+        </div>
+        <div class="index-product-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+            <h3 class="index-product-name">Product Name 2</h3>
+            <p class="index-product-price">$149.99</p>
+            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <a href="#more-products" class="index-view-more-btn">View More</a>
+        </div>
+        <!-- Add more p
+         roduct items as needed -->
          
     </div>
     <div class="nexticon">
@@ -180,14 +205,11 @@
 
  
 
-
+<h2 class="index-section-title">Our Services</h2>
 
     <div class="container first">
-
-        <h1 class="heading">our services</h1>
-       
-    
-        <div class="box-container">
+        
+        <div class="box-container" style="background-color: brown;">
     
             <div class="box">
                
@@ -219,8 +241,8 @@
             <div class="box">
             
                 <h3>electronic installations</h3>
-                <p>We always intend to leave you settled,taking the bother of making sure ou kickstart your new life without breaking a sweat</p>
-                <p>TV Mounting, Wifi-Reconnection, solar Reconnection,</p>
+                <p>We always intend to leave you settled,taking the bother of making sure ou kickstart your new life without breaking a sweat.These include 
+                    TV Mounting, Wifi-Reconnection, solar Reconnection,</p>
                 <a href="#" class="btn">read more</a>
             </div>
     
@@ -228,7 +250,7 @@
               
                 <h3>Cleaning</h3>
                 <p>settling into a new home may be hectic if necessary precautions when it comes to cleanliness are ignored.
-                    We therefore offer general and specialized house cleaning services. <br> fumigation vaccum-cleaning lawn-mowing </p>
+                    We therefore offer general and specialized house cleaning services including fumigation,vaccum-cleaning lawn-mowing </p>
                 <a href="#" class="btn">read more</a>
             </div>
     
@@ -236,8 +258,7 @@
            
                 <h3>Find a home</h3>
                 <p>Want to move but not sure where to?Well,dont stress.
-                    We are also keen to help you find a suitable home that matches your desires</p>
-                    <p>explore the various popular destinations and send an enquiry for vacancies </p>
+                    We are also keen to help you find a suitable home that matches your desires.Explore the various popular destinations and send an enquiry for vacancies </p>
                 <a href="#" class="btn">read more</a>
             </div>
     
@@ -255,9 +276,9 @@
        
         
         
-        <div class="wcuiconsh" style="width: 100%; justify-content: center;">
+        <div class="wcu" style="width: 100%; justify-content: center;">
 
-            <div class="affordabilityh">
+            <div class="affordability">
                 <span>
                     <h2 style="color: brown;">safe transactions <br> methods</h2>
                     <p>MPESA</p>
@@ -267,7 +288,7 @@
                 </span>
             </div>
             
-            <div class="affordabilityh">
+            <div class="affordability">
                 <span>
                     <h2 style="color: brown;">why choose us</h2>
                     <p>convenient payment plan</p>
@@ -281,13 +302,12 @@
                
             </div>
               
-            <div class="affordability" style="position: 10px; height: 50%;" >
+            <div class="integrity" style="position: 10px; height: 50%;" >
                 <span>
                 
                     <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto; border-radius: 10px;"  />
-                    <a class="btn btn-danger " href="#home_relocationblog" role="button"
-                    style="width: 100%;height: max-content; background-color: brown; color: black; text-align: center; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 0; margin-top: 10px;">
-                    <i class="bi bi-file-earmark"></i> want a quick loan with valuables as collateral? <br>you can visit us at our defined location at th bottom
+                    <a class="btn btn-danger " href="#home_relocationblog" role="button">
+                    <i class="bi bi-file-earmark"></i> want to sell?
                  </a>
                 </span>
             </div>
@@ -297,7 +317,7 @@
         </div>
         
 
-            <div class="securityh">
+            <div class="securityh" style="margin-left: 0;">
                 <span>
                     <div class="text-center" style="color: black; font-weight: 800; font-size: 16px;">
                         Claim this seven seater master coach for only ksh 7000!
@@ -314,14 +334,16 @@
 
 
     <section id="fut">
+        <div class="container">
        
     <div class="index-reasons">
         <h1>Why Trucks on Tracks?</h1>
-        <p>The birth of TOT was administered under paramount ethical and legal processions <br>
-            to secure elite and convenient courier service in and <br>around East Africa</p>
+        <div class=""></div>
+        <p>The birth of TOT was administered <br> under paramount ethical and legal <br> processions 
+            to secure elite <br> and convenient <br> courier service in and around East Africa</p>
         <div class="index-email">
             <div class="index-mail">
-                <p>Send us an email</p>
+                <p>Send us an email</p> <br>
                 <i class="fa fa-envelope"></i>
                 <span>homemovers@yourdoor.com</span>
             </div>
@@ -338,6 +360,7 @@
             <p><i class="fab fa-twitter"></i>S-MILE</p>
         </div>
     </div>
+</div>
 </section>
 
 
@@ -356,7 +379,7 @@
 <script>
       document.addEventListener('DOMContentLoaded', () => {
         const scrollArrow = document.getElementById('scroll-arrow');
-        const productList = document.getElementById('product-list');
+        const productList = document.getElementById('container-product-list');
 
         scrollArrow.addEventListener('click', () => {
             const scrollAmount = 300; // Amount to scroll each time the arrow is clicked

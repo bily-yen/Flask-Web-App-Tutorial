@@ -564,7 +564,7 @@ a{
 }
 #wcuh{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     background-color:rgba(255, 255, 255, 0.492);
     width: 100%;
@@ -586,7 +586,10 @@ a{
     margin: 0;
     margin-left: 40px;
     align-items: center;
-    
+    justify-content: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .wcuiconsh{
     display: flex;
@@ -1361,12 +1364,14 @@ a{
     border-radius: 1px solid black;
     cursor: pointer;
     font-weight: 500;
-    background-color: #052f5c;
-    width: 25%;
+    background-color: brown;
+    width: max-content;
     text-align: center;
     height: 32px;
-    margin-top: auto;
-    margin-right: 25px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+
   }
   .btn:hover {
     background-color:goldenrod;

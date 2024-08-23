@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Blog Page{% endblock %}
 
 {% block content %}
 <!-- Blog Page Content -->
+ </div>
  <style>
+    
     img {
   display: flex;
   width: 100%;
@@ -12,6 +13,7 @@
 
 
  </style>
+ 
  
  <div class="formhead">
     {% if current_user.is_authenticated %}
@@ -29,12 +31,15 @@
         {% endwith %}
     {% endif %}
 </div>
+
 <section id="wcuh">
     <div class="hreasons">
         <h1>We Buy and Sell Items</h1>
-        <p>
-            Find the products of your choice from our catalogue. Contact us if you have items you want to sell.
-        </p>
+    </div>
+    <div class="hreasons">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit ullam distinctio mollitia fugit 
+            consectetur nulla, quam eligendi, corrupti labore, soluta tenetur vel eos. 
+            Explicabo doloribus dolorum cumque iure sapiente earum!</p>
     </div>
     <div class="wcuiconsh">
         <div class="search-bar-container">
@@ -47,148 +52,134 @@
         </div>
     </div>
 </section>
+        <div class="securityh">
+            <span>
+                <img src="{{ url_for('static', filename='SPAPHOTOS/electronics1.jpg') }}" >
+
+            </span>
+        </div>
+      
+        
+    </div>
+</section>
 
 
 
-<header class="pheader__container">
-    <div class="pheader__image">
-        <div class="pheader__image__card header__image__card-1">
+
+<header class="header__container">
+    <div class="header__image">
+        <div class="header__image__card header__image__card-1">
             <span><i class="fas fa-hand-holding-usd"></i></span>
-            Machinery
+            Buy
           </div>
-          <div class="pheader__image__card header__image__card-2">
+          <div class="header__image__card header__image__card-2">
             <span><i class="fas fa-book"></i></span>
-            Electronics
+            Sell
           </div>
-          <div class="pheader__image__card header__image__card-3">
+          <div class="header__image__card header__image__card-3">
             <span><i class="fas fa-box"></i></span>
-            house-hold items
+            Resale
           </div>
-          <div class="pheader__image__card header__image__card-4">
+          <div class="header__image__card header__image__card-4">
             <span><i class="fas fa-sync-alt"></i></span>
-            general merchandise
+            Repossession
           </div>
-      <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" />
+          
+      <img src="{{ url_for('static', filename='SPAPHOTOS/roundtable.jpg') }}" alt="header" />
+     
+    </div>
+    
+</div>
+
+
+
+  </header>
+
+  <div class="container" style="margin-bottom: 20px; padding: 3px;">
+    <section class="index-product-section" id="product-section">
+        <h2 class="index-section-title">Our Products</h2>
+        <div id="container-product-list" class="index-product-list">
+            
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 1</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 6</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 3</h3>
+                <p class="index-product-price">$99.99</p>
+                <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 2</h3>
+                <p class="index-product-price">$149.99</p>
+                <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 2</h3>
+                <p class="index-product-price">$149.99</p>
+                <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <div class="index-product-item">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+                <h3 class="index-product-name">Product Name 2</h3>
+                <p class="index-product-price">$149.99</p>
+                <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <a href="#more-products" class="index-view-more-btn">View More</a>
+            </div>
+            <!-- Add more p
+             roduct items as needed -->
+             
+        </div>
+        <div class="nexticon">
+            <i id="scroll-arrow" class="fa fa-arrow-right"></i>
+            <span class="scroll-text">More</span>
+        </div>
     </div>
     
         
-
-  </header>
-  <section class="index-product-section"   id="product-section">
-    <h2 class="index-section-title">Trending products</h2>
-    
-    <div id="product-list" class="index-product-list">
-        <div class="index-product-item" >
-            
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 2</h3>
-            <p class="index-product-price">$149.99</p>
-            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <!-- Add more product items as needed -->
+        
+    </section>
     </div>
-   
-</div>
-<div class="nexticon">
-    <i id="scroll-arrow" class="fa fa-arrow-right"></i>
-    <span class="scroll-text">More</span>
-</div>
-</div>
-    
-    
-</section>
-  <div class="feature_base">
-    <div class="fb">
-    <div class="feature_box">
-        <h3>Electronics</h3>
-        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-        <br>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-
-    </div>
-    <div class="feature_box">
-        <h3>general merchandise</h3>
-        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-        <br>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-
-    </div>
-    <div class="feature_box">
-        <h3>households</h3>
-        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-        <br>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-
-    </div>
-    <div class="feature_box">
-        <h3>Machinery</h3>
-        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-        <br>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-        <h4>televisions</h4>
-        <h4>redios</h4>
-        <h4>amplifiers</h4>
-
     </div>
 
-</div>    
-</div>
-</div>
-
-<div class="container-fluid" style="overflow-y: visible; height: max-content; padding: 15px; background-color: gold;">
+<div class="container-fluid" style="overflow-y: visible; height: max-content; padding: 15px; background-color:brown; margin-top: 30px;" >
 
     <div class="epheader" style="justify-content: center ; align-items: center; text-align: center; margin-bottom: 9px; background-color: white;padding-top: 1px;">
         <h4 style="color:black; margin-top: 40px;">New arrivals</h4>
@@ -196,12 +187,12 @@
         Ipsa distinctio quam deleniti tenetur aperiam. <br>
          Fuga fugit labore ratione saepe dolores earum voluptatum,<br>
         id at! Est tempore eveniet dolores maxime ipsam?
-            <section id="wcuindextop" style=" box-shadow:0 4px 8px rgba(0, 0, 0, 0.1); background-color: gold; width:100%;">
+            <section id="wcuindextop" style=" box-shadow:0 4px 8px rgba(0, 0, 0, 0.1); background-color:  rgba(0, 7, 203, 0.348); width:100%;">
                 
                 
-                <section id="wcuindextop" style="margin-bottom: 20px; height: max-content; width: fit-content;">
+                <section id="wcu" style="margin-bottom: 20px; height: max-content; width: fit-content; border-radius: 10px; margin-right: auto; margin-left: auto;">
                   
-                <div class="reasons" style=" padding: 2px; width: 100%;">
+                <div class="reasons" style=" padding: 5px; width: 100%;">
                     
                 <div class="wcuicons" style="padding: 2px; justify-content:flex-start; margin-left: 1px;">
     
@@ -220,48 +211,7 @@
                   
                 </div>
             </section>
-            <div class="foot" style="margin-left: 5px; padding: 4px; background-color: black; width: 50%; border-radius: 20px;" >
-                <h1>Available Now</h1>
-                <section id="wcuindextop" >
-                    
-                        
-            <div class="reasons" style=" padding: 25px;">
-                <h1 style="color:goldenrod;">Samsung Smart TV 64'</h1>
-                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="width: 500px;"/>
-                <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 10px; font-size: 21px;"  class="index-product-price" >$99.99</p>
-                <p  class="index-product-description" style="width: 100%; font-weight: normal;  line-height: 1.2rem; margin-top: 20px;  height: 200px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  <br> vel magna nec metus faucibus interdum.</p>
-           </div>
-                   
-                    <div class="wcuicons" style="padding: 10px;" >
-                        <div class="affordability" >
-                            <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
-                            <div class="security" style="padding: 1px; line-height: 1.2rem;">
-                                <span >
-                                    <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 1px; font-size: 21px; width: 100%;">Item Insurance</p>
-                                    <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 1px; font-size: 21px;">Item Insurance</p>
-                                    <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 1px; font-size: 21px;">Item Insurance</p>
-                                    <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 1px; font-size: 21px;">Item Insurance</p>
-                                </span>
-                                </div>
-                        </div>
-                        <div class="security" style="padding: 1px;">
-                            <span>
-                                side photo 
-                                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto; margin-top: 20px;"/>
-                                <br>
-                                <br>
-                                rear photo 
-                                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto; margin-top: 20px;"/>
-                                
-                            </span>
-                        </div>
-                    </div>
-    
-                        
-                        
-                    </section>
-    
-                </div>
+
                 <section id="wcuindextop" style="margin-bottom: 20px; width: 100%;">
                   
                     <div class="reasons" style=" padding: 20px;">
@@ -270,87 +220,6 @@
                          <p class="index-product-price">$99.99</p>
                          <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
                     </div>
-                    <div class="wcuicons"style="width: max-content;">
-                        <div class="affordability" >
-                            <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
-                            <div class="security">
-                                <span >
-                                    <p>Item Insurance</p>
-                                    <p>Discounts</p>
-                                    <p>Instant Loans</p>
-                                    <p>convenient payment terms</p>
-                                </span>
-                                </div>
-                        </div>
-                        <div class="security" >
-                            <span>
-                                side photo
-                                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto;"/>
-                                <br>
-                                rear photo
-                                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto;"/>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </section>
-                
-            </section>
-            </div>
-    
-
-<div class="epheader" style="justify-content: center ; align-items: center; text-align: center;">
-    <h4 style="color:black; width: 100%; font-size: 16; font-weight: 800;">Featured items </h4>
-  <section id="wcuindextop" style=" box-shadow:0 4px 8px rgba(0, 0, 0, 0.1); background-color:white; justify-content: center; margin-left: auto; margin-right: auto; max-width: 90%;">
-            <div class="feweitems" style=" padding: 2px;" >
-                <p style=" font-weight: 900;">smart tvs</p>
-            </div>
-        
-            
-            <section id="wcuindextop" style="margin-bottom: 20px; padding: 5px; margin-right: 0;padding-right: 80px;">
-              
-            <div class="reasons" style=" padding: 5px;">
-                 <h1 style="color:goldenrod;">Samsung Smart TV 64'</h1>
-                 <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="width: 500px;"/>
-                 <p class="index-product-price">$99.99</p>
-                 <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            </div>
-            <div class="wcuicons"style="width: max-content;">
-                <div class="affordability" >
-                    <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
-                    <div class="security">
-                        <span >
-                            <p>Item Insurance</p>
-                            <p>Discounts</p>
-                            <p>Instant Loans</p>
-                            <p>convenient payment terms</p>
-                        </span>
-                        </div>
-                </div>
-                <div class="security" >
-                    <span>
-                        side photo
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto;"/>
-                        <br>
-                        rear photo
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto;"/>
-                        
-                    </span>
-                </div>
-            </div>
-        </section>
-            <div class="foot" style="margin-left: 5px; padding: 4px; background-color: black; width: 50%; border-radius: 20px;" >
-                <h1>Available Now</h1>
-                <section id="wcuindextop" >
-                    
-                        
-            <div class="reasons" style=" padding: 25px;">
-                <h1 style="color:goldenrod;">Samsung Smart TV 64'</h1>
-                <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="width: 500px;"/>
-                <p style="display: flex; font-weight: 600; padding: 5px; margin-top: 10px; font-size: 21px;"  class="index-product-price" >$99.99</p>
-                <p  class="index-product-description" style="width: 100%; font-weight: normal;  line-height: 1.2rem; margin-top: 20px;  height: 200px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  <br> vel magna nec metus faucibus interdum.</p>
-           </div>
-                   
                     <div class="wcuicons" style="padding: 10px;" >
                         <div class="affordability" >
                             <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
@@ -375,13 +244,11 @@
                             </span>
                         </div>
                     </div>
-                    
                 </section>
-            </div>
-            
-        </section>
-        
-
+                
+            </section>
+    
+</div>
      
 
 
@@ -421,26 +288,17 @@
         <div class="epheader" style="justify-content: center; align-items: center; text-align: center;">
             <div class="scroll-container" style="max-height: calc(100vh - 100px); overflow-y: auto; padding: 10px;">
             
-                <section id="wcuindextop" style="margin-bottom: 20px; padding: 20px;">
+                <section id="wcuindextop" style="margin-bottom: 20px; padding: 15px;">
                    
-                    <div class="reasons" style="margin-left: 10px;">
+                    <div class="reasons" style="margin-left: 0;">
                         <button class="scroll-btn scroll-up" onclick="scrollUp()">&#9650;</button>
                         
-                        <h1 style="color:goldenrod;">Samsung Smart TV 64'</h1>
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto;"/>
-                        <p class="index-product-price">$99.99</p>
-                        <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+                        <h1 style="color:goldenrod; margin-left: 0;">Samsung Smart TV 64'</h1>
+                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 95%; height: auto; padding: 10px;"/>
+                        <p class="index-product-price" style="margin-left: 20px;">$99.99</p>
+                        <p class="index-product-description" style="margin-left: 0; width: 75%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
                     </div>
                     <div class="wcuicons" style="width: max-content;">
-                        <div class="affordability">
-                            <i class="fas fa-shield-alt"></i> <!-- Icon for item insurance -->
-                            <span>
-                                <p>Item Insurance</p>
-                                <p>Discounts</p>
-                                <p>Instant Loans</p>
-                                <p>Convenient payment terms</p>
-                            </span>
-                        </div>
                         <div class="security" style="padding: 0.50px;">
                             <span>
                                 side photo
@@ -562,8 +420,8 @@
         
     </div>
                 
-                    <div class="bigofferimg" style="margin-left: 70px; position: relative; margin-top: 0;margin-bottom: 1px;">
-                        <h1 style="color: black; padding: 0; font-size: 24px; margin-bottom: 0;background-color: white; padding: 20px; text-align: center; margin-right: 5%;" >Check out this fridge</h1> 
+                    <div class="bigofferimg" style=" position: relative; margin-top: 0;margin-bottom: 1px;">
+                        <h1 style="color: black; font-size: 18px; margin-bottom: 0; padding: 10px; text-align: center; margin-right: 5%;" >Check out this fridge</h1> 
                     
                         <span style="margin-bottom: 170px">
                         <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style=" padding: 2px; border-radius: 30px;"/>
@@ -599,15 +457,18 @@
        
  
 
+
     <section id="fut">
+        <div class="container">
        
     <div class="index-reasons">
         <h1>Why Trucks on Tracks?</h1>
-        <p>The birth of TOT was administered under paramount ethical and legal processions <br>
-            to secure elite and convenient courier service in and <br>around East Africa</p>
+        <div class=""></div>
+        <p>The birth of TOT was administered <br> under paramount ethical and legal <br> processions 
+            to secure elite <br> and convenient <br> courier service in and around East Africa</p>
         <div class="index-email">
             <div class="index-mail">
-                <p>Send us an email</p>
+                <p>Send us an email</p> <br>
                 <i class="fa fa-envelope"></i>
                 <span>homemovers@yourdoor.com</span>
             </div>
@@ -624,6 +485,7 @@
             <p><i class="fab fa-twitter"></i>S-MILE</p>
         </div>
     </div>
+</div>
 </section>
 
 
@@ -642,7 +504,7 @@
 <script>
       document.addEventListener('DOMContentLoaded', () => {
         const scrollArrow = document.getElementById('scroll-arrow');
-        const productList = document.getElementById('product-list');
+        const productList = document.getElementById('container-product-list');
 
         scrollArrow.addEventListener('click', () => {
             const scrollAmount = 300; // Amount to scroll each time the arrow is clicked

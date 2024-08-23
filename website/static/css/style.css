@@ -14,6 +14,106 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: rgba(0, 7, 203, 0.348);
 }
+
+.navbar {
+  padding: 20px 50px; /* Increased padding for top/bottom and left/right */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: none;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
+  background-color: brown;
+  z-index: 999;
+}
+
+
+/* Flexbox for Centering Navbar Items */
+.navbar-collapse {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center items vertically */
+  
+}
+.navbar-nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center items vertically */
+  padding: 20px;
+  font-size: 16px;
+  
+}
+
+.nav-item {
+  margin: 0 10px; /* Adjust margins for spacing between items */
+}
+
+.nav-link {
+  font-size: 14px; /* Slightly larger font size for better readability */
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+  padding: 10px 15px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 3D Effect */
+.nav-link::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: translateY(5px);
+  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  animation: flashColors 1.5s ease-in-out forwards;
+}
+#login {
+font-size: 42px; /* Adjust the size as needed */
+font-weight: bold;
+color: goldenrod; /* White color for the text */
+text-decoration: none; /* Remove underline */
+position: relative; /* Needed for pseudo-elements */
+margin-bottom: 0;
+animation: none;
+cursor:default;
+}
+
+#signUp{
+font-size: 12px; /* Adjust the size as needed */
+font-weight: bold;
+color: black; /* White color for the text */
+text-decoration: none; /* Remove underline */
+position: relative; /* Needed for pseudo-elements */
+margin-bottom: 0;
+animation: none;
+
+}
+
+/* Adding a hover effect */
+
+
+@keyframes flashColors {
+  0% { color: black; }
+  25% { color: goldenrod; }
+  50% { color: goldenrod; }
+  100% { color: black; }
+}
+
+
 #topfinancehead{
   margin-top: 50px;
   margin-bottom: 10%;
@@ -205,7 +305,7 @@ body {
 
 .index-mail i, .index-callus i {
   font-size: 1.5rem;
-  color: #007bff;
+  color: brown;
 }
 .index-callus{
   width: max-content;
@@ -1707,8 +1807,682 @@ padding: 15px;
 }
 
 @media (max-width: 769px) {
+
+
+  .navbar {
+    position: fixed;
+    border-bottom: none;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
+    background-color: brown;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+
+    width: 90%;
+  }
+  
+  
+  /* Flexbox for Centering Navbar Items */
+
+  
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items vertically */
+    width: min-content;
+    justify-content: center;
+    margin-bottom: auto;
+
+    
+  }
+  .navbar-nav a {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+    font-size: 12px;
+    margin-right: auto;
+    justify-content: space-between;
+    padding: 1px;
+    margin-left: 0;
+  }
+  
+  
+  
+  .nav-link {
+    font-size: 14px; /* Slightly larger font size for better readability */
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+    padding: 15px; /* Adjust padding as needed */
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  /* 3D Effect */
+  .nav-link::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: translateY(5px);
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+    animation: flashColors 1.5s ease-in-out forwards;
+  }
+  #login {
+  font-size: 42px; /* Adjust the size as needed */
+  font-weight: bold;
+  color: goldenrod; /* White color for the text */
+  text-decoration: none; /* Remove underline */
+  position: relative; /* Needed for pseudo-elements */
+  margin-bottom: 0;
+  animation: none;
+  cursor:default;
+  }
+  
+  #signUp{
+  font-size: 12px; /* Adjust the size as needed */
+  font-weight: bold;
+  color: black; /* White color for the text */
+  text-decoration: none; /* Remove underline */
+  margin-bottom: 0;
+  animation: none;
+  
+  }
+
+  .laiheader-top-header {
+    margin-top: 80px;
+    padding-bottom: 50px;
+    position: relative;
+    background-color: white; /* Background color */
+    display: flex;
+    justify-content: center; /* Center the header content horizontally */
+    align-items: center; /* Center items vertically */
+    border-bottom: 5px solid brown; /* Light border at the bottom */
+    padding: 2px;
+  }
+  
+  .laiheader-header-content {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center; /* Space out items evenly within the header */
+    align-items: center;
+    width: 50%; /* Full width to use the available space */
+    padding: 30px;
+    height: min-content;
+  }
+  
+  .laiheader-header-logo h1 {
+    font-size: 28px; /* Increased font size for better visibility */
+    color: white; /* White color for contrast with blue background */
+    font-weight: bold; /* Bold font weight */
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    position: relative; /* Needed for positioning pseudo-elements */
+    overflow: hidden; /* Ensures text does not overflow its container */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3); /* Basic shadow for 3D effect */
+    transform: perspective(500px) rotateX(10deg); /* Adds perspective and rotation for 3D effect */
+    padding: 2px;
+  }
+  
+  
+  
+  /* Small tag/footer styling */
+  .laiheader-header-logo h1::after {
+    content: "Empowering Your Financial Future"; /* Tag text */
+    display: block;
+    font-size: 12px; /* Font size for the tag */
+    font-weight: 900px;
+    color: rgba(255, 255, 255, 0.7); /* Faint white color */
+    font-family: 'Roboto', sans-serif; /* Same font for consistency */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle shadow for clarity */
+    margin-top: 10px; /* Space between the heading and the tag */
+    text-align: center; /* Center the tag text */
+  }
+  
+  /* Create the wavy effect with a CSS animation */
+  .laiheader-header-logo h1::after {
+    animation: wave 3s infinite; /* Apply wave animation */
+  }
+  
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .laiheader-header-contact {
+    display: flex;
+    flex-direction: row; /* Align contact numbers in a row */
+    align-items: center; /* Center contact numbers vertically */
+    margin: 5px; /* Space between contact section and social media */
+    justify-content: center;
+  }
+  
+  .laiheader-contact-text {
+    font-size: 12px; /* Font size for "Call Us" text */
+    color: black; /* White color for visibility */
+    margin-right: 1px; /* Space between "Call Us" text and contact numbers */
+    font-weight: 600;
+    padding: 12px;
+    width: 100%;
+    display: inline-block;
+  }
+  .laiheader-contact-text i{
+    font-size: 12px; /* Font size for "Call Us" text */
+    color: black; /* White color for visibility */
+    margin-right: 1px; /* Space between "Call Us" text and contact numbers */
+    font-weight: 600;
+    padding: 2px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;  }
+  
+  .laiheader-contact-number {
+    font-size: 12px; /* Font size */
+    color: black; /* White color for contact numbers */
+    padding: 10px;
+    font-weight: 900;
+  
+  }
+  
+  .laiheader-header-social-media {
+    display: flex;
+    align-items: center; /* Center social media icons vertically */
+    justify-content: center;
+    font-size: 10px;
+  }
+  
+  .laiheader-header-social-media a {
+    color: black; /* White color for icons */
+    margin-left: 5px; /* Space between icons */
+    text-decoration: none; /* Remove underline from links */
+    padding: 2px;
+  }
+  
+  .laiheader-header-social-media i {
+    font-size: 12px; /* Adjust icon size */
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .laiheader-header-social-media a:hover i {
+    color: white; /* Change icon color on hover */
+  }
+  
+  /* Adding a hover effect */
+  
+  
+  @keyframes flashColors {
+    0% { color: black; }
+    25% { color: goldenrod; }
+    50% { color: goldenrod; }
+    100% { color: black; }
+  }
+
+  #wcuh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:rgba(255, 255, 255, 0.492);
+    width: 100%;
+    height: max-content;
+    padding: 5px;
+}
+#wcuh .hreasons{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-weight: 700;
+  padding: 2px;
+  margin-top: 5px;
+      
 }
 
+#wcuh .hreasons h1{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: x-large;
+    color: black;
+    padding: 1px;
+    margin-top: 15px;
+        
+}
+#wcuh .hreasons p{
+    margin: 0;
+    margin-left: 40px;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    
+}
+.wcuiconsh{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.affordabilityh,
+.securityh {
+    margin-left: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    
+}
+.affordabilityh {
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 100px;
+}
+
+.securityh {
+    margin-top: 5px;
+    margin-right: 0;
+    background-color: none;
+    margin-left: 20px;
+    padding: 20px;
+
+}
+.securityh img{
+    border-radius: 10px;
+}
+
+.header__image__card-1 {
+  top: 25%;
+  left: 0;
+  transform: translate(-5%, -50%);
+  padding: 15px;
+  background-color: rgba(213, 213, 1, 0.83);
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.header__image__card-2 {
+  top: 15%;
+  transform: translateY(-50%);
+  background-color: rgba(17, 120, 254, 0.51);
+  font-weight: 700;
+  margin-right: 20px;
+  padding: 2px;
+  margin-left: 10px;
+}
+
+.header__image__card-3 {
+  top: 60%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: rgba(165, 27, 27, 0.795);
+  font-weight: 700;
+}
+
+.header__image__card-4 {
+  top: 65%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: rgba(250, 245, 204, 0.852);
+  font-weight: 700;
+}
+
+index-product-section {
+  padding: 20px;
+  
+}
+
+.index-section-title {
+  font-size: 1.2rem;
+  text-align: center;
+  color: black;
+  padding: 4px;
+  font-weight: 900;
+}
+
+.index-product-list {
+  display: flex;
+  overflow-x: hidden; /* Allows horizontal scrolling */
+  gap: 20px; /* Adjust the gap between items as needed */
+  width: 100%;
+
+}
+#product-list {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: auto; /* Smooth scrolling behavior */
+  justify-content: center;
+}
+
+
+.index-product-list::-webkit-scrollbar {
+  display: none;
+}
+
+.index-product-item {
+  flex: none; /* Ensures items don't shrink and take up fixed space */
+  width: 100%; /* Adjust width as needed */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  scroll-snap-align: center; /* Ensures items snap into place */
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+  margin-left: auto;
+
+}
+
+.index-product-image {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.index-product-name {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.formhead{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+.formhead h1 {
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: x-large;
+  color:black;
+  position: relative; /* Ensure positioning context for pseudo-element */
+  margin-top: 20px;
+  padding: 10px 5px;
+  margin-right: auto;
+  margin-left: auto;
+ 
+
+}
+
+.formhead h1::after {
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Position relative to the h1 */
+  left: 0;
+  bottom: -8px; /* Adjust as needed to control distance from text */
+  width: 100%;
+  height: 3px; /* Adjust thickness of the dashed line */
+  background-image: 
+      linear-gradient(to right, transparent calc(33.33% - 1px), rgba(49, 50, 0, 0.945) calc(33.33% - 1px), rgba(49, 50, 0, 0.945) 33.33%, transparent 33.33%, transparent calc(66.66% - 1px), rgba(49, 50, 0, 0.945) calc(66.66% - 1px), rgba(49, 50, 0, 0.945) 66.66%, transparent 66.66%);
+  background-size: 6px 3px; /* Adjust dash length (6px) and thickness (3px) */
+  background-repeat: repeat-x; /* Repeat the gradient horizontally */
+  transition: background-position 0.3s ease; /* Smooth transition for animation */
+}
+
+.formhead h1:hover::after {
+  background-position: 100% 0; /* Move the gradient to animate the dash effect */
+}
+.flash-messages-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure full height to center vertically */
+  margin-top: 20px; /* Adjust margin as needed */
+  transition: opacity 1s ease-out; /* Add transition for fading */
+  
+}
+
+#wcu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:black;
+  width: 100%;
+  height: 50%;
+}
+#wcu .reasons h1{
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: xx-large;
+  color: goldenrod;
+  margin-top: 10px;
+  padding: 20px;
+      
+}
+#wcu .reasons p{
+
+  margin-left: 40px;
+  align-items: center;
+  
+}
+
+.affordability {
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+  padding: auto;
+  margin-top: 20px;
+  padding: 20px;
+
+}
+span{
+  font-weight: 500;
+  margin-left: 0;
+  margin-right: auto;
+
+}
+
+#fut{
+  width: 100%;
+  display: flex;
+  background-color: black;
+  margin-top: 20px;
+}
+.index-reasons {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px; /* Centers the block horizontally */
+  width: 100%;
+  margin-left: 0;
+  background-color: rgba(0, 0, 0, 0.227);
+
+}
+
+.index-reasons h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #6a6a6a;
+}
+
+#fut .index-reasons p {
+  font-size: 1rem;
+  color: #949494;
+  line-height: 1.6;
+  margin-bottom: 20px;
+
+
+}
+
+.index-email {
+  margin-bottom: 30px;
+}
+
+.index-mail{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+}
+
+.index-callus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+
+.index-mail i, .index-callus i {
+  font-size: 1.5rem;
+}
+.index-callus{
+  width: max-content;
+  margin-top: 20px;
+}
+
+.index-mail span, .index-callus span {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.index-affiliates {
+  margin-top: 20px;
+}
+
+.index-affiliates h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #676767;
+}
+
+.index-affiliates p {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.index-affiliates i {
+  margin-right: 8px;
+  color: brown;
+
+
+}
+
+section#wcuindextop {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 0;
+}
+reasons {
+  flex: 1;
+  height: min-content;
+  width: min-content;
+  padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.reasons img {
+  max-width:300px;
+  height: 75%;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.foot {
+  margin-bottom: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.2;
+  height: max-content;
+  width: min-content;
+}
+
+.foot p {
+  color: black;
+  font-weight: 800;
+  font-size: 14px;
+  margin: 0;
+}
+
+#electronicsp {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: black;
+  overflow: hidden;
+  position: relative;
+  width: 99%;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+#wcuindextop .reasons p {
+  margin-left: 0;
+  display: flex;
+}
+
+@keyframes bulgeShrink {
+  0% {
+    transform: scale(1); /* Initial size */
+  }
+  50% {
+    transform: scale(1.2); /* Bulging size */
+  }
+  100% {
+    transform: scale(1); /* Back to initial size */
+  }
+}
+
+/* Apply the animation to the image */
+.bigofferimg h1 {
+  margin-left: 0;
+  margin-right: 0;
+  animation: bulgeShrink 2s infinite; /* Adjust duration as needed */
+  /* Optionally, add smooth transition for scaling */
+  transition: transform 0.5s ease-in-out;
+}
+.bigofferimg img{
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  margin-right:auto ;
+  margin-left: auto;
+}
+.bigofferimg p{
+  justify-content: center;
+  text-align: center;
+}
+
+}
 @media (max-width: 475px) {
 }
 

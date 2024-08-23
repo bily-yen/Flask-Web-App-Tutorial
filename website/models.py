@@ -50,3 +50,15 @@ class Refund(db.Model):
     RefundDate = db.Column(db.DateTime(timezone=True), default=func.now())
     Status = db.Column(db.String(50), default='Pending')
     Reason = db.Column(db.Text, nullable=True)
+
+
+
+class Product(db.Model):
+    __tablename__ = 'products'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    interval = db.Column(db.Integer, nullable=False)  # Interval in milliseconds
+    claimed = db.Column(db.Boolean, default=False, index=True) 
+
+    

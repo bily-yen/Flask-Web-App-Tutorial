@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+
+{% block title %}Blog Page{% endblock %}
+
+{% block content %}
+<style>
+/* styles.css */
+/* styles.css */
+#product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative; /* For positioning portal effects */
+    justify-content: center;
+}
+
+.product {
+    width: 150px;
+    height: 150px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease;
+    transform: scale(0); /* Start scaled down */
+    animation: portal 1s forwards; /* Animation for portal effect */
+    cursor: pointer; /* Indicate clickable */
+}
+
+.product.show {
+    opacity: 1; /* Visible */
+    transform: scale(1); /* Reset scale to normal */
+}
+
+.hidden {
+    display: none;
+}
+
+#flash-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3; /* Light gray */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1000; /* Ensure it's above other content */
+}
+#product_management-container{
+display: flex;
+justify-content: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes portal {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateZ(0); /* Starts from scale 0 and hidden */
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) translateZ(0); /* Slightly larger */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* Final size */
+    }
+}
+
+#edit-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#edit-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#save-button,
+#cancel-button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#save-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    margin-right: 10px;
+}
+
+#cancel-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* New styles for the product management list */
+#product-management {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: min-content;
+    justify-content: center;
+}
+
+#product-management h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+#product-management ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#product-management li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#product-management li:hover {
+    background-color: #f0f0f0;
+}
+
+#product-management button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+}
+
+#add-product-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+#remove-product-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+#product-listc{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+}
+
+</style>
+
+</head>
+<body>
+    <div id="product-container">
+        <!-- Product elements will be added here by JavaScript -->
+    </div>
+    
+    <div id="flash-message" class="hidden">Product already claimed!</div>
+    <div id="loading-spinner" class="hidden"></div>
+    
+    <!-- Edit area -->
+    <div id="edit-container" class="hidden">
+        <input type="text" id="edit-input" placeholder="Enter new product name">
+        <button id="save-button">Save</button>
+        <button id="cancel-button">Cancel</button>
+    </div>
+    
+    <!-- Product Management -->
+     <div id="product_management-container">
+    <div id="product-management">
+        <h2>Product Management</h2>
+        <ul id="product-listc">
+            <!-- Product list items will be added here by JavaScript -->
+        </ul>
+        <button id="add-product-button">Add Product</button>
+        <button id="remove-product-button">Remove Product</button>
+    </div>
+</div>
+    
+    <script src="scriptclaim.js"></script>
+    
+    <script>
+    // script.js
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('product-container');
+        const flashMessage = document.getElementById('flash-message');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const productList = document.getElementById('product-listc');
+        const editContainer = document.getElementById('edit-container');
+        const editInput = document.getElementById('edit-input');
+        const saveButton = document.getElementById('save-button');
+        const cancelButton = document.getElementById('cancel-button');
+        const addProductButton = document.getElementById('add-product-button');
+        const removeProductButton = document.getElementById('remove-product-button');
+        let currentProduct = null;
+    
+        let productsData = [
+            { name: 'Product 1', interval: 1000 },
+            { name: 'Product 2', interval: 1500 },
+            { name: 'Product 3', interval: 2000 },
+            { name: 'Product 4', interval: 2500 },
+            { name: 'Product 5', interval: 3000 }
+        ];
+    
+        function renderProducts() {
+            container.innerHTML = '';
+            productList.innerHTML = '';
+    
+            productsData.forEach((data, index) => {
+                const product = document.createElement('div');
+                product.className = 'product';
+                product.textContent = data.name;
+                container.appendChild(product);
+    
+                const listItem = document.createElement('li');
+                listItem.textContent = data.name;
+                listItem.dataset.index = index;
+                productList.appendChild(listItem);
+    
+                listItem.addEventListener('click', () => {
+                    currentProduct = index;
+                    editInput.value = productsData[index].name;
+                    editContainer.classList.remove('hidden');
+                });
+    
+                function flashProduct() {
+                    const products = document.querySelectorAll('.product');
+                    products.forEach(p => p.classList.remove('show'));
+                    product.classList.add('show');
+                }
+    
+                setInterval(flashProduct, data.interval);
+    
+                product.addEventListener('click', () => {
+                    if (!product.classList.contains('claimed')) {
+                        product.classList.add('claimed');
+                        loadingSpinner.classList.remove('hidden');
+    
+                        setTimeout(() => {
+                            loadingSpinner.classList.add('hidden');
+                            flashMessage.classList.remove('hidden');
+                            setTimeout(() => flashMessage.classList.add('hidden'), 3000);
+                        }, 3000);
+                    }
+                });
+            });
+        }
+    
+        function addProduct(name) {
+            productsData.push({ name, interval: 1000 });
+            renderProducts();
+        }
+    
+        function removeProduct(index) {
+            if (index >= 0 && index < productsData.length) {
+                productsData.splice(index, 1);
+                renderProducts();
+            }
+        }
+    
+        saveButton.addEventListener('click', () => {
+            if (currentProduct !== null) {
+                productsData[currentProduct].name = editInput.value;
+                renderProducts();
+                editContainer.classList.add('hidden');
+                currentProduct = null;
+            }
+        });
+    
+        cancelButton.addEventListener('click', () => {
+            editContainer.classList.add('hidden');
+            currentProduct = null;
+        });
+    
+        addProductButton.addEventListener('click', () => {
+            const newName = prompt('Enter new product name:');
+            if (newName) {
+                addProduct(newName);
+            }
+        });
+    
+        removeProductButton.addEventListener('click', () => {
+            const index = parseInt(prompt('Enter index of product to remove (0-based):'), 10);
+            if (!isNaN(index)) {
+                removeProduct(index);
+            }
+        });
+    
+        renderProducts();
+    });
+    </script>
+{% endblock %}

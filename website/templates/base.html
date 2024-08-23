@@ -55,111 +55,10 @@ rel="stylesheet"
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <title>{% block title %}Home{% endblock %}</title>
-    <style>
-  /* General Navbar Styling */
-.navbar {
-    padding: 20px 50px; /* Increased padding for top/bottom and left/right */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: none;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
-    background-color: brown;
-    z-index: 999;
-}
 
-/* Flexbox for Centering Navbar Items */
-.navbar-collapse {
-    display: flex;
-    justify-content: center; /* Center items horizontally */
-}
-
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Center items vertically */
-    
-}
-.navbar-nav a {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Center items vertically */
-
-    padding: 20px;
-    font-size: 16px;
-    
-}
-
-.nav-item {
-    margin: 0 10px; /* Adjust margins for spacing between items */
-}
-
-.nav-link {
-    font-size: 14px; /* Slightly larger font size for better readability */
-    font-weight: bold;
-    font-style: italic;
-    color: black;
-    padding: 10px 15px; /* Adjust padding as needed */
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-/* 3D Effect */
-.nav-link::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transform: translateY(5px);
-    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
-    border-radius: 5px;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-    animation: flashColors 1.5s ease-in-out forwards;
-}
-#login {
-  margin-left: 100px;
-  font-size: 42px; /* Adjust the size as needed */
-  font-weight: bold;
-  color: goldenrod; /* White color for the text */
-  text-decoration: none; /* Remove underline */
-  position: relative; /* Needed for pseudo-elements */
-  margin-bottom: 0;
-  animation: none;
-  cursor:default;
-}
-
-#signUp{
-  margin-left: 100px;
-  font-size: 12px; /* Adjust the size as needed */
-  font-weight: bold;
-  color: black; /* White color for the text */
-  text-decoration: none; /* Remove underline */
-  position: relative; /* Needed for pseudo-elements */
-  margin-bottom: 0;
-  animation: none;
-
-}
-
-/* Adding a hover effect */
-
-
-@keyframes flashColors {
-    0% { color: black; }
-    25% { color: goldenrod; }
-    50% { color: goldenrod; }
-    100% { color: black; }
-}
-    </style>
 
   <body>
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg">
       <button
         class="navbar-toggler"
         type="button"
@@ -171,10 +70,18 @@ rel="stylesheet"
       <div class="laiheader-header-logo">
         <h1>BILLS HOLDINGS</h1>
       </div>
+    
+    <div class="collapse" id="navbar">
+        <!-- Navbar content here -->
+    
       <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
+
+        <div class="navbar-nav" >
+      
+    
           <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
-          <a class="nav-item nav-link" id="trending-products" href="/products">Trending Products</a>
+          <a class="nav-item nav-link" id="trending-products" href="/products">Products</a>
+          <a class="nav-item nav-link" id="claim" href="claim">Claim</a>
           <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
           <a href="https://facebook.com" target="_blank" style="color: black;"><i class="bi bi-facebook"></i></a>
           <a href="https://twitter.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-twitter"></i></a>
@@ -182,8 +89,6 @@ rel="stylesheet"
           {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
-            <h4 class="text-align"  style="background-color: rgba(0, 0, 0, 0.845); font-size: 24px; color: azure; padding: 10px; margin-left: 25px;">Admin and finance</h4>
-           
             {% if request.path == '/loandata' %}
               <div class="text-center">
                 <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
@@ -196,12 +101,15 @@ rel="stylesheet"
          
             <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
             <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">RR</a>
+    
             
           {% endif %}
         </div>
         
+        </div>
       </div>
     </nav>
+   
     <!-- Top Header -->
     <div class="laiheader-top-header">
       <div class="laiheader-header-content">
@@ -462,6 +370,25 @@ crossorigin="anonymous">
             window.location.href = "/";
         });
     }
+
+    $(document).ready(function () {
+    // Close navbar on clicking outside of it or on toggler button
+    $(document).click(function (event) {
+        if (!$(event.target).closest('#navbar, .navbar-toggler').length) {
+            $('#navbar').collapse('hide');
+        }
+    });
+
+    // Close navbar when clicking on any item inside it
+    $('#navbar .nav-link').click(function () {
+        $('#navbar').collapse('true');
+    });
+
+    // Optionally, ensure the toggler button also closes the navbar if you manually click it
+    $('.navbar-toggler').click(function () {
+        $('#navbar').collapse('toggle');
+    });
+});
     </script>
     {% endblock %}
   </body>

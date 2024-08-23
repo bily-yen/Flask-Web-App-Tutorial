@@ -3,11 +3,10 @@ from flask_limiter.util import get_remote_address
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from datetime import datetime, timedelta, timezone
-from .models import Note, LoanRecord, Refund
+from .models import Note, LoanRecord, Refund, Product
 from . import db
 import re
 import json
-
 
 # Define East Africa Time (EAT) offset (UTC+3)
 EAT_OFFSET = timezone(timedelta(hours=3))
@@ -279,6 +278,7 @@ def myshops():
     Return to the admin page.
     """
     return render_template('myshops.html', user=current_user)
+    
 
 @views.route('/aboutus', methods=['GET'])
 def aboutus():
@@ -286,6 +286,13 @@ def aboutus():
     Return to the admin page.
     """
     return render_template('aboutus.html', user=current_user)
+
+@views.route('/claim', methods=['GET'])
+def claim():
+    """
+    Return to the admin page.
+    """
+    return render_template('claim.html', user=current_user)
 
 
 # Route to display the home page
