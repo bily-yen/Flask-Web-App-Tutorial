@@ -70,10 +70,6 @@ rel="stylesheet"
       <div class="laiheader-header-logo">
         <h1>BILLS HOLDINGS</h1>
       </div>
-    
-    <div class="collapse" id="navbar">
-        <!-- Navbar content here -->
-    
       <div class="collapse navbar-collapse" id="navbar">
 
         <div class="navbar-nav" >
@@ -106,7 +102,7 @@ rel="stylesheet"
           {% endif %}
         </div>
         
-        </div>
+        
       </div>
     </nav>
    
@@ -381,7 +377,7 @@ crossorigin="anonymous">
 
     // Close navbar when clicking on any item inside it
     $('#navbar .nav-link').click(function () {
-        $('#navbar').collapse('true');
+        $('#navbar').collapse('hide');
     });
 
     // Optionally, ensure the toggler button also closes the navbar if you manually click it
