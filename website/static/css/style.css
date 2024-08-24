@@ -335,7 +335,7 @@ animation: none;
 
 .index-affiliates i {
   margin-right: 8px;
-  color: #007bff;
+  color: brown;
 
 }.pheader__container {
   width: 100%;
@@ -902,15 +902,20 @@ section#wcuindextop {
 .hometop-item {
   text-align: center;
   padding: 10px;
-  background: #f8f9fa;
+  background: brown;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex: 1 1 150px; /* Adjust size as needed */
   margin: 10px;
+  
+}
+.hometop-item h5{
+  color: white;
+
 }
 .hometop-icon {
   font-size: 3rem;
-  color: #007bff; /* Adjust color as needed */
+  color: black; /* Adjust color as needed */
 }
 .hometop-title {
   margin-top: 10px;
@@ -943,7 +948,7 @@ section#wcuindextop {
 .search-button {
   padding: 5px;
   border: none;
-  background-color: #007bff;
+  background-color:brown;
   color: white;
   border-radius: 4px;
   font-size: 16px;
@@ -1806,6 +1811,38 @@ padding: 15px;
   transform: translatey(-20px); 
 }
 
+#wcu{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color:black;
+  width: 100%;
+  height: 50%;
+  margin-top: 20px;
+}
+.wcu{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color:black;
+  width: 100%;
+  height: 50%;
+  margin-top: 20px;
+}
+.wcu .affordability{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color:black;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 55px;
+  margin-left: 0;
+  width: 25%;
+}
+
 @media (max-width: 769px) {
 
 
@@ -2251,6 +2288,28 @@ index-product-section {
   width: 100%;
   height: 50%;
 }
+.wcu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:black;
+  width: 100%;
+  height: 50%;
+  margin-top: 20px;
+}
+.wcu .affordability{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color:black;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 #wcu .reasons h1{
   align-items: center;
   text-align: center;
@@ -2394,7 +2453,7 @@ section#wcuindextop {
   gap: 2px;
   margin-left: 0;
 }
-reasons {
+.reasons {
   flex: 1;
   height: min-content;
   width: min-content;
