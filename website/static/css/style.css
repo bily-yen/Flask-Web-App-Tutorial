@@ -2404,7 +2404,7 @@ span{
 
 #fut .index-reasons p {
   font-size: 1rem;
-  color: black;
+  color: white;
   line-height: 1.6;
   margin-bottom: 20px;
 
@@ -2568,26 +2568,255 @@ section#wcuindextop {
 }
 
 }
-@media (max-width: 475px) {
-}
-
-
-/* experts */
-
-/* footer */
-
-/* About */
-
-/* Blog */
-
-/* Course_inner */
-
-/* contacts */
-
-/* responsive */
-
-@media (max-width: 769px) {
-}
 
 @media (max-width: 475px) {
+  .navbar {
+    /* Adjust navbar styles for very small screens */
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: none; /* Remove shadow for a cleaner look */
+  }
+
+  .navbar-nav {
+    width: 100%;
+    margin-bottom: 0;
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .navbar-nav a {
+    font-size: 10px; /* Smaller font size for smaller screens */
+    padding: 8px; /* Adjust padding for better spacing */
+  }
+
+  .nav-link {
+    font-size: 12px; /* Adjust font size for better readability */
+    padding: 10px; /* Adjust padding */
+    display: block; /* Make links block elements for easier clicking */
+  }
+
+  .laiheader-top-header {
+    padding: 10px; /* Adjust padding for smaller screens */
+    margin-top: 60px; /* Reduce margin to fit small screens */
+  }
+
+  .laiheader-header-content {
+    padding: 15px; /* Adjust padding */
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .laiheader-header-logo h1 {
+    font-size: 22px; /* Smaller font size */
+    padding: 0; /* Remove padding for a tighter look */
+  }
+
+  .laiheader-header-logo h1::after {
+    font-size: 10px; /* Smaller font size for the tagline */
+    margin-top: 5px; /* Reduce space above tagline */
+  }
+
+  .laiheader-contact-text,
+  .laiheader-contact-text i {
+    font-size: 10px; /* Smaller font size for contact text */
+    padding: 5px; /* Adjust padding */
+  }
+
+  .laiheader-contact-number {
+    font-size: 10px; /* Smaller font size for contact numbers */
+    padding: 5px; /* Adjust padding */
+  }
+
+  .laiheader-header-social-media {
+    font-size: 8px; /* Smaller font size for social media icons */
+  }
+
+  .laiheader-header-social-media a {
+    margin-left: 3px; /* Adjust spacing between icons */
+  }
+
+  .laiheader-header-social-media i {
+    font-size: 10px; /* Smaller font size for icons */
+  }
+
+  .index-product-list {
+    flex-direction: column; /* Stack products vertically */
+    gap: 10px; /* Reduce gap between items */
+  }
+
+  .index-product-item {
+    width: 100%; /* Full width for better fitting */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .index-product-name {
+    font-size: 1rem; /* Smaller font size for product names */
+  }
+
+  .formhead h1 {
+    font-size: 1.5rem; /* Adjust font size */
+    padding: 5px; /* Adjust padding */
+  }
+
+  .formhead h1::after {
+    height: 2px; /* Adjust thickness of the dashed line */
+  }
+
+  .flash-messages-container {
+    margin-top: 10px; /* Reduce margin for smaller screens */
+  }
+
+  #wcu,
+  .wcu {
+    height: auto; /* Allow container to grow with content */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .wcu .affordability,
+  .wcu .securityh {
+    flex-direction: column; /* Stack items vertically */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .affordabilityh,
+  .securityh {
+    margin: 10px 0; /* Adjust margin */
+  }
+
+  .header__image__card-1,
+  .header__image__card-2,
+  .header__image__card-3,
+  .header__image__card-4 {
+    font-size: 0.9rem; /* Adjust font size for cards */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .index-reasons h1 {
+    font-size: 1.2rem; /* Adjust font size */
+  }
+
+    #fut {
+      width: 100%;
+      display: flex;
+      background-color: indigo;
+      margin-top: 10px; /* Reduced margin for smaller screens */
+      justify-content: center;
+      flex-direction: column; /* Stack elements vertically */
+    }
+  
+    /* Adjusting .index-reasons */
+    .index-reasons {
+      display: inline-block;
+      padding: 10px; /* Increased padding for better readability */
+      border-radius: 8px;
+      margin-top: 10px; /* Adjusted margin */
+      width: 100%;
+    }
+  
+    .index-reasons h1 {
+      font-size: 1.5rem; /* Reduced font size for smaller screens */
+      margin-bottom: 15px; /* Adjusted margin */
+      color: whitesmoke;
+      padding-top: 10px; /* Adjusted padding */
+    }
+  
+    .index-reasons p, .index-reasons h2 {
+      font-size: 0.9rem; /* Reduced font size for smaller screens */
+      color: white;
+      line-height: 1.4; /* Adjusted line height */
+      width: 100%; /* Full width for better fit */
+    }
+  
+    /* Adjusting .index-email */
+    .index-email {
+      gap: 5px; /* Reduced gap */
+      width: 100%; /* Full width */
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    /* Adjusting .index-mail and .index-callus */
+    .index-mail, .index-callus {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start; /* Align items to the start */
+      gap: 5px; /* Reduced gap */
+      background: brown;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%; /* Full width */
+      height: min-content;
+    }
+  
+    .index-mail i, .index-callus i {
+      font-size: 1.2rem; /* Reduced icon size */
+      color: white;
+    }
+  
+    .index-mail span, .index-callus span {
+      font-size: 0.8rem; /* Reduced font size */
+      color: white;
+    }
+  
+    /* Adjusting .index-callus */
+    .index-callus {
+      margin-top: 10px; /* Adjusted margin */
+    }
+  
+  
+    .index-affiliates h1 {
+      font-size: 1.2rem; /* Reduced font size */
+      margin-bottom: 10px; /* Adjusted margin */
+      color: white;
+      font-weight: 800;
+    }
+  
+    .index-affiliates p {
+      font-size: 0.9rem; /* Reduced font size */
+      color: white;
+      margin: 5px 0;
+    }
+  
+    .index-affiliates i {
+      font-size: 1rem; /* Reduced icon size */
+      margin-right: 6px; /* Adjusted margin */
+      color: white;
+    }
+  
+
+  section#wcuindextop {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .reasons img {
+    width: 100%; /* Full width for better fitting */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .foot {
+    padding: 10px; /* Adjust padding */
+    font-size: 12px; /* Smaller font size */
+  }
+
+  .foot p {
+    font-size: 12px; /* Smaller font size */
+  }
+
+  #electronicsp {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .bigofferimg h1 {
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .bigofferimg img {
+    width: 100%; /* Full width for better fitting */
+    margin: 0 auto; /* Center image */
+  }
+
+  .bigofferimg p {
+    font-size: 0.8rem; /* Adjust font size */
+  }
+
 }
