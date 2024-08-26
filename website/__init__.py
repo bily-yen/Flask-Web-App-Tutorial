@@ -1,20 +1,25 @@
-from flask import Flask, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import pymysql
 import urllib.parse
 import os
-from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from logging.handlers import RotatingFileHandler
 import logging
 import locale
+from flask_cors import CORS
+from flask_wtf import CSRFProtect  # Import CSRFProtect
 
-# Initialize extensions
+# Initialize extensions globally
 db = SQLAlchemy()
 login_manager = LoginManager()
-csrf = CSRFProtect()
+csrf = CSRFProtect()  # Initialize CSRFProtect
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri='redis://localhost:6379/0'  # Redis URL for rate limiter storage
+)
 
 def create_app():
     app = Flask(__name__)
@@ -26,50 +31,53 @@ def create_app():
     DB_NAME = os.environ.get('DB_NAME', 'credentials')
     DB_NAME_TONERS = os.environ.get('DB_NAME_TONERS', 'toners')
     SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'your_default_secret_key')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', '')
 
-    app.config['SECRET_KEY'] = SECRET_KEY
-    app.config['DEBUG'] = os.environ.get('FLASK_DEBUG', 'false').lower() in ['true', '1', 't', 'y', 'yes']
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
-    app.config['SQLALCHEMY_BINDS'] = {
-        'toners': f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME_TONERS}'
-    }
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SESSION_COOKIE_SECURE'] = True
-    app.config['SESSION_COOKIE_HTTPONLY'] = True
-    app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
-    
-    db.init_app(app)
-    
+    app.config.update(
+        SECRET_KEY=SECRET_KEY,
+        DEBUG=os.environ.get('FLASK_DEBUG', 'false').lower() in ['true', '1', 't', 'y', 'yes'],
+        SQLALCHEMY_DATABASE_URI=f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}',
+        SQLALCHEMY_BINDS={
+            'toners': f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME_TONERS}'
+        },
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        SESSION_COOKIE_SECURE=not app.debug,  # Set to True only in production
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE='Strict',
+        CSRF_ENABLED=True,  # Enable CSRF protection
+        CSRF_COOKIE_SECURE=not app.debug,  # Set to True only in production
+        CSRF_COOKIE_SAMESITE='Strict'
+    )
+
     # Initialize extensions
+    db.init_app(app)
+    csrf.init_app(app)  # Initialize CSRFProtect
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    csrf.init_app(app)
+    limiter.init_app(app)  # Initialize rate limiter
+
+    # Enable CORS with credentials support
+    CORS(app, supports_credentials=True)
 
     # Set up file logging
     if not app.debug:
-        handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
-        handler.setLevel(logging.INFO)
-        app.logger.addHandler(handler)
-    
-    # Initialize Flask-Limiter
-    limiter = Limiter(
-        key_func=get_remote_address,
-        storage_uri=f'redis://localhost:6379/0'  # Redis URL for rate limiter storage
-    )
-    limiter.init_app(app)
+        file_handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+    else:
+        # Console logging for development
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(console_handler)
 
-    # Import blueprints
+    # Import blueprints and register them
     from .views import views
     from .auth import auth
-
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    # Import models
+    # Import models and create database tables
     from .models import User, Note, LoanRecord
     
-    # Create database tables
     with app.app_context():
         db.create_all()
 
@@ -77,7 +85,8 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-    
+
+    # Set locale for currency formatting
     locale.setlocale(locale.LC_ALL, '')
 
     def currency(value):

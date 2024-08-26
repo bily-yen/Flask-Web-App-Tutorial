@@ -4,5 +4,13 @@ app = create_app()
 
 if __name__ == '__main__':
     print("Starting the Flask app with the development server...")
-    # Run the app using Flask's built-in server, accessible from all IP addresses
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Run the app with SSL/TLS enabled
+    app.run(
+        host='0.0.0.0',
+        port=5001,
+        ssl_context=(
+            r'C:\app\Flask-Web-App-Tutorial\www.chukua.com.pem',
+            r'C:\app\Flask-Web-App-Tutorial\www.chukua.com-key.pem'
+        ),
+        debug=True
+    )

@@ -1,202 +1,439 @@
 {% extends "base.html" %}
 
-{% block title %}Blog Page{% endblock %}
 
 {% block content %}
 <!-- Blog Page Content -->
 
-<div class="navbar-one flex">
-    <div class="left flex">
-        <div class="email">
-            <i class="fa fa-envelope"></i>
-            <span>homemovers@yourdoor.com  ||</span>
-        </div>
-        <div class="phone">
-            <i class="fa fa-phone-alt"></i>
-            <span>+254 97575723</span>
-        </div>
-        <div class="phone">
-            <i class="fa fa-phone-alt"></i>
-            <span>+254 716470665</span>
-        </div>
-    </div>
-    <div class="right flex">
-        <div class="twitter">
-            <i class="fab fa-twitter"></i>
-        </div>
-        <div class="fb">
-            <i class="fab fa-facebook"></i>
-        </div>
-    </div>
+<!-- Blog Page Content -->
 </div>
+<style>
+   
+   img {
+ display: flex;
+ width: 100%;
+}
 
-<nav class="navbar-second flex">
-    <div class="logo">
-        <h1>STAR MOVERS</h1>
-        <p>Home and Office Relocations</p>
-    </div>
-    <ul class="flexx">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/aboutus">About Us</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/blog">Blog</a></li>
-    </ul>
-    <div class="flexpart">
-        <div class="flexpl">
-            <a href="/aboutus" class="flexplbtn">send request</a>
-        </div>
-    </div>
-    <div class="flexpart">
-        <div class="flexpl">
-            <a href="/aboutus" class="flexplbtn">call</a>
-        </div>
-    </div>
-</nav>
 
-<div class="padding">
-    <div class="topback">
-        <div class="tbackitems">
-            <h1>Blog Page</h1>
-            <p>Welcome to the Star Movers blog! Here, we explore the latest trends in relocation, offer tips on finding the perfect home, and provide insights into making your move as smooth as possible. Stay tuned for expert advice and updates to help you navigate your relocation journey with ease.</p>
-        </div>
-    </div>
+</style>
+
+
+<div class="formhead">
+   {% if current_user.is_authenticated %}
+       {% with messages = get_flashed_messages() %}
+           {% if messages %}
+               {% for message in messages %}
+                   <div class="alert alert-success alert-dismissable" role="alert">
+                       <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                       {{ message }}
+                   </div>
+               {% endfor %}
+           {% endif %}
+       {% endwith %}
+   {% endif %}
 </div>
+<section id="wcuh">
+   <div class="hreasons">
+       <h1>We Buy and Sell Items</h1>
+   </div>
+   <div class="hreasons">
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit ullam distinctio mollitia fugit 
+           consectetur nulla, quam eligendi, corrupti labore, soluta tenetur vel eos. 
+           Explicabo doloribus dolorum cumque iure sapiente earum!</p>
+   </div>
+   <div class="wcuiconsh">
+       <div class="search-bar-container">
+           <form action="search-results-page" method="GET" class="search-form">
+               <input type="text" name="query" placeholder="Search for products..." class="search-input" required>
+               <button type="submit" class="search-button">
+                   <i class="fas fa-search"></i> Search
+               </button>
+           </form>
+       </div>
+   </div>
+</section>
+       <div class="securityh">
+           <span>
+               <img src="{{ url_for('static', filename='SPAPHOTOS/electronics1.jpg') }}" >
 
-<section id="home_relocationblog">
-    <div class="hrbigclassblog">
-        <div class="hrheadblog">
-            <div class="hrsp">
-                <div class="hrsmorecont">
-                    <h2>Relocation options Kenya</h2> 
-                    <h2><img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" > </h2>
-                    <p>Experience a stress-free move with our expert home relocation services. From meticulous packing and efficient transportation to careful unpacking, seamless setup, and personalized support, we handle every detail with precision. Our dedicated team ensures that your move is smooth and your new home feels welcoming from day one. Get a free quote today and discover how we can make your transition effortless and your new space truly feel like home.</p>
-                    <div class="hrsmorefnote">
-                        <a href="/readmoreblogone" class="btn">read more</a>
-                    </div>
-                </div>
-                <div class="hrsmorecont">
-                    <h2>Packing equipment and their evolution</h2> 
-                    <h2><img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" > </h2>
-                    <p>Experience a stress-free move with our expert home relocation services. From meticulous packing and efficient transportation to careful unpacking, seamless setup, and personalized support, we handle every detail with precision. Our dedicated team ensures that your move is smooth and your new home feels welcoming from day one. Get a free quote today and discover how we can make your transition effortless and your new space truly feel like home.</p>
-                    <div class="hrsmorefnote">
-                        <a href="/readmoreblogtwo" class="btn">read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+           </span>
+       </div>
+     
+       
+   </div>
 </section>
 
-<section id="foot">
-    <div class="reasons">
-        <h1>Why Trucks on Tracks?</h1>
-        <p>The birth of TOT was administered under paramount ethical and legal processions to secure elite and convenient courier service in and around East Africa</p>
-        <div class="email">
-            <div class="mail">
-                <p>send us an email</p>
-                <i class="fa fa-envelope"></i>
-                <span>homemovers@yourdoor.com</span>
-            </div>
-            <div class="callus">
-                <p>call us</p>
-                <i class="fa fa-phone-alt"></i>
-                <span>+25497575723 <br>+25416470665</span>
-            </div>
-        </div>
-    </div>
-    <div class="affiliates">
-        <span>
-            <h1>Affiliates</h1>
-            <p><i class="fab fa-twitter"></i>Skyly</p>
-            <p><i class="fab fa-twitter"></i>Faster</p>
-            <p><i class="fab fa-twitter"></i>S-MILE</p>
-        </span>
-    </div>
-    <div class="otherservices">
-        <h3></h3>
-        <h5></h5>
-        <a href="/customers" class="btn btn-primary">Real Estate Advertisement</a>
-        <a href="/home" class="btn btn-primary">Real Estate Consultancy</a>
-        <a href="/home" class="btn btn-primary">Hire Truck Drivers</a>
-    </div>
+
+<header class="header__container">
+   <div class="header__image">
+       <div class="header__image__card header__image__card-1">
+           <span><i class="fas fa-hand-holding-usd"></i></span>
+           Buy
+         </div>
+         <div class="header__image__card header__image__card-2">
+           <span><i class="fas fa-book"></i></span>
+           Sell
+         </div>
+         <div class="header__image__card header__image__card-3">
+           <span><i class="fas fa-box"></i></span>
+           Resale
+         </div>
+         <div class="header__image__card header__image__card-4">
+           <span><i class="fas fa-sync-alt"></i></span>
+           Repossession
+         </div>
+         
+     <img src="{{ url_for('static', filename='SPAPHOTOS/roundtable.jpg') }}" alt="header" />
+    
+   </div>
+   
+</div>
+
+ </header>
+
+ 
+<div class="hometop-container d-flex flex-wrap justify-content-around">
+   <div class="hometop-item">
+       <i class="fas fa-couch hometop-icon"></i>
+       <h5 class="hometop-title">Furniture</h5>
+   </div>
+   <div class="hometop-item">
+       <i class="fas fa-lightbulb hometop-icon"></i>
+       <h5 class="hometop-title">Lighting</h5>
+   </div>
+   <div class="hometop-item">
+       <i class="fas fa-blender hometop-icon"></i>
+       <h5 class="hometop-title">Appliances</h5>
+   </div>
+   <div class="hometop-item">
+       <i class="fas fa-paint-roller hometop-icon"></i>
+       <h5 class="hometop-title">Decor</h5>
+   </div>
+   <div class="hometop-item">
+       <i class="fas fa-tools hometop-icon"></i>
+       <h5 class="hometop-title">Tools</h5>
+   </div>
+   <div class="hometop-item">
+       <i class="fas fa-door-closed hometop-icon"></i>
+       <h5 class="hometop-title">Doors & Windows</h5>
+   </div>
+</div>
+</div>
+ <div class="container-fluid" style=" margin-bottom: 20px; padding: 3px;">
+<section class="index-product-section" id="product-section">
+   <h2 class="index-section-title">Our Products</h2>
+   <div id="container-product-list" class="index-product-list">
+       
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 1</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 1</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 1</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 1</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 6</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 3</h3>
+           <p class="index-product-price">$99.99</p>
+           <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 2</h3>
+           <p class="index-product-price">$149.99</p>
+           <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 2</h3>
+           <p class="index-product-price">$149.99</p>
+           <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <div class="index-product-item">
+           <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
+           <h3 class="index-product-name">Product Name 2</h3>
+           <p class="index-product-price">$149.99</p>
+           <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+           <a href="#more-products" class="index-view-more-btn">View More</a>
+       </div>
+       <!-- Add more p
+        roduct items as needed -->
+        
+   </div>
+   <div class="nexticon">
+       <i id="scroll-arrow" class="fa fa-arrow-right"></i>
+       <span class="scroll-text">More</span>
+   </div>
+</div>
+
+   
+   
 </section>
-{% endblock %}
+</div>
+ 
 
-{% block javascript %}
+
+
+
+<h2 class="index-section-title">Our Services</h2>
+
+   <div class="container first">
+       
+       <div class="box-container" style="background-color: brown;">
+   
+           <div class="box">
+              
+               <h3>household relocation</h3>
+               <p>want to move to a new location? <br>
+               contact us or send us your request through <br>
+           our easy to fill form</p>
+              
+           </div>
+   
+           <div class="box">
+            
+               <h3>courier-services</h3>
+               <p>Parcel delivery is now simple and secure, 
+                   we also package and deliver bulk goods <br>
+           contact for more info</p>
+           </div>
+   
+           <div class="box">
+              
+               <h3>Storage</h3>
+               <p>Not sure where to keep your valuable items?
+                   Well while thinking about it,we offer alternative storage and warehouse solutions
+               </p>
+           </div>
+   
+           <div class="box">
+           
+               <h3>electronic installations</h3>
+               <p>We always intend to leave you settled,taking the bother of making sure ou kickstart your new life without breaking a sweat.These include 
+                   TV Mounting, Wifi-Reconnection, solar Reconnection,</p>
+           </div>
+   
+           <div class="box">
+             
+               <h3>Cleaning</h3>
+               <p>settling into a new home may be hectic if necessary precautions when it comes to cleanliness are ignored.
+                   We therefore offer general and specialized house cleaning services including fumigation,vaccum-cleaning lawn-mowing </p>
+           </div>
+   
+           <div class="box">
+          
+               <h3>Find a home</h3>
+               <p>Want to move but not sure where to?Well,dont stress.
+                   We are also keen to help you find a suitable home that matches your desires.Explore the various popular destinations and send an enquiry for vacancies </p>
+           </div>
+   
+       </div>
+
+   
+   </div>
+   </div>
+   <div class="formhead">
+       <h1>let us know what you think</h1>
+   </div>
+       
+
+           <div class="securityh" style="margin-left: 0;">
+               <span>
+                   <div class="text-center" style="color: black; font-weight: 800; font-size: 16px;">
+                       Claim this seven seater master coach for only ksh 7000!
+                   </div>
+                   <img src="{{ url_for('static', filename='SPAPHOTOS/furniture1.jpg') }}" >
+                   
+   
+               </span>
+           </div>
+         
+           
+       </div>
+  
+<div class="container" style="border-radius: 25px; ">
+
+   <section id="fut" style="width: 100%; border-radius: 25px; margin-left: auto; margin-right: auto; ">
+
+      
+   <div class="index-reasons">
+       <h1>Why Trucks on Tracks?</h1>
+      
+       <p>The birth of TOT was administered <br> under paramount ethical and legal <br> processions 
+           to secure elite <br> and convenient <br> courier service in and around East Africa</p>
+           
+       <div class="index-email">
+           <div class="index-mail">
+               <h2>Send us an email</h2> 
+               <i class="fa fa-envelope"></i>
+               <span>homemovers@yourdoor.com</span>
+           </div>
+           <div class="index-callus">
+               <h2>Call us</h2>
+               <i class="fa fa-phone-alt"></i>
+               <span>+25497575723 <br>+25416470665</span>
+           </div>
+       </div>
+       <div class="index-affiliates">
+           <h1>Affiliates</h1>
+           <p><i class="fab fa-twitter"></i>Skyly</p>
+           <p><i class="fab fa-twitter"></i>Faster</p>
+           <p><i class="fab fa-twitter"></i>S-MILE</p>
+       </div>
+   </div>
+
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const modalTrigger = document.getElementById('login'); // The element that triggers the modal
-      const modalId = '#loginModal'; // The ID of the modal
-      let clickCount = 0;
-      let clickTimer = null;
-      const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
-  
-      function showModal() {
-        const modal = document.querySelector(modalId);
-        if (modal) {
-          $(modal).modal('show'); // Use jQuery to show the modal
-        }
-      }
-  
-      modalTrigger.addEventListener('click', function(event) {
-        clickCount++;
-  
-        if (clickCount === 1) {
-          // Set up a timer to reset clickCount if the second click doesn't occur in time
-          clickTimer = setTimeout(function() {
-            clickCount = 0; // Reset clickCount
-          }, DOUBLE_CLICK_DELAY);
-        } else if (clickCount === 2) {
-          // Clear the timer and show the modal
-          clearTimeout(clickTimer);
-          clickCount = 0;
-          showModal();
-        }
-  
-        event.preventDefault(); // Prevent default action of the link
-      });
-    });
-  </script>
-<script>
-    let scrollContainer = document.querySelector(".gallery")
-    let backbtn = document.getElementById("backbtn")
-    let nextbtn = document.getElementById("nextbtn")
+     document.addEventListener('DOMContentLoaded', () => {
+       const scrollArrow = document.getElementById('scroll-arrow');
+       const productList = document.getElementById('container-product-list');
 
-    scrollContainer.addEventListener("wheel", (evt) => {
-        evt.preventDefault();
-        scrollContainer.scrollLeft += evt.deltaY;
-        scrollContainer.style.scrollBehavior = "animate";
-    });
+       scrollArrow.addEventListener('click', () => {
+           const scrollAmount = 300; // Amount to scroll each time the arrow is clicked
+           productList.scrollBy({
+               left: scrollAmount, // Scroll to the right
+               behavior: 'smooth'  // Smooth scrolling
+           });
+       });
+   });
+   </script>
+       <script>
+           let scrollContainer = document.querySelector(".gallery")
+           let backbtn = document.getElementById("backbtn")
+           let nextbtn = document.getElementById("nextbtn")
 
-    nextbtn.addEventListener("click", () => {
-        scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft += 300;
-    });
+           scrollContainer.addEventListener("wheel",(evt)=>{
+               evt.preventDefault();
+               scrollContainer.scrollLeft += evt.deltaY;
+               scrollContainer.style.scrollBehavior = "animate"
+           });
+           nextbtn.addEventListener("click", ()=>{
+               scrollContainer.style.scrollBehavior = "smooth"
+               scrollContainer.scrollLeft += 300;
+           });
+           backbtn.addEventListener("click", ()=>{
+               scrollContainer.style.scrollBehavior = "smooth"
+               scrollContainer.scrollLeft -= 300;
+           })
 
-    backbtn.addEventListener("click", () => {
-        scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft -= 300;
-    });
 
-    const bedroomInput = document.getElementById('bedroom_numbers');
-    const bedroomTypedText = document.getElementById('typed-text-bedrooms');
-    const dateInput = document.getElementById('moving_date');
-    const dateTypedText = document.getElementById('typed-text-date');
 
-    bedroomInput.addEventListener('input', function() {
-        bedroomTypedText.textContent = this.value || " ";
-    });
+       
 
-    dateInput.addEventListener('input', function() {
-        dateTypedText.textContent = this.value || " ";
-    });
+       </script>
+        <script>
+           document.addEventListener('DOMContentLoaded', function() {
+             const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+             const modalId = '#loginModal'; // The ID of the modal
+             let clickCount = 0;
+             let clickTimer = null;
+             const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
+         
+             function showModal() {
+               const modal = document.querySelector(modalId);
+               if (modal) {
+                 $(modal).modal('show'); // Use jQuery to show the modal
+               }
+             }
+         
+             modalTrigger.addEventListener('click', function(event) {
+               clickCount++;
+         
+               if (clickCount === 1) {
+                 // Set up a timer to reset clickCount if the second click doesn't occur in time
+                 clickTimer = setTimeout(function() {
+                   clickCount = 0; // Reset clickCount
+                 }, DOUBLE_CLICK_DELAY);
+               } else if (clickCount === 2) {
+                 // Clear the timer and show the modal
+                 clearTimeout(clickTimer);
+                 clickCount = 0;
+                 showModal();
+               }
+         
+               event.preventDefault(); // Prevent default action of the link
+             });
+           });
+         </script>
+      
+       <script>
+      const bedroomInput = document.getElementById('bedroom_numbers');
+      const bedroomTypedText = document.getElementById('typed-text-bedrooms');
+      const dateInput = document.getElementById('moving_date');
+      const dateTypedText = document.getElementById('typed-text-date');
 
-    bedroomInput.addEventListener('blur', function() {
-        bedroomTypedText.textContent = "";
-    });
+      bedroomInput.addEventListener('input', function() {
+      bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+});
+
+      dateInput.addEventListener('input', function() {
+      dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+   // Additional logic for date input, if needed
+});
+
+     bedroomInput.addEventListener('blur', function() {
+     bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
 
     dateInput.addEventListener('blur', function() {
-        dateTypedText.textContent = "";
-    });
-</script>
+    dateTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
+       </script>
+
+   
+          
+           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+           <script src="https://unpkg.com/scrollreveal"></script>
+           <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+           <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+     
 {% endblock %}

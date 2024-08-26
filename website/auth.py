@@ -38,7 +38,7 @@ def logout():
     flash('You have been logged out.', category='info')
     return redirect(url_for('views.index'))
 
-@auth.route('/sign-up', methods=['GET', 'POST'])
+@auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')

@@ -81,9 +81,10 @@
                         </div>
                         <div class="card-footer">
                             <form id="add-note-form" method="POST" action="{{ url_for('views.add_note') }}">
-                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <!-- CSRF Token -->
+                                {{ csrf_token() }}
                                 <div class="form-group">
-                                    <textarea name="note" id="note" class="form-control" placeholder="Write your note here..." rows="3"></textarea>
+                                    <textarea name="note" id="note" class="form-control" placeholder="Write your note here..." rows="3" required></textarea>
                                 </div>
                                 <div class="text-center mt-2">
                                     <button type="submit" class="btn btn-primary">Add Note</button>
