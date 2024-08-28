@@ -2967,6 +2967,12 @@ section#wcuindextop {
   #fut {
     margin-top: 8px; /* Reduce margin */
     flex-direction: column;
+    width: 100%;
+    display: flex;
+    background-color: indigo;
+    margin-top: 10px; /* Reduced margin for smaller screens */
+    justify-content: center;
+    flex-direction: column; /* Stack elements vertically */
   }
 
   .index-reasons {
@@ -3171,6 +3177,12 @@ section#wcuindextop {
   #fut {
     margin-top: 12px; /* Adjust margin */
     flex-direction: column;
+    width: 100%;
+      display: flex;
+      background-color: indigo;
+      margin-top: 10px; /* Reduced margin for smaller screens */
+      justify-content: center;
+      flex-direction: column; /* Stack elements vertically */
   }
 
   .index-reasons {

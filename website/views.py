@@ -6,7 +6,15 @@ from datetime import datetime, timedelta, timezone
 from .models import Note, LoanRecord, Refund, Product
 from . import db
 import re
+from flask import Flask, request
+import requests
+from requests.auth import HTTPBasicAuth
 import json
+from datetime import datetime
+import base64
+
+my_endpoint = "https://1bec-105-27-235-50.ngrok-free.app"    
+
 
 # Define East Africa Time (EAT) offset (UTC+3)
 EAT_OFFSET = timezone(timedelta(hours=3))
@@ -333,3 +341,76 @@ def delete_note():
         return jsonify({}), 200
     except Exception as e:
         return jsonify({'message': f'Error: {str(e)}'}), 500
+
+import logging
+logging.info("Payment request initiated")
+
+logging.basicConfig(level=logging.INFO)
+
+@views.route('/pay')
+def MpesaExpress():
+    try:
+        amount = request.args.get('amount')
+        phone = request.args.get('phone')
+        if not amount or not phone:
+            return jsonify({'error': 'Amount and phone number are required'}), 400
+
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+        access_token = getAccesstoken()
+        if not access_token:
+            return jsonify({'error': 'Failed to retrieve access token'}), 500
+
+        headers = {"Authorization": f"Bearer {access_token}"}
+        Timestamp = datetime.now()
+        times = Timestamp.strftime('%Y%m%d%H%M%S')
+        password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + times
+        password = base64.b64encode(password.encode('utf-8')).decode('utf-8')
+
+        data = {
+            "BusinessShortCode": 174379,
+            "Password": password,
+            "Timestamp": times,
+            "TransactionType": "CustomerPayBillOnline",
+            "PartyA": phone,
+            "PartyB": 174379,
+            "PhoneNumber": phone,
+            "CallBackURL": "https://1bec-105-27-235-50.ngrok-free.app/lnmo-callback",
+            "AccountReference": "Test123",
+            "TransactionDesc": "Payment for testing",
+            "Amount": int(amount)  # Ensure amount is an integer
+        }
+
+        res = requests.post(endpoint, json=data, headers=headers)
+        res.raise_for_status()  # This will raise an error for HTTP errors
+        logging.info(f"Payment request successful: {res.json()}")
+        return jsonify(res.json())
+    except requests.RequestException as e:
+        logging.error(f"Request failed: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@views.route('/lnmo-callback', methods=["POST"]) 
+def incoming():
+    try:
+        data = request.get_json()
+        logging.info(f"Callback data: {data}")
+        return "ok"
+    except Exception as e:
+        logging.error(f"Error processing callback: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
+
+def getAccesstoken():
+    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'
+    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'
+    endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+
+    try:
+        r = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+        r.raise_for_status()  # Raise an error for HTTP error responses
+        data = r.json()
+        return data.get('access_token')
+    except requests.RequestException as e:
+        logging.error(f"Request failed: {e}")
+        return None
+    except ValueError as e:
+        logging.error(f"Data processing error: {e}")
+        return None
