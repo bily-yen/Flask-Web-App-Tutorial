@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .product-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        .product-container.selected {
+            background-color: #d4edda; /* Highlight selected products */
+        }
+    </style>
+    <script>
+        function updateSelection(event) {
+            const productContainers = document.querySelectorAll('.product-container');
+            const productList = document.getElementById('product-list');
+            const totalAmountElement = document.getElementById('total-amount');
+            const amountInput = document.getElementById('amount');
+
+            // Clear previous list and total amount
+            productList.innerHTML = '';
+            let totalAmount = 0;
+
+            productContainers.forEach(container => {
+                if (container.classList.contains('selected')) {
+                    const productId = container.getAttribute('data-id');
+                    const productName = container.querySelector('.product-name').textContent;
+                    const productPrice = parseFloat(container.getAttribute('data-price'));
+                    totalAmount += productPrice;
+
+                    // Create and append list item
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${productName} - $${productPrice.toFixed(2)}`;
+                    productList.appendChild(listItem);
+                }
+            });
+
+            // Update total amount
+            totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+            amountInput.value = totalAmount.toFixed(2);
+        }
+
+        function toggleSelection(event) {
+            const container = event.currentTarget;
+            container.classList.toggle('selected');
+            updateSelection();
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Select Products for Payment</h2>
+        <form method="POST" action="{{ url_for('views.MpesaExpress') }}">
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <h4>Available Products</h4>
+                <div class="product-list">
+                    {% for product in products %}
+                        <div class="product-container" data-id="{{ product.id }}" data-price="{{ product.price }}" onclick="toggleSelection(event)">
+                            <div class="product-name">{{ product.name }}</div>
+                            <div class="product-price">$ {{ product.price }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Total Amount</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="amount"
+                    name="amount"
+                    placeholder="Total amount will be auto-filled"
+                    readonly
+                />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter phone number"
+                    required
+                />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Payment</button>
+        </form>
+
+        <h3 class="mt-5">Selected Products</h3>
+        <ul id="product-list" class="list-group">
+            <!-- Selected products will be listed here -->
+        </ul>
+        <h4 class="mt-3">Total Amount: <span id="total-amount">$0.00</span></h4>
+    </div>
+</body>
+</html>

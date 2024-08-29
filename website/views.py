@@ -12,8 +12,7 @@ from requests.auth import HTTPBasicAuth
 import json
 from datetime import datetime
 import base64
-
-my_endpoint = "https://1bec-105-27-235-50.ngrok-free.app"    
+from threading import Timer
 
 
 # Define East Africa Time (EAT) offset (UTC+3)
@@ -277,7 +276,8 @@ def myproducts():
     """
     Return to the admin page.
     """
-    return render_template('myproducts.html', user=current_user)
+    products = Product.query.all()
+    return render_template('myproducts.html', products=products, user=current_user)
 
 @views.route('/myshops', methods=['GET'])
 @login_required
@@ -343,64 +343,90 @@ def delete_note():
         return jsonify({'message': f'Error: {str(e)}'}), 500
 
 import logging
-logging.info("Payment request initiated")
-
 logging.basicConfig(level=logging.INFO)
 
-@views.route('/pay')
+# Dictionary to keep track of pending payments and their timestamps
+pending_payments = {}
+
+# Duration (in seconds) after which a payment is considered to have taken too long
+TIMEOUT_DURATION = 15
+
+
+@views.route('/pay', methods=['POST'])
 def MpesaExpress():
     try:
-        amount = request.args.get('amount')
-        phone = request.args.get('phone')
+        # Retrieve form data
+        amount = request.form.get('amount')
+        phone = request.form.get('phone')
         if not amount or not phone:
+            logging.warning('Amount or phone number missing')
             return jsonify({'error': 'Amount and phone number are required'}), 400
 
+        # Define endpoint and get access token
         endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
         access_token = getAccesstoken()
         if not access_token:
+            logging.error('Failed to retrieve access token')
             return jsonify({'error': 'Failed to retrieve access token'}), 500
 
         headers = {"Authorization": f"Bearer {access_token}"}
-        Timestamp = datetime.now()
-        times = Timestamp.strftime('%Y%m%d%H%M%S')
-        password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + times
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+
+        # Generate password for request
+        password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp
         password = base64.b64encode(password.encode('utf-8')).decode('utf-8')
 
+        # Payment request data
         data = {
-            "BusinessShortCode": 174379,
+            "BusinessShortCode": 174379,  # Your Business Shortcode
             "Password": password,
-            "Timestamp": times,
+            "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
             "PartyA": phone,
-            "PartyB": 174379,
+            "PartyB": 174379,  # Your Business Shortcode
             "PhoneNumber": phone,
-            "CallBackURL": "https://1bec-105-27-235-50.ngrok-free.app/lnmo-callback",
+            "CallBackURL": "https://dfb0-105-27-235-50.ngrok-free.app/myproducts",  # Updated callback URL
             "AccountReference": "Test123",
             "TransactionDesc": "Payment for testing",
             "Amount": int(amount)  # Ensure amount is an integer
         }
 
+        # Send payment request
         res = requests.post(endpoint, json=data, headers=headers)
-        res.raise_for_status()  # This will raise an error for HTTP errors
+        res.raise_for_status()  # Raise an error for HTTP error responses
+
         logging.info(f"Payment request successful: {res.json()}")
+
+        # Set a timer to handle payment timeout
+        timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[res.json().get('CheckoutRequestID')])
+        timer.start()
+
         return jsonify(res.json())
     except requests.RequestException as e:
         logging.error(f"Request failed: {e}")
         return jsonify({'error': str(e)}), 500
 
-@views.route('/lnmo-callback', methods=["POST"]) 
+def handle_timeout(checkout_request_id):
+    # Function to handle timeout after the specified duration
+    logging.warning(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
+    # Update records or notify users as necessary
+
+@views.route('/myproducts', methods=['POST'])
 def incoming():
     try:
         data = request.get_json()
         logging.info(f"Callback data: {data}")
+
+        # Process the callback data
+        # Update your records or notify users as necessary
         return "ok"
     except Exception as e:
         logging.error(f"Error processing callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
 
 def getAccesstoken():
-    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'
-    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'
+    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'  # Your consumer key
+    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'  # Your consumer secret
     endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
     try:

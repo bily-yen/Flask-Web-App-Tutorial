@@ -52,13 +52,12 @@ class Refund(db.Model):
     Reason = db.Column(db.Text, nullable=True)
 
 
-
 class Product(db.Model):
-    __tablename__ = 'products'
+    __tablename__ = 'product'
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
-    interval = db.Column(db.Integer, nullable=False)  # Interval in milliseconds
-    claimed = db.Column(db.Boolean, default=False, index=True) 
+    price = db.Column(db.Float, nullable=False)  # Changed 'interval' to 'price'
 
-    
+    def __repr__(self):
+        return f'<Product {self.name}>'

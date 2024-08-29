@@ -1,7 +1,0 @@
-version: "2"
-authtoken: 2lGboYff0HEyEFciwNx3zkIMQk3_7vEvAR9MqYKfqzjyT5Ae5
-
-tunnels:
-  my-tunnel:
-    proto: https
-    addr: 5001
