@@ -1,18 +1,19 @@
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, Flask
+from flask_login import login_required, current_user
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
-from flask_login import login_required, current_user
 from datetime import datetime, timedelta, timezone
+import requests
+from requests.auth import HTTPBasicAuth
+import base64
+from threading import Timer
+import logging
+# Import models and database setup
 from .models import Note, LoanRecord, Refund, Product
 from . import db
 import re
-from flask import Flask, request
-import requests
-from requests.auth import HTTPBasicAuth
 import json
-from datetime import datetime
-import base64
-from threading import Timer
+
 
 
 # Define East Africa Time (EAT) offset (UTC+3)
@@ -341,9 +342,9 @@ def delete_note():
         return jsonify({}), 200
     except Exception as e:
         return jsonify({'message': f'Error: {str(e)}'}), 500
+    
 
-import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 # Dictionary to keep track of pending payments and their timestamps
 pending_payments = {}
@@ -351,6 +352,7 @@ pending_payments = {}
 # Duration (in seconds) after which a payment is considered to have taken too long
 TIMEOUT_DURATION = 15
 
+logging.basicConfig(level=logging.INFO)
 
 @views.route('/pay', methods=['POST'])
 def MpesaExpress():
@@ -358,81 +360,124 @@ def MpesaExpress():
         # Retrieve form data
         amount = request.form.get('amount')
         phone = request.form.get('phone')
+
         if not amount or not phone:
             logging.warning('Amount or phone number missing')
+
             return jsonify({'error': 'Amount and phone number are required'}), 400
 
-        # Define endpoint and get access token
-        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+        # Convert amount to float and then to integer (e.g., cents)
+        try:
+            amount = float(amount)
+            amount = int(round(amount * 100))  # Convert to integer (e.g., cents)
+        except ValueError:
+            logging.error('Invalid amount format')
+            return jsonify({'error': 'Invalid amount format'}), 400
+
+        # Get access token
         access_token = getAccesstoken()
         if not access_token:
             logging.error('Failed to retrieve access token')
             return jsonify({'error': 'Failed to retrieve access token'}), 500
 
-        headers = {"Authorization": f"Bearer {access_token}"}
+        headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
 
         # Generate password for request
-        password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp
+        business_shortcode = '600998'
+        passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+        password = business_shortcode + passkey + timestamp
         password = base64.b64encode(password.encode('utf-8')).decode('utf-8')
 
         # Payment request data
         data = {
-            "BusinessShortCode": 174379,  # Your Business Shortcode
+            "BusinessShortCode": business_shortcode,
             "Password": password,
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
             "PartyA": phone,
-            "PartyB": 174379,  # Your Business Shortcode
+            "PartyB": '600000',
             "PhoneNumber": phone,
-            "CallBackURL": "https://dfb0-105-27-235-50.ngrok-free.app/myproducts",  # Updated callback URL
+            "CallBackURL": "https://5d07-105-27-235-50.ngrok-free.app",
             "AccountReference": "Test123",
             "TransactionDesc": "Payment for testing",
-            "Amount": int(amount)  # Ensure amount is an integer
+            "Amount": amount
         }
+
+        # Log request details
+        logging.info(f'Sending STK Push request: {data}')
 
         # Send payment request
         res = requests.post(endpoint, json=data, headers=headers)
+        logging.info(f'Status Code: {res.status_code}')  # Debugging status code
+        logging.info(f'Response Text: {res.text}')        # Debugging response text
         res.raise_for_status()  # Raise an error for HTTP error responses
 
-        logging.info(f"Payment request successful: {res.json()}")
+        response_data = res.json()
+        logging.info(f"Payment request response: {response_data}")
 
-        # Set a timer to handle payment timeout
-        timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[res.json().get('CheckoutRequestID')])
-        timer.start()
-
-        return jsonify(res.json())
+        # Check if the STK Push was successful
+        if response_data.get('ResponseCode') == '0':
+            logging.info("STK Push initiated successfully.")
+            timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[response_data.get('CheckoutRequestID')])
+            timer.start()
+            return jsonify(response_data)
+        else:
+            description = response_data.get('ResponseDescription', 'No description provided')
+            logging.error(f"STK Push failed: {description}")
+            return jsonify({'error': 'STK Push failed', 'description': description}), 400
     except requests.RequestException as e:
         logging.error(f"Request failed: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Request failed', 'details': str(e)}), 500
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
 
 def handle_timeout(checkout_request_id):
     # Function to handle timeout after the specified duration
+    print(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
     logging.warning(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
     # Update records or notify users as necessary
 
-@views.route('/myproducts', methods=['POST'])
-def incoming():
+@views.route('/myproducts/confirmation', methods=['POST'])
+def confirmation():
     try:
         data = request.get_json()
-        logging.info(f"Callback data: {data}")
+        print(f"Confirmation callback data received: {data}")
+        logging.info(f"Confirmation callback data received: {data}")
 
-        # Process the callback data
+        # Process the confirmation callback data
         # Update your records or notify users as necessary
         return "ok"
     except Exception as e:
-        logging.error(f"Error processing callback: {e}")
+        logging.error(f"Error processing confirmation callback: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
+
+@views.route('/myproducts/validation', methods=['POST'])
+def validation():
+    try:
+        data = request.get_json()
+        print(f"Validation callback data received: {data}")
+        logging.info(f"Validation callback data received: {data}")
+
+        # Process the validation callback data
+        # Validate the payment request
+        return "ok"
+    except Exception as e:
+        logging.error(f"Error processing validation callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
 
 def getAccesstoken():
-    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'  # Your consumer key
-    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'  # Your consumer secret
+    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'
+    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'
     endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
     try:
         r = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-        r.raise_for_status()  # Raise an error for HTTP error responses
+        r.raise_for_status()
         data = r.json()
+        logging.info(f"Access token response: {data}")
         return data.get('access_token')
     except requests.RequestException as e:
         logging.error(f"Request failed: {e}")
@@ -440,3 +485,21 @@ def getAccesstoken():
     except ValueError as e:
         logging.error(f"Data processing error: {e}")
         return None
+
+token = getAccesstoken()
+print("Retrieved Access Token:", token)
+    
+
+import requests
+from requests.auth import HTTPBasicAuth
+
+def test_connection():
+    url = 'https://sandbox.safaricom.co.ke'
+    try:
+        response = requests.get(url, timeout=10)
+        print(f"Status Code: {response.status_code}")
+        print(f"Response Text: {response.text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")
+
+test_connection()

@@ -19,7 +19,7 @@
         }
     </style>
     <script>
-        function updateSelection(event) {
+        function updateSelection() {
             const productContainers = document.querySelectorAll('.product-container');
             const productList = document.getElementById('product-list');
             const totalAmountElement = document.getElementById('total-amount');
@@ -58,7 +58,7 @@
 <body>
     <div class="container mt-5">
         <h2>Select Products for Payment</h2>
-        <form method="POST" action="{{ url_for('views.MpesaExpress') }}">
+        <form method="POST" action="{{ url_for('views.mpesa_express') }}">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 

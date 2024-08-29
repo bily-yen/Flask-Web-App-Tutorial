@@ -48,6 +48,23 @@ def create_app():
         CSRF_COOKIE_SAMESITE='Strict'
     )
 
+    # Set up logging
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+    if not app.debug:
+        # Production environment
+        file_handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=1)
+        file_handler.setLevel(logging.INFO)
+        file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        app.logger.addHandler(file_handler)
+    else:
+        # Development environment
+        handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(handler)
+    
+    app.logger.setLevel(logging.DEBUG)
+
     # Initialize extensions
     db.init_app(app)
     csrf.init_app(app)  # Initialize CSRFProtect
@@ -57,17 +74,6 @@ def create_app():
 
     # Enable CORS with credentials support
     CORS(app, supports_credentials=True)
-
-    # Set up file logging
-    if not app.debug:
-        file_handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
-        file_handler.setLevel(logging.INFO)
-        app.logger.addHandler(file_handler)
-    else:
-        # Console logging for development
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(logging.DEBUG)
-        app.logger.addHandler(console_handler)
 
     # Import blueprints and register them
     from .views import views
