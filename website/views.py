@@ -397,7 +397,7 @@ def mpesa_express():
             "PartyA": phone,
             "PartyB": '600000',
             "PhoneNumber": phone,
-            "CallBackURL": "https://5d07-105-27-235-50.ngrok-free.app",
+            "CallBackURL": "https://fb78-105-27-235-50.ngrok-free.app",
             "AccountReference": "Test123",
             "TransactionDesc": "Payment for testing",
             "Amount": amount
