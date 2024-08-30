@@ -344,7 +344,7 @@ def delete_note():
         return jsonify({'message': f'Error: {str(e)}'}), 500
     
 
-logging.basicConfig(level=logging.DEBUG)
+
 
 # Dictionary to keep track of pending payments and their timestamps
 pending_payments = {}
@@ -353,9 +353,12 @@ pending_payments = {}
 TIMEOUT_DURATION = 15
 
 logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
+
+
 
 @views.route('/pay', methods=['POST'])
-def MpesaExpress():
+def mpesa_express():
     try:
         # Retrieve form data
         amount = request.form.get('amount')
@@ -363,10 +366,8 @@ def MpesaExpress():
 
         if not amount or not phone:
             logging.warning('Amount or phone number missing')
-
             return jsonify({'error': 'Amount and phone number are required'}), 400
 
-        # Convert amount to float and then to integer (e.g., cents)
         try:
             amount = float(amount)
             amount = int(round(amount * 100))  # Convert to integer (e.g., cents)
@@ -374,7 +375,6 @@ def MpesaExpress():
             logging.error('Invalid amount format')
             return jsonify({'error': 'Invalid amount format'}), 400
 
-        # Get access token
         access_token = getAccesstoken()
         if not access_token:
             logging.error('Failed to retrieve access token')
@@ -384,13 +384,11 @@ def MpesaExpress():
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
         endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
 
-        # Generate password for request
-        business_shortcode = '600998'
+        business_shortcode = '174379'
         passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
         password = business_shortcode + passkey + timestamp
         password = base64.b64encode(password.encode('utf-8')).decode('utf-8')
 
-        # Payment request data
         data = {
             "BusinessShortCode": business_shortcode,
             "Password": password,
@@ -405,19 +403,20 @@ def MpesaExpress():
             "Amount": amount
         }
 
-        # Log request details
-        logging.info(f'Sending STK Push request: {data}')
+        logging.debug(f'Request Headers: {headers}')
+        logging.debug(f'Request Data: {data}')
 
-        # Send payment request
         res = requests.post(endpoint, json=data, headers=headers)
-        logging.info(f'Status Code: {res.status_code}')  # Debugging status code
-        logging.info(f'Response Text: {res.text}')        # Debugging response text
-        res.raise_for_status()  # Raise an error for HTTP error responses
+        logging.debug(f'Response Status Code: {res.status_code}')
+        logging.debug(f'Response Text: {res.text}')
+        res.raise_for_status()
 
         response_data = res.json()
         logging.info(f"Payment request response: {response_data}")
 
-        # Check if the STK Push was successful
+
+
+
         if response_data.get('ResponseCode') == '0':
             logging.info("STK Push initiated successfully.")
             timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[response_data.get('CheckoutRequestID')])
@@ -427,12 +426,16 @@ def MpesaExpress():
             description = response_data.get('ResponseDescription', 'No description provided')
             logging.error(f"STK Push failed: {description}")
             return jsonify({'error': 'STK Push failed', 'description': description}), 400
+        
     except requests.RequestException as e:
         logging.error(f"Request failed: {e}")
         return jsonify({'error': 'Request failed', 'details': str(e)}), 500
+    
+
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
+    
 
 def handle_timeout(checkout_request_id):
     # Function to handle timeout after the specified duration
@@ -486,20 +489,6 @@ def getAccesstoken():
         logging.error(f"Data processing error: {e}")
         return None
 
-token = getAccesstoken()
-print("Retrieved Access Token:", token)
+access_token = getAccesstoken()
+print("Retrieved Access Token:", access_token)
     
-
-import requests
-from requests.auth import HTTPBasicAuth
-
-def test_connection():
-    url = 'https://sandbox.safaricom.co.ke'
-    try:
-        response = requests.get(url, timeout=10)
-        print(f"Status Code: {response.status_code}")
-        print(f"Response Text: {response.text}")
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")
-
-test_connection()
