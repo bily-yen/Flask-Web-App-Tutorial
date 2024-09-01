@@ -957,7 +957,7 @@ section#wcuindextop {
 }
 
 .search-button {
-  padding: 5px;
+  padding: 2px;
   border: none;
   background-color:brown;
   color: white;
@@ -965,11 +965,11 @@ section#wcuindextop {
   font-size: 16px;
   cursor: pointer;
   margin-left: 2px;
+  margin-right: 15px;
+  height: min-content;
 }
 
-.search-button i {
-  margin-right: 5px;
-}
+
 
 .search-button:hover {
   background-color: #0056b3;
@@ -2144,7 +2144,7 @@ padding: 15px;
 }
 #wcuh .hreasons p{
     margin: 0;
-    margin-left: 40px;
+    margin-left: 10px;
     align-items: center;
     width: 100%;
     height: 50%;
@@ -2958,6 +2958,9 @@ section#wcuindextop {
     font-size: 0.8rem; /* Adjust font size */
     padding: 8px; /* Adjust padding */
   }
+  .header__image__card-3{
+    margin-top: -40px;
+  }
 
   .index-reasons h1 {
     font-size: 1rem; /* Smaller font size */
@@ -2974,6 +2977,20 @@ section#wcuindextop {
     justify-content: center;
     flex-direction: column; /* Stack elements vertically */
   }
+  
+.container .box-container .box{
+  border-radius: 5px;
+  background: white;
+  text-align: center;
+  padding:15px;
+  justify-content: center;
+  margin-right: 25px;
+  width: 85%;
+  margin-left: 0;
+}
+.container .box-container{
+  margin-right: 10px;
+}
 
   .index-reasons {
     padding: 8px; /* Adjust padding */
@@ -3033,10 +3050,18 @@ section#wcuindextop {
   }
 
   .reasons img {
-    width: 100vw; /* Full viewport width */
+    width: 50vw; /* Full viewport width */
     height: auto;
   }
-
+  #wcuindextop .reasons h1 {
+    align-items: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: x-large;
+    color: goldenrod;
+    margin-top: 10px;
+    padding: 10px;
+}
   .foot {
     padding: 8px; /* Adjust padding */
     font-size: 10px; /* Smaller font size */
@@ -3071,6 +3096,10 @@ section#wcuindextop {
   .navbar-nav a {
     font-size: 11px; /* Adjust font size */
     padding: 8px; /* Adjust padding */
+  }
+  .reasons h1{
+    margin-right: 20px;
+    padding: 5px;
   }
 
   .nav-link {
@@ -3243,8 +3272,13 @@ section#wcuindextop {
   }
 
   .reasons img {
-    width: 100vw; /* Full viewport width */
+    width: 50vw; /* Full viewport width */
     height: auto;
+  }
+
+  .reasons h1{
+    margin-right: 20px;
+    padding: 5px;
   }
 
   .foot {

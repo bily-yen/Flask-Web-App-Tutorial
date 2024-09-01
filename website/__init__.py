@@ -31,6 +31,8 @@ def create_app():
     DB_NAME = os.environ.get('DB_NAME', 'credentials')
     DB_NAME_TONERS = os.environ.get('DB_NAME_TONERS', 'toners')
     SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'your_default_secret_key')
+    
+    
 
     app.config.update(
         SECRET_KEY=SECRET_KEY,

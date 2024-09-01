@@ -395,9 +395,9 @@ def mpesa_express():
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
             "PartyA": phone,
-            "PartyB": '600000',
+            "PartyB": business_shortcode,  # Set PartyB to the business shortcode
             "PhoneNumber": phone,
-            "CallBackURL": "https://fb78-105-27-235-50.ngrok-free.app",
+            "CallBackURL": "https://618d-105-27-235-50.ngrok-free.app/myproduct",
             "AccountReference": "Test123",
             "TransactionDesc": "Payment for testing",
             "Amount": amount
@@ -414,9 +414,6 @@ def mpesa_express():
         response_data = res.json()
         logging.info(f"Payment request response: {response_data}")
 
-
-
-
         if response_data.get('ResponseCode') == '0':
             logging.info("STK Push initiated successfully.")
             timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[response_data.get('CheckoutRequestID')])
@@ -431,7 +428,6 @@ def mpesa_express():
         logging.error(f"Request failed: {e}")
         return jsonify({'error': 'Request failed', 'details': str(e)}), 500
     
-
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
@@ -488,7 +484,3 @@ def getAccesstoken():
     except ValueError as e:
         logging.error(f"Data processing error: {e}")
         return None
-
-access_token = getAccesstoken()
-print("Retrieved Access Token:", access_token)
-    
