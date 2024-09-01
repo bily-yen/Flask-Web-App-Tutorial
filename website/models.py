@@ -3,6 +3,37 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
 
+product_payment = db.Table('product_payment',
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True),
+    db.Column('payment_id', db.Integer, db.ForeignKey('transactions.id'), primary_key=True)
+)
+
+class Product(db.Model):
+    __tablename__ = 'product'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    price = db.Column(db.Float, nullable=False)  # Changed 'interval' to 'price'
+
+    def __repr__(self):
+        return f'<Product {self.name}>'
+    
+class PaymentTransaction(db.Model):
+    __tablename__ = 'transactions'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    checkout_request_id = db.Column(db.String(50), unique=True, nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.String(20), default='pending')  # e.g., 'pending', 'completed', 'failed'
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Define many-to-many relationship
+    products = db.relationship('Product', secondary=product_payment, backref=db.backref('transactions', lazy='dynamic'))
+
+    def __repr__(self):
+        return f'<PaymentTransaction {self.checkout_request_id}>'
+
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
@@ -52,12 +83,3 @@ class Refund(db.Model):
     Reason = db.Column(db.Text, nullable=True)
 
 
-class Product(db.Model):
-    __tablename__ = 'product'
-    
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(255), unique=True, nullable=False)
-    price = db.Column(db.Float, nullable=False)  # Changed 'interval' to 'price'
-
-    def __repr__(self):
-        return f'<Product {self.name}>'

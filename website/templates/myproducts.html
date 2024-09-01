@@ -38,14 +38,14 @@
 
                     // Create and append list item
                     const listItem = document.createElement('li');
-                    listItem.textContent = `${productName} - $${productPrice.toFixed(2)}`;
+                    listItem.textContent = `${productName} - KSh ${productPrice.toFixed(2)}`;
                     productList.appendChild(listItem);
                 }
             });
 
             // Update total amount
-            totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
-            amountInput.value = Math.round(totalAmount * 100); // Convert to cents and round
+            totalAmountElement.textContent = `KSh ${totalAmount.toFixed(2)}`;
+            amountInput.value = totalAmount.toFixed(2); // Directly use the total amount
         }
 
         function toggleSelection(event) {
@@ -88,19 +88,21 @@
         <form method="POST" action="{{ url_for('views.mpesa_express') }}" onsubmit="return validatePhoneNumber()">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
+        
             <div class="form-group">
                 <h4>Available Products</h4>
                 <div class="product-list">
                     {% for product in products %}
                         <div class="product-container" data-id="{{ product.id }}" data-price="{{ product.price }}" onclick="toggleSelection(event)">
                             <div class="product-name">{{ product.name }}</div>
-                            <div class="product-price">$ {{ product.price }}</div>
+                            <div class="product-price">KSh {{ product.price }}</div>
                         </div>
                     {% endfor %}
                 </div>
             </div>
-
+        
+            <input type="hidden" id="product-ids" name="product_id" value="">
+        
             <div class="form-group">
                 <label for="amount">Total Amount</label>
                 <input
@@ -126,12 +128,12 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit Payment</button>
         </form>
-
+        
         <h3 class="mt-5">Selected Products</h3>
         <ul id="product-list" class="list-group">
             <!-- Selected products will be listed here -->
         </ul>
-        <h4 class="mt-3">Total Amount: <span id="total-amount">$0.00</span></h4>
+        <h4 class="mt-3">Total Amount: <span id="total-amount">KSh 0.00</span></h4>
     </div>
 </body>
 </html>
