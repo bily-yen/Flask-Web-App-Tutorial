@@ -5,22 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        .product-container {
+        .carousel-container {
+            display: flex;
+            overflow-x: hidden;
+            scroll-snap-type: x mandatory;
+            padding: 10px 0;
+            position: relative;
+        }
+        .product-box {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 15px;
             border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
             border-radius: 5px;
             background-color: #f9f9f9;
-            cursor: pointer;
+            padding: 15px;
+            scroll-snap-align: start;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .product-container.selected {
-            background-color: #d4edda; /* Highlight selected products */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-name, .product-price, .quantity-group, .confirm-btn {
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .quantity-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .confirm-btn {
+            margin-top: 10px;
+        }
+        .confirm-btn.remove {
+            background-color: #dc3545; /* Red color for 'Remove' button */
+            border-color: #dc3545;
+        }
+        .carousel-controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .carousel-arrow {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            padding: 10px;
+        }
+        .selected-product-list {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
         }
     </style>
     <script>
         function updateSelection() {
-            const productContainers = document.querySelectorAll('.product-container');
+            const selectedProducts = document.querySelectorAll('.product-box.selected');
             const productList = document.getElementById('product-list');
             const totalAmountElement = document.getElementById('total-amount');
             const amountInput = document.getElementById('amount');
@@ -29,18 +86,18 @@
             productList.innerHTML = '';
             let totalAmount = 0;
 
-            productContainers.forEach(container => {
-                if (container.classList.contains('selected')) {
-                    const productId = container.getAttribute('data-id');
-                    const productName = container.querySelector('.product-name').textContent;
-                    const productPrice = parseFloat(container.getAttribute('data-price'));
-                    totalAmount += productPrice;
+            selectedProducts.forEach(box => {
+                const productId = box.getAttribute('data-id');
+                const productName = box.querySelector('.product-name').textContent;
+                const productPrice = parseFloat(box.getAttribute('data-price'));
+                const quantity = parseInt(box.querySelector('.quantity-input').value, 10) || 1;
+                const totalProductPrice = productPrice * quantity;
+                totalAmount += totalProductPrice;
 
-                    // Create and append list item
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${productName} - KSh ${productPrice.toFixed(2)}`;
-                    productList.appendChild(listItem);
-                }
+                // Create and append list item
+                const listItem = document.createElement('li');
+                listItem.textContent = `${productName} - KSh ${totalProductPrice.toFixed(2)} (${quantity} x KSh ${productPrice.toFixed(2)})`;
+                productList.appendChild(listItem);
             });
 
             // Update total amount
@@ -48,9 +105,17 @@
             amountInput.value = totalAmount.toFixed(2); // Directly use the total amount
         }
 
-        function toggleSelection(event) {
-            const container = event.currentTarget;
-            container.classList.toggle('selected');
+        function toggleConfirm(event) {
+            const button = event.currentTarget;
+            const box = button.closest('.product-box');
+            box.classList.toggle('selected');
+            if (box.classList.contains('selected')) {
+                button.textContent = 'Remove';
+                button.classList.add('remove');
+            } else {
+                button.textContent = 'Confirm';
+                button.classList.remove('remove');
+            }
             updateSelection();
         }
 
@@ -80,24 +145,91 @@
             }
             return true;
         }
+
+        function checkProductSelection() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please select at least one product.');
+                return false;
+            }
+            return true;
+        }
+
+        function scrollCarousel(direction) {
+            const container = document.querySelector('.carousel-container');
+            const scrollAmount = direction === 'right' ? 300 : -300;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
     </script>
 </head>
 <body>
     <div class="container mt-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-info">
+                    {% for category, message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('views.add_product') }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Product Price</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Product Image</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+        
         <h2>Select Products for Payment</h2>
-        <form method="POST" action="{{ url_for('views.mpesa_express') }}" onsubmit="return validatePhoneNumber()">
+        <form method="POST" action="{{ url_for('views.mpesa_express') }}" onsubmit="return validatePhoneNumber() && checkProductSelection()">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         
             <div class="form-group">
                 <h4>Available Products</h4>
-                <div class="product-list">
+                <div class="carousel-container">
                     {% for product in products %}
-                        <div class="product-container" data-id="{{ product.id }}" data-price="{{ product.price }}" onclick="toggleSelection(event)">
-                            <div class="product-name">{{ product.name }}</div>
-                            <div class="product-price">KSh {{ product.price }}</div>
+                        <div class="product-box" data-id="{{ product.id }}" data-price="{{ product.price }}">
+                            <div class="product-details">
+                                <!-- Add the image tag here -->
+                                <div class="product-image">
+                                    <img src="{{ url_for('views.product_image', product_id=product.id) }}" alt="Product Image" class="img-fluid" />
+                                </div>
+                                <div class="product-name">{{ product.name }}</div>
+                                <div class="product-price">KSh {{ product.price }}</div>
+                                <div class="form-group quantity-group">
+                                    <label for="quantity-{{ product.id }}">Quantity</label>
+                                    <input
+                                        type="number"
+                                        id="quantity-{{ product.id }}"
+                                        class="form-control quantity-input"
+                                        min="1"
+                                        value="1"
+                                    />
+                                </div>
+                                <button type="button" class="btn btn-primary confirm-btn" onclick="toggleConfirm(event)">Confirm</button>
+                            </div>
                         </div>
                     {% endfor %}
+                </div>
+                <div class="carousel-controls">
+                    <button type="button" class="carousel-arrow" onclick="scrollCarousel('left')">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="carousel-arrow" onclick="scrollCarousel('right')">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         
@@ -110,30 +242,32 @@
                     class="form-control"
                     id="amount"
                     name="amount"
-                    placeholder="Total amount will be auto-filled"
                     readonly
-                />
+                >
+                <div id="total-amount">KSh 0.00</div>
             </div>
+        
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input
                     type="text"
-                    class="form-control"
                     id="phone"
                     name="phone"
-                    placeholder="Enter phone number"
+                    class="form-control"
+                    placeholder="254..."
                     oninput="formatPhoneNumber(event)"
-                    required
-                />
+                >
             </div>
-            <button type="submit" class="btn btn-primary">Submit Payment</button>
+        
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Proceed to Payment">
+            </div>
         </form>
         
-        <h3 class="mt-5">Selected Products</h3>
-        <ul id="product-list" class="list-group">
-            <!-- Selected products will be listed here -->
-        </ul>
-        <h4 class="mt-3">Total Amount: <span id="total-amount">KSh 0.00</span></h4>
+        <div class="selected-product-list">
+            <h4>Selected Products</h4>
+            <ul id="product-list"></ul>
+        </div>
     </div>
 </body>
 </html>

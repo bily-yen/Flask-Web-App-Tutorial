@@ -11,6 +11,8 @@ import logging
 import locale
 from flask_cors import CORS
 from flask_wtf import CSRFProtect  # Import CSRFProtect
+from flask_migrate import Migrate
+
 
 # Initialize extensions globally
 db = SQLAlchemy()
@@ -24,15 +26,28 @@ limiter = Limiter(
 def create_app():
     app = Flask(__name__)
 
-    # Load configurations from environment variables
+   
+
+
+    # Load configurations
     DB_USER = os.environ.get('DB_USER', 'root')
     DB_PASSWORD = urllib.parse.quote(os.environ.get('MYSQL_PASSWORD', 'password'))
     DB_HOST = os.environ.get('DB_HOST', 'localhost')
     DB_NAME = os.environ.get('DB_NAME', 'credentials')
     DB_NAME_TONERS = os.environ.get('DB_NAME_TONERS', 'toners')
     SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'your_default_secret_key')
+    UPLOAD_FOLDER = '\static\SPAPHOTOS'  # Use a relative path for the upload folder
     
+    # Directly set the upload folder path without using an environment variable
+   
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     
+    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'webp'])
+    def allowed_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+  
 
     app.config.update(
         SECRET_KEY=SECRET_KEY,
@@ -69,6 +84,7 @@ def create_app():
 
     # Initialize extensions
     db.init_app(app)
+    migrate = Migrate(app, db)
     csrf.init_app(app)  # Initialize CSRFProtect
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

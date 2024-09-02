@@ -5,15 +5,15 @@ from datetime import datetime
 
 product_payment = db.Table('product_payment',
     db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True),
-    db.Column('payment_id', db.Integer, db.ForeignKey('transactions.id'), primary_key=True)
+    db.Column('payment_id', db.Integer, db.ForeignKey('transactions.id'), primary_key=True),
+    db.Column('quantity', db.Integer, nullable=False, default=1)  # Add quantity column
 )
 
 class Product(db.Model):
-    __tablename__ = 'product'
-    
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(255), unique=True, nullable=False)
-    price = db.Column(db.Float, nullable=False)  # Changed 'interval' to 'price'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    image = db.Column(db.String(1000), nullable=True)  # Store image as binary data
 
     def __repr__(self):
         return f'<Product {self.name}>'
