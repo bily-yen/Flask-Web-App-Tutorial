@@ -401,10 +401,10 @@ def mpesa_express():
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
             "PartyA": phone,
-            "PartyB": business_shortcode,  # Set PartyB to the business shortcode
+            "PartyB": business_shortcode,
             "PhoneNumber": phone,
             "CallBackURL": "https://618d-105-27-235-50.ngrok-free.app/myproduct",
-            "AccountReference": "0716470665",
+            "AccountReference": "techmartin",
             "TransactionDesc": "Payment for testing",
             "Amount": amount
         }
@@ -427,7 +427,10 @@ def mpesa_express():
             transaction = PaymentTransaction(
                 checkout_request_id=response_data.get('CheckoutRequestID'),
                 phone_number=phone,
-                amount=amount
+                amount=amount,
+                response_code=response_data.get('ResponseCode'),
+                response_description=response_data.get('ResponseDescription'),
+                mpesa_code=response_data.get('MpesaReceiptNumber')  # Save MPESA code
             )
             db.session.add(transaction)
             db.session.commit()
@@ -454,17 +457,26 @@ def handle_timeout(checkout_request_id):
     # Wait for the timeout duration before handling timeout
     time.sleep(TIMEOUT_DURATION)
 
-    # Log the timeout event
-    logging.warning(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
+    try:
+        # Log the timeout event
+        logging.warning(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
 
-    # Update the payment status to 'failed' in the database
-    transaction = PaymentTransaction.query.filter_by(checkout_request_id=checkout_request_id).first()
-    if transaction:
-        transaction.status = 'failed'
-        db.session.commit()
+        # Update the payment status to 'failed' in the database
+        transaction = PaymentTransaction.query.filter_by(checkout_request_id=checkout_request_id).first()
+        if transaction:
+            # Ensure the status is updated only if it's still 'pending'
+            if transaction.status == 'pending':
+                transaction.status = 'failed'
+                db.session.commit()
+                logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} updated to 'failed'")
+            else:
+                logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} is not 'pending', no update needed")
+        else:
+            logging.warning(f"No transaction found with CheckoutRequestID {checkout_request_id}")
 
-    # Optionally, implement any additional cleanup or notification logic here
-    
+    except Exception as e:
+        logging.error(f"An error occurred while handling the timeout: {e}")
+
 
 @views.route('/myproducts/confirmation', methods=['POST'])
 def confirmation():
@@ -512,14 +524,16 @@ def getAccesstoken():
     
 from sqlalchemy.orm import joinedload
     
-@views.route('/transaction/<int:transaction_id>')
-def transaction_details(transaction_id):
-    transaction = PaymentTransaction.query.options(joinedload('products')).filter_by(id=transaction_id).first()
-
-    if transaction:
-        return render_template('transaction_details.html', transaction=transaction)
+def update_transaction_status(transaction_id, new_status):
+    transaction = PaymentTransaction.query.get_or_404(transaction_id)
+    if new_status in ['pending', 'completed', 'failed']:
+        transaction.status = new_status
+        db.session.commit()
     else:
-        return "Transaction not found.", 404
+        raise ValueError('Invalid status value')
+    
+
+    
     
 from werkzeug.utils import secure_filename
     
@@ -556,12 +570,12 @@ def add_product():
             db.session.add(new_product)
             db.session.commit()
             flash('Product added successfully!', 'success')
-            return redirect(url_for('views.index'))
+            return redirect(url_for('views.add_product'))
         else:
             flash('Allowed image types are - png, jpg, jpeg, gif', 'error')
             return redirect(request.url)
 
-    return render_template('myproducts.html')
+    return render_template('add_product.html')
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}

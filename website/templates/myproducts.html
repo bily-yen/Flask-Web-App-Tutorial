@@ -7,60 +7,155 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        .carousel-container {
+      /* Carousel Container */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 5px;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    max-height: 420px; /* Reduced height for the products container */
+}
+
+/* Product Box */
+.product-box {
+    flex: 0 0 auto;
+    width: 230px; /* Smaller width */
+    margin-right: 10px; /* Reduced margin */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 8px; /* Reduced padding */
+    scroll-snap-align: start;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+}
+
+/* Product Details */
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: min-content;
+    padding: 25px;
+}
+.carousel-container {
             display: flex;
-            overflow-x: hidden;
+            overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding: 10px 0;
             position: relative;
+            max-width: 100%;
+            box-sizing: border-box;
+            height: max-content;
         }
+
+        /* Hide Scrollbar */
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for WebKit browsers */
+        }
+
+        .carousel-container {
+            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+            scrollbar-width: none;  /* Hide scrollbar for Firefox */
+        }
+
+        /* Product Box */
         .product-box {
             flex: 0 0 auto;
-            width: 300px;
-            margin-right: 15px;
+            width: 230px; /* Smaller width */
+            margin-right: 10px; /* Reduced margin */
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
-            padding: 15px;
+            padding: 8px; /* Reduced padding */
             scroll-snap-align: start;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            transition: transform 0.2s ease-in-out;
         }
+
+        .product-box.selected {
+            transform: scale(1.05); /* Slightly enlarge the selected box */
+        }
+
+        /* Product Details */
         .product-details {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .product-name, .product-price, .quantity-group, .confirm-btn {
-            margin-bottom: 10px;
+
+
+        .product-name {
+            font-size: 0.9rem; /* Smaller font size */
+            width: 100%;
+            font-weight: bolder;
+            line-height: 1.2;
         }
+
         .product-price {
-            font-size: 1.2rem;
+            font-size: 0.8rem; /* Smaller font size */
             font-weight: bold;
+            color: brown;
         }
+
         .quantity-group {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 1px;
+            font-size: 0.8rem;
+            height: 55px;
+            margin-top: -5px;
+        }
+
+        .quantity-14{
+            font-size: 0.8rem;
+            margin-top: 0;
         }
         .confirm-btn {
-            margin-top: 10px;
+            padding: 1px 2px; /* Smaller padding */
+            font-size: 0.8rem; /* Smaller font size */
+            border-radius: 4px; /* Slightly smaller border radius */
+            background-color: #28a745; /* Green color for 'Confirm' button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: -5px;
         }
+
         .confirm-btn.remove {
             background-color: #dc3545; /* Red color for 'Remove' button */
-            border-color: #dc3545;
         }
+
+        .confirm-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Carousel Controls */
         .carousel-controls {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 8px; /* Reduced margin */
         }
+
         .carousel-arrow {
             background-color: rgba(255, 255, 255, 0.7);
             border: none;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Smaller shadow */
             cursor: pointer;
-            padding: 10px;
+            padding: 8px; /* Smaller padding */
+            font-size: 0.9rem; /* Smaller font size */
+            margin: 0 5px;
         }
+
+        .carousel-arrow:hover {
+            background-color: #28a745; /* Green background on hover */
+            color: white;
+        }
+
+        /* Selected Product List */
         .selected-product-list {
             position: absolute;
             top: 10px;
@@ -68,11 +163,62 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            max-height: 300px;
+            padding: 8px; /* Reduced padding */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            width: 180px; /* Smaller width */
+            max-height: 250px; /* Smaller height */
             overflow-y: auto;
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        .selected-product-list h4 {
+            margin-top: 0;
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        #product-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #product-list li {
+            padding: 4px 0; /* Reduced padding */
+            border-bottom: 1px solid #ddd;
+        }
+
+        #product-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Add Product Form */
+        .add-product-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 10px 0;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Space between forms */
+        }
+
+        .add-product-form {
+            flex: 0 0 auto;
+            width: 300px; /* Reduced width of the form container */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            margin-right: 10px; /* Margin between form containers */
+        }
+
+        .add-product-form .form-group {
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        .add-product-form input.form-control {
+            width: 100%; /* Full width for inputs */
         }
     </style>
     <script>
@@ -173,31 +319,46 @@
                 </div>
             {% endif %}
         {% endwith %}
-
-        <form action="{{ url_for('views.add_product') }}" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-                <label for="name">Product Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="price">Product Price</label>
-                <input type="number" class="form-control" id="price" name="price" required>
-            </div>
-            <div class="form-group">
-                <label for="image">Product Image</label>
-                <input type="file" class="form-control-file" id="image" name="image" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Product</button>
-        </form>
         
+
+        <div class="form-group" style="display: flex; flex-direction: row;">
         <h2>Select Products for Payment</h2>
+        <div class="form-group">
+            <label for="amount">Total Amount</label>
+            <input
+                type="number"
+                class="form-control"
+                id="amount"
+                name="amount"
+                readonly
+            >
+            <div id="total-amount">KSh 0.00</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                class="form-control"
+                placeholder="254..."
+                oninput="formatPhoneNumber(event)"
+            >
+        </div>
+    
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Proceed to Payment">
+        </div>
+        </div>
         <form method="POST" action="{{ url_for('views.mpesa_express') }}" onsubmit="return validatePhoneNumber() && checkProductSelection()">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
         
             <div class="form-group">
                 <h4>Available Products</h4>
+                
                 <div class="carousel-container">
                     {% for product in products %}
                         <div class="product-box" data-id="{{ product.id }}" data-price="{{ product.price }}">
@@ -234,34 +395,6 @@
             </div>
         
             <input type="hidden" id="product-ids" name="product_id" value="">
-        
-            <div class="form-group">
-                <label for="amount">Total Amount</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id="amount"
-                    name="amount"
-                    readonly
-                >
-                <div id="total-amount">KSh 0.00</div>
-            </div>
-        
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    class="form-control"
-                    placeholder="254..."
-                    oninput="formatPhoneNumber(event)"
-                >
-            </div>
-        
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Proceed to Payment">
-            </div>
         </form>
         
         <div class="selected-product-list">
@@ -271,3 +404,4 @@
     </div>
 </body>
 </html>
+

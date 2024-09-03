@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- Blog Page Content -->
+ </div>
+ <style>
+    
+    img {
+  display: flex;
+  width: 100%;
+}
+
+
+ </style>
+ 
+ 
+ <div class="formhead">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+</div>
+<section id="wcuh">
+    <div class="hreasons">
+        <h1>We Buy and Sell Items</h1>
+    </div>
+    <div class="hreasons">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit ullam distinctio mollitia fugit 
+            consectetur nulla, quam eligendi, corrupti labore, soluta tenetur vel eos. 
+            Explicabo doloribus dolorum cumque iure sapiente earum!</p>
+    </div>
+    <div class="wcuiconsh">
+        <div class="search-bar-container">
+            <form action="search-results-page" method="GET" class="search-form">
+                <input type="text" name="query" placeholder="Search for products..." class="search-input" required>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="add-product-container">
+        <div class="add-product-form">
+    
+            <form action="{{ url_for('views.add_product') }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Product Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Product Image</label>
+                    <input type="file" class="form-control-file" id="image" name="image" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+            
+            <!-- Form Content Here -->
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const scrollArrow = document.getElementById('scroll-arrow');
+        const productList = document.getElementById('container-product-list');
+
+        scrollArrow.addEventListener('click', () => {
+            const scrollAmount = 300; // Amount to scroll each time the arrow is clicked
+            productList.scrollBy({
+                left: scrollAmount, // Scroll to the right
+                behavior: 'smooth'  // Smooth scrolling
+            });
+        });
+    });
+    </script>
+        <script>
+            let scrollContainer = document.querySelector(".gallery")
+            let backbtn = document.getElementById("backbtn")
+            let nextbtn = document.getElementById("nextbtn")
+
+            scrollContainer.addEventListener("wheel",(evt)=>{
+                evt.preventDefault();
+                scrollContainer.scrollLeft += evt.deltaY;
+                scrollContainer.style.scrollBehavior = "animate"
+            });
+            nextbtn.addEventListener("click", ()=>{
+                scrollContainer.style.scrollBehavior = "smooth"
+                scrollContainer.scrollLeft += 300;
+            });
+            backbtn.addEventListener("click", ()=>{
+                scrollContainer.style.scrollBehavior = "smooth"
+                scrollContainer.scrollLeft -= 300;
+            })
+
+
+
+        
+
+        </script>
+         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+              const modalId = '#loginModal'; // The ID of the modal
+              let clickCount = 0;
+              let clickTimer = null;
+              const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
+          
+              function showModal() {
+                const modal = document.querySelector(modalId);
+                if (modal) {
+                  $(modal).modal('show'); // Use jQuery to show the modal
+                }
+              }
+          
+              modalTrigger.addEventListener('click', function(event) {
+                clickCount++;
+          
+                if (clickCount === 1) {
+                  // Set up a timer to reset clickCount if the second click doesn't occur in time
+                  clickTimer = setTimeout(function() {
+                    clickCount = 0; // Reset clickCount
+                  }, DOUBLE_CLICK_DELAY);
+                } else if (clickCount === 2) {
+                  // Clear the timer and show the modal
+                  clearTimeout(clickTimer);
+                  clickCount = 0;
+                  showModal();
+                }
+          
+                event.preventDefault(); // Prevent default action of the link
+              });
+            });
+          </script>
+       
+        <script>
+       const bedroomInput = document.getElementById('bedroom_numbers');
+       const bedroomTypedText = document.getElementById('typed-text-bedrooms');
+       const dateInput = document.getElementById('moving_date');
+       const dateTypedText = document.getElementById('typed-text-date');
+
+       bedroomInput.addEventListener('input', function() {
+       bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+});
+
+       dateInput.addEventListener('input', function() {
+       dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+    // Additional logic for date input, if needed
+});
+
+      bedroomInput.addEventListener('blur', function() {
+      bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
+
+     dateInput.addEventListener('blur', function() {
+     dateTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
+        </script>
+
+    
+           
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+            <script src="https://unpkg.com/scrollreveal"></script>
+            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+      
+           
+            {% endblock %}

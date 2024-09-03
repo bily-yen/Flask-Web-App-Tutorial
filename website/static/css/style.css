@@ -810,6 +810,7 @@ border-radius: 5px;
   color: var(--text-light);
   text-align: center;
 }
+
 .fixed-container {
     margin-bottom: 20%;
     position: fixed;

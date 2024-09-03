@@ -13,11 +13,29 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    image = db.Column(db.String(1000), nullable=True)  # Store image as binary data
+    image = db.Column(db.String(1000), nullable=True)  # Store image path or URL
+
+    order_items = db.relationship('OrderItem', back_populates='product')
 
     def __repr__(self):
         return f'<Product {self.name}>'
+
+
+class OrderItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_id = db.Column(db.Integer, db.ForeignKey('transactions.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     
+    transaction = db.relationship('PaymentTransaction', back_populates='order_items')
+    product = db.relationship('Product', back_populates='order_items')
+
+    def __repr__(self):
+        return f'<OrderItem product_id={self.product_id} quantity={self.quantity} price={self.price}>'
+   
+
+
 class PaymentTransaction(db.Model):
     __tablename__ = 'transactions'
     
@@ -26,14 +44,17 @@ class PaymentTransaction(db.Model):
     phone_number = db.Column(db.String(20), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(20), default='pending')  # e.g., 'pending', 'completed', 'failed'
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    # Define many-to-many relationship
-    products = db.relationship('Product', secondary=product_payment, backref=db.backref('transactions', lazy='dynamic'))
+    created_at = db.Column(db.DateTime(timezone=True), default=func.now())
+    response_code = db.Column(db.String(10))  # Store response code from MPESA
+    response_description = db.Column(db.Text)  # Store response description from MPESA
+    mpesa_code = db.Column(db.String(50))  # Store MPESA code
+
+    order_items = db.relationship('OrderItem', back_populates='transaction')
 
     def __repr__(self):
         return f'<PaymentTransaction {self.checkout_request_id}>'
-
+    
+    
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
