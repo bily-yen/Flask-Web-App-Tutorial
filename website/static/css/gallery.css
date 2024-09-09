@@ -1176,9 +1176,9 @@ a{
 
 .form-group {
     flex: 1 1 50%; /* Adjust width of form groups */
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     display:flex;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .form-group label {
@@ -1290,7 +1290,7 @@ a{
     border-radius: 1px solid black;
     cursor: pointer;
     font-weight: 500;
-    background-color: brown;
+    background-color: green;
     width: max-content;
     text-align: center;
     height: 32px;

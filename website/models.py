@@ -2,39 +2,54 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
+from website import db
 
-product_payment = db.Table('product_payment',
-    db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True),
-    db.Column('payment_id', db.Integer, db.ForeignKey('transactions.id'), primary_key=True),
-    db.Column('quantity', db.Integer, nullable=False, default=1)  # Add quantity column
-)
+
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    image = db.Column(db.String(1000), nullable=True)  # Store image path or URL
+    image = db.Column(db.String(200), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
 
-    order_items = db.relationship('OrderItem', back_populates='product')
+    # Relationships
+    order_items = db.relationship('OrderItem', back_populates='product', cascade="all, delete-orphan")
+    transaction_products = db.relationship('TransactionProduct', back_populates='product', cascade="all, delete-orphan")
 
     def __repr__(self):
         return f'<Product {self.name}>'
 
+class TransactionProduct(db.Model):
+    __tablename__ = 'transaction_products'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_id = db.Column(db.Integer, db.ForeignKey('transactions.id'), nullable=False, index=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False, index=True)
+    quantity = db.Column(db.Integer, nullable=False)
+    particular = db.Column(db.String(100))  # Add this column
+
+    # Relationships
+    transaction = db.relationship('PaymentTransaction', back_populates='products')
+    product = db.relationship('Product', back_populates='transaction_products')
+
+    def __repr__(self):
+        return f'<TransactionProduct transaction_id={self.transaction_id} product_id={self.product_id} quantity={self.quantity} particular={self.particular}>'
 
 class OrderItem(db.Model):
+    __tablename__ = 'order_item'
     id = db.Column(db.Integer, primary_key=True)
-    transaction_id = db.Column(db.Integer, db.ForeignKey('transactions.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    transaction_id = db.Column(db.Integer, db.ForeignKey('transactions.id'), nullable=False, index=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False, index=True)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     
+    # Relationships
     transaction = db.relationship('PaymentTransaction', back_populates='order_items')
     product = db.relationship('Product', back_populates='order_items')
 
     def __repr__(self):
         return f'<OrderItem product_id={self.product_id} quantity={self.quantity} price={self.price}>'
-   
-
 
 class PaymentTransaction(db.Model):
     __tablename__ = 'transactions'
@@ -43,13 +58,15 @@ class PaymentTransaction(db.Model):
     checkout_request_id = db.Column(db.String(50), unique=True, nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.String(20), default='pending')  # e.g., 'pending', 'completed', 'failed'
+    status = db.Column(db.String(20), default='pending')
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
-    response_code = db.Column(db.String(10))  # Store response code from MPESA
-    response_description = db.Column(db.Text)  # Store response description from MPESA
-    mpesa_code = db.Column(db.String(50))  # Store MPESA code
+    response_code = db.Column(db.String(10))
+    response_description = db.Column(db.Text)
+    mpesa_code = db.Column(db.String(50))
 
-    order_items = db.relationship('OrderItem', back_populates='transaction')
+    # Relationships
+    order_items = db.relationship('OrderItem', back_populates='transaction', cascade="all, delete-orphan")
+    products = db.relationship('TransactionProduct', back_populates='transaction', cascade="all, delete-orphan")
 
     def __repr__(self):
         return f'<PaymentTransaction {self.checkout_request_id}>'

@@ -18,8 +18,11 @@
                     <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/loandata">
                         <i class="bi bi-file-earmark me-2"></i> Loan Records
                     </a>
-                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/myproducts">
-                        <i class="bi bi-bag me-2"></i> My Products
+                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/add_product">
+                        <i class="bi bi-bag me-2"></i> Add Inventory
+                    </a>
+                    <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/orders">
+                        <i class="bi bi-bag me-2"></i> Orders
                     </a>
                     <a class="btn btn-light mb-2 d-flex align-items-center" style="width: max-content;" href="/myshops">
                         <i class="bi bi-shop me-2"></i> My Shops
@@ -81,8 +84,7 @@
                         </div>
                         <div class="card-footer">
                             <form id="add-note-form" method="POST" action="{{ url_for('views.add_note') }}">
-                                <!-- CSRF Token -->
-                                {{ csrf_token() }}
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <textarea name="note" id="note" class="form-control" placeholder="Write your note here..." rows="3" required></textarea>
                                 </div>

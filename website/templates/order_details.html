@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Order Details{% endblock %}
+
+{% block content %}
+<div class="order-details-container">
+    <h1 class="order-details-header">Order Details</h1>
+    
+    <div class="order-details-info">
+        <p><strong>Order ID:</strong> {{ transaction.id }}</p>
+        <p><strong>Phone Number:</strong> {{ transaction.phone_number }}</p>
+        <p><strong>Amount:</strong> KSh {{ transaction.amount }}</p>
+        <p><strong>Status:</strong> {{ transaction.status }}</p>
+    </div>
+
+    <h2 class="order-details-items-header">Items</h2>
+    <div class="order-details-table-container">
+        <table class="order-details-table">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_items %}
+                    <tr>
+                        <td>{{ item.product_id }}</td>
+                        <td>{{ item.particular }}</td>
+                        <td>{{ item.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('views.view_orders') }}" class="order-details-back-link">Back to Orders</a>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='order_details.css') }}">
+{% endblock %}

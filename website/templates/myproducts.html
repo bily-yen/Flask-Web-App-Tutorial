@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Other head content -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  crossorigin="anonymous"
+/>
+
+<link
+href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/addtocart.css') }}">
+
+
+  <!-- Font Awesome CSS (only one instance) -->
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+  />
+  
+  <!-- Optional Font Awesome CSS versions (retain only if needed) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css"
+  />
+
+  <!-- Additional Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
-      /* Carousel Container */
-.carousel-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 5px;
-    position: relative;
-    max-width: 100%;
-    box-sizing: border-box;
-    max-height: 420px; /* Reduced height for the products container */
-}
-
-/* Product Box */
-.product-box {
-    flex: 0 0 auto;
-    width: 230px; /* Smaller width */
-    margin-right: 10px; /* Reduced margin */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    padding: 8px; /* Reduced padding */
-    scroll-snap-align: start;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
-}
-
-/* Product Details */
-.product-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: min-content;
-    padding: 25px;
-}
-.carousel-container {
+        /* Carousel Container */
+        .carousel-container {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding: 10px 0;
-            position: relative;
             max-width: 100%;
             box-sizing: border-box;
             height: max-content;
-        }
-
-        /* Hide Scrollbar */
-        .carousel-container::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for WebKit browsers */
-        }
-
-        .carousel-container {
             -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
             scrollbar-width: none;  /* Hide scrollbar for Firefox */
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for WebKit browsers */
         }
 
         /* Product Box */
         .product-box {
             flex: 0 0 auto;
-            width: 230px; /* Smaller width */
-            margin-right: 10px; /* Reduced margin */
+            width: 230px;
+            margin-right: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
-            padding: 8px; /* Reduced padding */
+            padding: 15px;
             scroll-snap-align: start;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease-in-out;
+            height: 420px;
         }
 
         .product-box.selected {
-            transform: scale(1.05); /* Slightly enlarge the selected box */
+            transform: scale(1.05);
         }
 
         /* Product Details */
@@ -84,18 +95,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: min-content;
+            padding: 1px;
         }
 
-
         .product-name {
-            font-size: 0.9rem; /* Smaller font size */
-            width: 100%;
+            font-size: 0.9rem;
             font-weight: bolder;
-            line-height: 1.2;
         }
 
         .product-price {
-            font-size: 0.8rem; /* Smaller font size */
+            font-size: 0.8rem;
             font-weight: bold;
             color: brown;
         }
@@ -107,18 +117,14 @@
             padding: 1px;
             font-size: 0.8rem;
             height: 55px;
-            margin-top: -5px;
+            margin-top: -15px;
         }
 
-        .quantity-14{
-            font-size: 0.8rem;
-            margin-top: 0;
-        }
         .confirm-btn {
-            padding: 1px 2px; /* Smaller padding */
-            font-size: 0.8rem; /* Smaller font size */
-            border-radius: 4px; /* Slightly smaller border radius */
-            background-color: #28a745; /* Green color for 'Confirm' button */
+            padding: 1px 2px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            background-color: green;
             color: white;
             border: none;
             cursor: pointer;
@@ -126,7 +132,7 @@
         }
 
         .confirm-btn.remove {
-            background-color: #dc3545; /* Red color for 'Remove' button */
+            background-color: #dc3545;
         }
 
         .confirm-btn:hover {
@@ -136,179 +142,341 @@
         /* Carousel Controls */
         .carousel-controls {
             text-align: center;
-            margin-top: 8px; /* Reduced margin */
+            margin-top: 8px;
         }
 
         .carousel-arrow {
             background-color: rgba(255, 255, 255, 0.7);
             border: none;
             border-radius: 50%;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Smaller shadow */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            padding: 8px; /* Smaller padding */
-            font-size: 0.9rem; /* Smaller font size */
+            padding: 8px;
+            font-size: 0.9rem;
             margin: 0 5px;
         }
 
         .carousel-arrow:hover {
-            background-color: #28a745; /* Green background on hover */
+            background-color: #28a745;
             color: white;
         }
 
         /* Selected Product List */
-        .selected-product-list {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            padding: 8px; /* Reduced padding */
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
-            width: 180px; /* Smaller width */
-            max-height: 250px; /* Smaller height */
-            overflow-y: auto;
-            font-size: 0.9rem; /* Smaller font size */
-        }
+/* Selected Product List */
+.selected-product-list {
+    position: fixed; /* Fixed positioning to keep it in place */
+    top: 20px; /* Adjust vertical position as needed */
+    right: 20px; /* Distance from the right edge */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffffff; /* White background for clarity */
+    padding: 15px; /* More padding for better spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
+    width: 240px; /* Adjusted width for better visibility */
+    max-height: 400px; /* Increased max-height for more content */
+    overflow: hidden; /* Hide any overflow initially */
+    font-size: 0.9rem; /* Readable font size */
+    z-index: 1000; /* Ensure it appears above other elements */
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+}
 
-        .selected-product-list h4 {
-            margin-top: 0;
-            font-size: 0.9rem; /* Smaller font size */
-        }
+/* Optional: Add hover effect for the list */
+.selected-product-list:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
 
-        #product-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
+/* Heading inside the selected product list */
+.selected-product-list h4 {
+    margin: 0;
+    color: #333; /* Darker color for better readability */
+    font-weight: 600; /* Bold font weight */
+    text-align: center; /* Center align heading */
+}
 
-        #product-list li {
-            padding: 4px 0; /* Reduced padding */
-            border-bottom: 1px solid #ddd;
-        }
+/* List container inside the selected product list */
+.selected-product-list ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+    flex: 1; /* Allow the list to grow and fill the container */
+    overflow-y: auto; /* Enable vertical scrolling for list items */
+    display: flex;
+    flex-direction: column; /* Ensure list items are displayed in a column */
+    max-height: calc(100% - 40px); /* Adjust height to accommodate heading and padding */
+}
 
-        #product-list li:last-child {
-            border-bottom: none;
-        }
+/* List items */
+.selected-product-list li {
+    border-bottom: 1px solid #ddd; /* Light border between items */
+    padding: 10px 0; /* Vertical padding */
+    color: #555; /* Slightly lighter color for list items */
+}
+
+/* Remove border from the last item */
+.selected-product-list li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
 
         /* Add Product Form */
-        .add-product-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 10px 0;
-            max-width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 20px; /* Space between forms */
-        }
-
         .add-product-form {
-            flex: 0 0 auto;
-            width: 300px; /* Reduced width of the form container */
+            width: 300px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
             padding: 15px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Smaller shadow */
-            margin-right: 10px; /* Margin between form containers */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
         }
 
         .add-product-form .form-group {
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 10px;
         }
 
         .add-product-form input.form-control {
-            width: 100%; /* Full width for inputs */
+            width: 100%;
         }
     </style>
     <script>
-        function updateSelection() {
-            const selectedProducts = document.querySelectorAll('.product-box.selected');
-            const productList = document.getElementById('product-list');
-            const totalAmountElement = document.getElementById('total-amount');
-            const amountInput = document.getElementById('amount');
+// Save selected products to local storage
+function saveSelection() {
+    const selectedProducts = [];
+    document.querySelectorAll('.product-box.selected').forEach(box => {
+        const productId = box.getAttribute('data-id');
+        const quantity = parseInt(box.querySelector('.quantity-input').value, 10) || 1;
+        selectedProducts.push({ productId, quantity });
+    });
+    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+}
 
-            // Clear previous list and total amount
-            productList.innerHTML = '';
-            let totalAmount = 0;
+// Load saved products from local storage on page load
+function loadSelection() {
+    const savedProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
+    savedProducts.forEach(({ productId, quantity }) => {
+        const box = document.querySelector(`.product-box[data-id="${productId}"]`);
+        if (box) {
+            box.classList.add('selected');
+            box.querySelector('.quantity-input').value = quantity;
 
-            selectedProducts.forEach(box => {
-                const productId = box.getAttribute('data-id');
-                const productName = box.querySelector('.product-name').textContent;
-                const productPrice = parseFloat(box.getAttribute('data-price'));
-                const quantity = parseInt(box.querySelector('.quantity-input').value, 10) || 1;
-                const totalProductPrice = productPrice * quantity;
-                totalAmount += totalProductPrice;
-
-                // Create and append list item
-                const listItem = document.createElement('li');
-                listItem.textContent = `${productName} - KSh ${totalProductPrice.toFixed(2)} (${quantity} x KSh ${productPrice.toFixed(2)})`;
-                productList.appendChild(listItem);
-            });
-
-            // Update total amount
-            totalAmountElement.textContent = `KSh ${totalAmount.toFixed(2)}`;
-            amountInput.value = totalAmount.toFixed(2); // Directly use the total amount
-        }
-
-        function toggleConfirm(event) {
-            const button = event.currentTarget;
-            const box = button.closest('.product-box');
-            box.classList.toggle('selected');
-            if (box.classList.contains('selected')) {
+            const button = box.querySelector('.confirm-btn');
+            if (button) {
                 button.textContent = 'Remove';
                 button.classList.add('remove');
-            } else {
-                button.textContent = 'Confirm';
-                button.classList.remove('remove');
             }
-            updateSelection();
+        }
+    });
+    updateSelection(); // Ensure the selection is updated after loading
+}
+
+// Event listener to load the saved selection on page load
+document.addEventListener('DOMContentLoaded', loadSelection);
+
+// Toggle the selection state and update button text
+function toggleConfirm(event) {
+    const button = event.currentTarget;
+    const box = button.closest('.product-box');
+    const isSelected = box.classList.contains('selected');
+
+    // Toggle the 'selected' class and button text
+    box.classList.toggle('selected');
+    button.textContent = isSelected ? 'Confirm' : 'Remove';
+    button.classList.toggle('remove', !isSelected);
+
+    // Save selection to local storage
+    saveSelection();
+
+    // Update selection details
+    updateSelection();
+}
+
+// Update the selection details in the UI
+function updateSelection() {
+    const selectedProducts = document.querySelectorAll('.product-box.selected');
+    const productList = document.getElementById('product-list');
+    const totalAmountElement = document.getElementById('total-amount');
+    const amountInput = document.getElementById('amount');
+    const productIdsInput = document.getElementById('product-ids');
+
+    // Clear previous list and total amount
+    productList.innerHTML = '';
+    let totalAmount = 0;
+    let productIds = [];
+
+    selectedProducts.forEach(box => {
+        const productId = box.getAttribute('data-id');
+        const productName = box.querySelector('.product-name').textContent;
+        const productPrice = parseFloat(box.getAttribute('data-price'));
+        const quantity = parseInt(box.querySelector('.quantity-input').value, 10) || 1;
+        const totalProductPrice = productPrice * quantity;
+        totalAmount += totalProductPrice;
+
+        // Create and append list item with remove button
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            ${productName} - KSh ${totalProductPrice.toFixed(2)} (${quantity} x KSh ${productPrice.toFixed(2)})
+            <button type="button" class="btn btn-danger btn-sm remove-product" data-id="${productId}">X</button>
+        `;
+        productList.appendChild(listItem);
+    });
+
+    // Update total amount and hidden input
+    totalAmountElement.textContent = `KSh ${totalAmount.toFixed(2)}`;
+    amountInput.value = totalAmount.toFixed(2);
+    productIdsInput.value = productIds.join(',');
+}
+
+// Format phone number input
+function formatPhoneNumber(event) {
+    const input = event.target;
+    let phoneNumber = input.value.replace(/\D/g, ''); // Remove non-digits
+
+    // Format phone number
+    if (phoneNumber.length === 10 && phoneNumber.startsWith('0')) {
+        phoneNumber = '254' + phoneNumber.substring(1);
+    } else if (phoneNumber.length === 9 && phoneNumber.startsWith('7')) {
+        phoneNumber = '254' + phoneNumber;
+    }
+
+    input.value = phoneNumber;
+}
+
+// Validate phone number input
+function validatePhoneNumber() {
+    const phoneInput = document.getElementById('phone');
+    const phoneValue = phoneInput.value.replace(/\D/g, '');
+
+    if (!phoneValue.startsWith('254') || phoneValue.length !== 12) {
+        alert('Please enter a valid 12-digit phone number starting with 254.');
+        return false;
+    }
+    return true;
+}
+
+// Check if at least one product is selected
+function checkProductSelection() {
+    const amount = parseFloat(document.getElementById('amount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please select at least one product.');
+        return false;
+    }
+    return true;
+}
+
+// Scroll the carousel left or right
+function scrollCarousel(direction) {
+    const container = document.querySelector('.carousel-container');
+    const scrollAmount = direction === 'right' ? 300 : -300;
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+
+// Handle the removal of a product from the selection
+function handleRemoveProduct(event) {
+    const button = event.currentTarget;
+    const productId = button.getAttribute('data-id');
+    const box = document.querySelector(`.product-box[data-id="${productId}"]`);
+
+    if (box) {
+        // Remove the 'selected' class from the product box
+        box.classList.remove('selected');
+        const confirmButton = box.querySelector('.confirm-btn');
+        if (confirmButton) {
+            confirmButton.textContent = 'Confirm';
+            confirmButton.classList.remove('remove');
         }
 
-        function formatPhoneNumber(event) {
-            const input = event.target;
-            let phoneNumber = input.value.replace(/\D/g, ''); // Remove non-digits
+        // Save the updated selection to local storage
+        saveSelection();
 
-            // Remove the leading 0 if present
-            if (phoneNumber.length === 10 && phoneNumber.startsWith('0')) {
-                phoneNumber = '254' + phoneNumber.substring(1);
-            } else if (phoneNumber.length === 9 && phoneNumber.startsWith('7')) {
-                // For 9-digit input starting with '7', assuming the '0' was omitted
-                phoneNumber = '254' + phoneNumber;
-            }
+        // Update the selection details
+        updateSelection();
+    }
+}
 
-            input.value = phoneNumber;
-        }
+// Add event listener for dynamically added remove buttons
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.matches('.remove-product')) {
+        handleRemoveProduct(event);
+    }
+});
 
-        function validatePhoneNumber() {
-            const phoneInput = document.getElementById('phone');
-            const phoneValue = phoneInput.value.replace(/\D/g, '');
-
-            // Check that the phone number has the '254' prefix and is 12 digits long
-            if (!phoneValue.startsWith('254') || phoneValue.length !== 12) {
-                alert('Please enter a valid 12-digit phone number starting with 254.');
-                return false;
-            }
-            return true;
-        }
-
-        function checkProductSelection() {
-            const amount = parseFloat(document.getElementById('amount').value);
-            if (isNaN(amount) || amount <= 0) {
-                alert('Please select at least one product.');
-                return false;
-            }
-            return true;
-        }
-
-        function scrollCarousel(direction) {
-            const container = document.querySelector('.carousel-container');
-            const scrollAmount = direction === 'right' ? 300 : -300;
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
     </script>
 </head>
 <body>
+
+    <nav class="navbar navbar-expand-lg">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="laiheader-header-logo">
+          <h1>BILLS HOLDINGS</h1>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+  
+          <div class="navbar-nav" >
+        
+      
+            <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
+            <a class="nav-item nav-link" id="trending-products" href="/products">Products</a>
+            <a class="nav-item nav-link" id="claim" href="/myproducts">Instant buy</a>
+            <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
+            <a href="https://facebook.com" target="_blank" style="color: black;"><i class="bi bi-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-instagram"></i></a>
+            {% if current_user.is_authenticated %}
+              <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+              <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
+              {% if request.path == '/loandata' %}
+                <div class="text-center">
+                  <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
+                     style="width: 100%;height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                     <i class="bi bi-file-earmark"></i> Add Repayment
+                  </a>
+                </div>
+              {% endif %}
+            {% else %}
+           
+              <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
+              <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">RR</a>
+      
+              
+            {% endif %}
+          </div>
+          
+          
+        </div>
+      </nav>
+     
+      <!-- Top Header -->
+      <div class="laiheader-top-header">
+        <div class="laiheader-header-content">
+      
+          <!-- Contact Section -->
+          <div class="laiheader-header-contact">
+            <span class="laiheader-contact-text">
+              <i class="fas fa-phone-alt"></i> Call Us
+            </span>
+            <span class="laiheader-contact-number">0716470665</span>
+            <span class="laiheader-contact-number">0700772153</span>
+          </div>
+      
+          <!-- Social Media Icons -->
+          <div class="laiheader-header-social-media">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:info@example.com" target="_blank"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
     <div class="container mt-5">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -320,66 +488,44 @@
             {% endif %}
         {% endwith %}
         
+        <h2 class="spfp">Select Products for Payment</h2>
 
-        <div class="form-group" style="display: flex; flex-direction: row;">
-        <h2>Select Products for Payment</h2>
-        <div class="form-group">
-            <label for="amount">Total Amount</label>
-            <input
-                type="number"
-                class="form-control"
-                id="amount"
-                name="amount"
-                readonly
-            >
-            <div id="total-amount">KSh 0.00</div>
-        </div>
-    
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input
-                type="text"
-                id="phone"
-                name="phone"
-                class="form-control"
-                placeholder="254..."
-                oninput="formatPhoneNumber(event)"
-            >
-        </div>
-    
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Proceed to Payment">
-        </div>
-        </div>
         <form method="POST" action="{{ url_for('views.mpesa_express') }}" onsubmit="return validatePhoneNumber() && checkProductSelection()">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
+        <div class="ttastyle">
+            <div class="form-group">
+                <label style="color: black; font-weight: 800; margin-top: 5px;" for="amount">Total Amount</label>
+                <input style="margin-top: 15px;  max-width: 180px; background-color: white;" type="number" class="form-control" id="amount" name="amount" readonly>
+                
+            </div>
+        
+            <div class="form-group" style="margin-top: 0;">
+                <label style="color: black; font-weight: 800; margin-top: 5px;" for="phone">Phone Number</label>
+                <input  style="padding: 7px; max-width: 180px; margin-top: 10px; background-color: white;" type="text" id="phone" name="phone" class="form-control" placeholder="254..." oninput="formatPhoneNumber(event)">
+            </div>
         
             <div class="form-group">
-                <h4>Available Products</h4>
-                
+                <input style="display: flex; color: white; font-weight: 800; margin-left: 16px;" type="submit" class="btn btn-primary" value="Pay">
+                <div style="display: flex; padding: 5px; margin-top: 10px; font-weight: 800; background-color: black; color: white; margin-left: 5px; border-radius:5px ;" id="total-amount">KSh 0.00</div>
+            </div>
+        </div>
+        
+            <div class="form-group">
                 <div class="carousel-container">
                     {% for product in products %}
                         <div class="product-box" data-id="{{ product.id }}" data-price="{{ product.price }}">
                             <div class="product-details">
-                                <!-- Add the image tag here -->
                                 <div class="product-image">
                                     <img src="{{ url_for('views.product_image', product_id=product.id) }}" alt="Product Image" class="img-fluid" />
                                 </div>
                                 <div class="product-name">{{ product.name }}</div>
                                 <div class="product-price">KSh {{ product.price }}</div>
                                 <div class="form-group quantity-group">
-                                    <label for="quantity-{{ product.id }}">Quantity</label>
-                                    <input
-                                        type="number"
-                                        id="quantity-{{ product.id }}"
-                                        class="form-control quantity-input"
-                                        min="1"
-                                        value="1"
-                                    />
+                                    <label style="margin-bottom: -10px; margin-left: 0; color: black; margin-top: 5px;" for="quantity-{{ product.id }}">Quantity</label>
+                                    <input style="width: 50px; margin-right: auto; margin-left: auto;" type="number" id="quantity-{{ product.id }}" class="form-control quantity-input" min="1" value="1">
                                 </div>
-                                <button type="button" class="btn btn-primary confirm-btn" onclick="toggleConfirm(event)">Confirm</button>
+                                <button style="margin-top: 5px; height: min-content; font-weight: 800;" type="button" class="btn btn-primary confirm-btn" onclick="toggleConfirm(event)">Confirm</button>
                             </div>
                         </div>
                     {% endfor %}
@@ -394,14 +540,16 @@
                 </div>
             </div>
         
-            <input type="hidden" id="product-ids" name="product_id" value="">
+            <div class="selected-product-list">
+                <h4>Selected Products</h4>
+                <ul id="product-list"></ul>
+            </div>
+        
+            <!-- Hidden fields for selected products -->
+            <input type="hidden" id="product-ids" name="product_ids" value="">
         </form>
         
-        <div class="selected-product-list">
-            <h4>Selected Products</h4>
-            <ul id="product-list"></ul>
-        </div>
+        
     </div>
 </body>
 </html>
-

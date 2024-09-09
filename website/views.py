@@ -1,20 +1,40 @@
-from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, Flask
-from flask_login import login_required, current_user
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from datetime import datetime, timedelta, timezone
-import requests
-from requests.auth import HTTPBasicAuth
-import base64
-from threading import Timer
-import logging
-# Import models and database setup
-from .models import Note, LoanRecord, Refund, Product, PaymentTransaction
-from . import db
+import os
 import re
 import json
 import time
+import logging
+import base64
+from datetime import datetime, timedelta, timezone
+from threading import Timer
+
+import requests
+from requests.auth import HTTPBasicAuth
+from werkzeug.utils import secure_filename
+from flask import (
+    Blueprint, render_template, request, flash, jsonify, redirect,
+    url_for, send_file, send_from_directory, current_app
+)
+from flask_login import login_required, current_user
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from sqlalchemy.orm import joinedload
+
+# Import models and database setup
+from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct, db
+
+from dotenv import load_dotenv
 import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+mpesa_endpoint = os.getenv('MPESA_ENDPOINT')
+business_shortcode = os.getenv('BUSINESS_SHORTCODE')
+passkey = os.getenv('PASSKEY')
+callback_url = os.getenv('CALLBACK_URL')
+
+
+    
 
 
 
@@ -274,7 +294,6 @@ def backtoadmin():
     return render_template('home.html', user=current_user)
 
 @views.route('/myproducts', methods=['GET'])
-@login_required
 def myproducts():
     """
     Return to the admin page.
@@ -348,13 +367,7 @@ def delete_note():
 
 
 
-import logging
-import base64
-import requests
-from datetime import datetime
-from flask import Blueprint, request, jsonify, redirect, url_for
-from threading import Timer
-import time
+
 
 # Dictionary to keep track of pending payments and their timestamps
 pending_payments = {}
@@ -366,34 +379,41 @@ logging.basicConfig(level=logging.INFO)
 logging.basicConfig(level=logging.DEBUG)
 
 @views.route('/pay', methods=['POST'])
+@login_required
 def mpesa_express():
     try:
-        # Retrieve form data
         amount = request.form.get('amount')
         phone = request.form.get('phone')
+        product_ids = request.form.get('product_ids')  # e.g., "1:2,2:3"
 
-        if not amount or not phone:
-            return jsonify({'error': 'Amount and phone number are required'}), 400
+        if not amount or not phone or not product_ids:
+            return jsonify({'error': 'Amount, phone number, and products are required'}), 400
 
         try:
-            amount = float(amount)
-            amount = int(round(amount))  # Convert to integer (e.g., cents)
+            amount = int(round(float(amount)))
         except ValueError:
             return jsonify({'error': 'Invalid amount format'}), 400
-        
-        access_token = getAccesstoken()
+
+        products = []
+        for item in product_ids.split(','):
+            try:
+                product_id, quantity = item.split(':')
+                products.append((int(product_id), int(quantity)))
+            except ValueError:
+                return jsonify({'error': 'Invalid product format'}), 400
+
+        access_token = get_access_token()
         if not access_token:
             logging.error('Failed to retrieve access token')
             return jsonify({'error': 'Failed to retrieve access token'}), 500
 
         headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+        endpoint = os.getenv('MPESA_ENDPOINT')
 
-        business_shortcode = '174379'
-        passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
-        password = business_shortcode + passkey + timestamp
-        password = base64.b64encode(password.encode('utf-8')).decode('utf-8')
+        business_shortcode = os.getenv('BUSINESS_SHORTCODE')
+        passkey = os.getenv('PASSKEY')
+        password = base64.b64encode((business_shortcode + passkey + timestamp).encode('utf-8')).decode('utf-8')
 
         data = {
             "BusinessShortCode": business_shortcode,
@@ -403,77 +423,69 @@ def mpesa_express():
             "PartyA": phone,
             "PartyB": business_shortcode,
             "PhoneNumber": phone,
-            "CallBackURL": "https://618d-105-27-235-50.ngrok-free.app/myproduct",
+            "CallBackURL": os.getenv('CALLBACK_URL'),
             "AccountReference": "techmartin",
-            "TransactionDesc": "Payment for testing",
+            "TransactionDesc": "Payment for products",
             "Amount": amount
         }
 
-        logging.debug(f'Request Headers: {headers}')
-        logging.debug(f'Request Data: {data}')
+        response = requests.post(endpoint, json=data, headers=headers)
+        response.raise_for_status()
 
-        res = requests.post(endpoint, json=data, headers=headers)
-        logging.debug(f'Response Status Code: {res.status_code}')
-        logging.debug(f'Response Text: {res.text}')
-        res.raise_for_status()
-
-        response_data = res.json()
-        logging.info(f"Payment request response: {response_data}")
+        response_data = response.json()
 
         if response_data.get('ResponseCode') == '0':
-            logging.info("STK Push initiated successfully.")
-            
-            # Save the transaction to the database
             transaction = PaymentTransaction(
                 checkout_request_id=response_data.get('CheckoutRequestID'),
                 phone_number=phone,
                 amount=amount,
                 response_code=response_data.get('ResponseCode'),
                 response_description=response_data.get('ResponseDescription'),
-                mpesa_code=response_data.get('MpesaReceiptNumber')  # Save MPESA code
+                mpesa_code=response_data.get('MpesaReceiptNumber')
             )
             db.session.add(transaction)
             db.session.commit()
 
-            timer = Timer(TIMEOUT_DURATION, handle_timeout, args=[response_data.get('CheckoutRequestID')])
-            timer.start()
+            for product_id, quantity in products:
+                product = Product.query.get(product_id)
+                particular_name = product.name if product else "Unknown"
+                
+                transaction_product = TransactionProduct(
+                    transaction_id=transaction.id,
+                    product_id=product_id,
+                    quantity=quantity,
+                    particular=particular_name
+                )
+                db.session.add(transaction_product)
+            db.session.commit()
 
-            # Redirect to the 'myproducts' page
+            Timer(TIMEOUT_DURATION, handle_timeout, args=[response_data.get('CheckoutRequestID')]).start()
+
             return redirect(url_for('views.myproducts'))
         else:
             description = response_data.get('ResponseDescription', 'No description provided')
             logging.error(f"STK Push failed: {description}")
             return jsonify({'error': 'STK Push failed', 'description': description}), 400
 
-    except requests.RequestException as e:
-        logging.error(f"Request failed: {e}")
-        return jsonify({'error': 'Request failed', 'details': str(e)}), 500
-
     except Exception as e:
-        logging.error(f"Unexpected error: {e}")
-        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
-    
+        logging.error(f"An error occurred: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
+
+
+
 def handle_timeout(checkout_request_id):
-    # Wait for the timeout duration before handling timeout
     time.sleep(TIMEOUT_DURATION)
 
     try:
-        # Log the timeout event
         logging.warning(f"Payment with CheckoutRequestID {checkout_request_id} took too long to confirm")
 
-        # Update the payment status to 'failed' in the database
         transaction = PaymentTransaction.query.filter_by(checkout_request_id=checkout_request_id).first()
-        if transaction:
-            # Ensure the status is updated only if it's still 'pending'
-            if transaction.status == 'pending':
-                transaction.status = 'failed'
-                db.session.commit()
-                logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} updated to 'failed'")
-            else:
-                logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} is not 'pending', no update needed")
+        if transaction and transaction.status == 'pending':
+            transaction.status = 'failed'
+            db.session.commit()
+            logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} updated to 'failed'")
         else:
-            logging.warning(f"No transaction found with CheckoutRequestID {checkout_request_id}")
-
+            logging.info(f"Payment status for CheckoutRequestID {checkout_request_id} is not 'pending', no update needed")
     except Exception as e:
         logging.error(f"An error occurred while handling the timeout: {e}")
 
@@ -484,12 +496,59 @@ def confirmation():
         data = request.get_json()
         logging.info(f"Confirmation callback data received: {data}")
 
-        # Process the confirmation callback data
-        # Update your records or notify users as necessary
-        return "ok"
+        checkout_request_id = data.get('transaction_id')
+        if not checkout_request_id:
+            logging.error("CheckoutRequestID not provided in confirmation data")
+            return jsonify({'error': 'CheckoutRequestID is required'}), 400
+
+        transaction = PaymentTransaction.query.filter_by(checkout_request_id=checkout_request_id).first()
+        if not transaction:
+            logging.error(f"PaymentTransaction with CheckoutRequestID {checkout_request_id} not found")
+            return jsonify({'error': 'Transaction not found'}), 404
+
+        products = data.get('products', [])
+        if not products:
+            logging.error("No products found in confirmation data")
+            return jsonify({'error': 'No products provided'}), 400
+
+        for item in products:
+            product_id = item.get('product_id')
+            quantity_purchased = item.get('quantity')
+
+            if not product_id or not quantity_purchased:
+                logging.error(f"Invalid product data: {item}")
+                continue
+
+            product = Product.query.get(product_id)
+            if not product:
+                logging.error(f"Product with ID {product_id} not found")
+                continue
+
+            if product.quantity >= quantity_purchased:
+                product.quantity -= quantity_purchased
+                db.session.commit()
+
+                transaction_product = TransactionProduct(
+                    transaction_id=transaction.id,
+                    product_id=product_id,
+                    quantity=quantity_purchased,
+                    particular=product.name
+                )
+                db.session.add(transaction_product)
+            else:
+                logging.error(f"Not enough stock for product {product_id}. Requested: {quantity_purchased}, Available: {product.quantity}")
+
+        db.session.commit()
+
+        transaction.status = 'completed'
+        db.session.commit()
+        logging.info(f"Transaction {checkout_request_id} status updated to 'completed'")
+
+        return jsonify({'message': 'Order confirmed successfully'}), 200
     except Exception as e:
         logging.error(f"Error processing confirmation callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
+
 
 @views.route('/myproducts/validation', methods=['POST'])
 def validation():
@@ -497,22 +556,21 @@ def validation():
         data = request.get_json()
         logging.info(f"Validation callback data received: {data}")
 
-        # Process the validation callback data
-        # Validate the payment request
         return "ok"
     except Exception as e:
         logging.error(f"Error processing validation callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
-    
-def getAccesstoken():
+
+
+def get_access_token():
     consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'
     consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'
     endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
     try:
-        r = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-        r.raise_for_status()
-        data = r.json()
+        response = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+        response.raise_for_status()
+        data = response.json()
         logging.info(f"Access token response: {data}")
         return data.get('access_token')
     except requests.RequestException as e:
@@ -521,41 +579,53 @@ def getAccesstoken():
     except ValueError as e:
         logging.error(f"Data processing error: {e}")
         return None
-    
-from sqlalchemy.orm import joinedload
-    
-def update_transaction_status(transaction_id, new_status):
-    transaction = PaymentTransaction.query.get_or_404(transaction_id)
-    if new_status in ['pending', 'completed', 'failed']:
-        transaction.status = new_status
+
+
+@views.route('/orders')
+@login_required
+def view_orders():
+    try:
+        orders = PaymentTransaction.query.all()
+        logging.info(f"Fetched {len(orders)} orders.")
+        return render_template('orders.html', orders=orders)
+    except Exception as e:
+        logging.error(f"Error fetching orders: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
+
+
+@views.route('/order/<int:transaction_id>')
+@login_required
+def order_details(transaction_id):
+    try:
+        transaction = PaymentTransaction.query.get_or_404(transaction_id)
+        order_items = TransactionProduct.query.filter_by(transaction_id=transaction_id).all()
+
+        for item in order_items:
+            if not item.particular:
+                product = Product.query.get(item.product_id)
+                if product:
+                    item.particular = product.name
+                    db.session.add(item)
+        
         db.session.commit()
-    else:
-        raise ValueError('Invalid status value')
-    
 
-    
-    
-from werkzeug.utils import secure_filename
-    
-from flask import current_app
+        logging.info(f"Fetched details for order ID {transaction_id}.")
+        return render_template('order_details.html', transaction=transaction, order_items=order_items)
+    except Exception as e:
+        logging.error(f"Error fetching order details: {e}")
+        return jsonify({'error': 'Internal server error'}), 500
 
-
-import os
-from flask import flash, redirect, render_template, request, url_for, current_app
-from werkzeug.utils import secure_filename
 
 @views.route('/add_product', methods=['GET', 'POST'])
+@login_required
 def add_product():
     if request.method == 'POST':
         name = request.form['name']
         price = request.form['price']
+        quantity = request.form.get('quantity', type=int)
         image = request.files.get('image')
 
-        if not image:
-            flash('No image selected for uploading', 'error')
-            return redirect(request.url)
-
-        if image.filename == '':
+        if not image or image.filename == '':
             flash('No image selected for uploading', 'error')
             return redirect(request.url)
         
@@ -565,29 +635,26 @@ def add_product():
             image.save(image_path)
 
             relative_image_path = os.path.join('SPAPHOTOS', filename)
-            new_product = Product(name=name, price=price, image=str(relative_image_path))  # Ensure this is a string
+            new_product = Product(name=name, price=price, quantity=quantity, image=str(relative_image_path))
     
             db.session.add(new_product)
             db.session.commit()
             flash('Product added successfully!', 'success')
             return redirect(url_for('views.add_product'))
         else:
-            flash('Allowed image types are - png, jpg, jpeg, gif', 'error')
+            flash('Allowed image types are - png, jpg, jpeg', 'error')
             return redirect(request.url)
 
     return render_template('add_product.html')
 
+
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-from flask import send_file
-import io
-from flask import send_from_directory, current_app
 
 @views.route('/product_image/<int:product_id>')
 def product_image(product_id):
     product = Product.query.get_or_404(product_id)
-    filename = os.path.basename(product.image)  # Extract the filename from the path
+    filename = os.path.basename(product.image)
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename)
-

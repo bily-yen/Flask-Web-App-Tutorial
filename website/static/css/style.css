@@ -810,6 +810,23 @@ border-radius: 5px;
   color: var(--text-light);
   text-align: center;
 }
+.ttastyle{
+display: flex;
+flex-direction: row;
+}
+
+.spfp{
+text-align: center;
+margin-top: -20px;
+background-color: black;
+border-radius: 5px;
+font-size: 16px;
+padding: 10px;
+font-weight: 800;
+color: white;
+
+}
+
 
 .fixed-container {
     margin-bottom: 20%;
@@ -1353,6 +1370,205 @@ nav .navigation ul li a:hover{
   cursor: pointer;
   transform: scale(1.1);
 }
+.order-details-container {
+  max-width: 900px;
+  margin: 40px auto; /* Center container horizontally */
+  padding: 20px;
+  background-color: azure; /* White background for content */
+  border-radius: 12px; /* Rounded corners for a softer look */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  animation: fadeIn 1s ease-out; /* Fade-in animation */
+}
+
+.order-details-header {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 28px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.order-details-info {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.order-details-info p {
+  margin: 5px 0;
+}
+
+.order-details-items-header {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.order-details-table-container {
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  border-radius: 8px; /* Match border radius with container */
+  border: 1px solid brown; /* Light border around the table container */
+}
+
+.order-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-details-table th, .order-details-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+  background-color: rgba(0, 0, 255, 0.333);
+}
+.order-details-table td {
+  color: black;
+  font-weight: 800;
+  padding: 15px;
+}
+
+.order-details-table th {
+  background-color: #f7f7f7; /* Slightly darker background for headers */
+  color: #666;
+  font-weight: bold;
+  font-weight: 800;
+}
+
+.order-details-table tr:nth-child(even) {
+  background-color: #fafafa; /* Alternate row color for readability */
+}
+
+.order-details-table tr:hover {
+  background-color: #f0f0f0; /* Highlight row on hover */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.order-details-back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: brown; /* Changed color to yellow */
+  text-decoration: none;
+  font-weight: 800; /* Changed font weight to 800 */
+}
+
+.order-details-back-link:hover {
+  text-decoration: underline;
+  color: goldenrod; /* Slightly darker yellow on hover for better visibility */
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Add Product Container */
+.addp-container {
+  margin: 0 auto;
+  max-width: 600px;
+  margin-bottom: 30px;
+  background-color: azure;
+  border: 1px solid brown;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.addp-title {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+/* Form Group */
+.addp-form-group {
+  margin-bottom: 6px;
+}
+
+.addp-form-group label {
+  display: block;
+  font-weight: 600; /* Bold text */
+  color: #333; /* Label color */
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.addp-form-control, .addp-form-file {
+  width: 100%; /* Full width */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Rounded corners for input fields */
+}
+
+
+.orders-container {
+    max-width: 800px;
+    margin: 30px auto; /* Center container horizontally */
+    padding: 5px;
+    background-color: #ffffff; /* White background for content */
+    border-radius: 12px; /* More rounded corners for a softer look */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    border: 1px solid #e0e0e0; /* Light border for a cleaner edge */
+    margin-top: 5px;
+}
+
+.orders-header {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+    font-size: 24px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.orders-table-container {
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+    border-radius: 8px; /* Match border radius with container */
+    border: 1px solid #ddd; /* Border around the table container */
+    height: 60vh;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0; /* No extra margin for a flush fit */
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+    background-color: #fff;
+}
+
+.orders-table th {
+    background-color: #f8f8f8; /* Slightly darker background for headers */
+    color: #555;
+    font-weight: bold;
+}
+
+.orders-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color for readability */
+}
+
+.orders-table tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+
+
 #backbtn,#nextbtn{
   width: 50px;
   cursor: pointer;
@@ -1806,8 +2022,8 @@ padding: 15px;
 }
 
 .form-group{
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: auto;
+ margin-bottom: auto;
 }
 .form-group .placeholder{
   min-width: fit-content;
@@ -2845,6 +3061,12 @@ section#wcuindextop {
     font-size: 0.8rem; /* Adjust font size */
   }
 
+
+  .ttastyle{
+    display: flex;
+    flex-direction: column;
+    }
+
 }
 @media (max-width: 369px) {
   .navbar {
@@ -3079,6 +3301,12 @@ section#wcuindextop {
   .bigofferimg p {
     font-size: 0.7rem; /* Smaller font size */
   }
+
+  .ttastyle{
+    display: flex;
+    flex-direction: column;
+    }
+
 }
 
 @media (max-width: 640px) {
@@ -3298,4 +3526,10 @@ section#wcuindextop {
   .bigofferimg p {
     font-size: 0.9rem; /* Adjust font size */
   }
+
+  .ttastyle{
+    display: flex;
+    flex-direction: column;
+    }
+
 }
