@@ -563,9 +563,13 @@ def validation():
 
 
 def get_access_token():
-    consumer_key = 'cneQGWZjJauEZm7MR2ARlAxCfGsoojXA5ljDhNY5Xbgh4DSI'
-    consumer_secret = 'h8qnYYGo7sUE3qDcnMtYvRKSOotx1kdF5ZjcV0vId2qJvHPxu3CGYYcgRWWdhJBT'
+    consumer_key = os.getenv('SAFARICOM_CONSUMER_KEY')
+    consumer_secret = os.getenv('SAFARICOM_CONSUMER_SECRET')
     endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+
+    if not consumer_key or not consumer_secret:
+        logging.error("Consumer key or secret is not set.")
+        return None
 
     try:
         response = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
