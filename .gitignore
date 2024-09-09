@@ -1,2 +1,1 @@
-# Ignore specific files or directories
-website/views.py
+.env
