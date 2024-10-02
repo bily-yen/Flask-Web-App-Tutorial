@@ -57,8 +57,8 @@ class PaymentTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     checkout_request_id = db.Column(db.String(50), unique=True, nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
-    amount = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.String(20), default='pending')
+    amount = db.Column(db.Numeric(10, 2), nullable=False)  # Use Numeric for better currency handling
+    status = db.Column(db.String(20), default='pending')  # Default status is 'pending'
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     response_code = db.Column(db.String(10))
     response_description = db.Column(db.Text)

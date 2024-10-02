@@ -441,7 +441,7 @@ def mpesa_express():
                 amount=amount,
                 response_code=response_data.get('ResponseCode'),
                 response_description=response_data.get('ResponseDescription'),
-                mpesa_code=response_data.get('MpesaReceiptNumber')
+                mpesa_code=None  # Initialize as None
             )
             db.session.add(transaction)
             db.session.commit()
@@ -472,7 +472,6 @@ def mpesa_express():
         return jsonify({'error': 'Internal server error'}), 500
 
 
-
 def handle_timeout(checkout_request_id):
     time.sleep(TIMEOUT_DURATION)
 
@@ -496,7 +495,8 @@ def confirmation():
         data = request.get_json()
         logging.info(f"Confirmation callback data received: {data}")
 
-        checkout_request_id = data.get('transaction_id')
+        # Extract CheckoutRequestID and other relevant data
+        checkout_request_id = data['Body']['stkCallback'].get('CheckoutRequestID')
         if not checkout_request_id:
             logging.error("CheckoutRequestID not provided in confirmation data")
             return jsonify({'error': 'CheckoutRequestID is required'}), 400
@@ -505,6 +505,16 @@ def confirmation():
         if not transaction:
             logging.error(f"PaymentTransaction with CheckoutRequestID {checkout_request_id} not found")
             return jsonify({'error': 'Transaction not found'}), 404
+
+        result_code = data['Body']['stkCallback'].get('ResultCode')
+        if result_code != '0':
+            logging.error(f"Transaction failed with ResultCode: {result_code}")
+            transaction.status = 'failed'
+            db.session.commit()
+            return jsonify({'error': 'Transaction failed'}), 400
+
+        # Get the M-PESA receipt number
+        transaction.mpesa_code = data['Body']['stkCallback'].get('MpesaReceiptNumber')
 
         products = data.get('products', [])
         if not products:
@@ -538,13 +548,11 @@ def confirmation():
             else:
                 logging.error(f"Not enough stock for product {product_id}. Requested: {quantity_purchased}, Available: {product.quantity}")
 
-        db.session.commit()
-
         transaction.status = 'completed'
         db.session.commit()
         logging.info(f"Transaction {checkout_request_id} status updated to 'completed'")
 
-        return jsonify({'message': 'Order confirmed successfully'}), 200
+        return jsonify({'message': 'Order confirmed successfully', 'mpesa_code': transaction.mpesa_code}), 200
     except Exception as e:
         logging.error(f"Error processing confirmation callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
@@ -560,7 +568,6 @@ def validation():
     except Exception as e:
         logging.error(f"Error processing validation callback: {e}")
         return jsonify({'error': 'Internal server error'}), 500
-
 
 def get_access_token():
     consumer_key = os.getenv('SAFARICOM_CONSUMER_KEY')
