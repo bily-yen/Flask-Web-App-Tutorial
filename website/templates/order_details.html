@@ -3,7 +3,8 @@
 {% block title %}Order Details{% endblock %}
 
 {% block content %}
-<div class="order-details-container">
+</div>
+<div class="order-details-container" >
     <h1 class="order-details-header">Order Details</h1>
     
     <div class="order-details-info">
@@ -35,8 +36,48 @@
         </table>
     </div>
 
-    <a href="{{ url_for('views.view_orders') }}" class="order-details-back-link">Back to Orders</a>
+    <a href="{{ url_for('views.view_orders') }}" class="order-details-back-link" style="color:white ; width: max-content;">  Back to Orders</a>
 </div>
+
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        
+<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+</h1>
+    
+    </footer>
+
 {% endblock %}
 
 {% block stylesheets %}

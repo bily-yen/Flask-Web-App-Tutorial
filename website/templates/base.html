@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Other head content -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">    <!-- Other head content -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
     rel="stylesheet"
@@ -35,7 +33,7 @@ rel="stylesheet"
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/addtocart.css') }}">
+
 
 
   <!-- Font Awesome CSS (only one instance) -->
@@ -50,85 +48,57 @@ rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css"
   />
 
-  <!-- Additional Stylesheets -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <title>{% block title %}Home{% endblock %}</title>
-
+</head>
 
   <body>
     <nav class="navbar navbar-expand-lg">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar"
-      >
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="laiheader-header-logo">
-        <h1>BILLS HOLDINGS</h1>
+      <div class="logo" style="padding: 10px;">
+          <h1 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
+              <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
+          </h1>
+          <div style="font-size: 0.8rem; color: black">Technological Solutions and Supplies </div>
       </div>
-      <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
+        <a class="nav-item nav-link" id="services-link" href="#services">Services</a>
 
-        <div class="navbar-nav" >
-      
-    
-          <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
-          <a class="nav-item nav-link" id="trending-products" href="/products">Products</a>
-          <a class="nav-item nav-link" id="instant-buy" href="/myproducts">Instant buy</a>
-          <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
-          <a href="https://facebook.com" target="_blank" style="color: black;"><i class="bi bi-facebook"></i></a>
-          <a href="https://twitter.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-twitter"></i></a>
-          <a href="https://instagram.com" target="_blank" style="color: black; margin-left: 8px;"><i class="bi bi-instagram"></i></a>
+        <a class="nav-item nav-link" id="addtocartid" href="/addto">Products</a>
+        <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
+        
+          <a href="https://facebook.com" target="_blank" >
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" style=" margin-left: 8px;">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" style=" margin-left: 8px;">
+            <i class="fab fa-instagram"></i>
+        </a>
           {% if current_user.is_authenticated %}
-            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-            <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
-            {% if request.path == '/loandata' %}
-              <div class="text-center">
-                <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
-                   style="width: 100%;height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
-                   <i class="bi bi-file-earmark"></i> Add Repayment
-                </a>
-              </div>
-            {% endif %}
+              <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+              <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
+              {% if request.path == '/loandata' %}
+                  <div class="text-center">
+                      <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
+                         style="width: 100%; height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                         <i class="bi bi-file-earmark"></i> Add Repayment
+                      </a>
+                  </div>
+              {% endif %}
           {% else %}
-         
-            <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
-            <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">RR</a>
-    
-            
+              <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
+              <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">RR</a>
           {% endif %}
-        </div>
-        
-        
       </div>
-    </nav>
-   
-    <!-- Top Header -->
-    <div class="laiheader-top-header">
-      <div class="laiheader-header-content">
-    
-        <!-- Contact Section -->
-        <div class="laiheader-header-contact">
-          <span class="laiheader-contact-text">
-            <i class="fas fa-phone-alt"></i> Call Us
-          </span>
-          <span class="laiheader-contact-number">0716470665</span>
-          <span class="laiheader-contact-number">0700772153</span>
-        </div>
-    
-        <!-- Social Media Icons -->
-        <div class="laiheader-header-social-media">
-          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:info@example.com" target="_blank"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
+  </nav>
+  
+
     <div class="flashmessage" >
       {% if current_user.is_authenticated %}
           {% with messages = get_flashed_messages(with_categories=true) %}
@@ -175,217 +145,218 @@ rel="stylesheet"
     <!-- login Modal -->
 
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="loginModalLabel">Login</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="{{ url_for('auth.login') }}">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sign Up Modal -->
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="{{ url_for('auth.sign_up') }}">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Enter email"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="Enter first name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="password1">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password1"
-                  name="password1"
-                  placeholder="Enter password"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="password2">Password (Confirm)</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password2"
-                  name="password2"
-                  placeholder="Confirm password"
-                  required
-                />
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-
-<!-- Load Popper.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-
-<!-- Load Bootstrap 4.4.1 JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Load jQuery 3.2.1 Slim -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
-integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
- crossorigin="anonymous">
-</script>
-
-<!-- Load Popper.js (needed for Bootstrap tooltips and popovers) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
-crossorigin="anonymous">
-</script>
-
-<!-- Load Bootstrap 4.0.0 JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
- integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-  crossorigin="anonymous">
-</script>
-
-<!-- Load jQuery 3.6.0 (for later scripts) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
- integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl4kLgtI4l5Ka+G1VJS2fFvWJ4i3zGON/ke7LurG5"
-  crossorigin="anonymous">
-</script>
-
-<!-- Load Bootstrap 4.4.1 JS (for later scripts) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
-integrity="sha384-d3Ww9ToF1gMl2vExxF1G5vF4Zo/9r5j5OOtL0jppD3G5dIsd6iKrj6C1Z6IvP1Zm" 
-crossorigin="anonymous">
-</script>
-
-<!-- Your Custom Scripts -->
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script src="{{ url_for('static', filename='js/addtocart.js') }}"></script>
-    
-    {% block javascript %}
-    <script>
+  
+      <!-- Sign Up Modal -->
+      <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{ url_for('auth.sign_up') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter first name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password1">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password1"
+                    name="password1"
+                    placeholder="Enter password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password2">Password (Confirm)</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password2"
+                    name="password2"
+                    placeholder="Confirm password"
+                    required
+                  />
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       
-      document.addEventListener('DOMContentLoaded', function() {
-        const modalTrigger = document.getElementById('login'); // The element that triggers the modal
-        const modalId = '#loginModal'; // The ID of the modal
-        let clickCount = 0;
-        let clickTimer = null;
-        const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
-    
-        function showModal() {
-          const modal = document.querySelector(modalId);
-          if (modal) {
-            $(modal).modal('show'); // Use jQuery to show the modal
+  
+  <!-- Load Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  
+  <!-- Load Bootstrap 4.4.1 JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+      <!-- Load jQuery 3.2.1 Slim -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+   crossorigin="anonymous">
+  </script>
+  
+  <!-- Load Popper.js (needed for Bootstrap tooltips and popovers) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+  crossorigin="anonymous">
+  </script>
+  
+  <!-- Load Bootstrap 4.0.0 JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous">
+  </script>
+  
+  <!-- Load jQuery 3.6.0 (for later scripts) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+   integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl4kLgtI4l5Ka+G1VJS2fFvWJ4i3zGON/ke7LurG5"
+    crossorigin="anonymous">
+  </script>
+  
+  <!-- Load Bootstrap 4.4.1 JS (for later scripts) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
+  integrity="sha384-d3Ww9ToF1gMl2vExxF1G5vF4Zo/9r5j5OOtL0jppD3G5dIsd6iKrj6C1Z6IvP1Zm" 
+  crossorigin="anonymous">
+  </script>
+  
+  <!-- Your Custom Scripts -->
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  
+  
+      
+      {% block javascript %}
+      <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+          const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+          const modalId = '#loginModal'; // The ID of the modal
+          let clickCount = 0;
+          let clickTimer = null;
+          const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
+      
+          function showModal() {
+            const modal = document.querySelector(modalId);
+            if (modal) {
+              $(modal).modal('show'); // Use jQuery to show the modal
+            }
           }
-        }
-    
-        modalTrigger.addEventListener('click', function(event) {
-          clickCount++;
-    
-          if (clickCount === 1) {
-            // Set up a timer to reset clickCount if the second click doesn't occur in time
-            clickTimer = setTimeout(function() {
-              clickCount = 0; // Reset clickCount
-            }, DOUBLE_CLICK_DELAY);
-          } else if (clickCount === 2) {
-            // Clear the timer and show the modal
-            clearTimeout(clickTimer);
-            clickCount = 0;
-            showModal();
-          }
-    
-          event.preventDefault(); // Prevent default action of the link
+      
+          modalTrigger.addEventListener('click', function(event) {
+            clickCount++;
+      
+            if (clickCount === 1) {
+              // Set up a timer to reset clickCount if the second click doesn't occur in time
+              clickTimer = setTimeout(function() {
+                clickCount = 0; // Reset clickCount
+              }, DOUBLE_CLICK_DELAY);
+            } else if (clickCount === 2) {
+              // Clear the timer and show the modal
+              clearTimeout(clickTimer);
+              clickCount = 0;
+              showModal();
+            }
+      
+            event.preventDefault(); // Prevent default action of the link
+          });
         });
+      </script>
+      <script type="text/javascript">
+      function deleteNote(noteId) {
+          fetch("/delete-note", {
+              method: "POST",
+              body: JSON.stringify({ noteId: noteId }),
+          }).then((_res) => {
+              window.location.href = "/";
+          });
+      }
+  
+      $(document).ready(function () {
+      // Close navbar on clicking outside of it or on toggler button
+      $(document).click(function (event) {
+          if (!$(event.target).closest('#navbar, .navbar-toggler').length) {
+              $('#navbar').collapse('hide');
+          }
       });
-    </script>
-    <script type="text/javascript">
-    function deleteNote(noteId) {
-        fetch("/delete-note", {
-            method: "POST",
-            body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-            window.location.href = "/";
-        });
-    }
-
-    $(document).ready(function () {
-    // Close navbar on clicking outside of it or on toggler button
-    $(document).click(function (event) {
-        if (!$(event.target).closest('#navbar, .navbar-toggler').length) {
-            $('#navbar').collapse('hide');
-        }
-    });
-
-    // Close navbar when clicking on any item inside it
-    $('#navbar .nav-link').click(function () {
-        $('#navbar').collapse('hide');
-    });
-
-    // Optionally, ensure the toggler button also closes the navbar if you manually click it
-    $('.navbar-toggler').click(function () {
-        $('#navbar').collapse('toggle');
-    });
-});
-    </script>
-    {% endblock %}
-  </body>
-</html>
+  
+      // Close navbar when clicking on any item inside it
+      $('#navbar .nav-link').click(function () {
+          $('#navbar').collapse('hide');
+      });
+  
+      // Optionally, ensure the toggler button also closes the navbar if you manually click it
+      $('.navbar-toggler').click(function () {
+          $('#navbar').collapse('toggle');
+      });
+  });
+      </script>
+      {% endblock %}
+    </body>
+  </html>

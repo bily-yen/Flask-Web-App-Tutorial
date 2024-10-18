@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_socketio import SocketIO  # Import SocketIO
 import pymysql
 import urllib.parse
 import os
@@ -10,24 +11,21 @@ from logging.handlers import RotatingFileHandler
 import logging
 import locale
 from flask_cors import CORS
-from flask_wtf import CSRFProtect  # Import CSRFProtect
+from flask_wtf import CSRFProtect
 from flask_migrate import Migrate
-
 
 # Initialize extensions globally
 db = SQLAlchemy()
 login_manager = LoginManager()
-csrf = CSRFProtect()  # Initialize CSRFProtect
+csrf = CSRFProtect()
 limiter = Limiter(
     key_func=get_remote_address,
-    storage_uri='redis://localhost:6379/0'  # Redis URL for rate limiter storage
+    storage_uri='redis://localhost:6379/0'
 )
+socketio = SocketIO()  # Initialize SocketIO
 
 def create_app():
     app = Flask(__name__)
-
-   
-
 
     # Load configurations
     DB_USER = os.environ.get('DB_USER', 'root')
@@ -36,18 +34,14 @@ def create_app():
     DB_NAME = os.environ.get('DB_NAME', 'credentials')
     DB_NAME_TONERS = os.environ.get('DB_NAME_TONERS', 'toners')
     SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'your_default_secret_key')
-    UPLOAD_FOLDER = '\static\SPAPHOTOS'  # Use a relative path for the upload folder
+    UPLOAD_FOLDER = r'static\SPAPHOTOS'  # Use a relative path for the upload folder
     
-    # Directly set the upload folder path without using an environment variable
-   
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     
     ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'webp'])
     def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-  
 
     app.config.update(
         SECRET_KEY=SECRET_KEY,
@@ -57,11 +51,11 @@ def create_app():
             'toners': f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME_TONERS}'
         },
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
-        SESSION_COOKIE_SECURE=not app.debug,  # Set to True only in production
+        SESSION_COOKIE_SECURE=not app.debug,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE='Strict',
-        CSRF_ENABLED=True,  # Enable CSRF protection
-        CSRF_COOKIE_SECURE=not app.debug,  # Set to True only in production
+        CSRF_ENABLED=True,
+        CSRF_COOKIE_SECURE=not app.debug,
         CSRF_COOKIE_SAMESITE='Strict'
     )
 
@@ -70,13 +64,11 @@ def create_app():
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 
     if not app.debug:
-        # Production environment
         file_handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=1)
         file_handler.setLevel(logging.INFO)
         file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
         app.logger.addHandler(file_handler)
     else:
-        # Development environment
         handler.setLevel(logging.DEBUG)
         app.logger.addHandler(handler)
     
@@ -85,10 +77,13 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     migrate = Migrate(app, db)
-    csrf.init_app(app)  # Initialize CSRFProtect
+    csrf.init_app(app)
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    limiter.init_app(app)  # Initialize rate limiter
+    limiter.init_app(app)
+    
+    # Initialize SocketIO with the Flask app
+    socketio.init_app(app)  # Initialize SocketIO
 
     # Enable CORS with credentials support
     CORS(app, supports_credentials=True)
@@ -122,4 +117,4 @@ def create_app():
     # Register the custom currency filter
     app.jinja_env.filters['currency'] = currency
     
-    return app
+    return app, socketio  # Return both app and socketio

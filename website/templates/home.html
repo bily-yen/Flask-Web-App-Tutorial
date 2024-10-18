@@ -3,12 +3,12 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="container-fluid"  style="padding: 5px;">
+<div class="container-fluid"  style="padding: 45px; margin-top: 100px;">
     <div class="row" style="width: 100%; padding:0;">
         <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-2 d-md-block bg-light sidebar" style="padding: 0px; margin-left: -10px; width: max-content;">
-            <div class="position-sticky">
-                <h4 class="text-center mt-3" style="font-weight: bold; color: rgb(0, 0, 0); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); margin-bottom: 20px; font-size: 18px;">
+        <nav id="sidebar" class="col-md-2 d-md-block bg-light sidebar" style=" padding: 0px; margin-left: -10px; width: max-content;">
+            <div class="position-sticky" style="margin-top: 15px;">
+                <h4 class="text-center mt-3" style="font-weight: bold; color: rgb(0, 0, 0); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); margin-bottom: 20px; font-size: 18px; padding: 10px;">
                     TASSIA LOANS AND ITEMS
                 </h4>
                 <div class="d-flex flex-column" >
@@ -38,14 +38,14 @@
             </h1>
 
             <!-- User Information Section -->
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="card">
+            <div class="row mb-4" style="color: white; background-color: black; border-radius: 20px; padding: 15px;">
+                <div class="col-md-6" style="background-color: brown;">
+                    <div class="card" style="color: white; background-color: black;">
                         <div class="card-header">
                             <h4 class="mb-0">User Profile</h4>
                         </div>
                         <div class="card-body">
-                            <ul class="list-group">
+                            <ul class="list-group" style="font-size: 21px;">
                                 <li class="list-group-item"><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
                                 <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
                                 <!-- Add more user details if needed -->
@@ -73,7 +73,7 @@
                                         </div>
                                         <button type="button" class="btn btn-danger btn-sm" onClick="deleteNote('{{ note.id }}')" style="background-color: white; border: 1px solid red;">
                                             <i class="bi bi-trash" style="color: red;"></i> 
-                                            <span style="color: red; font-weight: bold;">Delete</span>
+                                            <span style="color: red; font-size: 18px; font-weight: bold;">Delete</span>
                                          </button>
                                     </li>
                                     {% endfor %}
@@ -174,6 +174,45 @@
         </main>
     </div>
 </div>
+</div>
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        
+<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+</h1>
+    
+    </footer>
 {% endblock %}
 
 {% block javascript %}

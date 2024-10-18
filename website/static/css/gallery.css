@@ -21,24 +21,8 @@ body{
 
 }
 
-.logo h1{
-    text-transform: uppercase;
-    font-size: 34px;
-    cursor: pointer;
-    color:goldenrod;
-    margin-top: 20px;
-    font-weight: bolder;
-    padding-right: 70px;
-    margin-right: 10px;
- 
-}
-.logo p{
-    font-size: 21;
-    cursor: pointer;
-    color:red;
-    stroke-width: 5%;
-    font-weight: bolder;
-}
+
+
 
 .flexx{
     display: flex;
@@ -537,12 +521,16 @@ a{
 }
 
 .securityh {
-    margin-top: 5px;
-    margin-right: 0;
-    background-color: none;
-    margin-left: 20px;
-    padding: 20px;
-
+    background-image: 'static', filename='SPAPHOTOS/printer-interior.jpg'; /* Use your image path */
+    background-size: cover; /* Cover the entire area */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: cover; /* Center the image */
+    height: 100px; /* Set a height for the element */
+    display: flex; /* Use flexbox for centering content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    color: white; /* Text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional text shadow */
 }
 .securityh img{
     border-radius: 10px;
@@ -778,6 +766,10 @@ a{
     margin: 0;
     height: 65%;
     box-shadow: 0 0 5px 0 rgba(128, 128, 128, 0.993);
+}
+.wcuiconsh{
+    background-image: url("/static/SPAPHOTOS/groc3.jpg");
+
 }
 .topback {
     position: relative;
@@ -1290,13 +1282,13 @@ a{
     border-radius: 1px solid black;
     cursor: pointer;
     font-weight: 500;
-    background-color: green;
+    background-color: brown;
     width: max-content;
     text-align: center;
     height: 32px;
     margin-top: 10px;
     margin-right: 0;
-    margin-left: 0;
+    margin-left: 10px;
 
   }
   .btn:hover {
@@ -1673,9 +1665,9 @@ a{
     background:  white;
     padding:25px 9%;
     padding-bottom: 100px;
-    margin-top: 30px;
+    margin-top: 5px;
     border-radius: 15px;
-    padding-top: 100px;
+    padding-top: 10px;
 }
 
 .container.first .heading {
@@ -1712,9 +1704,10 @@ a{
 }
 
 .container .box-container .box h3{
-    color:black;
+    color:brown;
     font-size: 22px;
     padding:0;
+    font-weight: 900;
 }
 
 .container .box-container .box p{

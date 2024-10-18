@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-    
-</style>
 
 <div class="form-container">
     <div class="flash-messages">
@@ -23,38 +20,102 @@
         {% endif %}
     </div>
 
-    <section class="product-section">
+    <section class="product-section" style="margin-top: 150px; padding-top: 20px; padding-bottom: 30px;">
+        <div class="addp-container-wrapper">
+            <div class="addp-container">
+                <h2 class="addp-title">Add New Product</h2>
+                <form action="{{ url_for('views.add_product') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-        <div class="addp-container">
-            <h2 class="addp-title">Add New Product</h2>
-            <form action="{{ url_for('views.add_product') }}" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="addp-form-group">
+                        <label for="name">Product Name</label>
+                        <input type="text" class="addp-form-control" id="name" name="name" required>
+                    </div>
 
-                <div class="addp-form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" class="addp-form-control" id="name" name="name" required>
-                </div>
+                    <div class="addp-form-group">
+                        <label for="price">Product Price</label>
+                        <input type="number" class="addp-form-control" id="price" name="price" required>
+                    </div>
 
-                <div class="addp-form-group">
-                    <label for="price">Product Price</label>
-                    <input type="number" class="addp-form-control" id="price" name="price" required>
-                </div>
+                    <div class="addp-form-group">
+                        <label for="quantity">Product Quantity</label>
+                        <input type="number" class="addp-form-control" id="quantity" name="quantity" required>
+                    </div>
 
-                <div class="addp-form-group">
-                    <label for="quantity">Product Quantity</label>
-                    <input type="number" class="addp-form-control" id="quantity" name="quantity" required>
-                </div>
+                    <div class="addp-form-group">
+                        <label for="image">Product Image</label>
+                        <input type="file" class="addp-form-file" id="image" name="image" required>
+                    </div>
 
-                <div class="addp-form-group">
-                    <label for="image">Product Image</label>
-                    <input type="file" class="addp-form-file" id="image" name="image" required>
-                </div>
+                    <button type="submit" id="add-product-btn" class="btn">Add Product</button>
+                </form>
+            </div>
 
-                <button type="submit" class="btn btn-primary">Add Product</button>
-            </form>
+            <div class="inventory-container">
+                <h1 class="inventory-title">Product Inventory</h1>
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.name }}</td>
+                            <td>${{ product.price }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td><img src="{{ url_for('views.product_image', product_id=product.id) }}" alt="{{ product.name }}" style="width: 100px; height: auto;"></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 </div>
+</div>
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        
+<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+</h1>
+    
+    </footer>
 
 <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -69,98 +130,89 @@
             });
         });
     });
-    </script>
-        <script>
-            let scrollContainer = document.querySelector(".gallery")
-            let backbtn = document.getElementById("backbtn")
-            let nextbtn = document.getElementById("nextbtn")
+</script>
+<script>
+    let scrollContainer = document.querySelector(".gallery")
+    let backbtn = document.getElementById("backbtn")
+    let nextbtn = document.getElementById("nextbtn")
 
-            scrollContainer.addEventListener("wheel",(evt)=>{
-                evt.preventDefault();
-                scrollContainer.scrollLeft += evt.deltaY;
-                scrollContainer.style.scrollBehavior = "animate"
-            });
-            nextbtn.addEventListener("click", ()=>{
-                scrollContainer.style.scrollBehavior = "smooth"
-                scrollContainer.scrollLeft += 300;
-            });
-            backbtn.addEventListener("click", ()=>{
-                scrollContainer.style.scrollBehavior = "smooth"
-                scrollContainer.scrollLeft -= 300;
-            })
+    scrollContainer.addEventListener("wheel",(evt)=>{
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+        scrollContainer.style.scrollBehavior = "animate"
+    });
+    nextbtn.addEventListener("click", ()=>{
+        scrollContainer.style.scrollBehavior = "smooth"
+        scrollContainer.scrollLeft += 300;
+    });
+    backbtn.addEventListener("click", ()=>{
+        scrollContainer.style.scrollBehavior = "smooth"
+        scrollContainer.scrollLeft -= 300;
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+        const modalId = '#loginModal'; // The ID of the modal
+        let clickCount = 0;
+        let clickTimer = null;
+        const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
 
+        function showModal() {
+            const modal = document.querySelector(modalId);
+            if (modal) {
+                $(modal).modal('show'); // Use jQuery to show the modal
+            }
+        }
 
+        modalTrigger.addEventListener('click', function(event) {
+            clickCount++;
 
-        
-
-        </script>
-         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              const modalTrigger = document.getElementById('login'); // The element that triggers the modal
-              const modalId = '#loginModal'; // The ID of the modal
-              let clickCount = 0;
-              let clickTimer = null;
-              const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
-          
-              function showModal() {
-                const modal = document.querySelector(modalId);
-                if (modal) {
-                  $(modal).modal('show'); // Use jQuery to show the modal
-                }
-              }
-          
-              modalTrigger.addEventListener('click', function(event) {
-                clickCount++;
-          
-                if (clickCount === 1) {
-                  // Set up a timer to reset clickCount if the second click doesn't occur in time
-                  clickTimer = setTimeout(function() {
+            if (clickCount === 1) {
+                // Set up a timer to reset clickCount if the second click doesn't occur in time
+                clickTimer = setTimeout(function() {
                     clickCount = 0; // Reset clickCount
-                  }, DOUBLE_CLICK_DELAY);
-                } else if (clickCount === 2) {
-                  // Clear the timer and show the modal
-                  clearTimeout(clickTimer);
-                  clickCount = 0;
-                  showModal();
-                }
-          
-                event.preventDefault(); // Prevent default action of the link
-              });
-            });
-          </script>
-       
-        <script>
-       const bedroomInput = document.getElementById('bedroom_numbers');
-       const bedroomTypedText = document.getElementById('typed-text-bedrooms');
-       const dateInput = document.getElementById('moving_date');
-       const dateTypedText = document.getElementById('typed-text-date');
+                }, DOUBLE_CLICK_DELAY);
+            } else if (clickCount === 2) {
+                // Clear the timer and show the modal
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                showModal();
+            }
 
-       bedroomInput.addEventListener('input', function() {
-       bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
-});
+            event.preventDefault(); // Prevent default action of the link
+        });
+    });
+</script>
 
-       dateInput.addEventListener('input', function() {
-       dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
-    // Additional logic for date input, if needed
-});
+<script>
+    const bedroomInput = document.getElementById('bedroom_numbers');
+    const bedroomTypedText = document.getElementById('typed-text-bedrooms');
+    const dateInput = document.getElementById('moving_date');
+    const dateTypedText = document.getElementById('typed-text-date');
 
-      bedroomInput.addEventListener('blur', function() {
-      bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
-});
+    bedroomInput.addEventListener('input', function() {
+        bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+    });
 
-     dateInput.addEventListener('blur', function() {
-     dateTypedText.textContent = ""; // Clear typed text when input box loses focus
-});
-        </script>
+    dateInput.addEventListener('input', function() {
+        dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+    });
 
-    
-           
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-            <script src="https://unpkg.com/scrollreveal"></script>
-            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-            <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-      
-           
-            {% endblock %}
+    bedroomInput.addEventListener('blur', function() {
+        bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
+    });
+
+    dateInput.addEventListener('blur', function() {
+        dateTypedText.textContent = ""; // Clear typed text when input box loses focus
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+{% endblock %}

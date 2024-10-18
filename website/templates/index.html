@@ -3,7 +3,6 @@
 
 {% block content %}
 <!-- Blog Page Content -->
- </div>
  <style>
     
     img {
@@ -31,32 +30,16 @@
         {% endwith %}
     {% endif %}
 </div>
-<section id="wcuh">
-    <div class="hreasons">
-        <h1>We Buy and Sell Items</h1>
-    </div>
-    <div class="hreasons">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit ullam distinctio mollitia fugit 
-            consectetur nulla, quam eligendi, corrupti labore, soluta tenetur vel eos. 
-            Explicabo doloribus dolorum cumque iure sapiente earum!</p>
-    </div>
-    <div class="wcuiconsh">
-        <div class="search-bar-container">
-            <form action="search-results-page" method="GET" class="search-form">
-                <input type="text" name="query" placeholder="Search for products..." class="search-input" required>
-                <button type="submit" class="search-button">
-                    <i class="fas fa-search"></i> Search
-                </button>
-            </form>
-        </div>
-    </div>
+</div>
+   
 </section>
-        <div class="securityh">
-            <span>
-                <img src="{{ url_for('static', filename='SPAPHOTOS/electronics1.jpg') }}" >
-
-            </span>
-        </div>
+<div class="securityh " style=" color: black; margin-top: 170px;">
+    <div class="catch-phrase " style="color: black;">
+        Connecting You to Cutting-Edge Solutions    </div>
+    <h1 class="welcome-header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
+        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
+        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as!
+    </h1></div>
       
         
     </div>
@@ -65,25 +48,9 @@
 
 <header class="header__container">
     <div class="header__image">
-        <div class="header__image__card header__image__card-1">
-            <span><i class="fas fa-hand-holding-usd"></i></span>
-            Buy
-          </div>
-          <div class="header__image__card header__image__card-2">
-            <span><i class="fas fa-book"></i></span>
-            Sell
-          </div>
-          <div class="header__image__card header__image__card-3">
-            <span><i class="fas fa-box"></i></span>
-            Resale
-          </div>
-          <div class="header__image__card header__image__card-4">
-            <span><i class="fas fa-sync-alt"></i></span>
-            Repossession
-          </div>
-          
-      <img src="{{ url_for('static', filename='SPAPHOTOS/roundtable.jpg') }}" alt="header" />
-     
+       
+        
+        <img src="{{ url_for('static', filename='SPAPHOTOS/tonerinterior.jpg') }}" alt="header" />
     </div>
     
 </div>
@@ -91,234 +58,173 @@
   </header>
 
   
-<div class="hometop-container d-flex flex-wrap justify-content-around">
+  <div class="hometop-container d-flex flex-wrap justify-content-around">
     <div class="hometop-item">
-        <i class="fas fa-couch hometop-icon"></i>
-        <h5 class="hometop-title">Furniture</h5>
+        <i class="fas fa-cogs hometop-icon"></i> <!-- Changed to engine (cogs) icon -->
+        <h5 class="hometop-title">Toners</h5>
     </div>
     <div class="hometop-item">
-        <i class="fas fa-lightbulb hometop-icon"></i>
-        <h5 class="hometop-title">Lighting</h5>
+        <i class="fas fa-tint hometop-icon"></i> <!-- Changed to spray can for ink bottle -->
+        <h5 class="hometop-title">Ink</h5>
     </div>
     <div class="hometop-item">
-        <i class="fas fa-blender hometop-icon"></i>
-        <h5 class="hometop-title">Appliances</h5>
+        <i class="fas fa-copy hometop-icon"></i>
+        <h5 class="hometop-title">Masters</h5>
     </div>
     <div class="hometop-item">
-        <i class="fas fa-paint-roller hometop-icon"></i>
-        <h5 class="hometop-title">Decor</h5>
+        <i class="fas fa-print hometop-icon"></i>
+        <h5 class="hometop-title">Printers</h5>
     </div>
     <div class="hometop-item">
-        <i class="fas fa-tools hometop-icon"></i>
-        <h5 class="hometop-title">Tools</h5>
+        <i class="fas fa-file-alt hometop-icon"></i>
+        <h5 class="hometop-title">Papers</h5>
     </div>
     <div class="hometop-item">
-        <i class="fas fa-door-closed hometop-icon"></i>
-        <h5 class="hometop-title">Doors & Windows</h5>
+        <i class="fas fa-marker hometop-icon"></i>
+        <h5 class="hometop-title">Markers</h5>
     </div>
 </div>
 </div>
-  <div class="container-fluid" style=" margin-bottom: 20px; padding: 3px;">
-<section class="index-product-section" id="product-section">
-    <h2 class="index-section-title">Our Products</h2>
-    <div id="container-product-list" class="index-product-list">
+ 
+<div class="container" style="justify-content: center; text-align: center; background-color:black; border-radius: 5px; padding: 2px;" >
+    <div class="cctechspac" >
         
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="/pay" class="index-view-more-btn">View More</a>
-        </div>
-         
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="/pay" class="index-view-more-btn">View More</a>
-        </div>
-         
-         
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="/pay" class="index-view-more-btn">View More</a>
-        </div>
-         
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 1</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="/pay" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 6</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 3</h3>
-            <p class="index-product-price">$99.99</p>
-            <p class="index-product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel magna nec metus faucibus interdum.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 2</h3>
-            <p class="index-product-price">$149.99</p>
-            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 2</h3>
-            <p class="index-product-price">$149.99</p>
-            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <div class="index-product-item">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/movers7.jpeg') }}" class="index-product-image" />
-            <h3 class="index-product-name">Product Name 2</h3>
-            <p class="index-product-price">$149.99</p>
-            <p class="index-product-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <a href="#more-products" class="index-view-more-btn">View More</a>
-        </div>
-        <!-- Add more p
-         roduct items as needed -->
-         
-    </div>
-    <div class="nexticon">
-        <i id="scroll-arrow" class="fa fa-arrow-right"></i>
-        <span class="scroll-text">More</span>
-    </div>
-</div>
-
     
-    
-</section>
-</div>
-  
+        <div class="imgsections">
+            <h1>Comprehensive Printing Solutions</h1>
+            <p>At TechXas, we offer a wide array of printing solutions designed to meet the diverse needs of our community. Our expertise in printing technology enables us to provide high-quality products and services, including custom prints and innovative designs.</p>
+            <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/digitalprinting.jpg') }}" alt="Digital Printing" />
+            <p style="margin-top: 40px; padding: 5px;">We are committed to fostering creativity and originality in every project. By collaborating with our clients, we ensure that each print reflects their unique vision and brand identity, delivering exceptional results that elevate their presence.</p>
+        </div>
+        
+        <div class="imgsections">
+            <h1>Diverse Technical Supplies</h1>
+            <p>Providing a broad range of technical supplies—from office equipment to school stationery—is essential for supporting various sectors, including businesses and educational institutions. Our collection features a variety of reputable brands, ensuring that customers have access to quality products that meet their needs.</p>
+            <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/bestsupples.jpg') }}" alt="Best Supplies" />
+            <p style="margin-top: 43px; padding: 5px;">We prioritize the originality and authenticity of our products, allowing clients to choose items that truly represent their standards. Our commitment to quality ensures that you receive the best supplies to empower your organization and enhance your operations.</p>
+        </div>
+            </div>
+  </div>
 
 
  
 
-<h2 class="index-section-title">Our Services</h2>
-
+  <h2 id="services" class="index-section-title">Our Services</h2>
     <div class="container first">
         
         <div class="box-container" style="background-color: brown;">
-    
-            <div class="box">
-               
-                <h3>household relocation</h3>
-                <p>want to move to a new location? <br>
-                contact us or send us your request through <br>
-            our easy to fill form</p>
-               
-            </div>
-    
-            <div class="box">
-             
-                <h3>courier-services</h3>
-                <p>Parcel delivery is now simple and secure, 
-                    we also package and deliver bulk goods <br>
-            contact for more info</p>
-            </div>
-    
-            <div class="box">
-               
-                <h3>Storage</h3>
-                <p>Not sure where to keep your valuable items?
-                    Well while thinking about it,we offer alternative storage and warehouse solutions
-                </p>
-            </div>
-    
-            <div class="box">
-            
-                <h3>electronic installations</h3>
-                <p>We always intend to leave you settled,taking the bother of making sure ou kickstart your new life without breaking a sweat.These include 
-                    TV Mounting, Wifi-Reconnection, solar Reconnection,</p>
-            </div>
-    
-            <div class="box">
-              
-                <h3>Cleaning</h3>
-                <p>settling into a new home may be hectic if necessary precautions when it comes to cleanliness are ignored.
-                    We therefore offer general and specialized house cleaning services including fumigation,vaccum-cleaning lawn-mowing </p>
-            </div>
-    
-            <div class="box">
-           
-                <h3>Find a home</h3>
-                <p>Want to move but not sure where to?Well,dont stress.
-                    We are also keen to help you find a suitable home that matches your desires.Explore the various popular destinations and send an enquiry for vacancies </p>
-            </div>
-    
-        </div>
 
-    
-    </div>
-    </div>
-    <div class="formhead">
-        <h1>let us know what you think</h1>
-    </div>
+            <div class="box">
+                <h3>Printing Solutions</h3>
+                <p>Need high-quality printing services? <br>
+                We offer a range of printing options, from business cards to banners. <br>
+                Contact us for personalized solutions.</p>
+            </div>
         
-
-            <div class="securityh" style="margin-left: 0;">
-                <span>
-                    <div class="text-center" style="color: black; font-weight: 800; font-size: 16px;">
-                        Claim this seven seater master coach for only ksh 7000!
-                    </div>
-                    <img src="{{ url_for('static', filename='SPAPHOTOS/furniture1.jpg') }}" >
-                    
+            <div class="box">
+                <h3>Equipment Supply</h3>
+                <p>Looking for reliable printing equipment? 
+                We supply printers, toners, and all essential accessories.<br>
+                Get in touch for the best deals!</p>
+            </div>
+        
+            <div class="box">
+                <h3>Design Services</h3>
+                <p>Our creative team is here to help with graphic design services. 
+                Whether it's for marketing materials or custom prints, we’ve got you covered.</p>
+            </div>
+        
+            <div class="box">
+                <h3>Computer Accessories</h3>
+                <p>Enhance your workspace with our range of computer accessories. 
+                From keyboards to monitors, find everything you need in one place.</p>
+            </div>
+        
+            <div class="box">
+                <h3>Installation Services</h3>
+                <p>We provide installation services for all your printing and computer equipment. 
+                Let us handle the setup so you can start using your equipment right away.</p>
+            </div>
+        
+            <div class="box">
+                <h3>Maintenance & Support</h3>
+                <p>Ensure your equipment runs smoothly with our maintenance services. 
+                Our support team is ready to assist with any issues you may encounter.</p>
+            </div>
+        
+        </div>
     
-                </span>
-            </div>
-          
-            
-        </div>
-   
-<div class="container" style="border-radius: 25px; ">
-
-    <section id="fut" style="width: 100%; border-radius: 25px; margin-left: auto; margin-right: auto; ">
-
-       
-    <div class="index-reasons">
-        <h1>Why Trucks on Tracks?</h1>
-       
-        <p>The birth of TOT was administered <br> under paramount ethical and legal <br> processions 
-            to secure elite <br> and convenient <br> courier service in and around East Africa</p>
-            
-        <div class="index-email">
-            <div class="index-mail">
-                <h2>Send us an email</h2> 
-                <i class="fa fa-envelope"></i>
-                <span>homemovers@yourdoor.com</span>
-            </div>
-            <div class="index-callus">
-                <h2>Call us</h2>
-                <i class="fa fa-phone-alt"></i>
-                <span>+25497575723 <br>+25416470665</span>
-            </div>
-        </div>
-        <div class="index-affiliates">
-            <h1>Affiliates</h1>
-            <p><i class="fab fa-twitter"></i>Skyly</p>
-            <p><i class="fab fa-twitter"></i>Faster</p>
-            <p><i class="fab fa-twitter"></i>S-MILE</p>
-        </div>
+    </div>
     </div>
 
-</section>
-</div>
+    <div class="near-footer">
+        <div class="container">
+            <div class="near-footer__top">
+                <div class="near-footer__section near-footer__techxas">
+                    <h5 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
+                        <span style="font-size: 1rem; margin-right: 15px;">About </span>
+                        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
+                    </h5>
+                    <p>With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
+                </div>
+                <div class="near-footer__section near-footer__categories">
+                    <h5 style="color: #757373">Our Customers</h5>
+                    <div class="customer-grid">
+                        <div class="customer-item">Schools</div>
+                        <div class="customer-item">Hotels</div>
+                        <div class="customer-item">Hospitals</div>
+                        <div class="customer-item">Corporates</div>
+                        <div class="customer-item">Small Businesses</div>
+                        <div class="customer-item">Government Offices</div>
+                        <div class="customer-item">Non-Profit Organizations</div>
+                        <div class="customer-item">Creative Agencies</div>
+                        <div class="customer-item">Retail Stores</div>
+                    </div>
+                </div>
+            </div>
+            
 
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer__top row">
+            <div class="footer__section footer__techxas col-md-4">
+                <h5>techXas</h5>
+                <p>Official shop,<br> technological products and solutions</p>
+            </div>
+            <div class="footer__section footer__categories col-md-4">
+                <h5>Categories</h5>
+                <ul>
+                    <li>Printers</li>
+                    <li>Ink & Toners</li>
+                    <li>Stationery</li>
+                    <li>Computers</li>
+                    <li>Graphic Design Services</li>
+                </ul>
+            </div>
+            <div class="footer__section footer__contacts col-md-4">
+                <h5>Contacts</h5>
+                <p>Email: support@techxas.com</p>
+                <p>Phone: (+254) 7 164 706 65 </p>
+                <h5>Follow Us</h5>
+                <ul class="social-media">
+                    <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <br> <br>
+                    <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+            
+    <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+        &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+    </h1>
+        
+        </footer>
 
 
 
@@ -427,6 +333,32 @@
      dateInput.addEventListener('blur', function() {
      dateTypedText.textContent = ""; // Clear typed text when input box loses focus
 });
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+let timeout; // Variable to hold the timeout ID
+
+window.addEventListener('scroll', function() {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (st > lastScrollTop) {
+        // Scrolling down
+        navbar.classList.add('hidden');
+        
+        // Clear any existing timeout to prevent multiple hide actions
+        clearTimeout(timeout);
+
+        // Set a timeout to remove the hidden class after 1 second
+        timeout = setTimeout(() => {
+            navbar.classList.remove('hidden'); // Reappear after 1 second
+        }, 1000); // 1000 milliseconds = 1 second
+    } else {
+        // Scrolling up
+        navbar.classList.remove('hidden'); // Immediately show the navbar
+    }
+
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+});
+
         </script>
 
     

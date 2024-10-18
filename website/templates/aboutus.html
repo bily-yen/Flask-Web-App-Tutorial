@@ -1,21 +1,16 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 <!-- Blog Page Content -->
- </div>
- <style>
-    
+</div>
+<style>
     img {
-  display: flex;
-  width: 100%;
-}
+        display: flex;
+        width: 100%;
+    }
+</style>
 
-
- </style>
- 
- 
- <div class="formhead">
+<div class="formhead">
     {% if current_user.is_authenticated %}
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -31,360 +26,100 @@
         {% endwith %}
     {% endif %}
 </div>
-<H2 style="text-align: center;">About Us </H2>
 
-<header class="header__container">
-    <div class="header__image">
-        <div class="header__image__card header__image__card-1">
-            <span><i class="fas fa-hand-holding-usd"></i></span>
-            Buy
-          </div>
-          <div class="header__image__card header__image__card-2">
-            <span><i class="fas fa-book"></i></span>
-            Sell
-          </div>
-          <div class="header__image__card header__image__card-3">
-            <span><i class="fas fa-box"></i></span>
-            Resale
-          </div>
-          <div class="header__image__card header__image__card-4">
-            <span><i class="fas fa-sync-alt"></i></span>
-            Repossession
-          </div>
-          
-      <img src="{{ url_for('static', filename='SPAPHOTOS/roundtable.jpg') }}" alt="header" />
-     
+<div class="securityh " style=" color: black; margin-top: 170px;">
+    <div class="catch-phrase " style="color: black;">
+        Connecting You to Cutting-Edge Solutions    </div>
+    <h1 class="welcome-header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
+        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
+        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as!
+    </h1></div>
+      
+        
     </div>
+    <h2 style="text-align: center;">About Us</h2>
+</section>
+
+
+<header class="header__container" style="padding-bottom: 20px;">
+    <div class="header__image" style="margin-bottom: 40px; padding: 20px;">
+       
+
+        <img src="{{ url_for('static', filename='SPAPHOTOS/supplies.jpg') }}" alt="header" />
+    </div>
+</header>
+
+<div class="container" style="background: none; max-width: 1200px;">
+    <h1 class="heading" style="color: brown; font-size:18px ; text-align: center; margin-top: 20px; font-weight: 700;">Who We Are and What We Do</h1>
+
+    <div class="box-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; padding: 2rem; gap: 2rem;">
+        <div class="box" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: rgb(128, 128, 128); font-weight: 900; font-size: 18px; margin: 0 0 0.5rem;">What We Do</h2>
+            <h3 style="color: black; font-weight: 800; font-size: 14px; margin: 0 0 0.5rem;">Buy and Sell Second Hand Goods</h3>
+            <p style="color: #333; margin: 0;">Bills Holdings deals in exchange of valuables of different variations. We also do resale and repossession of items.</p>
+        </div>
     
+        <div class="box" style="background-color: rgb(255, 255, 255); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: rgb(128, 128, 128); font-weight: 900; font-size: 18px; margin: 0 0 0.5rem;">What We Do</h2>
+            <h3 style="color: black; font-weight: 800; font-size: 14px; margin: 0 0 0.5rem;">Buy and Sell Second Hand Goods</h3>
+            <p style="color: #333; margin: 0;">We help you dispose of items you don't need. Send us an application with the description of the item you want on our Sell to Us page.</p>
+        </div>
+    
+        <div class="box" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: rgb(128, 128, 128); font-weight: 900; font-size: 18px; margin: 0 0 0.5rem;">What We Do</h2>
+            <h3 style="color: black; font-weight: 800; font-size: 14px; margin: 0 0 0.5rem;">Buy and Sell Second Hand Goods</h3>
+            <p style="color: #333; margin: 0;">Visit the Sell to Us page and send an application with the description of the item you want.</p>
+        </div>
+    </div>
 </div>
 
-  </header>
-
-  
-
-
- 
-
-
-
-    <div class="container first" style="background: none;">
-
-        <h1 class="heading">who we are and what we do</h1>
-       
-    
-        <div class="box-container">
-    
-            <div class="box">
-               
-                <h2>who we are</h2>
-                <p style="margin-bottom: 0;">
-                    <h3 style="color: brown; font-weight: 800;">BILLS HOLDINGS <br>General Items dealership </h3>
-                    Bills Holdings deals in exchange of valuables of different variations <br>
-            we also do resale and Repossessions of items</p>
-            </div>
-    
-            <div class="box" style="margin-bottom: 0;">
-             
-               <h2>what we do</h2>
-                <p style="margin-bottom: 0;">
-                    <h3 style="color: brown; font-weight: 800;">Buy and sell second hand goods</h3>
-                    we help you dispose ofo items you dont need.
-             send us an aplication with the description of the item you want in our sell to us Page</p>
-            </div>
-    
-            <div class="box" style="margin-bottom: o;">
-                <h2>where to find us</h2>
-                <p style="margin-bottom: 0;">
-                    <h3 style="color: brown; font-weight: 800;">address</h3>
-                    we help you dispose ofo items you dont need 
-            Visit the page sell to us <br>
-            and send an aplication with the description of the item you want</p>
-            
-            </div>
-    
-           
-    
-        </div>
-
-    
+<!-- New Section with Image and Paragraph -->
+<div class="container" style="display: flex; align-items: center; margin-top: 50px; padding-bottom: 40px;">
+    <img src="{{ url_for('static', filename='SPAPHOTOS/style.jpg') }}" alt="Description" style="flex: 1; max-width: 50%; margin-right: 20px;">
+    <div style="flex: 2;">
+        <h2>Learn More About Us</h2>
+        <p>
+            At Bills Holdings, we pride ourselves on our commitment to quality service and customer satisfaction. Our team is dedicated to providing you with the best solutions for your needs, whether it's buying, selling, or reselling items. We understand the importance of trust in every transaction, and we strive to ensure that you feel confident and valued throughout the entire process. Our goal is to make the exchange of goods as seamless and rewarding as possible, helping you navigate through your options while ensuring a positive experience every step of the way.
+        </p>
     </div>
+</div>
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="feature_base" style="background-color: brown;">
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
         
-    <div class="formhead">
-        <h3 style="color: white; font-size: medium; font-weight: 800;">Take a look at what we accept as collateral for soft loans</h3>
-    </div>
-        <div class="fb">
-        <div class="feature_box">
-            <h3>Electronics</h3>
-            <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-            <br>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
+<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+</h1>
     
-        </div>
-        <div class="feature_box">
-            <h3>general merchandise</h3>
-            <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-            <br>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-    
-        </div>
-        <div class="feature_box">
-            <h3>households</h3>
-            <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-            <br>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-    
-        </div>
-        <div class="feature_box">
-            <h3>Machinery</h3>
-            <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" class="fimgbox"/>
-            <br>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-            <h4>televisions</h4>
-            <h4>redios</h4>
-            <h4>amplifiers</h4>
-    
-        </div>
-    
-    </div>   
-</div>   
-</div>   
+    </footer>
 
-
-    <div class="formhead">
-        <h1>let us know what you think</h1>
-    </div>
-    <div class="container-fluid" style="width: 100%;">
-   
-        <section id="wcu" style="width: 100%; justify-content: center;">
-       
-        
-        
-            <div class="wcu" style="width: 100%; justify-content: center;">
-    
-                <div class="affordability">
-                    <span>
-                        <h2 style="color: brown;">safe transactions <br> methods</h2>
-                        <p>MPESA</p>
-                        <p>PAy-Pal</p>
-                        <p>Equity-Paybill</p>
-    
-                    </span>
-                </div>
-                
-                <div class="affordability">
-                    <span>
-                        <h2 style="color: brown;">why choose us</h2>
-                        <p>convenient payment plan</p>
-                        <p>Discounts</p>
-                        <p>After Sales services</p>
-                        <p>soft loans on valuables</p>
-                        <p>maximum integrity</p>
-                
-    
-                    </span>
-                   
-                </div>
-                  
-                <div class="integrity" style="position: 10px; height: 50%;" >
-                    <span>
-                    
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto; border-radius: 10px;"  />
-                        <a class="btn btn-danger " href="#home_relocationblog" role="button">
-                        <i class="bi bi-file-earmark"></i> want to sell?
-                     </a>
-                    </span>
-                </div>
-                <div class="integrity" style="position: 10px; height: 50%;" >
-                    <span>
-                    
-                        <img src="{{ url_for('static', filename='SPAPHOTOS/house2.jpeg') }}" alt="header" style="max-width: 100%; height: auto; border-radius: 10px;"  />
-                        <a class="btn btn-danger " href="#home_relocationblog" role="button">
-                        <i class="bi bi-file-earmark"></i> want to sell?
-                     </a>
-                    </span>
-                </div>
-               
-                </div>
-            </section>
-            </div>
-
-
-            
- 
-    <div class="container" style="border-radius: 25px; ">
-
-        <section id="fut" style="width: 100%; border-radius: 25px; margin-left: auto; margin-right: auto; ">
-    
-           
-        <div class="index-reasons">
-            <h1>Why Trucks on Tracks?</h1>
-           
-            <p>The birth of TOT was administered <br> under paramount ethical and legal <br> processions 
-                to secure elite <br> and convenient <br> courier service in and around East Africa</p>
-                
-            <div class="index-email">
-                <div class="index-mail">
-                    <p>Send us an email</p>
-                    <i class="fa fa-envelope"></i>
-                    <span>homemovers@yourdoor.com</span>
-                </div>
-                <div class="index-callus">
-                    <p>Call us</p>
-                    <i class="fa fa-phone-alt"></i>
-                    <span>+25497575723 <br>+25416470665</span>
-                </div>
-            </div>
-            <div class="index-affiliates">
-                <h1>Affiliates</h1>
-                <p><i class="fab fa-twitter"></i>Skyly</p>
-                <p><i class="fab fa-twitter"></i>Faster</p>
-                <p><i class="fab fa-twitter"></i>S-MILE</p>
-            </div>
-        </div>
-    
-    </section>
-    </div>
-        
-
-          
-          
-            
-   
-
-
-
-
-
-
-
-
-
-
-<script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const scrollArrow = document.getElementById('scroll-arrow');
-        const productList = document.getElementById('product-list');
-
-        scrollArrow.addEventListener('click', () => {
-            const scrollAmount = 300; // Amount to scroll each time the arrow is clicked
-            productList.scrollBy({
-                left: scrollAmount, // Scroll to the right
-                behavior: 'smooth'  // Smooth scrolling
-            });
-        });
-    });
-    </script>
-        <script>
-            let scrollContainer = document.querySelector(".gallery")
-            let backbtn = document.getElementById("backbtn")
-            let nextbtn = document.getElementById("nextbtn")
-
-            scrollContainer.addEventListener("wheel",(evt)=>{
-                evt.preventDefault();
-                scrollContainer.scrollLeft += evt.deltaY;
-                scrollContainer.style.scrollBehavior = "animate"
-            });
-            nextbtn.addEventListener("click", ()=>{
-                scrollContainer.style.scrollBehavior = "smooth"
-                scrollContainer.scrollLeft += 300;
-            });
-            backbtn.addEventListener("click", ()=>{
-                scrollContainer.style.scrollBehavior = "smooth"
-                scrollContainer.scrollLeft -= 300;
-            })
-
-
-
-        
-
-        </script>
-         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              const modalTrigger = document.getElementById('login'); // The element that triggers the modal
-              const modalId = '#loginModal'; // The ID of the modal
-              let clickCount = 0;
-              let clickTimer = null;
-              const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
-          
-              function showModal() {
-                const modal = document.querySelector(modalId);
-                if (modal) {
-                  $(modal).modal('show'); // Use jQuery to show the modal
-                }
-              }
-          
-              modalTrigger.addEventListener('click', function(event) {
-                clickCount++;
-          
-                if (clickCount === 1) {
-                  // Set up a timer to reset clickCount if the second click doesn't occur in time
-                  clickTimer = setTimeout(function() {
-                    clickCount = 0; // Reset clickCount
-                  }, DOUBLE_CLICK_DELAY);
-                } else if (clickCount === 2) {
-                  // Clear the timer and show the modal
-                  clearTimeout(clickTimer);
-                  clickCount = 0;
-                  showModal();
-                }
-          
-                event.preventDefault(); // Prevent default action of the link
-              });
-            });
-          </script>
-       
-        <script>
-       const bedroomInput = document.getElementById('bedroom_numbers');
-       const bedroomTypedText = document.getElementById('typed-text-bedrooms');
-       const dateInput = document.getElementById('moving_date');
-       const dateTypedText = document.getElementById('typed-text-date');
-
-       bedroomInput.addEventListener('input', function() {
-       bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
-});
-
-       dateInput.addEventListener('input', function() {
-       dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
-    // Additional logic for date input, if needed
-});
-
-      bedroomInput.addEventListener('blur', function() {
-      bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
-});
-
-     dateInput.addEventListener('blur', function() {
-     dateTypedText.textContent = ""; // Clear typed text when input box loses focus
-});
-        </script>
-
-    
-           
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-            <script src="https://unpkg.com/scrollreveal"></script>
-            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-            <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-      
-           
-            {% endblock %}
+{% endblock %}
