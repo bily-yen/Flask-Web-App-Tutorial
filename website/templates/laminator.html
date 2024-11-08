@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Other head content -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  crossorigin="anonymous"
+/>
+
+<link
+href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/addtocart.css') }}">
+
+a
+
+
+  <!-- Font Awesome CSS (only one instance) -->
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+  />
+  
+  <!-- Optional Font Awesome CSS versions (retain only if needed) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css"
+  />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+  
+</head>
+<body>
+
+  
+
+
+   
+    <nav class="navbar navbar-expand-lg"  >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="logo" style="margin-inline-end: auto;">
+            <h1 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
+                <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
+            </h1>
+            <div style="font-size: 0.8rem; color: black">Technological Solutions and Supplies </div>
+        </div>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" style="background: none; margin: 0;" id="homelinkbase" href="/index">Home</a>
+            <a class="nav-item nav-link"  style="background: none; margin: 0;" id="addtocartid" href="/addto">Products</a>
+            <a class="nav-item nav-link" style="background: none; margin: 0;"  id="about-us" href="/aboutus">About Us</a>
+            <a href="https://facebook.com" target="_blank" >
+              <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" style=" margin-left: 8px;">
+              <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" style=" margin-left: 8px;">
+              <i class="fab fa-instagram"></i>
+          </a>
+            {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" style="background: none; margin: 0;" id="logout" href="/logout">Logout</a>
+                <a class="nav-item nav-link" style="background: none; margin: 0;" id="admin" href="/btadmin">Back to Admin</a>
+                {% if request.path == '/loandata' %}
+                    <div class="text-center">
+                        <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
+                           style="width: 100%; height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                           <i class="bi bi-file-earmark"></i> Add Repayment
+                        </a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <a class="nav-item nav-link" id="signUp"  style="background: none; margin: 0;"   href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
+                <a class="nav-item nav-link" id="login" style="background: none; margin: 0;"  href="#" data-toggle="modal" data-target="#loginModal">RR</a>
+            {% endif %}
+  
+            <div class="cart" onclick="toggleCartModal()">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <p id="count">0</p>
+          </div>
+        </div>
+    </nav>
+    
+   <!-- Section below the navbar -->
+   <section class="equipment-section">
+    <h2>
+        <span class="checkmark">&#10003;</span> Available Equipment
+    </h2>
+    <div class="equipment-container">
+        <div class="equipment-card" onclick="location.href='/equipment/printer';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/printer.jpg') }}" alt="Printer" />
+            <p>Printers</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/computer';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/comp.jpg') }}" alt="Computer" />
+            <p>Computers</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/scanner';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/scanner2.jpg') }}" alt="Scanner" />
+            <p>Scanners</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/projector';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/projector.jpg') }}" alt="Projector" />
+            <p>Projectors</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/photocopier';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/photocopier.jpg') }}" alt="Photocopier" />
+            <p>Photocopiers</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/laminator';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/laminator.jpg') }}" alt="Laminator" />
+            <p>Laminators</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/whiteboard';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/Whiteboards.jpg') }}" alt="Whiteboard" />
+            <p>Whiteboards</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/monitor';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/hpultra.jpg') }}" alt="Monitor" />
+            <p>Monitors</p>
+        </div>
+        <div class="equipment-card" onclick="location.href='/equipment/laptop';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/hpspectre.jpg') }}" alt="Laptop" />
+            <p>Laptops</p>
+        </div>
+    </div>
+</section>
+
+<div class="main-content-container">
+    <div class="main-content">
+        <h3>
+            Laminators
+            <!-- Bubbles or other elements can go here -->
+        </h3>
+
+        <h4>Epson Laminators</h4>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-laminator-epson"></i>
+            <div class="additional-product-container" id="epson-laminator-section">
+                <!-- Epson laminator products will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-laminator-epson"></i>
+        </div>
+
+        <h4>Ricoh Laminators</h4>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-laminator-ricoh"></i>
+            <div class="additional-product-container" id="ricoh-laminator-section">
+                <!-- Ricoh laminator products will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-laminator-ricoh"></i>
+        </div>
+
+        <h4>Canon Laminators</h4>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-laminator-canon"></i>
+            <div class="additional-product-container" id="canon-laminator-section">
+                <!-- Canon laminator products will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-laminator-canon"></i>
+        </div>
+
+        <h4>Xerox Laminators</h4>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-laminator-xerox"></i>
+            <div class="additional-product-container" id="xerox-laminator-section">
+                <!-- Xerox laminator products will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-laminator-xerox"></i>
+        </div>
+
+        <!-- Additional brands can be added here following the same structure -->
+
+    </div>
+</div>
+<div style="display: flex; background-color: black; color: white; justify-content: space-between; align-items: flex-start; padding: 20px;">
+    <div class="verbal-marketing" style="flex: 1; margin-right: 20px;">
+    <h3>Request Our Catalogue</h3>
+    <p>Enter your details below to receive our latest catalogue.</p>
+    <form id="catalogue-form" action="/submit-email" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="text" name="institution" placeholder="Your Institution" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <button type="submit" style="width: 100%; padding: 10px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">Get Catalogue</button>
+    </form>
+</div>
+
+    <div class="contact-numbers" style="flex: 1; margin-left: 20px;">
+        <h3>Contact Numbers</h3>
+        <p style="font-size: 18px;">0716470665</p>
+        <p style="font-size: 18px;">0722453297</p>
+    </div>
+    <div class="reliability-commitment" style="flex: 1; margin-left: 20px;">
+        <h3>Reliability and Commitment</h3>
+        <p>We are dedicated to providing you with the best service and quality products. Your satisfaction is our priority.</p>
+        <p>With years of experience in the industry, we have supplied thousands of equipment to a diverse range of customers, ensuring their needs are met with precision and care.</p>
+        <p>Our commitment to quality assurance means that every product we deliver is thoroughly tested and vetted, guaranteeing that you receive only the best.</p>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px; background-color: gray;">
+    <img src="{{ url_for('static', filename='SPAPHOTOS/hpspectre.jpg') }}" alt="Laptop" style="max-width: 100%; height: auto;" />
+    <h3 style="color: white; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); margin-top: 10px;">
+        Morgan Brothers
+    </h3>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const root = document.getElementById('root');
+    const additionalSection = document.getElementById('another-product-section');
+
+    const scrollAmount = 100; // Set scroll amount to 100
+
+    // Add event listeners for product scrolling
+    document.getElementById('scroll-left').addEventListener('click', () => {
+        root.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right').addEventListener('click', () => {
+        root.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Add event listeners for additional product scrolling
+    document.getElementById('scroll-left-additional').addEventListener('click', () => {
+        additionalSection.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-additional').addEventListener('click', () => {
+        additionalSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+});
+
+
+
+</script>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div id="notification" class="notification hidden"></div>
+        <div class="modal-content">
+            <span class="close" onclick="toggleCartModal()">&times;</span>
+            <div class="head">
+                <p>My Cart</p>
+            </div>
+            <div id="cartItem">Your cart is empty</div>
+            <div class="foot">
+                <h3>Total</h3>
+                <h2 id="total">Ksh 0.00</h2>
+                <input type="text" id="phone" placeholder="Enter phone number" oninput="formatPhoneNumber(event)" />
+                <button id="payButton" onclick="processPayment()">Pay</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/laminator.js') }}"></script>
+    <script>
+        function toggleCartModal() {
+            const modal = document.getElementById("cartModal");
+            modal.style.display = modal.style.display === "block" ? "none" : "block";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("cartModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+let timeout; // Variable to hold the timeout ID
+
+window.addEventListener('scroll', function() {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (st > lastScrollTop) {
+        // Scrolling down
+        navbar.classList.add('hidden');
+        
+        // Clear any existing timeout to prevent multiple hide actions
+        clearTimeout(timeout);
+
+        // Set a timeout to remove the hidden class after 1 second
+        timeout = setTimeout(() => {
+            navbar.classList.remove('hidden'); // Reappear after 1 second
+        }, 1000); // 1000 milliseconds = 1 second
+    } else {
+        // Scrolling up
+        navbar.classList.remove('hidden'); // Immediately show the navbar
+    }
+
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+});
+    
+    
+
+
+    </script>
+</body>
+</html>

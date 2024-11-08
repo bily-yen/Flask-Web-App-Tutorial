@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}GSModels Workflow{% endblock %}
+
+{% block content %}
+</div>
+<div class= style="padding: 45px; margin-top: 100px;">
+    <div class="row" style="width: 100%; padding: 0;">
+        <!-- Sidebar -->
+    
+
+        <!-- Main Content -->
+        <div >
+            <h2 style="margin-top: 150px; font-size: 28px; font-weight: bold; text-align: center; color: #2c3e50; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 20px;">
+                DERIVING A FEW GEOSPATIAL SURFACE MODELS FROM RAW CSV DATA
+            </h2>
+            <p style="font-size: 16px; color: #7f8c8d; text-align: center; font-style: italic; letter-spacing: 1px; margin-bottom: 30px;">
+                <em>Utilizing different utilities for in-depth spatial understanding.</em>
+            </p>
+            <div style="margin-top: 20px;">
+                <strong>Geospatial Assignment</strong><br>
+                <strong>published</strong> 30/10/2024<br>
+            </div>
+            
+</div>
+<h3 class="dtm-title" style="font-style: italic;">Digital Terrain Model (DTM)</h3>
+<p style="font-size: 14px; color: #555;">
+    For the Digital Terrain Model (DTM), we focus exclusively on spot heights as our elevation criteria for ground heights. This method is crucial for accurately representing the bare earth surface, free from the influence of vegetation and man-made structures. To ensure the reliability of our analysis, it is essential to clean the data thoroughly, removing any anomalies or irrelevant points. By doing so, we can create a precise model that reflects the true terrain features, which is vital for various applications such as hydrology, urban planning, and landscape analysis.
+</p>
+            <h3 style="margin-top: 20px; color: gray;">Workflow Diagram</h3>
+            <div class="d-flex justify-content-center align-items-center" style="box-shadow: 2px 3px 5px black; padding:20px;">
+                <div class="card text-center mx-2" style="width: 170px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Topo Points</h5>
+                    </div>
+                </div>
+            
+                <div class="arrow">➡️</div>
+            
+                <div class="card text-center mx-2" style="width: 170px; ">
+                    <div class="card-body">
+                        <h5 class="card-title">CSV</h5>
+                    </div>
+                </div>
+            
+                <div class="arrow">➡️</div>
+            
+                <div class="card text-center mx-2" style="width: 190px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Vector</h5>
+                    </div>
+                </div>
+            
+                <div class="arrow">➡️</div>
+            
+                <div class="card text-center mx-2" style="width: 190px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Interpo-lation</h5>
+                    </div>
+                </div>
+            
+                <div class="arrow">➡️</div>
+            
+                <div class="card text-center mx-2" style="width: 210px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Contour</h5>
+                    </div>
+                </div>
+            
+                <div class="arrow">➡️</div>
+            
+                <div class="card text-center mx-2" style="width: 190px;">
+                    <div class="card-body">
+                        <h5 class="card-title">DTM</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .arrow {
+                    font-size: 24px; /* Adjust size as needed */
+                    margin: 0 10px; /* Space between arrow and boxes */
+                    align-self: center; /* Center the arrow vertically */
+                }
+            
+        
+    .interpolation-title {
+        color: gray;            /* Set text color to gray */
+        font-weight: bold;      /* Make the text bold */
+        font-size: 14px;        /* Set font size to 14px */
+        text-decoration: underline; /* Add underline */
+    }
+
+                
+            </style>
+           
+           
+            <h3>Logical Flow</h3>
+            <p>This document outlines the logical flow for obtaining various GSModels from different data sources, including point clouds.</p>
+            
+            <h3>1. Clean the Data</h3>
+            <p>For contours, we need to select the right elevation data, particularly focusing on spot heights. While the elevation data includes additional heights from walls and trees, we will use the ground elevation for creating contours.</p>
+            <p>Initially, I cleaned the raw CSV data using Python Pandas before importing it into QGIS.</p>
+            
+            <h3>2. Loading the CSV File</h3>
+            <p>We load the raw data into Excel and then save the file as a CSV file, which is a standard format for loading a delimited text file into GIS software. Next, open QGIS and create a new project. Navigate to the Layers tab, select "Add Layer," then choose "Delimited Text Layer." You can also use the Data Source Manager.</p>
+            <p>Navigate to the directory where you saved the CSV file and add it. During this process, you’ll be prompted to specify (x, y, z) fields essential for correct interpretations. Define additional parameters under Layer settings and Geometry Definition. Click "Add" and then close the dialog. Your data should now be successfully loaded into the QGIS environment.</p>
+            
+            <h3>3. Exporting the CSV and Saving as Shapefile</h3>
+            <p>Export the file as a shapefile (.shp) and save it in a convenient directory. Using the newly exported file, interpolate the data with x, y coordinates to co-locate the various heights for further processing.</p>
+            
+            <h3>4. Interpolating Our Clean Spot Heights</h3>
+            <p>Use the processing toolbar to find the Interpolation Tool and select TIN Interpolation (Triangulated Irregular Network). This method represents a surface made up of triangular facets created from a set of elevation points. TINs can model irregularly spaced data more accurately than regular grid-based systems, allowing for efficient analysis and visualization of topography, hydrology, and other spatial phenomena.</p>
+            
+            <h3 class="interpolation-title" style="margin-top: 200px;">Interpolation Visuals for Contours</h3>
+            <div class="text-center" style="margin-top: -90px;">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/clean_spot_heights.PNG') }}" alt="Interpolation Visual" style="max-width: 100%; height: auto; margin-bottom: 20px;" />
+                <p style="font-size: 16px; color: #555;">This image shows the resultant TIN network and TIFF file after interpolation process.</p>
+          </div>
+            
+            <h3 class="interpolation-title" >Additional images</h3>
+            <div class="row" style="display: flex; justify-content: center; margin-top: 20px;">
+                <div class="col-md-4 text-center">
+                    <img src="{{ url_for('static', filename='SPAPHOTOS/cont.PNG') }}" alt="Interpolation Visual 1" style="max-width: 100%; height: auto;" />
+                    <p style="font-size: 14px; color: #555;"> resultant contours for spot heights only. </p>
+                </div>
+
+                <br> <br>
+                <div class="col-md-4 text-center" style="margin-top: 220px;">
+                    <img src="{{ url_for('static', filename='SPAPHOTOS/this.PNG') }}" alt="Interpolation Visual 2" style="max-width: 100%; height: auto;" />
+                    <p style="font-size: 14px; color: #555;"> filtered spot heights only viewed over all elevation points
+
+                    </p>
+                </div>
+                </div>
+            <h3>5. Saving the Interpolated Layer</h3>
+            <p>Finally, save and export the new interpolated layer. In QGIS, you can save the output as TIFF, KML, or shapefile formats, returning images and triangulated irregular networks in the form of connected multilines, respectively.</p>
+           
+            <h4>Using Raster Tools for Contours</h4>
+            <p>After saving the interpolated layer, utilize raster tools in QGIS to produce contour lines from the raster data. This process involves generating a contour map that visually represents the elevation changes across the landscape, facilitating better analysis and understanding of the terrain.</p>
+            
+            <h4>Refining with GRASS Tools</h4>
+            <p style="margin-bottom: 30px;">For enhanced accuracy, employ more refined tools such as GRASS GIS to further interpolate the contours. These tools allow for advanced modeling and analysis, leading to the creation of a final Digital Terrain Model (DTM) that accurately reflects the ground surface, integrating all necessary elevation data.</p>
+           
+           
+            <div class="height" style="height: 30px; margin-top: 420px;"></div>
+            <div class="text-center" style="margin-top: 30px;">
+                <img src="{{ url_for('static', filename='SPAPHOTOS/final.PNG') }}" alt="Interpolation Visual" style="max-width: 100%; height: auto; margin-bottom: 20px;" />
+                <p style="font-size: 16px; color: #555;"> final Visual</p>
+            </div>
+       
+        </div>
+    </div>
+
+
+    <h3 class="dsm-title" style="font-style: italic;">Digital Surface Model (DSM)</h3>
+<p style="font-size: 14px; color: #555;">
+    In our earlier analysis, we focused solely on spot heights to create the Digital Terrain Model (DTM). This approach allowed us to capture the ground elevation accurately, eliminating the influence of structures and vegetation. However, for the Digital Surface Model (DSM), we intend to utilize all available elevation data, including heights from buildings and trees. This comprehensive approach will enable us to represent the Earth's surface more accurately, providing insights into both natural and artificial features.
+</p>
+    <h3 style="margin-top: 20px; color: gray;">Workflow Diagram</h3>
+    <div class="d-flex justify-content-center align-items-center" style="box-shadow: 2px 3px 5px black; padding:20px;">
+        <div class="card text-center mx-2" style="width: 170px;">
+            <div class="card-body">
+                <h5 class="card-title">Topo Points</h5>
+            </div>
+        </div>
+    
+        <div class="arrow">➡️</div>
+    
+        <div class="card text-center mx-2" style="width: 170px; ">
+            <div class="card-body">
+                <h5 class="card-title">CSV</h5>
+            </div>
+        </div>
+    
+        <div class="arrow">➡️</div>
+    
+        <div class="card text-center mx-2" style="width: 190px;">
+            <div class="card-body">
+                <h5 class="card-title">Vector</h5>
+            </div>
+        </div>
+    
+        <div class="arrow">➡️</div>
+    
+        <div class="card text-center mx-2" style="width: 190px;">
+            <div class="card-body">
+                <h5 class="card-title">Interpo-lation</h5>
+            </div>
+        </div>
+    
+        <div class="arrow">➡️</div>
+    
+        <div class="card text-center mx-2" style="width: 210px;">
+            <div class="card-body">
+                <h5 class="card-title">Contour</h5>
+            </div>
+        </div>
+    
+        <div class="arrow">➡️</div>
+    
+        <div class="card text-center mx-2" style="width: 190px;">
+            <div class="card-body">
+                <h5 class="card-title">DSM</h5>
+            </div>
+        </div>
+    </div>
+    <p>For the DSM, we will utilize all available elevation data without separating the heights. This means that our data cleaning process will primarily involve addressing issues such as empty rows, duplicates, and any inconsistencies within the dataset. By ensuring the data is clean and comprehensive, we can accurately represent both natural and artificial features in the Digital Surface Model.</p>
+<br> <br><br> <br><br> <br><br> <br><br> <br><br> <br>
+    <h3 style="margin-top: 10px;">Logical Flow</h3>
+    <p>This document outlines the logical flow for obtaining various GSModels from different data sources, including point clouds.</p>
+    
+    <h3>1. Clean the Data</h3>
+    <p>In creating contours, we initially focused on spot heights. However, for the DSM, we will include all elevation data, which may involve a more thorough cleaning to remove empty rows and duplicates.</p>
+    
+    <h3>2. Loading the CSV File</h3>
+    <p>Loading the CSV file into QGIS follows the same standard procedures previously outlined.</p>
+    
+    <h3>3. Exporting the CSV and Saving as Shapefile</h3>
+    <p>After exporting the data as a shapefile, we will use the newly created file to interpolate the data across all elevation points.</p>
+    
+    <h3>4. Interpolating Our Elevation Data</h3>
+    <p>Utilize the TIN Interpolation method to generate a surface model that incorporates all elevation data. This approach enables efficient analysis and visualization of both natural and artificial terrain features.</p>
+    
+    <h3 class="interpolation-title" style="margin-top: 120px;">Interpolation Visuals for Contours</h3>
+    <div class="text-center" style="margin-top: 20px;">
+        <img src="{{ url_for('static', filename='SPAPHOTOS/beautiful_contour.PNG') }}" alt="Interpolation Visual" style="max-width: 100%; height: auto; margin-bottom: 20px;" />
+        <p style="font-size: 16px; color: #555;">This image illustrates the interpolation process used to create contour lines from the elevation data.</p>
+    </div>
+    
+    <h3 class="interpolation-title" style="margin-top: 120px;">Rendered with GRASS</h3>
+<p>
+    In our analysis, we initially applied Triangulated Irregular Network (TIN) interpolation to generate contours from the elevation data. This method allowed us to accurately model the terrain's surface based on the scattered data points. After obtaining the contours, we further interpolated these lines to create a more refined Digital Surface Model (DSM). The resulting DSM, initially appearing as a grey band, effectively visualizes the terrain's variations and provides a detailed representation of both natural and artificial features.
+</p>
+<div class="row" style="display: flex; justify-content: center; margin-top: 20px;">
+    <div class="col-md-6 text-center" style="margin-bottom: 20px; margin-top: 50px; pad">
+        <img src="{{ url_for('static', filename='SPAPHOTOS/DSM_Contours_grass.PNG') }}" alt="Interpolation Visual 1" style="max-width: 100%; height: auto;" />
+        <p style="font-size: 14px; color: black;">
+            This image showcases the results of the interpolation technique applied to all elevation data. 
+        </p>
+        <p style="font-size: 14px; color: black;">
+            By carefully selecting the pixel size, we ensured a higher density of data points across the grid. A greater number of pixels not only improves the resolution but also leads to more precise contour generation. 
+        </p>
+        <p style="font-size: 14px; color: black">
+            This understanding allowed us to set better standard parameters, ensuring that the contours accurately reflect the terrain's variations and nuances.
+        </p>
+        <p style="font-size: 14px; color: black">
+            Additionally, the rendering of the Digital Surface Model (DSM) has been significantly enhanced through the use of GRASS GIS, effectively visualizing these interpolated contours and capturing both natural and artificial features with clarity. 
+        </p>
+        <p style="font-size: 14px; color: black">
+            It's important to note that since I didn't use a base map in this visualization, the algorithm sometimes got confused in areas with no data, which can lead to unexpected artifacts in the rendering.
+        </p>
+        <p style="font-size: 14px; color: black">
+            Overall, utilizing a pixel size of 0.1 combined with cubic interpolation improved the detail and quality of the contours, demonstrating the importance of spatial resolution in geospatial analysis.
+        </p>
+    </div>
+    <br><br><br>\<br><br><br><br>
+</div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <div class="col-md-4 text-center" style="margin-bottom: 20px; margin-top: 510px; padding: 10px;">
+        <img src="{{ url_for('static', filename='SPAPHOTOS/final_dsm.PNG') }}" alt="Interpolation Visual 2" style="max-width: 100%; height: auto; margin-top: 150px;" />
+        <p style="font-size: 14px; color: #555;">final DSM</p>
+    </div>
+</div>
+<h3 style="margin-top: 30px;">Challenges and Remarks</h3>
+<p>
+    Throughout the process of creating the Digital Surface Model (DSM), I encountered several challenges that required careful consideration and adjustment. Here are the key issues I faced:
+</p>
+
+<h4>1. Selecting Sampling Parameters</h4>
+<p>
+    One of the primary challenges was choosing the correct sampling parameters for pixel size and contour intervals. Initially, I experimented with larger pixel sizes, but I quickly realized that this led to less detailed contours. After careful analysis, I opted for a pixel size of 0.1, which provided a much higher density of data points and improved the visual output significantly.
+</p>
+
+<h4>2. Insufficient Hardware</h4>
+<p>
+    Another significant issue was the limited hardware capabilities, which resulted in slow rendering times. This became particularly problematic when visualizing large datasets. To mitigate this, I ensured that the processes were optimized, and I sometimes reduced the complexity of the visualizations to maintain performance without sacrificing too much detail.
+</p>
+
+<h4 style="margin-top: 80px;">3. Rendering Artifacts</h4>
+<p>
+    Lastly, due to the absence of a base map, there were instances where the rendering algorithm struggled in areas with no data, leading to unexpected artifacts. Recognizing this allowed me to adjust my approach, ensuring that the visual output remained coherent and informative.
+</p>
+<br> <br> <br> <br> <br> <br>
+
+<h4>Remarks</h4>
+<p>
+    The institution should have hope, that with the availability of tools and programs, our efforts in geospatial analysis will be propelled to new heights. With the right resources and support, we can overcome challenges—ranging from selecting appropriate sampling parameters to navigating insufficient hardware—that have illuminated our path toward greater understanding and innovation. Importantly, the only promise lies in ensuring that students are ready for instant correction and continually engage with these tools to obtain accurate data, rather than merely pretty visuals. Each obstacle has not only enhanced my skills but also underscored the importance of adaptability and thoughtful data management. Together, we can transform these hurdles into stepping stones for future success.
+</p>
+</div>
+{% endblock %}

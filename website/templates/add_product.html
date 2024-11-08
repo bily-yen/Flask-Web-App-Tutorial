@@ -19,6 +19,37 @@
             {% endwith %}
         {% endif %}
     </div>
+    <style>
+        /* Style for input placeholders */
+        .form-control::placeholder,
+        .form-control-file::placeholder {
+            color: rgba(0, 0, 0, 0.5); /* Fainted black color */
+            opacity: 1; /* Ensure the placeholder is fully opaque */
+        }
+        
+        /* Style for textarea placeholders */
+        textarea.form-control::placeholder {
+            color: rgba(0, 0, 0, 0.5); /* Fainted black color for textarea */
+            opacity: 1; /* Ensure the placeholder is fully opaque */
+        }
+        
+        /* Optional: Change the color when the input is focused */
+        .form-control:focus::placeholder,
+        .form-control-file:focus::placeholder,
+        textarea.form-control:focus::placeholder {
+            color: gray; /* Change color when focused (optional) */
+        }
+
+        /* Style for black labels */
+.form-group label {
+    color: black; /* Set the label color to black */
+    font-weight: bold; /* Optional: make the label bold */
+}
+
+        </style>
+    
+
+    
 
     <section class="product-section" style="margin-top: 150px; padding-top: 20px; padding-bottom: 30px;">
         <div class="addp-container-wrapper">
@@ -51,6 +82,7 @@
                 </form>
             </div>
 
+            <!-- Inventory Table for General Products -->
             <div class="inventory-container">
                 <h1 class="inventory-title">Product Inventory</h1>
                 <table class="inventory-table">
@@ -76,10 +108,440 @@
             </div>
         </div>
     </section>
+
+    <!-- Button to Open the Computer Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addComputerModal">
+        Add New Computer Product
+    </button>
+
+    <!-- Computer Modal Structure -->
+    <div class="modal fade" id="addComputerModal" tabindex="-1" role="dialog" aria-labelledby="addComputerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="addComputerModalLabel">Add New Computer Product</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url_for('views.add_computer_product') }}" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                        <div class="form-group">
+                            <label for="computer-name">Product Name</label>
+                            <input type="text" class="form-control" id="computer-name" name="name" placeholder="Enter product name" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="computer-price">Product Price</label>
+                            <input type="number" class="form-control" id="computer-price" name="price" step="0.01" placeholder="Enter product price" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="computer-quantity">Product Quantity</label>
+                            <input type="number" class="form-control" id="computer-quantity" name="quantity" placeholder="Enter product quantity" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="computer-image">Product Image</label>
+                            <input type="file" class="form-control-file" id="computer-image" name="image" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="computer-brand">Brand</label>
+                            <select class="form-control" id="computer-brand" name="brand" required>
+                                <option value="" disabled selected>Select a brand</option>
+                                <option value="HP">HP</option>
+                                <option value="Dell">Dell</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="MacOS">MacOS</option>
+                            </select>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="computer-specifications">Specifications</label>
+                            <textarea class="form-control" id="computer-specifications" name="specifications" rows="4" placeholder="Enter specifications here..."></textarea>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Button to open the modal -->
+  <!-- Button to open the modal -->
+<button id="openModal" class="btn" data-toggle="modal" data-target="#computerModal">View Computer Inventory</button>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="computerModal" tabindex="-1" role="dialog" aria-labelledby="computerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="computerModalLabel">Computer Inventory</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="inventory-table table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Brand</th>
+                            <th>Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for computer in computers %}
+                        <tr>
+                            <td>{{ computer.name }}</td>
+                            <td>${{ computer.price }}</td>
+                            <td>{{ computer.quantity }}</td>
+                            <td><img src="{{ url_for('views.computer_image', product_id=computer.id) }}" alt="{{ computer.name }}" style="width: 100px; height: auto;"></td>
+                            <td>{{ computer.brand }}</td>
+                            <td>{{ computer.specifications }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    /* Custom styles for modal */
+    #computerModal .modal-dialog {
+        max-width: 80%; /* Adjust this value as needed */
+        width: auto; /* Allow the modal to resize according to content */
+    }
+    #computerModal .modal-body {
+        max-height: 60vh; /* Adjust this value for desired max height */
+        overflow-y: auto; /* Enable scrolling if content exceeds max height */
+    }
+</style>
+
+<!-- Button to Open the Printer Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPrinterModal">
+    Add New Printer Product
+</button>
+
+<!-- Printer Modal Structure -->
+<div class="modal fade" id="addPrinterModal" tabindex="-1" role="dialog" aria-labelledby="addPrinterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addPrinterModalLabel">Add New Printer Product</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('views.add_printer_product') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="form-group">
+                        <label for="printer-name">Product Name</label>
+                        <input type="text" class="form-control" id="printer-name" name="name" placeholder="Enter product name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="printer-price">Product Price</label>
+                        <input type="number" class="form-control" id="printer-price" name="price" step="0.01" placeholder="Enter product price" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="printer-quantity">Product Quantity</label>
+                        <input type="number" class="form-control" id="printer-quantity" name="quantity" placeholder="Enter product quantity" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="printer-image">Product Image</label>
+                        <input type="file" class="form-control-file" id="printer-image" name="image" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="printer-brand">Brand</label>
+                        <select class="form-control" id="printer-brand" name="brand" required>
+                            <option value="" disabled selected>Select a brand</option>
+                            <option value="HP">HP</option>
+                            <option value="Epson">Epson</option>
+                            <option value="Ricoh">Ricoh</option>
+                            <option value="Canon">Canon</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="printer-specifications">Specifications</label>
+                        <textarea class="form-control" id="printer-specifications" name="specifications" rows="4" placeholder="Enter specifications here..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button to Open Printer Inventory Modal -->
+<button id="openPrinterModal" class="btn" data-toggle="modal" data-target="#printerModal">View Printer Inventory</button>
+
+<!-- Printer Inventory Modal Structure -->
+<div class="modal fade" id="printerModal" tabindex="-1" role="dialog" aria-labelledby="printerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="printerModalLabel">Printer Inventory</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="inventory-table table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Brand</th>
+                            <th>Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for printer in printers %}
+                        <tr>
+                            <td>{{ printer.name }}</td>
+                            <td>${{ printer.price }}</td>
+                            <td>{{ printer.quantity }}</td>
+                            <td><img src="{{ url_for('views.printer_image', product_id=printer.id) }}" alt="{{ printer.name }}" style="width: 100px; height: auto;"></td>
+                            <td>{{ printer.brand }}</td>
+                            <td>{{ printer.specifications }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 
-<footer>
+
+<!-- Button to Open Add Scanner Modal -->
+<button id="openAddScannerModal" class="btn btn-primary" data-toggle="modal" data-target="#addScannerModal">Add new Scanner</button>
+
+<div class="modal fade" id="addScannerModal" tabindex="-1" role="dialog" aria-labelledby="addScannerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addScannerModalLabel">Add New Scanner Product</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('views.add_scanner_product') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="form-group">
+                        <label for="scanner-name">Product Name</label>
+                        <input type="text" class="form-control" id="scanner-name" name="name" placeholder="Enter product name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scanner-price">Product Price</label>
+                        <input type="number" class="form-control" id="scanner-price" name="price" step="0.01" placeholder="Enter product price" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scanner-quantity">Product Quantity</label>
+                        <input type="number" class="form-control" id="scanner-quantity" name="quantity" placeholder="Enter product quantity" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scanner-image">Product Image</label>
+                        <input type="file" class="form-control-file" id="scanner-image" name="image" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scanner-brand">Brand</label>
+                        <select class="form-control" id="scanner-brand" name="brand" required>
+                            <option value="" disabled selected>Select a brand</option>
+                            <option value="HP">HP</option>
+                            <option value="Epson">Epson</option>
+                            <option value="Canon">Canon</option>
+                            <option value="Brother">Brother</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scanner-specifications">Specifications</label>
+                        <textarea class="form-control" id="scanner-specifications" name="specifications" rows="4" placeholder="Enter specifications here..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="openScannerModal" class="btn btn-secondary" data-toggle="modal" data-target="#scannerModal">View Scanner Inventory</button>
+
+<!-- Scanner Inventory Modal Structure -->
+<div class="modal fade" id="scannerModal" tabindex="-1" role="dialog" aria-labelledby="scannerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="scannerModalLabel">Scanner Inventory</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="inventory-table table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Brand</th>
+                            <th>Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for scanner in scanners %}
+                        <tr>
+                            <td>{{ scanner.name }}</td>
+                            <td>${{ scanner.price }}</td>
+                            <td>{{ scanner.quantity }}</td>
+                            <td><img src="{{ url_for('views.scanner_image', product_id=scanner.id) }}" alt="{{ scanner.name }}" style="width: 100px; height: auto;"></td>
+                            <td>{{ scanner.brand }}</td>
+                            <td>{{ scanner.specifications }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for scanner modal */
+    #scannerModal .modal-dialog {
+        max-width: 80%;
+        width: auto;
+    }
+  
+
+    /* Custom styles for printer modal */
+    #printerModal .modal-dialog {
+        max-width: 80%;
+        width: auto;
+    }
+    #printerModal .modal-body {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Printer Modal functionality
+        var printerModal = document.getElementById("printerModal");
+        var openPrinterBtn = document.getElementById("openPrinterModal");
+        var printerCloseBtn = document.getElementsByClassName("close")[1]; // Adjust index for the printer close button
+
+        openPrinterBtn.onclick = function() {
+            printerModal.style.display = "block";
+        }
+
+        printerCloseBtn.onclick = function() {
+            printerModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == printerModal) {
+                printerModal.style.display = "none";
+            }
+        }
+    });
+</script>
+   <script>
+       document.addEventListener('DOMContentLoaded', function() {
+           // Get the modal
+           var modal = document.getElementById("computerModal");
+       
+           // Get the button that opens the modal
+           var btn = document.getElementById("openModal");
+       
+           // Get the <span> element that closes the modal
+           var span = document.getElementsByClassName("close")[0 ];
+       
+           // When the user clicks the button, open the modal 
+           btn.onclick = function() {
+               modal.style.display = "block";
+           }
+       
+           // When the user clicks on <span> (x), close the modal
+           span.onclick = function() {
+               modal.style.display = "none";
+           }
+       
+           // When the user clicks anywhere outside of the modal, close it
+           window.onclick = function(event) {
+               if (event.target == modal) {
+                   modal.style.display = "none";
+               }
+           }
+       });
+   </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the modal
+        var modal = document.getElementById("computerModal");
+    
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModal");
+    
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+    
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    });
+    </script>
+
+
+<!-- Add your CSS and JavaScript here -->
+</div>
+</div>
+<footer style="margin-top: 50px;">
     <div class="footer__top row">
         <div class="footer__section footer__techxas col-md-4">
             <h5>techXas</h5>

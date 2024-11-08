@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="path/to/your/custom.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/addtocart.css') }}">
@@ -14,215 +17,227 @@
     <style>
         body {
             background-color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-        .feature {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    border-bottom: 2px solid #ccc; /* Add a light grey border at the bottom */
-    padding-bottom: 15px; /* Space below content */
-    margin-bottom: 20px; /* Space between features */
-}
-        .cctechspac h1 {
-            color: black;
+        .title {
+            color: #343a40;
             font-weight: 800;
-            font-size: 21px;
+            font-size: 28px;
         }
-
-        .components {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            flex-wrap: wrap; /* Allow items to wrap */
+        .subtitle {
+            margin: 10px 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
         }
-
-        .componentsheader h1 {
-            color: black;
-            font-size: 21px;
+        .content {
+            margin-bottom: 20px;
         }
-
-        .imgsections {
-            flex: 1 1 30%; /* Allow items to take up to 30% of the width */
-            padding: 15px;
-            box-sizing: border-box; /* Ensure padding doesn't affect the total width */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
         }
-
-        .imgsections img {
-            width: 70%; /* Make images responsive */
-            height: auto; /* Maintain aspect ratio */
+        .table-of-contents {
+            margin-bottom: 20px;
         }
-
-        .imgsections p {
-            margin-top: 10px; /* Space between image and text */
-            text-align: center; /* Center align text */
-        }
-
-        /* Additional styling for specific images */
-        #img0 {
-            /* Add specific styles for image 1 here */
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
             margin: 0;
         }
-
-        #img2 {
-            /* Add specific styles for image 2 here */
-            padding: 5px;
-            margin-left: 25px;
-            margin-right: auto;
-            padding-top: 20px;
-            margin-bottom: 30px;
+        .table-of-contents li {
+            margin: 5px 0;
         }
-
-        #img3 {
-            padding: 5px;
-            margin-left: 25px;
-            margin-right: auto;
-            padding-top: 20px;
-            margin-bottom: 10px;
+        .table-of-contents a {
+            display: block;
+            background-color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #343a40;
+            transition: color 0.3s, background-color 0.3s;
         }
-        .conclusion h3{
-            padding: 15px;
+        .table-of-contents a:hover {
+            color: #007bff;
+            background-color: white;
         }
     </style>
 
-    <title>{% block title %}Home{% endblock %}</title>
+    <title>Vision in Humans and Nocturnal Animals</title>
 </head>
 
 <body>
-    <div class="container" >
-        <div class="cctechspac" >
-            <h4 style="font-size: 18px;">Judgement Yard, <br>Dandora Ph2, Cinema</h4>
-            <h1>Digital Ecosystems And Consumer Cooperatives</h1> <br>
-            <h2 style="margin: 0; font-size: 18px;font-weight: 500; font-style: italic;">what is this consumer cooperative?</h2>
-            <p>An opportunity to distinguish oursleves from traditional economic models that are profit oriented by extending our services to the community with regard to ethical and technological considerations.
-                <br> <br>Usaidizi new business model proposes a more inclusive way of doing business in the market place, where Consumer and Community needs take priority as compared to making wealth fast or unfairly or both. The model suggests that consumers should come together to form a legally and ethically bound organ that liberates them from unsustainable/uninclusive models.</p>
-                <div class="componentsheader">
-                    <div class="hometop-item" style="width:30% ; margin-top: 20px;" >
-                        <i class="fas fa-lightbulb hometop-icon"></i>
-                        <h5 class="hometop-title"style="width:100% ;" >Focus areas</h5>
-                    </div>
-                </div>
-                <div class="components"  style=" padding: 20px; margin-left: -50px;">
-                    <div class="imgsections">
-                        <img id="img1" src="{{ url_for('static', filename='SPAPHOTOS/People.jpg') }}" alt="header" />
-                        <p style="margin-top: 30px; padding: 5px;">This initiative aims to engage individuals from diverse backgrounds, recognizing that each person brings unique skills and experiences. By fostering collaboration among professionals, learners, and community advocates, we create a rich environment for growth. This collective effort strengthens our community and ensures everyone has a voice in our success. Through an inclusive approach, we can build a platform that reflects cooperative values, paving the way for meaningful contributions.</p>
-                    </div>
-        
-                    <div class="imgsections">
-                        <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/sisi-sote.jpg') }}" alt="header" />
-                        <p style="margin-top: 40px; padding: 5px;">A key aspect of our initiative is the commitment to sharing resources among participants. By pooling our skills, knowledge, and materials, we maximize our impact and foster community. This resource-sharing approach encourages participants to contribute their expertise or tools, creating a support system that empowers everyone. Together, we can tackle challenges effectively and innovate solutions that reflect our cooperative values.</p>
-                    </div>
-        
-                    <div class="imgsections">
-                        <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/families.png') }}" alt="header" />
-                        <p  style="margin-top: 43px; padding: 5px;">Establishing an online digital hub is crucial for expanding our market base and enhancing visibility. This centralized platform streamlines access to products and services, attracting a broader audience. To incentivize participation, we propose discounted prices for members, fostering loyalty and attracting new participants. By offering exclusive deals, we stimulate sales and promote belonging, driving sustainable growth and strengthening our market position.</p>
-                    </div>
-                </div>
-             
 
-            
-            <div class="model-definition">
-                <h2 style="margin: 0; font-size: 18px;font-weight: 500; font-style: italic;" >From Local to Global: Leveraging Technology for Consumer Cooperatives</h2>
-                <h2></h2>
-                <p>In addition to this concept, we are compelled to open a window for the discussion of a possible unified digital platform that can be dedicated to establishing and operating USAidizi mentioned earlier in the discussion. 
-                   <br> The Supposed platform comes branded as a ‘Digital Ecosystem’ a design that harmonizes different aspects of the cooperative's operations within a single digital space. By linking the marketing website and corporate finance site, members can easily navigate between product promotions and financial resources, enhancing user engagement and operational efficiency. This interconnected approach facilitates comprehensive service delivery, allowing members to access information and make transactions without unnecessary barriers.
-                    </p>
-                  <br> <br> <br> <br> <br> <br> <br> <br>
-               <p style="color: goldenrod; font-weight: 800; margin-top: 20px;">(user-interface and a few links)</p>
-                </p>
-            </div>
-            <div class="overview-container" style=" margin-left: 20px; display: flex; flex-direction: row;">
-            
-            <div class="overview" style="margin: 0; margin-top: 15px; display: flex; flex-direction: row;">
-                <img id="img0" src="{{ url_for('static', filename='SPAPHOTOS/CAPTURE5.jpg') }}" alt="Digital Ecosystem Illustration" style="width: 100%; max-width: 800px; height: auto; margin: 20px 0;">
-               
-            
-            </div>
-
-            <div class="moreexp" style="margin-left: 20px; padding: 50px; margin-top:50px ;">
-                <p style="font-weight: 700; color: grey;">visuals</p> <br> A mock illustration of <br> user interface of the e-commerce <br> and marketing platform
-            </div>
+    <div class="container" style="display: flex; flex-direction: column;">
+   
+        <h1 class="title">Influence of Nocturnal Animals on Remote Sensing Technologies</h1>
+        <p style="width: 80%;"><strong>Group 3, Bapp GEOICT, 4.1</strong></p>
+        <p style="width: 80%;"><strong>Group Members:</strong></p>
+        <ul style="display: flex; flex-direction: row; justify-content: space-between; width: 50%;">
+            <li>Mary Wairimu</li>
+            <li>Alvin Wachira</li>
+            <li>Bily Otieno</li>
+            <li>Mary Chebet</li>
+        </ul>
+       
+        <div class="table-of-contents">
+            <h2 class="subtitle">Table of Contents</h2>
+            <ul>
+                <li><a href="#question">1. Question</a></li>
+                <li><a href="#introduction">2. Introduction</a></li>
+                <li><a href="#anatomy-eye">3. Adaptations of Nocturnal Animals</a></li>
+                <li><a href="#behavior-nocturnal-animals">4. Behavior of Nocturnal Animals and Its Influence</a></li>
+                <li><a href="#remote-sensing-technologies">5. Remote Sensing Technologies Inspired by Nocturnal Animals</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
         </div>
 
-            <div class="overview"  >
-                <div class="visualized-page"></div>
-            </div>
-            <h1>Case-study</h1>
-            <h2>Lake O'Land</h2>
-            <div class="Case-study">
-                <p>E-Commerce and Marketing: Land O’Lakes established a robust online presence that facilitated direct sales to consumers. Through their e-commerce platform, customers were able to conveniently purchase a wide array of products, including dairy items, crop inputs, and animal nutrition supplies. This online marketplace not only provided consumers with easy access to high-quality products but also allowed Land O’Lakes to gather valuable consumer data that informed its marketing strategies and product development. <br> <br> Corporate Ventures: The cooperative implemented a digital platform aimed at enhancing financial support for its members. This platform provided access to financial tools and resources that helped farmers make informed decisions about loans, investments, and other financial aspects of their operations. By offering online financial services, Land O’Lakes empowered its members to manage their finances more effectively, leading to improved productivity and sustainability.</p>
+        <h4 id="question">Question:</h4>
+        <p style="width: 80%;">How do nocturnal animals like owls and bats perceive the world in low light conditions, and can remote sensing technologies emulate these visual capabilities?</p>
+        
+        <h4 id="introduction">2. Introduction</h4>
+        <p style="width: 80%;">Nocturnal animals have developed remarkable adaptations that allow them to navigate and hunt in low-light environments. These adaptations enable species such as owls and bats to perceive their surroundings efficiently during nighttime. This presentation examines the specialized visual and sensory adaptations of nocturnal animals and explores how remote sensing technologies can emulate these capabilities.</p>
+
+        <h3>Process of Vision</h3>
+        <ul>
+            <li><strong>Light Entry:</strong> Light enters through the cornea and pupil.</li>
+            <li><strong>Focusing:</strong> The lens adjusts to focus light onto the retina.</li>
+            <li style="display: flex; flex-direction: row;">
+                <p style="justify-content: center; align-items: center; margin-top: auto; margin-bottom: auto; margin-right: 50px;">(light)</p>
+                <img src="{{ url_for('static', filename='SPAPHOTOS/vision.jpg') }}" alt="Printer" style="width: 30%; height: 50%;" />
+            </li>
+            <p class="img-source" style="font-size: 0.9em; color: #6c757d; font-style: italic; margin-top: 5px;">Source: cleveland clinic//official webpage</p>
+            <li><strong>Signal Conversion:</strong> Rods and cones in the retina convert light into electrical signals.</li>
+            <li><strong>Signal Transmission:</strong> The optic nerve carries these signals to the brain for interpretation.</li>
+        </ul>
+
+
+    <h2 class="subtitle" id="anatomy-eye">3. Vision in Nocturnal Animals</h2>
+    <div class="content">
+        <h3>How Nocturnal Animals Perceive the World</h3>
+        <p style="width: 80%;">Nocturnal animals such as owls and bats have evolved unique adaptations that allow them to thrive in low-light environments. These adaptations enhance their ability to locate prey, avoid predators, and navigate their surroundings.</p>
+    
+        <h4 style="width: 80%;">Owls</h4>
+<ul>
+    <li style="width: 80%;"><strong>Exceptional Night Vision:</strong> Owls are renowned for their remarkable ability to see in low light, which allows them to hunt effectively at night.</li>
+    <li style="width: 80%;"><strong>Large Eyes:</strong> Their disproportionately large eyes allow more light to enter, enhancing their ability to gather and focus light more effectively than many diurnal animals.</li>
+    <li style="width: 80%;"><strong>High Rod Density:</strong> With a higher concentration of rod cells in their retinas, owls can detect even the faintest light, giving them superior night vision for spotting prey.</li>
+    <li style="width: 80%;"><strong>Tapetum Lucidum:</strong> This reflective layer behind the retina gives their eyes a second chance to capture light, further amplifying their light sensitivity and enhancing vision in dark environments.</li>
+    <li style="width: 80%;"><strong>Binocular Vision:</strong> Owls have forward-facing eyes that provide accurate depth perception, crucial for swooping down on prey with precision.</li>
+</ul>
+        
+        <div class="row" style="display: flex; flex-direction: row;">
+            <div class="box">
+                <li style="display: flex; flex-direction: row; width: 70%;">
+                    <img src="{{ url_for('static', filename='SPAPHOTOS/owl.jpg') }}" alt="Owl" style="width: 50%; border-radius: 20px; padding: 10px; height: auto; margin-left: -50px;" />
+                </li>
+                <p style="margin-top: auto; margin-bottom: auto; margin-left: -150px;">(owl eyes)</p>
+                <p class="img-source" style="font-size: 0.9em; color: #6c757d; font-style: italic; margin-top: 5px;">Source: IstockPhotos</p>
             </div>
         </div>
+        <div class="satellite-adaptations">
+            <div class="adaptation">
+                <h4>Amazing Eye Adaptations</h4>
+                <p>Owls can be likened to advanced night vision cameras. Their large, forward-facing eyes are designed to capture maximum light, similar to how these cameras use large lenses to enhance visibility in low-light conditions. With a high density of rod cells in their retinas, owls detect even the faintest movements, much like thermal imaging technology that picks up subtle temperature variations in darkness.</p>
+            </div>
+        
+            <div class="adaptation" style="margin-left: 35px;">
+                <h4>Amazing Hearing Adaptations</h4>
+                <p>Owls’ asymmetrical ears function similarly to parabolic microphones, allowing them to pinpoint the direction of sounds with remarkable accuracy. This capability is essential for locating prey in complete darkness, much like how satellite systems can triangulate signals from various sources to determine exact locations.</p>
+            </div>
+        </div>
+    
+        <li style="display: flex; flex-direction: row; width: 70%;">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/noc.jpg') }}" alt="Printer" style="width: 60%; height: auto; margin-left: 80px;" />
+        </li>
+        <p style="justify-content: center; align-items: center; margin-top: auto; margin-bottom: auto; margin-left: 200px;">(nocturnal animals <br> eye anatomy)</p>
 
-        <div class="conclusion" style="width: 100%;">
-            <div class="hometop-item" style="width:50% ;" >
-                <i class="fas fa-lightbulb hometop-icon"></i>
-                <h5 class="hometop-title"style="width:70% ;" >features of the digital platform</h5>
+        <p class="img-source" style="font-size: 0.9em; color: #6c757d; font-style: italic; margin-top: 5px; margin-left: 200px;">Source: researchgate.net</p>
+    
+        <h4 style="width: 80%;">Bats</h4>
+        <ul>
+            <li style="width: 80%;"><strong>Echolocation:</strong> Bats emit high-frequency sound waves that bounce off objects and return as echoes. By interpreting these echoes, bats can create a mental map of their surroundings, allowing them to navigate efficiently in complete darkness.</li>
+            <li style="width: 80%;"><strong>Adapted Vision:</strong> Although bats primarily use echolocation, some species have adapted eyes that are sensitive to light, aiding their low-light vision.</li>
+            <li style="width: 80%;"><strong>Large Ears:</strong> Many species have large ears that are highly sensitive to detect faint echoes.</li>
+            <li style="width: 80%;"><strong>High Rod Density:</strong> Like owls, bats have a high density of rod cells for improved night vision.</li>
+            <li style="width: 80%;"><strong>Adaptable Pupils:</strong> Bats can adjust their pupil size to optimize light intake.</li>
+        </ul>
+    
+        <div class="row" style="display: flex; flex-direction: row;">
+            <div class="box">
+                <li style="display: flex; flex-direction: row; width: 70%;">
+                    <img src="{{ url_for('static', filename='SPAPHOTOS/echolocation.jpg') }}" alt="Tarsier" style="width: 50%; border-radius: 20px; padding: 10px; height: auto; margin-left: -50px;" />
+                </li>
+                <p style="margin-top: auto; margin-bottom: auto; margin-left: -150px;">(echolocation visual <br>demo )</p>
+                <p class="img-source" style="font-size: 0.9em; color: #6c757d; font-style: italic; margin-top: 5px;">Source: University of Malkato</p>
             </div>
-            <p>A few of the key features have been designed or at least in the early stages of development.</p>
-            
-            <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/orderpnp.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px;margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">Automation</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Inventory Management<br>Making Orders <br> </p>
-                    <p>Powerful programming languages have been implemented to enable automations.This
-                        ensures that accounting books and geral logistics are controlled smoothly
-                    </p>
-                </div>
-            </div>
-            <br> <br> <br> <br>
-            
-            <div class="feature" style="margin-top: 50px; display: flex; flex-direction: column;margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/msape.jpg') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px;margin-left: 30px;  ">
-                <div>
-                    <h3 style="font-weight: 700; font-size: 18px;">Mobile Money Payments</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Prompt USSD codes<br></p>
-                    <p>Utilizing services like <strong>M-Pesa</strong>, this feature enables quick and secure transactions, allowing members to purchase products directly from their mobile devices. This integration increases convenience and accessibility, ensuring that members can engage with the cooperative anytime, anywhere.</p>
-                </div>
-            </div> 
-             <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/db.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">Database connection</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Data-Driven Decision Making <br></p>
-                       <p> By utilizing advanced data analytics and digital tools, Land O’Lakes optimized its supply chain and operational processes. The cooperative collected data from its members regarding agricultural practices, market trends, and consumer preferences. This data-driven approach enabled Land O’Lakes to make informed decisions about product offerings, pricing strategies, and resource allocation, ultimately enhancing its competitive advantage.
-                        </p>
-                </div>
-            </div>  
-            <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/loanrec.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700; font-size: 18px;">Platform integration</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Online Market Hub<br>Microfinance venture</p>
-                    <p>We provide the platform for members to easily access the Microfinance venture through clickable links that redirects members to the other corporate services offered by Usaidizi Ventures</p>
-                   </div>
-            </div>
-            <br> <br> <br> <br> <br> <br> <br> <br> <br>
-              <div class="feature" style=" margin-top: 30px; display: flex; flex-direction: column;margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/sisi-sote.jpg') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; border-radius: 10px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">community based portal</h3>
-                    <p style="margin-top: 10px; font-weight: 700; color: goldenrod;">public education <br>collective efforts(environmental programms)</p>
-                    <p>We are entirely dedicated to ensure that our involvement with community service is steady and fruitful.Our programms extend to a wide range of National concerns which include climate change and equity fo all. <br> <p>
-                </div>
-            </div>
-            </div>
-            <div class="conclusionfnote" >
-                <div class="hometop-item" style="width:30% ;" >
-                    <i class="fas fa-lightbulb hometop-icon"></i>
-                    <h5 class="hometop-title"style="width:70% ;" >Remarks</h5>
-                </div>
-                
-                <p>The team, deeply passionate about fostering inclusive and sustainable business practices, is eager to learn and contribute to the USAidizi project. Though still in its early stages, we are dedicated to its vision of empowering consumers through cooperative models and technology. Our experience working on the e-commerce aspects of this initiative has fueled our commitment, but we recognize that with proper guidance and collaboration, this project can truly flourish.
-
-                  <br>  We humbly seek mentorship and support from experienced professionals who can provide invaluable insights and strategic direction. Additionally, any form of financing—be it hardware, software, or advisory—would significantly enhance our ability to develop and implement this digital ecosystem. Together, we can build a platform that not only meets the needs of consumers but also sets a precedent for ethical business practices in our marketplace.
-                    
-                    <br> <br>Thank you for considering our plea, and we look forward to the opportunity to collaborate on this transformative journey.</p>
-                </div>
         </div>
        
+        
+        <div class="satellite-adaptations">
+            <div class="adaptation" style="margin-left: 35px;">
+                <h4>Bat Navigation</h4>
+                <p>Bats employ echolocation akin to sonar systems used in submarines. They emit high-frequency sound waves that bounce off objects and return as echoes, enabling them to create a detailed mental map of their surroundings, just as sonar detects underwater obstacles and terrain.</p>
+            </div>
+        
+            <div class="adaptation" style="margin-left: 35px;">
+                <h4>Adaptive Vision in Bats</h4>
+                <p>While bats primarily rely on echolocation, their eyes can be compared to low-light surveillance cameras. Some species have adapted eyes sensitive to light, allowing them to see in dim conditions and supplement their echolocation capabilities, much like how surveillance systems combine various sensors for enhanced visibility.</p>
+            </div>
+        </div>  
     </div>
 
+    <style>
+    .satellite-adaptations {
+        display: flex;
+        align-items: flex-start; /* Align items at the top */
+    }
+    
+    .adaptation {
+        width: 400px; /* Set a fixed width for each adaptation */
+        padding: 10px;
+        background-color: #f8f9fa; /* Light background */
+        border: 1px solid #dee2e6; /* Light border */
+        border-radius: 10px;
+        text-align: center;
+        /* Slightly tilt the adaptations */
+        transition: transform 0.3s;
+    }
+    
+    .adaptation:hover {
+        transform: rotate(0deg); /* Return to original position on hover */
+    }
+    </style>
+
+    <h2 style="width: 80%;" class="subtitle" id="remote-sensing-technologies">5. Remote Sensing Technologies Inspired by Nocturnal Animals</h2>
+    <div class="content">
+        <h3>Echolocation Adaptations</h3>
+        <p style="width: 80%;">Bats and marine mammals use echolocation to navigate in low light by emitting sound waves that bounce off objects, helping them assess distance, size, and shape. This ability inspires technologies like radar systems and sonar.</p>
+        
+        <h4>How Echolocation Works</h4>
+        <p style="width: 80%;">Echolocation involves sending out sound waves that reflect off objects, allowing animals to create a mental map of their surroundings. Technologies like sonar replicate this process for navigation and object detection in various fields.</p>
+        
+        <h4>Freely Rotating Masts</h4>
+        <p style="width: 80%;">Like bats adjusting their ears, freely rotating masts on ships can scan 360 degrees to detect obstacles, improving navigation and providing real-time environmental data.</p>
+        
+        <h4>Radar Systems</h4>
+        <p style="width: 80%;">Radar systems emit radio waves and analyze returning echoes, similar to echolocation. This technology is vital for aviation, maritime navigation, and weather monitoring, ensuring safe operation in low visibility.</p>
+        
+        <h4>Low-Light Cameras</h4>
+        <p style="width: 80%;">Low-light cameras use image intensification to capture clear images in dim conditions, reflecting the high rod cell density found in nocturnal animals. These cameras are essential for surveillance and wildlife monitoring.</p>
+        
+        <h4>Other Technologies</h4>
+        <p style="width: 80%;">Additional technologies inspired by nocturnal adaptations include:</p>
+        <ul>
+            <li style="width: 80%;"><strong>Infrared Imaging:</strong> Detects heat in darkness, mimicking nocturnal animals' thermal sensitivity.</li>
+            <li style="width: 80%;"><strong>Multispectral Imaging:</strong> Analyzes wavelengths beyond human vision, inspired by the capabilities of nocturnal vision.</li>
+        </ul>
+    </div>
+    
+    <h2 class="subtitle" id="conclusion">Conclusion</h2>
+    <div class="content">
+        <p style="width: 80%;">The adaptations of nocturnal animals, particularly echolocation, inspire technological innovations in navigation and sensing. By studying these biological systems, we enhance our ability to operate in low-light and complex environments.</p>
     </div>
 </body>
 </html>
