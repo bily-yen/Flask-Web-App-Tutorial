@@ -56,8 +56,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center; /* Center items vertically */
-  padding: 15px;
-  font-size: 14px;
+  padding: 25px;
+  font-size: 12px;
 }
 
 /* Styling for the logo container */
@@ -169,8 +169,8 @@ body {
 .nav-links li a {
   color: white; /* Black text for links */
   text-decoration: none; /* Remove underline */
-  font-size: 1.2rem; /* Smaller font size for links */
-  padding: 8px 12px; /* Padding for links */
+  font-size: 1.0rem; /* Smaller font size for links */
+  padding: 12px; /* Padding for links */
   transition: background-color 0.3s; /* Smooth background change on hover */
 }
 
@@ -406,7 +406,7 @@ animation: none;
     transform: translateY(0); /* Initial position */
   }
   25% {
-    transform: translateY(-10px); /* Move up slightly */
+    transform: translateY(0); /* Move up slightly */
   }
   50% {
     transform: translateY(0); /* Back to the initial position */
@@ -423,7 +423,7 @@ animation: none;
 .catch_phrase {
   color: black;
   font-size: 1.2rem;
-  margin-bottom: 20px; /* Adds some space below the catchphrase */
+  margin-bottom: 2px; /* Adds some space below the catchphrase */
 }
 .header__image {
   position: relative; /* Set the position of the container to relative */
@@ -675,7 +675,7 @@ a:hover {
   flex-wrap: wrap; /* Allow items to wrap */
   margin: 0px 0; /* Add some margin to the top and bottom */
   background-color: rgb(255, 255, 255);
-  padding: 45px;
+  padding: 35px;
   border-radius: 5px;
   box-shadow: 0 2px 5px white; /* Subtle shadow for depth */
 }
@@ -709,9 +709,12 @@ a:hover {
 }
 
 .imgsections p {
-  margin-top: 15px; /* Space between image and text */
-  color: black; /* Change to white for visibility */
-  line-height: 1.5; /* Improve readability */
+  margin-top: 5px; /* Space between image and text */
+  color:black; /* Change to white for visibility */
+  line-height: 1.2; /* Improve readability */
+  font-weight:300;
+  font-size: 14px;
+
 }
 
 .conclusion h3 {
@@ -1550,7 +1553,7 @@ section#wcuindextop {
 .hometop-item {
   text-align: center;
   padding: 10px;
-  background: whitesmoke;
+  background: gainsboro;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex: 1 1 150px; /* Adjust size as needed */
@@ -1558,7 +1561,8 @@ section#wcuindextop {
   
 }
 .hometop-item h5{
-  color: goldenrod;
+  color: #0f1528;
+  font-size: 14px;
 
 }
 .hometop-icon {

@@ -11,6 +11,48 @@
 }
 
 
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.printing-image img {
+    width: 100%; /* Set the image width to 50% */
+    height: 400px; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    margin-bottom: 15px;
+    border-radius: 5px;
+    margin-left: 0;
+}
+
+.services-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap between columns */
+    flex-wrap: wrap;
+}
+.services-list h3{
+ font-size: 20px;
+
+}
+
+.column {
+    flex: 1 1 30%; /* Each column will take 30% of the container width */
+    width: 280px; /* Ensures the columns don't get too narrow on small screens */
+}
+
+ul {
+    list-style-type: none; /* Removes default list bullet */
+    padding: 0;
+}
+
+
+li::before {
+    color: #0056b3; /* Customize dot color */
+}
+
  </style>
  
  
@@ -33,37 +75,62 @@
 </div>
    
 </section>
-<div class="slowmotion_securityh" style="color: black; margin-top: 170px;">
-    <div class="catch_phrase" style="color: black;">
-        Connecting You to Cutting-Edge Solutions    
+<div class="hometop-container d-flex flex-wrap justify-content-around" style="padding-top: 20px;">
+    <!-- Printing Services -->
+    <div class="hometop-item">
+        <i class="fas fa-print hometop-icon"></i> <!-- Printing icon -->
+        <h5 class="hometop-title">Printing Services</h5>
     </div>
-    <h1 class="welcome_header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
-        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
-        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as!
-    </h1>
+
+    <!-- Copying Services -->
+    <div class="hometop-item">
+        <i class="fas fa-copy hometop-icon"></i> <!-- Copy icon -->
+        <h5 class="hometop-title">Copying Services</h5>
+    </div>
+
+    <!-- Binding Services -->
+    <div class="hometop-item">
+        <i class="fas fa-bookmark hometop-icon"></i> <!-- Binding icon -->
+        <h5 class="hometop-title">Binding Services</h5>
+    </div>
+
+    <!-- Cutting & Trimming -->
+    <div class="hometop-item">
+        <i class="fas fa-cut hometop-icon"></i> <!-- Scissors icon (for cutting/trimming) -->
+        <h5 class="hometop-title">Cutting & Trimming</h5>
+    </div>
+
+    <!-- Graphic Design -->
+    <div class="hometop-item">
+        <i class="fas fa-paint-brush hometop-icon"></i> <!-- Paint brush icon (for design work) -->
+        <h5 class="hometop-title">Graphic Design</h5>
+    </div>
+
+    <!-- Packaging & Delivery -->
+    <div class="hometop-item">
+        <i class="fas fa-box hometop-icon"></i> <!-- Packaging icon -->
+        <h5 class="hometop-title">Packaging & Delivery</h5>
+    </div>
+
+  
+
+    <!-- Office Supplies -->
+    <div class="hometop-item">
+        <i class="fas fa-laptop hometop-icon"></i> <!-- Laptop icon for office supplies -->
+        <h5 class="hometop-title">Office Supplies</h5>
+    </div>
+
+    <!-- General Supplies -->
+    <div class="hometop-item" style="width: 70px;">
+        <i class="fas fa-boxes hometop-icon"></i> <!-- Box icon for general supplies -->
+        <h5 class="hometop-title">General Supplies</h5>
+    </div>
 </div>
 </section>
 
 
-<header class="header__container">
-    <div class="header__image">
-        <!-- Network text (centered text) -->
-
-
-        <!-- Updated section for the Call Us header -->
-        <div id="callUsSection" class="custom-call-us">
-            <div class="call-us-item active">
-                <div class="call-us-section">
-                    <h2 > our vision is sufficient provision</h2>
-              
-                 
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="cctechspac" >
-    <h1>Our Services</h1>
+<div class="cctechspac" style="margin-top: 0;" >
+    <h1 style="margin: 0; color: black;">Our Services</h1>
 
 </div>
 
@@ -104,30 +171,193 @@
             </div>
   </div>
 
-  <div class="cctechspac" >
-        
+
+    </div>
 
 
-
- 
-
-  
+   <div class="container" style="background-color: gainsboro; width: 70%;">
+    <!-- Image wrapped in a class for styling -->
+    <div class="printing-image">
+        <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/printing.jpg') }}" alt="Digital Printing" />
+    </div>
+    <div class="cctechspac" >
+        <h1>Print with us</h1>
     
     </div>
+
+    <p style="width: 100%">
+        We provide a wide array of professional printing services to accommodate every need, whether for business or personal use. From custom promotional materials to specialized products, our services are designed to deliver high-quality results, ensuring your projects stand out. Whether you're launching a new product, hosting an event, or simply need custom prints for personal use, we have the expertise and technology to produce everything to your exact specifications. Our team is committed to offering exceptional customer service and meeting deadlines with precision, providing a seamless experience from start to finish.
+    </p>
+
+    <p>
+        Below are some of the printing services we provide:
+    </p>
+
+    <div class="services-list">
+        <div class="column">
+            <ul>
+                <li>• Posters</li>
+                <li>• Brochures</li>
+                <li>• Flyers</li>
+                <li>• Business Cards</li>
+                <li>• Banners</li>
+                <li>• Catalogs</li>
+                <li>• Postcards</li>
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                <li>• Menus</li>
+                <li>• T-shirt Printing</li>
+                <li>• Stickers</li>
+                <li>• Invitations</li>
+                <li>• Labels</li>
+                <li>• Notepads</li>
+                <li>• Calendars</li>
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                <li>• Folders</li>
+                <li>• Booklets</li>
+                <li>• Pouches</li>
+                <li>• Letterheads</li>
+                <li>• Signage</li>
+                <li>• Notebooks</li>
+                <li>• Envelopes</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color: gainsboro; width: 70%;">
+    <!-- Image wrapped in a class for styling -->
+    <div class="printing-image">
+        <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/design.jpg') }}" alt="Graphic Design" />
     </div>
 
-
+    <div class="cctechspac">
+        <h1>Design with us</h1>
     </div>
-    
+
+    <p style="width: 100%">
+        Our graphic design services offer creative and customized solutions to bring your ideas to life. Whether you're in need of branding, marketing materials, or digital designs, our skilled team of designers is dedicated to producing high-quality visuals that align with your brand and goals. From logos to social media graphics, brochures, and advertisements, we use cutting-edge design tools to ensure that your materials are both effective and visually appealing. Our team works closely with clients to understand their vision, providing them with unique and impactful designs that make a statement.
+    </p>
+
+    <p>
+        Below are some of the graphic design services we provide:
+    </p>
+
+    <div class="services-list">
+        <div class="column">
+            <ul>
+                <li>• Logo Design</li>
+                <li>• Brand Identity</li>
+                <li>• Business Cards</li>
+                <li>• Brochures</li>
+                <li>• Flyers</li>
+                <li>• Posters</li>
+                <li>• Catalogs</li>
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                <li>• Social Media Graphics</li>
+                <li>• Website Design</li>
+                <li>• Packaging Design</li>
+                <li>• Invitations</li>
+                <li>• Infographics</li>
+                <li>• E-books and Reports</li>
+                <li>• Email Newsletters</li>
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                <li>• Presentation Design</li>
+                <li>• Banner Design</li>
+                <li>• Product Labels</li>
+                <li>• Signage Design</li>
+                <li>• Booklets</li>
+                <li>• Menu Design</li>
+                <li>• Event Collateral</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="background-color: gainsboro; width: 70%;">
+    <!-- Image wrapped in a class for styling -->
+    <div class="printing-image">
+        <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/technical_supply.jpg') }}" alt="Office Equipment" />
+    </div>
+
+    <div class="cctechspac">
+        <h1>Technical Supply</h1>
+    </div>
+
+    <p style="width: 100%">
+        We provide a comprehensive range of office equipment and supplies to keep your business running smoothly. From high-quality printers to essential office accessories, we offer products that cater to every office need. Whether you're looking for a new desktop computer, a reliable printer, or networking devices like routers and switches, we have everything you need to enhance productivity and streamline your operations. Our team ensures that all products are of the highest quality, and we provide expert advice to help you choose the right equipment for your specific needs.
+    </p>
+
+    <p>
+        Below are some of the office equipment and supplies we offer:
+    </p>
+
+    <div class="services-list">
+        <div class="column">
+            <h3>Printers and Printer Parts</h3>
+            <ul>
+                <li>• Printers</li>
+                <li>• Photocopiers</li>
+                <li>• Ink & Toners</li>
+                <li>• Label Makers</li>
+                <li>• Printer Paper</li>
+                <li>• Printer Cartridges</li>
+                <li>• Fax Machines</li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Computer Accessories & Networking</h3>
+            <ul>
+                <li>• Desktop Computers</li>
+                <li>• Laptops</li>
+                <li>• External Hard Drives</li>
+                <li>• USB Flash Drives</li>
+                <li>• Routers</li>
+                <li>• Network Switches</li>
+                <li>• Modems</li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Stationery & Office Supplies</h3>
+            <ul>
+                <li>• Whiteboards</li>
+                <li>• Markers</li>
+                <li>• Pens & Pencils</li>
+                <li>• Notepads</li>
+                <li>• Folders</li>
+                <li>• Paper Clips</li>
+                <li>• Staplers & Staples</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- View Products Button -->
+    <div class="view-products-btn" style="text-align: center; margin-top: 30px;">
+        <a href="/products" style="background-color: brown; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 1rem; display: inline-block;">
+            View Products
+        </a>
+    </div>
+</div>
+
     <footer>
         <div class="footer__top row">
             <div class="footer__section footer__techxas col-md-4">
                 <h5>techXas</h5>
                 <p>Official shop,<br> technological products and solutions</p>
             </div>
-            <div class="footer__section footer__categories col-md-4">
+            <div class="footer__section footer__categories col-md-4" style="color: white;">
                 <h5>Categories</h5>
-                <ul>
+                <ul style="color: white;">
                     <li>Printers</li>
                     <li>Ink & Toners</li>
                     <li>Stationery</li>

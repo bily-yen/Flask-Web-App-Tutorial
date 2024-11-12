@@ -33,12 +33,12 @@
 </div>
    
 </section>
-<div class="slowmotion_securityh" style="color: black; margin-top: 170px;">
-    <div class="catch_phrase" style="color: black;">
+<div class="slowmotion_securityh" style="color: brown; margin-top: 170px; font-weight: 900;">
+    <div class="catch_phrase" style="color: brown; font-size: 16px;">
         Connecting You to Cutting-Edge Solutions    
     </div>
     <h1 class="welcome_header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
-        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
+        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px; margin-top: 0;">Welcome to </span>
         <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2); ">X</span>as!
     </h1>
 </div>
@@ -94,7 +94,7 @@
             <img src="{{ url_for('static', filename='SPAPHOTOS/gd.jpg') }}" alt="Graphic Design" />
         
             <!-- Text below the image -->
-            <p>
+            <p style="margin-top: 40px; padding: 5px;">
                 Whether for print, digital platforms, or social media, we ensure your brand shines with creativity and strategic design.
             </p>
         </div>
@@ -102,7 +102,7 @@
             <h1>★ Technical Supply</h1>
             <p>Our extended catalogue offers a wide range of technical supplies, including stationery, printing equipment, computer accessories, and office essentials.</p>
             <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/bestsupples.jpg') }}" alt="Best Supplies" />
-            <p >We prioritize authentic products from trusted brands that align with your organization’s standards, promising you success. With our reliable selection, you can count on enhanced efficiency and long-lasting performance.</p>
+            <p style="margin-top: 40px; padding: 5px;">We prioritize authentic products from trusted brands that align with your organization’s standards, promising you all round success.</p>
         </div>
             </div>
   </div>
@@ -156,18 +156,15 @@
     </div>
 
     <div class="near-footer" style="background-color: ghostwhite;">
-        <div class="container">
+        <div class="container" style="width: 100%; padding: 15px;">
             <div class="near-footer__top">
                 <div class="near-footer__section near-footer__techxas">
-                    <h5 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
-                        <span style="font-size: 1rem; margin-right: 15px;">About </span>
-                        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
-                    </h5>
-                    <p>With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
+                    <h5 style="color: brown; font-size: 18px;" >About Us</h5>
+                    <p style="width: 100%; font-size: 14px;">With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
                 </div>
                 <div class="near-footer__section near-footer__categories">
                     <h5 style="color: brown; font-size: 18px;" >Our Customers</h5>
-                    <div class="customer-grid">
+                    <div class="customer-grid" style="font-size: 12px;">
                         <div class="customer-item">Schools</div>
                         <div class="customer-item">Hotels</div>
                         <div class="customer-item">Hospitals</div>
@@ -179,6 +176,16 @@
                         <div class="customer-item">Retail Stores</div>
                     </div>
                 </div>
+                <div class="verbal-marketing" style="flex: 1; margin-left: 10px;">
+                    <h3>Request Our Catalogue</h3>
+                    <p>Enter your details below to receive our latest catalogue.</p>
+                    <form id="catalogue-form" action="/submit-email" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <input type="text" name="institution" placeholder="Your Institution" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <button type="submit" style="width: 100%; padding: 5px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">Get Catalogue</button>
+                    </form>
+                    </div>
             </div>
             
 
@@ -191,6 +198,14 @@
             <div class="footer__section footer__techxas col-md-4">
                 <h5>techXas</h5>
                 <p>Official shop,<br> technological products and solutions</p>
+                
+<!-- Address Section with Address Icon (Clickable for Google Maps) -->
+<div class="footer__address">
+    <a style="background-color: transparent; padding: 0; margin: 0;" href="https://www.google.com/maps/place/Waska+apartments/@-1.3080688,36.8909694,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!2sMVRV%2BQCF,+Nairobi!2m2!1d36.8935393!2d-1.3080605!3m5!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!8m2!3d-1.3080688!4d36.8935443!16s%2Fg%2F11q4fh_t9v?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+        <i style="color:white; padding: 25px; font-size: 16px;" class="fas fa-map-marker-alt"></i> <!-- Font Awesome Map Marker Icon -->
+        <p style="color: white;">Tassia, Thika Road, Waska Building</p>
+    </a>
+</div>
             </div>
             <div class="footer__section footer__categories col-md-4">
                 <h5>Categories</h5>

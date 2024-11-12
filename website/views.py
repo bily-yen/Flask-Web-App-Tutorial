@@ -269,13 +269,7 @@ def services():
     """
     return render_template('services.html')
 
-# Route to display the products page
-@views.route('/products', methods=['GET'])
-def products():
-    """
-    Display the products page.
-    """
-    return render_template('products.html')
+
 
 # Route to handle adding a new note
 @views.route('/add-note', methods=['POST'])
@@ -307,13 +301,7 @@ def backtoadmin():
     """
     return render_template('home.html', user=current_user)
 
-@views.route('/myproducts', methods=['GET'])
-def myproducts():
-    """
-    Return to the admin page.
-    """
-    products = Product.query.all()
-    return render_template('myproducts.html', products=products, user=current_user)
+
 
 
 @views.route('/api/products', methods=['GET'])
@@ -834,7 +822,7 @@ def laptop():
 
 
 
-@views.route('/addto', methods=['GET'])
+@views.route('/products', methods=['GET'])
 def addtocart():
     """
     Return to the admin page.

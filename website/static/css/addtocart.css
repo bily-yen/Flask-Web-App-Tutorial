@@ -90,7 +90,17 @@
     }
     .equipment-card p {
         margin-top: 8px;
-        font-weight: bold;
+        font-weight: 600; /* Semi-bold for a balanced look */
+        font-size: 1rem; /* Adjust font size for readability */
+        color: #333; /* Darker color for better legibility */
+        line-height: 1.5; /* Improve line spacing for clarity */
+        text-transform: capitalize; /* Optional: Capitalize the first letter of each word for consistency */
+        margin-bottom: 12px; /* Add bottom margin for spacing between paragraphs */
+        padding: 10px; /* Padding to give text room inside the background */
+        background-color: #f9f9f9; /* Light background color for contrast */
+        border-radius: 8px; /* Rounded corners for a soft look */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow for depth */
+        transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
     }
 
     
@@ -151,60 +161,192 @@
     color: var(--white);
 }
 
-/* Container Styles */
-.container {
-    display: flex;
-    width: max-content;
-    margin-bottom: 3px;
-    gap: 10px;
-    margin-left: auto;
+.main-content-container {
+    width: 100%;
     margin-right: auto;
-    margin-top: 5px;
-    padding-top: 2px;
+    margin-left: auto;
+    gap: 6px;
+    padding-left: 20px;
+    background-color: gainsboro;
+    display: flex; /* Ensure flex container layout */
+    flex-direction: column; /* Stack the sections vertically */
+    margin-top: 10px;
 }
-.main-content{
-    margin-top: 60px;
-    padding-top: 50px;
-    width: 70%;
-}
-
-@keyframes fadeColor {
-    0% {
-        color: goldenrod; /* Soft yellow */
-        opacity: 1;
-    }
-    50% {
-        color: rgba(255, 255, 255, 1); /* White */
-        opacity: 1;
-    }
-    100% {
-        color: goldenrod; /* Soft yellow */
-        opacity: 1;
-    }
-}
-
 .main-content h3 {
-    display: flex;
-    background-color: black;
-    padding: 15px;
-    width: max-content;
-    overflow: hidden; /* Ensure bubbles don't overflow the container */
-    color: white; /* Initial color */
-    border-radius: 10px; /* Adjust the value for more or less rounding */
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
     font-size: 18px;
     margin-top: 0;
+    width: max-content;
+    overflow: hidden;
+    font-weight:300 ;
+    background-color: brown;
 }
-.main-content-container{
 
-width: 100%;
-margin-right: auto;
-margin-left: auto;
-gap: 10px;
-padding-left: 20px;
-background-color: gainsboro;
-margin-bottom: 40px;
-padding-bottom: 30px;
+.main-content h4 {
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 0;
+    width: max-content;
+    overflow: hidden;
+    font-weight:300 ;
+    background-color: black;
 }
+
+.product-navigation,
+.additional-product-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent overflowing of product containers */
+    width: 100%;
+    padding: 5px;
+}
+
+.product-container,
+.additional-product-container {
+    display: flex;
+    gap: 10px; /* Space between products */
+    flex-wrap: nowrap; /* Prevent wrapping of products */
+    overflow-x: auto; /* Allow horizontal scrolling for overflow */
+    width: 100%; /* Ensure the container takes up full available width */
+}
+
+.product-container > .product-box,
+.additional-product-container > .product-box {
+    flex-shrink: 0; /* Prevent products from shrinking */
+    width: 200px; /* Set a specific width for each product box */
+    height: 300px; /* Adjust height accordingly */
+    background-color: #ddd; /* Example styling */
+    margin: 0; /* Reset margin if needed */
+    border-radius: 8px; /* Example border */
+}
+#another-product-section {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px var(--shadow);
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+    width: 90%;
+}
+
+#root {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px var(--shadow);
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+    width: 90%;
+}
+#epson-laminator-section,
+#ricoh-laminator-section,
+#canon-laminator-section,
+#xerox-laminator-section,
+
+#dell-laptop-section,
+#hp-laptop-section,
+#lenovo-laptop-section,
+#apple-laptop-section,
+#asus-laptop-section,
+
+#epson-monitor-section,
+#ricoh-monitor-section,
+#canon-monitor-section,
+#xerox-monitor-section,
+
+#quartet-whiteboard-section,
+#expo-whiteboard-section,
+#ghent-whiteboard-section,
+#mastervision-whiteboard-section,
+#lorell-whiteboard-section,
+#officemate-whiteboard-section,
+#rubbermaid-whiteboard-section,
+#zonon-whiteboard-section,
+#bi-silque-whiteboard-section,
+#threeM-whiteboard-section,
+#hp-photocopier-section,
+#epson-photocopier-section,
+#ricoh-photocopier-section,
+#canon-photocopier-section,
+#hp-projector-section,
+#epson-projector-section,
+#benq-projector-section,
+#viewsonic-projector-section,
+#canon-projector-section,
+#ricoh-projector-section,
+#hp-product-section,
+#dell-product-section,
+#lenovo-product-section,
+#macos-product-section,
+#epson-printer-section,
+#hp-printer-section,
+#ricoh-scanner-section,
+#canon-scanner-section,
+#epson-scanner-section,
+#hp-scanner-section,
+#ricoh-printer-section,
+#canon-printer-section {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px var(--shadow);
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+    width: fit-content;
+}
+
+#another-product-section::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+.product-container::-webkit-scrollbar,
+.additional-product-container::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar width */
+    height: 0px; /* Remove scrollbar height */
+}
+
+#another-product-section,
+#root,
+.product-container,
+.additional-product-container {
+    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
+    scrollbar-width: none; /* For Firefox */
+}
+
+
+
+.scroll-arrow {
+    margin: 0 15px;
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transition for background-color and scaling effect */
+}
+
+.scroll-arrow:hover {
+    background-color: brown; /* Light background color on hover */
+    transform: scale(1.1); /* Slightly scale up on hover */
+}
+
+
 
 
 .sidebar {
@@ -226,151 +368,18 @@ padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     border-radius: 5px;
-    padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* Set a fixed width for boxes */
+    width: 90%; /* Set a fixed width for boxes */
     scroll-snap-align: start; /* Snap to the start of each box */
+    margin-left: 0;
     
 
 }
 
-#root {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    background-color: var(--white);
-    box-shadow: 0 2px 10px var(--shadow);
-    scroll-snap-type: x mandatory; /* Enable scroll snapping */
-}
-
-/* Additional Products Section */
-.additional-products-section {
-    margin-top: 2px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: var(--white);
-    box-shadow: 0 2px 10px var(--shadow);
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-}
 
 
 
-.additional-product-navigation {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
-
-.additional-product-container {
-    flex: 3;
-    padding-right: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: var(--white);
-    border-radius: 5px;
-    box-shadow: 0 2px 10px var(--shadow);
-    padding: 2px;
-    justify-content: center;
-    margin-top: 20px;
-    display: flex;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    scroll-behavior: smooth; /* Smooth scrolling */
-    white-space: nowrap; /* Prevent items from wrapping */
-    
-    
-}
-
-
-#another-product-section {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 2px;
-    border-radius: 5px;
-    background-color: var(--white);
-    box-shadow: 0 2px 10px var(--shadow);
-
-
-    
-}
-
-
-
-.additional-product-container::-webkit-scrollbar {
-    display: none; /* Hide the scrollbar */
-}
-
-#root::-webkit-scrollbar,
-.additional-product-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Product Navigation Styles */
-.product-navigation {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
-
-.product-container {
-    flex: 3;
-    padding-right: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: var(--white);
-    border-radius: 5px;
-    box-shadow: 0 2px 10px var(--shadow);
-    padding: 2px;
-    justify-content: center;
-    margin-top: 20px;
-    display: flex;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    scroll-behavior: smooth; /* Smooth scrolling */
-    white-space: nowrap; /* Prevent items from wrapping */
-}
-
-/* Scroll Arrows */
-.scroll-arrow {
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 10px;
-    background: linear-gradient(45deg, goldenrod, black), gold; /* Gradient background */
-    border: none;
-    z-index: 1;
-    border-radius: 50%; /* Make the background circular */
-    box-shadow: 5px 5px 15px ghostwhite, 
-                -5px -5px 15px whitesmoke; /* 3D shadow */
-    transition: background 0.3s, transform 0.3s; /* Add transitions */
-}
-.scroll-arrow:hover {
-    background: linear-gradient(145deg, goldenrod, gold); /* Gold to white gradient on hover */
-    transform: translateY(-3px); /* Lift effect on hover */
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4), 
-                -3px -3px 10px rgba(255, 255, 255, 0.6); /* Adjust shadow on hover */
-}
-#scroll-left,
-#scroll-left-additional {
-    position: absolute;
-    left: 10px;
-}
-
-#scroll-right,
-#scroll-right-additional {
-    position: absolute;
-    right: 10px;
-}
 
 /* Head and Foot Styles */
 .head {
@@ -405,85 +414,92 @@ padding-bottom: 30px;
     height: 180px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-top: 0;  /* No extra space at the top */
+    margin-bottom: 0;  /* No extra space at the bottom */
+    padding: 0;  /* No padding */
+    margin-left: 0;
 }
 
 .images {
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
-    object-position: center;
+    margin-left: 0;
+
 }
 
-/* Bottom Section */
 .bottom {
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: max-content;
-    color: black;
-    margin: 0;
+    display: flex;  /* Use flexbox to stack items vertically */
+    flex-direction: column;  /* Stack items vertically */
+    width: 100%;  /* Full width of the container */
+    margin-left: 10px;  /* Slight margin from the left edge */
+    margin-top: 0;  /* No extra space at the top */
+    margin-bottom: 0;  /* No extra space at the bottom */
+    padding: 0;  /* No padding */
+    box-sizing: border-box;  /* Ensure padding and margin are included in width calculations */
 }
 
 .bottom p {
-    margin-inline-end: auto;
-    white-space: nowrap;
+    margin: 0;  /* Remove any margin to prevent spacing */
+    white-space: nowrap;  /* Prevent text wrapping */
     overflow: hidden;
-    text-overflow: ellipsis;
-    width: max-content;
-    font-size: 18px;
+    text-overflow: ellipsis;  /* Truncate text if it's too long */
+    font-size: 16px;
+    font-weight: 700;
     color: black;
-    justify-content: center;
+    flex: 1;  /* Ensure the paragraph takes equal height with other elements */
 }
 
 .inputs {
-    margin-inline-end: auto;
-    display: flex;
-    flex-direction: row;
+    display: flex;  /* Flexbox to align input boxes horizontally */
+    flex-direction: row;  /* Align items in a row */
+    gap: 0;  /* No gap between input boxes */
+    margin: 0;  /* Remove margin */
+    padding: 0;  /* Remove padding */
+    flex: 1;  /* Ensure the inputs take equal space */
 }
 
 .inputbox {
-    margin-left: 3px;
-    padding: 5px;
-    font-size: 18;
+    margin: 0;  /* Remove margin */
+    padding: 5px;  /* Padding inside input box */
+    font-size: 18px;
     color: gray;
     font-weight: 800;
+    flex: 1;  /* Ensure each input box takes equal width */
 }
+
 .inputbox input {
+    width: 100%;  /* Make input box span full width of the container */
+    padding: 5px;  /* Padding inside the input field */
+    font-size: 18px;
     color: gray;
     font-weight: 800;
-    padding: 2px;
     border: none;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Grey box shadow */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);  /* Add shadow */
     border-radius: 5px;
+    box-sizing: border-box;  /* Include padding in the box model */
 }
 
 .bottom h2 {
-    font-size: 18px; /* Font size */
-    color: black; /* Text color */
-    font-weight: bolder; /* Bold font weight */
-    display: inline-block; /* Allows for width adjustments */
-    padding:  5px; /* Add some padding for a 'stretched' effect */
-    background-color: white; /* Optional: background color for better visibility */
-    border-radius: 5px; /* Slightly rounded corners */
-    margin-inline-end: auto;
-
+    margin-top: 5px;
+    font-size: 16px;  /* Font size */
+    color: black;  /* Text color */
+    font-weight: 300;  /* Bold font weight */
+    background-color: white;  /* Optional background color */
+    border-radius: 5px;  /* Slightly rounded corners */
+    flex: 1;  /* Ensure <h2> takes equal space as other elements */
 }
 
-/* Button Styles */
 .box button {
-    width:90%;
-    position: relative;
+    width: min-content;  /* Make button span the full width of the container */
+    padding: 10px;  /* Padding to make button clickable */
     border: none;
     border-radius: 5px;
-    background-color: var(--dark-gray);
-    padding: 3px;
-    cursor: pointer;
+    background-color: brown;
     color: white;
-    font-size: 16px;
-    margin-inline-end: auto;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0;  /* Remove margin */
+    flex: 1;  /* Ensure button takes equal space */
 }
 
 button:hover {
