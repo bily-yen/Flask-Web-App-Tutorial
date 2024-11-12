@@ -444,9 +444,11 @@
     overflow: hidden;
     text-overflow: ellipsis;  /* Truncate text if it's too long */
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     color: black;
     flex: 1;  /* Ensure the paragraph takes equal height with other elements */
+    height: max-content;
+    padding-bottom: 10px;
 }
 
 .inputs {
@@ -480,8 +482,8 @@
 }
 
 .bottom h2 {
-    margin-top: 5px;
-    font-size: 16px;  /* Font size */
+    margin-top: 0;
+    font-size: 14px;  /* Font size */
     color: black;  /* Text color */
     font-weight: 300;  /* Bold font weight */
     background-color: white;  /* Optional background color */
