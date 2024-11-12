@@ -16,8 +16,7 @@ body {
 }
 
 .navbar {
-  background-color: white; /* White background */
-  color: black; /* Black text */
+  background-color:#0056b3; /* White background */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,39 +56,125 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center; /* Center items vertically */
-  padding: 25px;
-  font-size: 16px;
+  padding: 15px;
+  font-size: 14px;
 }
 
+/* Styling for the logo container */
+.logo {
+  background-color: white; /* Black background for the entire logo area */
+  padding: 5px; /* Space around the logo */
+  border-radius: 5px; /* Rounded corners for the logo container */
+  display: inline-block; /* Make the logo behave like a block element */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+/* Styling for the logo heading (TechXas) */
 .logo h1 {
-  font-size: 1.5rem; /* Overall font size for the logo */
   margin: 0;
-  color: #757373;
+  font-weight: bold;
+  font-size: 1.8rem;
+  position: relative;
+  color: rgb(173, 173, 173); /* Default color of the logo */
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+/* Styling for the logo subheading */
+.logo h1 span {
+  font-size: 1.5rem;
 }
 
 .logo div {
-  font-size: 0.8rem; /* Smaller font size for the subtitle */
-  color: white; /* Lighter color for subtitle */
+  font-size: 0.8rem;
+  color: white;  /* Default subtitle color */
+  transition: color 0.3s ease;
+  padding: 5px;
 }
 
-.nav-links {
-  list-style-type: none;
-  display: flex;
-  gap: 15px; /* Space between links */
+/* Hover effect for the logo */
+.logo:hover h1 {  /* Change to red on hover */
+  transform: scale(1.1);  /* Slightly enlarge the logo text */
+  animation: pulse 0.5s ease forwards;  /* Adding pulse animation */
 }
+
+.logo:hover div {
+  animation: fadeInText 0.5s ease forwards; /* Text fade effect */
+}
+
+/* Hover effect for the notification */
+.about-us-notification {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px); /* Initially shifted down */
+  padding: 15px;
+  background-color: #0056b3;  /* Black background */
+  color: white;  /* White text */
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s, transform 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Optional shadow */
+}
+
+/* Show the notification when the logo is hovered */
+.logo:hover{
+  color: #0056b3;
+  background-color: #0056b3;
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Smoothly slide up and appear */
+  animation: raiseNotification 0.3s ease forwards; /* Notification animation */
+} 
+
+
+
+/* Optional: Add a red border or accent around the notification */
+
+/* Keyframes for Logo Pulse */
+@keyframes pulse {
+  0% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+
+
+/* Keyframes for Notification Raise Effect */
+@keyframes raiseNotification {
+  0% {
+    transform: translateY(10px); /* Start below */
+    opacity: 0; /* Initially invisible */
+  }
+  100% {
+    transform: translateY(0); /* Raise to normal position */
+    opacity: 1; /* Fade in */
+  }
+}
+
+/* Hover effect for the logo container background */
+
 
 .nav-links li a {
   color: white; /* Black text for links */
   text-decoration: none; /* Remove underline */
-  font-size: 0.9rem; /* Smaller font size for links */
+  font-size: 1.2rem; /* Smaller font size for links */
   padding: 8px 12px; /* Padding for links */
   transition: background-color 0.3s; /* Smooth background change on hover */
 }
 
-.nav-links li a:hover {
-  background-color: orange; /* Light background on hover */
-  border-radius: 5px; /* Rounded corners */
-}
+
 
 /* Nav Item Styles */
 .nav-item {
@@ -97,11 +182,10 @@ body {
 }
 
 .nav-link {
-  font-size: 14px; /* Slightly larger font size for better readability */
-  font-weight: bold;
+  font-weight: bolder;
   font-style: italic;
-  color: black;
-  padding: 10px 15px; /* Adjust padding as needed */
+  color: white;
+  padding:5px; /* Adjust padding as needed */
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -121,8 +205,7 @@ body {
 }
 
 .nav-link:hover {
-  text-decoration: underline;
-  animation: flashColors 1.5s ease-in-out forwards;
+  animation: flashColors 1s ease-in-out forwards;
 }
 #login {
 font-size: 42px; /* Adjust the size as needed */
@@ -150,10 +233,8 @@ animation: none;
 
 
 @keyframes flashColors {
-  0% { color: black; }
-  25% { color: goldenrod; }
-  50% { color: goldenrod; }
-  100% { color: black; }
+  25% { color:white; }
+  50% { color: white; }
 }
 
 
@@ -302,11 +383,95 @@ animation: none;
   cursor: pointer; /* Makes the icon clickable */
 }
 
+/* Styling for the slowmotion_securityh class and its section */
+.slowmotion_securityh {
+  text-align: center;
+  color: black;
+}
+
+/* Styling for the welcome_header with slow-motion animation */
+.slowmotion_securityh .welcome_header {
+  margin: 0;
+  font-weight: bold;
+  font-size: 2rem;
+  position: relative;
+  color: grey;
+  display: inline-block; /* Ensure it's treated as inline-block for proper animation */
+  animation: danceUpDown 4s ease-in-out infinite; /* Animation for dancing up and down */
+}
+
+/* Keyframes for the "dance up and down" animation */
+@keyframes danceUpDown {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  25% {
+    transform: translateY(-10px); /* Move up slightly */
+  }
+  50% {
+    transform: translateY(0); /* Back to the initial position */
+  }
+  75% {
+    transform: translateY(10px); /* Move down slightly */
+  }
+  100% {
+    transform: translateY(0); /* Back to the initial position */
+  }
+}
+
+/* Optional styling for the catch_phrase */
+.catch_phrase {
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 20px; /* Adds some space below the catchphrase */
+}
+.header__image {
+  position: relative; /* Set the position of the container to relative */
+  width: 100%;
+}
+
+.header__image img {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensures the image fills the container without extra space below */
+}
+
+.network-text {
+  position: absolute; /* Position the text absolutely within the container */
+  top: 50%; /* Vertically center the text */
+  left: 50%; /* Horizontally center the text */
+  transform: translate(-50%, -50%); /* Fine-tune the centering */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold; /* Ensure the text is bold */
+  color: brown; /* Set text color to red */
+  text-transform: uppercase; /* Transform the text to uppercase */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial subtle shadow */
+  text-align: center; /* Center align the text */
+  padding: 10px;
+  max-width: 80%; /* Prevent text from overflowing */
+  line-height: 1.5;
+
+  animation: moveShadow 2s infinite alternate; /* Apply moving box shadow animation */
+}
+
+/* Keyframes for moving box shadow */
+@keyframes moveShadow {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial shadow */
+  }
+  50% {
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the right and down */
+  }
+  100% {
+    text-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the left and up */
+  }
+}
+
 .nexticon i:hover {
   color: #0056b3; /* Change icon color on hover */
 }
 footer {
-  background-color: gray; /* Dark background for the footer */
+  background-color: black; /* Dark background for the footer */
   color: #fff; /* White text */
   padding: 5px; /* Padding for spacing */
   text-align: center; /* Center text */
@@ -352,13 +517,34 @@ ul li {
 }
 
 a {
-  color: white; /* Light blue color for links */
   text-decoration: none; /* Remove underline */
   background-color:brown;
-  padding: 5px;
   border-radius: 5px;
 }
+/* CSS for the Instagram icon */
+a i {
+  font-size: 14px;  /* Icon size */
+  color: black;  /* Instagram's color */
+  transition: transform 0.3s ease, color 0.3s ease;
+  padding: 0;
+}
 
+a i:hover {
+  transform: scale(1.2);  /* Scales the icon */
+  color: white;  /* A darker shade for hover effect */
+}
+
+.grey-t {
+  color: grey;
+  font-weight: normal;
+  text-transform: lowercase;  /* This will ensure the text is always in lowercase */
+  font-size: smaller;
+}
+
+.bold-x {
+  color: black;
+  font-weight: bold;
+}
 .near-footer {
   display: flex;
   background-color:whitesmoke; /* Background color */
@@ -487,7 +673,7 @@ a:hover {
   flex-direction: row;
   justify-content: center; /* Center items */
   flex-wrap: wrap; /* Allow items to wrap */
-  margin: 20px 0; /* Add some margin to the top and bottom */
+  margin: 0px 0; /* Add some margin to the top and bottom */
   background-color: rgb(255, 255, 255);
   padding: 45px;
   border-radius: 5px;
@@ -855,79 +1041,194 @@ border-radius: 5px;
   color: var(--text-light);
   text-align: center;
 }
+
+/* Container for the header */
 .header__container {
+  position: relative;
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--max-width); /* For responsiveness */
   margin: auto;
   padding-block: 8rem 2rem;
   padding-inline: 1rem;
   display: grid;
   gap: 2rem;
-  position: relative; /* Ensure the pseudo-element is positioned relative to this container */
-  overflow: hidden; /* Hide any overflow caused by the pseudo-element */
-  height: 100%;
-}
-@keyframes backgroundCycle {
-  0%, 20% { background-image: url('/static/SPAPHOTOS/tonerinterior.jpg'); }
-  20%, 50% { background-image: url('/static/SPAPHOTOS/gen-supply.jpg'); }
-  50%, 80% { background-image: url('/static/SPAPHOTOS/officesupplydark.jpg'); }
-  80%, 100% { background-image: url('/static/SPAPHOTOS/tonerinterior.jpg'); }
+  overflow: hidden;
+  background-size: cover; /* Ensure images cover the entire container */
+  background-position: center; /* Center the background images */
+  background-repeat: no-repeat; /* Avoid tiling */
+  height: 100vh; /* Full height */
 }
 
-.header__container {
-  position: relative;
-  height: 400px; /* Adjust as needed */
-  animation: backgroundCycle 12s infinite; /* Adjust timing for total duration */
-}
-
-.header__container::before {
-  content: "";
+/* Common styles for all background images */
+.header__container .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-position: center;
   background-size: cover;
-  filter: blur(2px);
-  z-index: -1;
-  transform: scale(1.1);
-}
-.header__container::-webkit-scrollbar {
-  display: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;  /* Start fully transparent */
+  transition: opacity 2s ease-in-out; /* Smooth opacity transition */
 }
 
+/* Background 1: officesupplydark */
+.header__container .background1 {
+  background-image: url('/static/SPAPHOTOS/officesupplydark.jpg');
+}
+
+/* Background 2: image2 */
+.header__container .background2 {
+  background-image: url('/static/SPAPHOTOS/image2.png');
+}
+
+/* Background 3: image3 */
+.header__container .background3 {
+  background-image: url('/static/SPAPHOTOS/image3.jpg');
+}
+
+/* Background 4: image4 */
+.header__container .background4 {
+  background-image: url('/static/SPAPHOTOS/image4.webp');
+}
+
+/* Background 5: image5 */
+.header__container .background5 {
+  background-image: url('/static/SPAPHOTOS/image5.webp');
+}
+
+/* Active background visibility */
+.header__container .active {
+  opacity: 1;
+}
 .header__image {
-  position: relative;
-  isolation: isolate;
-  width: 90%;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative; /* Position the container relative to hold absolutely positioned images */
+  width: 100%;
+  height: 400px; /* Adjust as needed */
+  overflow: hidden; /* Hide images that go outside the container */
 }
 
-.header__image::before {
+
+
+/* Network text styling */
+.network-text {
   position: absolute;
-  content: "";
-  width: 100%;
-  max-width: 550px;
-  aspect-ratio: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  border-radius: 100%;
-  opacity: 0.5;
-  z-index: -1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+/* Custom styling for the Call Us section */
+/* Basic styling for the Call Us section */
+.custom-call-us {
+  position: absolute;
+  bottom: 10%; /* Position it near the bottom of the header */
+  left: 50%;
+  transform: translateX(-50%); /* Center the section horizontally */
+  z-index: 2; /* Ensure it's above other content */
+  width: 100%;
+  text-align: center;
 }
 
-.header__image img {
-  max-width: 520px;
-  margin-inline: auto;
-  border-radius: 20px;
+/* Styling for the Call Us header section */
+.call-us-section h2 {
+  font-size: .9rem;
+  font-weight: bold;
+  color: white; /* Text color for header */
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: black; /* Background color for readability */
+  border-radius: 5px;
 }
+
+.why-choose-us {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.imgsections {
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.section-item i {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.section-item h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.section-item p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Styling for the contact details (phone number and email) */
+.contact-details {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+/* Styling for the phone number */
+.phone-number {
+  color: white; /* White text for contrast */
+  font-size: 1.0rem;
+  font-weight: bold;
+  text-decoration: underline; /* Optional: underline to highlight the number */
+  margin-top: 10px;
+  padding: 15px;
+  background-color: black;
+}
+
+/* Styling for the email address */
+.email-address {
+  color: white; /* White text for contrast */
+  font-size: 1.0rem;
+  font-weight: bold;
+  text-decoration: underline; /* Optional: underline to highlight the email */
+  margin-top: 10px;
+  padding: 15px;
+  background-color: black;
+  border-radius: 10px;
+
+}
+
+/* Icons for phone and email */
+.fas {
+  margin-right: 10px; /* Space between icon and text */
+  color: black; /* White color for icons */
+}
+
+/* Optional: Add a background transition or slide animation for the call us section */
+.custom-call-us .call-us-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  padding: 10px;
+}
+
+/* Optional: Hide the default carousel controls if not needed */
+.custom-call-us .carousel-control-prev, .custom-call-us .carousel-control-next {
+  display: none;
+}
+
+
+
+
 
 .header__image__card {
   position: absolute;
@@ -991,6 +1292,36 @@ border-radius: 5px;
   background-color: brown;
   font-weight: 700;
   color: white;
+}
+.network-text {
+  position: absolute; /* Position the text absolutely within the container */
+  top: 50%; /* Vertically center the text */
+  left: 50%; /* Horizontally center the text */
+  transform: translate(-50%, -50%); /* Fine-tune the centering */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold; /* Ensure the text is bold */
+  color: brown; /* Set text color to red */
+  text-transform: uppercase; /* Transform the text to uppercase */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial subtle shadow */
+  text-align: center; /* Center align the text */
+  padding: 10px;
+  max-width: 80%; /* Prevent text from overflowing */
+  line-height: 1.5;
+
+  animation: moveShadow 2s infinite alternate; /* Apply moving box shadow animation */
+}
+
+/* Keyframes for moving box shadow */
+@keyframes moveShadow {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial shadow */
+  }
+  50% {
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the right and down */
+  }
+  100% {
+    text-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the left and up */
+  }
 }
 
 .header__content h1 {

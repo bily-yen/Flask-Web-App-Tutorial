@@ -262,6 +262,13 @@ def index():
     """
     return render_template('index.html')
 
+@views.route('/services', methods=['GET'])
+def services():
+    """
+    Display the index page.
+    """
+    return render_template('services.html')
+
 # Route to display the products page
 @views.route('/products', methods=['GET'])
 def products():

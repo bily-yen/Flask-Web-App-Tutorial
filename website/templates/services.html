@@ -39,32 +39,29 @@
     </div>
     <h1 class="welcome_header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
         <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
-        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2); ">X</span>as!
+        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as!
     </h1>
 </div>
 </section>
 
 
 <header class="header__container">
-    <div class="background background1"></div>
-    <div class="background background2"></div>
-    <div class="background background3"></div>
-    <div class="background background4"></div>
-    <div class="background background5"></div>
-
     <div class="header__image">
         <!-- Network text (centered text) -->
+
+
         <!-- Updated section for the Call Us header -->
         <div id="callUsSection" class="custom-call-us">
             <div class="call-us-item active">
                 <div class="call-us-section">
-                    <h2>Our vision is sufficient provision</h2>
+                    <h2 > our vision is sufficient provision</h2>
+              
+                 
                 </div>
             </div>
         </div>
     </div>
 </header>
-
 <div class="cctechspac" >
     <h1>Our Services</h1>
 
@@ -109,81 +106,17 @@
 
   <div class="cctechspac" >
         
-    <h1>Why Choose Us?</h1>
-    <div class="why-choose-us">
-        
-        <section class="imgsections" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            <div class="section-item">
-                <i class="fas fa-gavel"></i> <!-- Integrity Icon (Font Awesome) -->
-                <h2>Integrity</h2>
-                <p>At TechXas, we operate with the highest standards of integrity. We value transparency and trust, ensuring that all our dealings with clients and partners are honest and straightforward.</p>
-            </div>
-        </section>
-        
-        <section class="imgsections" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            <div class="section-item">
-                <i class="fas fa-hand-holding-usd"></i> <!-- Convenient Transactions Icon -->
-                <h2>Convenient Transactions</h2>
-                <p>We offer seamless and hassle-free payment solutions, making transactions quick and easy for our customers. Our goal is to provide a smooth experience from start to finish.</p>
-            </div>
-        </section>
-        
-        <section class="imgsections" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            <div class="section-item">
-                <i class="fas fa-box"></i> <!-- Quality Products and Services Icon -->
-                <h2>Quality Products & Services</h2>
-                <p>We pride ourselves on delivering high-quality products and services, ensuring that every print and supply meets the highest standards of excellence and customer satisfaction.</p>
-            </div>
-        </section>
-    </div>
-    <div class="imgsections" style="margin-top: 50px;">
-        <h1>Join Our Technance Community</h1>
-        <p>Join our Technance community and enjoy exclusive access to TechXas products at discounted rates, plus a stake in the business’s growth and profits.</p>
-        <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/allbiz.jpg') }}" alt="Best Supplies" />
-        <p style="margin-top: 43px; padding: 5px;">We ensure the highest quality in our products, empowering your business with authentic supplies that meet your needs.</p>
-        
-        <!-- Join Button -->
-        <a href="#join" class="btn-join" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: brown; color: white; text-decoration: none; border-radius: 5px;">Join Now</a>
-    </div>
-</div>
+
 
 
  
 
- 
+  
     
     </div>
     </div>
 
-    <div class="near-footer" style="background-color: ghostwhite;">
-        <div class="container">
-            <div class="near-footer__top">
-                <div class="near-footer__section near-footer__techxas">
-                    <h5 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
-                        <span style="font-size: 1rem; margin-right: 15px;">About </span>
-                        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
-                    </h5>
-                    <p>With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
-                </div>
-                <div class="near-footer__section near-footer__categories">
-                    <h5 style="color: brown; font-size: 18px;" >Our Customers</h5>
-                    <div class="customer-grid">
-                        <div class="customer-item">Schools</div>
-                        <div class="customer-item">Hotels</div>
-                        <div class="customer-item">Hospitals</div>
-                        <div class="customer-item">Corporates</div>
-                        <div class="customer-item">Small Businesses</div>
-                        <div class="customer-item">Government Offices</div>
-                        <div class="customer-item">Non-Profit Organizations</div>
-                        <div class="customer-item">Creative Agencies</div>
-                        <div class="customer-item">Retail Stores</div>
-                    </div>
-                </div>
-            </div>
-            
 
-            </div>
-        </div>
     </div>
     
     <footer>
@@ -237,31 +170,6 @@
 
 
 <script>
-
-    // JavaScript to handle background image transitions
-document.addEventListener('DOMContentLoaded', function() {
-    const backgrounds = document.querySelectorAll('.header__container .background');
-    let currentIndex = 0;  // Start from the first background
-
-    function cycleBackgrounds() {
-        // Remove active class from the current background
-        backgrounds[currentIndex].classList.remove('active');
-        
-        // Update index to next background, loop back to 0 after last image
-        currentIndex = (currentIndex + 1) % backgrounds.length;
-        
-        // Add active class to the new background
-        backgrounds[currentIndex].classList.add('active');
-    }
-
-    // Set the first background as active initially
-    backgrounds[currentIndex].classList.add('active');
-    
-    // Cycle backgrounds every 6 seconds (adjust the time as needed)
-    setInterval(cycleBackgrounds, 6000);  // Change every 6 seconds
-});
-
-
       document.addEventListener('DOMContentLoaded', () => {
         const scrollArrow = document.getElementById('scroll-arrow');
         const productList = document.getElementById('container-product-list');
