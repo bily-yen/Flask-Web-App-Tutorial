@@ -65,8 +65,11 @@ function displayCanonProducts(products) {
 }
 
 function createProductHTML(item, index, brand) {
-    const { image, name, price } = item;
+    const { id, image, name, price } = item;
     const imgSrc = image ? `/static/${image}` : '/static/SPAPHOTOS/placeholder-image.png';
+
+    const productDetailUrl = `/printer/${id}`;  // This assumes your Flask route for product details is '/product/<int:product_id>'
+
 
     return `
         <div class='box'>
@@ -91,6 +94,8 @@ function createProductHTML(item, index, brand) {
                     </div>
                 </div>
                 <button onclick='addToCart("${brand}", ${index})'>Add to cart</button>
+                                <a href="${productDetailUrl}" class="prdetails-link">View Details</a>
+
             </div>
         </div>
     `;

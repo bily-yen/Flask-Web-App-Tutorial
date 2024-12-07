@@ -32,37 +32,41 @@ function displayAdditionalProducts(products) {
 }
 
 function createProductHTML(item, index) {
-    const { image, name, price } = item;
+    const { id, image, name, price } = item;
     const imgSrc = image ? `/static/${image}` : '/static/SPAPHOTOS/placeholder-image.png';
-
+    
+    // Create a URL for the product details page dynamically using the product ID
+    const productDetailUrl = `/product/${id}`;  // This assumes your Flask route for product details is '/product/<int:product_id>'
+    
     return `
         <div class='box'>
-        
             <div class='img-box'>
                 <img class='images' src='${imgSrc}' alt='${name}' />
             </div>
             <div class='bottom'>
                 <p>${name}</p>
                 <h2>Ksh ${price}.00</h2>
-               <div class='inputs'>
-    <div class='inputbox'>
-        <label for="quantity-${index}" style="font-weight: bold;font-size:16px; margin-right: 5px;">Quantity:</label>
-        <input 
-            type="number" 
-            id="quantity-${index}" 
-            min="1" 
-            value="1" 
-            placeholder="1" 
-            style="width: 50px; border: 2px solid #ccc; padding: 5px; border-radius: 5px;" 
-            title="Select the quantity you want to order"
-        />
-    </div>
+                <div class='inputs'>
+                    <div class='inputbox'>
+                        <label for="quantity-${index}" style="font-weight: bold;font-size:16px; margin-right: 5px;">Quantity:</label>
+                        <input 
+                            type="number" 
+                            id="quantity-${index}" 
+                            min="1" 
+                            value="1" 
+                            placeholder="1" 
+                            style="width: 50px; border: 2px solid #ccc; padding: 5px; border-radius: 5px;" 
+                            title="Select the quantity you want to order"
+                        />
+                    </div>
                 </div>
                 <button onclick='addToCart(${index})'>Add to cart</button>
+                <!-- Link to the product details page -->
+                <a href="${productDetailUrl}" class="prdetails-link">View Details</a>
             </div>
         </div>
-        
     `;
+
 }
 
 function addToCart(index) {

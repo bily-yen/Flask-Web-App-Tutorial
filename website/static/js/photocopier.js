@@ -151,7 +151,7 @@ function displayCart() {
     const totalElement = document.getElementById('total');
 
     if (cart.length === 0) {
-        cartItemContainer.innerHTML = 'Your cart is empty';
+        cartItemContainer.innerHTMBL = 'Your cart is empty';
         countElement.textContent = '0';
         totalElement.textContent = 'Ksh 0.00';
         return;

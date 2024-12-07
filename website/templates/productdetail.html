@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name if product else printer.name }} - Product Details{% endblock %}
+
+{% block content %}
+</div>
+
+
+<div class="product-detail-container" style="margin-top: 150px;">
+
+        <!-- Equipment Card for Product or Printer -->
+            <!-- Equipment Card for Product or Printer -->
+
+    
+
+    
+    <h1 class="product-detail-header">
+        {{ product.name if product else printer.name }} - Product Details
+        <div class="navigation-container" style="margin-top: 5px;">
+            <!-- Equipment Card for Product or Printer -->
+            <div class="equipment-card" onclick="location.href='{% if product %}/products{% elif printer %}/equipment/printer{% endif %}'">
+                <p>{% if product %}Back to Products{% else %}Back to Printers{% endif %}</p>
+            </div>
+          
+        </div>
+    </h1>    
+    <div class="product-detail-info">
+        <!-- Product Image - Kept as It Is -->
+        {% if product %}
+            <img src="{{ url_for('views.product_image', product_id=product.id) }}" alt="{{ product.name }}" class="product-detail-img">
+        {% endif %}
+        
+        {% if printer %}
+            <img src="{{ url_for('views.printer_image', product_id=printer.id) }}" alt="{{ printer.name }}" class="product-detail-img">
+        {% endif %}
+
+        <!-- Product Detail Text - Placed inside a carousel box -->
+        <div class="product-detail-text carousel-box">
+            <p><strong>Price:</strong> KSh {{ product.price if product else printer.price }}</p>
+            <p><strong>Quantity:</strong> {{ product.quantity if product else printer.quantity }}</p>
+            <div class="product-detail-details">
+                <p><strong>Details:</strong> {{ product.details if product.details else "No details available" if product else printer.details if printer.details else "No details available" }}</p>
+            </div>
+        </div>
+
+        <!-- Special Features Section - Placed inside a carousel box -->
+        <div class="special-features carousel-box">
+<!-- Special Features Section - Placed inside a carousel box -->
+    <h3>Special Features</h3>
+    {% if product %}
+        <!-- Display product-specific features -->
+        <p><strong>Type:</strong> {{ product.type if product.type else "Not specified" }}</p>
+        <p><strong>RAM:</strong> {{ product.ram if product.ram else "Not specified" }}</p>
+        <p><strong>Storage:</strong> {{ product.storage if product.storage else "Not specified" }}</p>
+        <p><strong>Size:</strong> {{ product.size if product.size else "Not specified" }}</p>
+        <p><strong>Brand:</strong> {{ product.brand if product.brand else "Not specified" }}</p>
+        <p><strong>Print Speed:</strong> {{ product.print_speed if product.print_speed else "Not specified" }}</p>
+    {% elif printer %}
+        <!-- Display printer-specific features -->
+        <p><strong>Brand:</strong> {{ printer.brand if printer.brand else "Not specified" }}</p>
+        <p><strong>Type:</strong> {{ printer.type if printer.type else "Not specified" }}</p>
+        <p><strong>Print Speed:</strong> {{ printer.print_speed if printer.print_speed else "Not specified" }}</p>
+        <p><strong>Resolution:</strong> {{ printer.resolution if printer.resolution else "Not specified" }}</p>
+        <p><strong>Connectivity:</strong> {{ printer.connectivity if printer.connectivity else "Not specified" }}</p>
+        <p><strong>Color:</strong> {{ printer.color if printer.color else "Not specified" }}</p>
+    {% endif %}
+</div>
+    </div>
+</div>
+
+<div class="discount-section">
+    <div class="discount-item refurbished">
+        <h3>Up to 50% Discount on Refurbished Items!</h3>
+        <p>Get high-quality refurbished items at unbeatable prices. Limited time offer!</p>
+    </div>
+    <div class="discount-item new">
+        <h3>Up to 25% Discount on New Items!</h3>
+        <p>Shop for the latest items with exciting discounts.</p>
+    </div>
+
+    <!-- Delivery Information Section -->
+
+</div>
+<div class="delivery-info">
+    <h3>Delivery Around Nairobi CBD and Surrounding Suburbs</h3>
+    <p>We offer fast and reliable delivery services within Nairobi CBD and nearby suburbs. Order now and enjoy quick delivery!</p>
+</div>
+
+<!-- Top Sellers Section -->
+<div class="top-sellers-container">
+    <h2 class="top-sellers-header">Top Sellers</h2>
+    <div class="top-sellers-items" id="top-sellers-items">
+        {% if product %}
+            <!-- Show top sellers for products -->
+            {% for p in top_selling_products %}
+                <div class="top-seller-item">
+                    <img src="{{ url_for('views.product_image', product_id=p.id) }}" alt="{{ p.name }}" class="top-seller-img">
+                    <p><strong>{{ p.name }}</strong></p>
+                    <p>Price: KSh {{ p.price }}</p>
+                    <p>Quantity: {{ p.quantity }}</p>
+
+                </div>
+            {% endfor %}
+        {% elif printer %}
+            <!-- Show top sellers for printers -->
+            {% for p in top_selling_printers %}
+                <div class="top-seller-item">
+                    <img src="{{ url_for('views.printer_image', product_id=p.id) }}" alt="{{ p.name }}" class="top-seller-img">
+                    <p><strong>{{ p.name }}</strong></p>
+                    <p>Price: KSh {{ p.price }}</p>
+                    <p>Quantity: {{ p.quantity }}</p>
+                    
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Back and Next buttons -->
+    <div class="top-seller-nav">
+        <button onclick="scrollTopSellers(-1)">&#10094;</button>
+        <button onclick="scrollTopSellers(1)">&#10095;</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+            &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+        </h1>
+    </div>
+</footer>
+
+<script>
+
+function scrollTopSellers(direction) {
+    const container = document.getElementById("top-sellers-items");
+    const scrollAmount = 150; // Adjust the scroll amount (in pixels) for each click
+    container.scrollLeft += direction * scrollAmount;
+}
+</script>
+
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

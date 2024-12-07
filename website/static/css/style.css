@@ -1560,6 +1560,366 @@ section#wcuindextop {
   margin: 10px;
   
 }
+/* General container styles */
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  font-family: Arial, sans-serif;
+}
+
+/* Product Header */
+
+/* Product detail container (image and text) */
+.product-detail-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+/* Product image styling */
+.product-detail-img {
+  width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Carousel Box Styling (For text and special features) */
+.carousel-box {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-right: 20px;
+  flex: 1;
+}
+
+/* Product detail text section */
+.product-detail-text {
+  margin-left: 20px;
+}
+
+/* Styling for product details (price, quantity, etc.) */
+.product-detail-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e6f7ff; /* Soft blue background */
+  border-radius: 8px;
+}
+
+/* Special features section */
+.special-features {
+  margin-top: 20px;
+}
+
+.special-features h3 {
+  font-size: 1.6em;
+  color: white;
+  background-color: #ff6347; /* Tomato red background */
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.special-features p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Price and quantity styling */
+.product-detail-text p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 12px;
+}
+/* Style for the product detail link as a green button */
+.prdetails-link {
+  font-size: 12px;  /* Set the font size */
+  color: white;  /* Text color - white for contrast */
+  background-color: #28a745;  /* Green background color */
+  text-decoration: none;  /* Remove the default underline */
+  font-weight: bold;  /* Make the text bold */
+  border-radius: 5px;  /* Round corners for the button */
+  display: inline-block;  /* Ensure it behaves like a block element while staying inline */
+  transition: background-color 0.3s, transform 0.3s; /* Add smooth transition for hover effects */
+  margin-left: 0;
+  margin-top: 5px;
+  width: min-content;
+}
+
+.prdetails-link:hover {
+  background-color: goldenrod;  /* Darker green on hover */
+  text-decoration: none;  /* Keep the text unstyled on hover */
+  transform: scale(1.05);  /* Slightly enlarge the button on hover */
+  color: white;
+}
+
+.prdetails-link:focus {
+  outline: none;  /* Remove the outline when focused (optional) */
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);  /* Add a focus ring for accessibility */
+}
+
+.prdetails-link:active {
+  background-color: #1e7e34;  /* Darker green when the button is clicked */
+}
+
+/* Hover effect on product detail container */
+.product-detail-info:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.product-detail-info {
+  display: flex;               /* Set the container to be a flexbox */
+  justify-content: space-between; /* Space between image and text */
+  width: 80%;                    /* Adjust the width of the container as needed */
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.product-detail-img {
+  width: 30%;  /* Adjust the size of the image */
+  height: auto;
+  object-fit: cover;  /* Ensures the image maintains aspect ratio */
+}
+
+.product-detail-text {
+  flex: 1;  /* Take up the remaining space */
+  margin-left: 20px;  /* Space between image and text */
+}
+
+.product-detail-details {
+  margin-top: 10px;
+}
+
+.product-detail-header {
+  color: #333;
+  text-align: start;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-left: 0;
+  margin-top: 15px;
+  text-transform: uppercase;
+  background-color: gainsboro; /* Set background color to Gainsboro */
+  padding: 10px; /* Optional: add some padding to give space around the text */
+  width: 100%;
+  
+
+}
+.top-sellers-container {
+  margin-top: 30px;
+  padding: 20px 0;
+  width: 80%; /* Limit the width to 80% */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* To position the buttons inside the container */
+}
+
+.top-sellers-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.top-sellers-items {
+  display: flex; /* Align items in a row */
+  overflow: hidden; /* Hide the scrollbar */
+  white-space: nowrap; /* Prevent wrapping of items */
+  gap: 20px; /* Add some space between items */
+  padding: 10px;
+  transition: transform 0.3s ease; /* Smooth transition when scrolling */
+}
+
+.top-seller-item {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  width: 120px; /* Set a smaller width for each item */
+  overflow: hidden;
+  border: 1px solid #ddd; /* Add a border around each item */
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners for the items */
+  text-align: center;
+  background-color: #f8f8f8; /* Light background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Container for navigation links */
+.navigation-container {
+  display: flex; /* Ensures elements are aligned in a row */
+  justify-content: space-between; /* Space between the cards */
+  gap: 20px; /* Optional: Adjust space between cards */
+  margin-top: 150px;
+}
+
+/* Style for each equipment card */
+.equipment-card {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: goldenrod;
+  text-align: center;
+  cursor: pointer; /* Indicates clickable element */
+  transition: background-color 0.3s, transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for each card */
+.equipment-card:hover {
+  background-color: goldenrod; /* Light gray on hover */
+  transform: translateY(-5px); /* Slight upward movement */
+  text-decoration: underline;
+  text-decoration-thickness: 3px; /* Makes the underline thicker */
+  text-decoration-color: white; /* Changes the underline color to white */
+}
+/* Text styling inside each card */
+.equipment-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.top-seller-item:hover {
+  transform: translateY(-5px); /* Slight upward movement on hover */
+}
+
+.top-seller-img {
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  height: auto;
+  border-radius: 4px; /* Rounded corners for images */
+  margin-bottom: 10px;
+}
+
+.top-seller-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.top-seller-item strong {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Back and Next buttons */
+.top-seller-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 10;
+}
+
+.top-seller-nav button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.top-seller-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.top-seller-nav button:focus {
+  outline: none;
+}
+
+/* For the hidden scrollbar */
+.top-sellers-items::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+/* Discount Section Styles */
+.discount-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.discount-item {
+  width: 45%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.discount-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.discount-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+.refurbished {
+  background-color: #ffeb3b; /* Yellow for refurbished */
+}
+
+.new {
+  background-color: #4caf50; /* Green for new items */
+  color: white;
+}
+
+.discount-item h3 {
+  color: #fff;
+}
+
+/* Delivery Section Styles */
+.delivery-info {
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #e3f2fd;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-info h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e88e5; /* Blue for delivery info */
+}
+
+.delivery-info p {
+  font-size: 16px;
+  color: #333;
+}
+.product-detail-container h1{
+color: brown;
+}
+
 .hometop-item h5{
   color: #0f1528;
   font-size: 14px;

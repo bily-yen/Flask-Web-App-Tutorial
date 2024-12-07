@@ -11,6 +11,14 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     image = db.Column(db.String(200), nullable=False)
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
+    details = db.Column(db.Text, nullable=True)  # New details column
+
+    # New columns
+    type = db.Column(db.String(100), nullable=True)  # Type of the product (e.g., smartphone, laptop, etc.)
+    ram = db.Column(db.String(50), nullable=True)  # RAM size (e.g., 4GB, 8GB, etc.)
+    storage = db.Column(db.String(50), nullable=True)  # Storage size (e.g., 64GB, 128GB, etc.)
+    size = db.Column(db.String(50), nullable=True)  # Size of the product (e.g., screen size in inches)
+    brand = db.Column(db.String(100), nullable=True)  # Brand of the product (e.g., Apple, Samsung, etc.)
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='product', cascade="all, delete-orphan")
@@ -29,6 +37,7 @@ class Computer(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the computer
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the computer
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='computer', cascade="all, delete-orphan")
@@ -47,6 +56,14 @@ class Printer(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the printer
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the printer
+    details = db.Column(db.Text, nullable=True)  # General details about the printer
+    
+    # Special features for printers
+    print_speed = db.Column(db.String(100), nullable=True)  # Print speed (e.g., "20 pages per minute")
+    resolution = db.Column(db.String(100), nullable=True)  # Resolution (e.g., "1200x1200 dpi")
+    connectivity = db.Column(db.String(100), nullable=True)  # Connectivity (e.g., "Wi-Fi, USB")
+    color = db.Column(db.String(50), nullable=True)  # Color options (e.g., "Color", "Monochrome")
+    type = db.Column(db.String(50), nullable=True)  # Type of printer (e.g., "Laser", "Inkjet")
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='printer', cascade="all, delete-orphan")
@@ -54,7 +71,7 @@ class Printer(db.Model):
 
     def __repr__(self):
         return f'<Printer {self.name}>'
-    
+
 class Projector(db.Model):
     __tablename__ = 'projectors'
     
@@ -65,6 +82,7 @@ class Projector(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the projector
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the projector
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='projector', cascade="all, delete-orphan")
@@ -83,6 +101,7 @@ class Photocopier(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the photocopier
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the photocopier
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='photocopier', cascade="all, delete-orphan")
@@ -101,6 +120,7 @@ class Laminator(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the laminator
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the laminator
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='laminator', cascade="all, delete-orphan")
@@ -119,6 +139,7 @@ class Whiteboard(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the whiteboard
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the whiteboard
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='whiteboard', cascade="all, delete-orphan")
@@ -137,6 +158,7 @@ class Monitor(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the monitor
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the monitor
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='monitor', cascade="all, delete-orphan")
@@ -155,6 +177,7 @@ class Laptop(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
     brand = db.Column(db.String(50), nullable=False)  # Brand of the laptop
     specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the laptop
+    details = db.Column(db.Text, nullable=True)  # New details column
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='laptop', cascade="all, delete-orphan")
@@ -163,6 +186,25 @@ class Laptop(db.Model):
     def __repr__(self):
         return f'<Laptop {self.name}>'
 
+class Scanner(db.Model):
+    __tablename__ = 'scanners'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    image = db.Column(db.String(200), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
+    brand = db.Column(db.String(50), nullable=False)  # Brand of the scanner
+    specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the scanner
+    details = db.Column(db.Text, nullable=True)  # New details column
+
+    # Relationships
+    order_items = db.relationship('OrderItem', back_populates='scanner', cascade="all, delete-orphan")
+    transaction_products = db.relationship('TransactionProduct', back_populates='scanner', cascade="all, delete-orphan")
+
+    def __repr__(self):
+        return f'<Scanner {self.name}>'
+    
 class TransactionProduct(db.Model):
     __tablename__ = 'transaction_products'
     
@@ -267,24 +309,6 @@ class PaymentTransaction(db.Model):
 
     def __repr__(self):
         return f'<PaymentTransaction {self.checkout_request_id}>'
-
-class Scanner(db.Model):
-    __tablename__ = 'scanners'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    image = db.Column(db.String(200), nullable=False)
-    quantity = db.Column(db.Integer, nullable=False, default=0)  # Quantity in stock
-    brand = db.Column(db.String(50), nullable=False)  # Brand of the scanner
-    specifications = db.Column(db.Text, nullable=True)  # Specifications/details about the scanner
-
-    # Relationships
-    order_items = db.relationship('OrderItem', back_populates='scanner', cascade="all, delete-orphan")
-    transaction_products = db.relationship('TransactionProduct', back_populates='scanner', cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return f'<Scanner {self.name}>'
     
     
 class Note(db.Model):

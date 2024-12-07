@@ -316,6 +316,37 @@ def get_products_route():
     } for product in products]  # Convert Product objects to dictionaries
     return jsonify(product_list)  # Return as JSON
 
+@views.route('/product/<int:product_id>', methods=['GET'])
+def product_detail(product_id):
+    # Fetch the product by its ID
+    product = Product.query.get_or_404(product_id)
+    
+    # Fetch top sellers: Products with quantity < 15
+    top_selling_products = Product.query.filter(Product.quantity < 15).all()
+    
+    # No printer in this route, as it's a product detail page
+    printer = None
+    
+    # Render the template, passing the top-selling products
+    return render_template('productdetail.html', product=product, printer=printer, top_selling_products=top_selling_products)
+
+@views.route('/printer/<int:printer_id>', methods=['GET'])
+def printer_detail(printer_id):
+    # Fetch the printer by its ID
+    printer = Printer.query.get_or_404(printer_id)
+    
+    # Fetch top sellers: Printers with quantity < 15
+    top_selling_printers = Printer.query.filter(Printer.quantity < 15).all()
+    
+    # No product in this route, as it's a printer detail page
+    product = None
+    
+    # Render the template, passing the top-selling printers
+    return render_template('productdetail.html', product=product, printer=printer, top_selling_printers=top_selling_printers)
+
+
+
+
 @views.route('/api/additional', methods=['GET'])
 def get_additional_products_route():
     products = Product.query.filter(Product.quantity < 10).all()  # Adjust the condition as needed
