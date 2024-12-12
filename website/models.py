@@ -302,6 +302,7 @@ class PaymentTransaction(db.Model):
     response_code = db.Column(db.String(10))
     response_description = db.Column(db.Text)
     mpesa_code = db.Column(db.String(50))
+    pin_entered = db.Column(db.Boolean, default=False)  # Track whether the PIN was entered
 
     # Relationships
     order_items = db.relationship('OrderItem', back_populates='transaction', cascade="all, delete-orphan")

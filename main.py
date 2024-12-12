@@ -1,5 +1,4 @@
 from website import create_app
-from flask_wtf.csrf import CSRFProtect
 
 app, socketio = create_app()
 

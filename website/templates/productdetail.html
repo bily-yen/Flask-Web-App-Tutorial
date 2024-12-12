@@ -54,7 +54,6 @@
         <p><strong>Storage:</strong> {{ product.storage if product.storage else "Not specified" }}</p>
         <p><strong>Size:</strong> {{ product.size if product.size else "Not specified" }}</p>
         <p><strong>Brand:</strong> {{ product.brand if product.brand else "Not specified" }}</p>
-        <p><strong>Print Speed:</strong> {{ product.print_speed if product.print_speed else "Not specified" }}</p>
     {% elif printer %}
         <!-- Display printer-specific features -->
         <p><strong>Brand:</strong> {{ printer.brand if printer.brand else "Not specified" }}</p>

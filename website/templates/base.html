@@ -111,48 +111,83 @@ rel="stylesheet"
       </div>
   </nav>
   
+  <div class="flashmessage">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="messages-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+</div>
 
-    <div class="flashmessage" >
-      {% if current_user.is_authenticated %}
-          {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                  <div class="messages-container">
-                      {% for category, message in messages %}
-                          {% if category == 'error' %}
-                              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                  {{ message }}
-                                  <button type="button" class="close" data-dismiss="alert">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          {% elif category == 'success' %}
-                              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  {{ message }}
-                                  <button type="button" class="close" data-dismiss="alert" style="display: flex; margin-left: 1px; padding: 5px; width: max-content; color: white; justify-content: center;">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          {% endif %}
-                      {% endfor %}
-                  </div>
-              {% endif %}
-          {% endwith %}
-      {% endif %}
-  </div>
-  
-  <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          setTimeout(function() {
-              var alerts = document.querySelectorAll(".alert");
-              alerts.forEach(function(alert) {
-                  alert.classList.add("fade-out");
-                  alert.addEventListener("transitionend", function() {
-                      alert.remove();
-                  });
-              });
-          }, 2000); // 2 seconds
-      });
-  </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const alerts = document.querySelectorAll('.alert');
+
+        if (alerts.length) {
+            // Automatically hide the first alert after 5 seconds
+            setTimeout(function () {
+                const firstAlert = alerts[0];
+
+                // Smooth fade out by removing the 'show' class and adding the 'fade' class
+                firstAlert.classList.remove('show');
+                firstAlert.classList.add('fade');
+
+                // Remove alert element after the fade-out completes (500ms)
+                setTimeout(() => firstAlert.remove(), 500);
+            }, 5000);  // Adjust delay as per your needs (5000ms = 5 seconds)
+        }
+    });
+</script>
+
+<style>
+    /* Style for positioning flash messages */
+    .flashmessage {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 9999;
+        max-width: 400px;
+    }
+
+    .messages-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .alert {
+        margin-bottom: 10px;
+        transition: opacity 0.5s ease-out;
+    }
+
+    .alert.fade {
+        opacity: 0;
+    }
+
+    /* Optional: Success and Error message custom styles */
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+</style>
+
 
     <div class="container">{% block content %} {% endblock %}</div>
     <!-- login Modal -->

@@ -139,31 +139,33 @@ function formatPhoneNumber(event) {
 
 function showNotification(message, loading = false) {
     const notification = document.getElementById('notification');
-    const loadingSpinner = loading ? `<div class="spinner"></div>` : '';
-    notification.innerHTML = `${loadingSpinner} ${message}`;
-    notification.classList.add('show');
+    const loadingSpinner = loading ? `<div class="spinner"></div>` : ''; // Spinner for loading state
+    notification.innerHTML = `${loadingSpinner} ${message}`; // Set the message and spinner
+    notification.classList.add('show'); // Display the notification
 
     setTimeout(() => {
-        notification.classList.remove('show');
-    }, 10000); // Hide notification after 10 seconds
+        notification.classList.remove('show'); // Hide notification after 20 seconds
+    }, 20000); // Changed from 10000ms (10 seconds) to 20000ms (20 seconds)
 }
+
 
 async function processPayment() {
     const phoneInput = document.getElementById('phone').value;
-    const formattedPhone = phoneInput.replace(/\D/g, '');
+    const formattedPhone = phoneInput.replace(/\D/g, ''); // Remove non-digit characters
 
-    if (!validatePhoneNumber(formattedPhone)) {
+    if (!validatePhoneNumber(formattedPhone)) { // Check phone number validity
         showNotification('Please enter a valid 12-digit phone number starting with 254.');
         return;
     }
 
-    const totalAmount = calculateTotal();
+    const totalAmount = calculateTotal(); // Calculate the total amount in the cart
     
-    if (totalAmount <= 0) {
+    if (totalAmount <= 0) { // Check if cart is empty
         showNotification('Your cart is empty. Please add items before proceeding to payment.');
         return;
     }
 
+    // Collect product data
     const productIds = cart.map(item => `${item.id}:${item.quantity}`).join(',');
     const paymentData = {
         amount: totalAmount,
@@ -171,66 +173,53 @@ async function processPayment() {
         product_ids: productIds
     };
 
-    console.log('Payment data:', paymentData); // Debugging log
+    console.log('Payment data:', paymentData);
 
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Get CSRF token for security
 
-    // Show loading notification
-    showNotification('Processing payment, please wait...', true);
+    // Show loading notification for payment processing
+    showNotification('Payment initiated, please wait...', true);
 
     try {
+        // Send payment data to the server
         const response = await fetch('/pay', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
+                'X-CSRFToken': csrfToken // Include CSRF token for security
             },
-            body: JSON.stringify(paymentData)
+            body: JSON.stringify(paymentData) // Send payment data
         });
-        
-        const contentType = response.headers.get("Content-Type");
-        let result;
-        if (contentType && contentType.includes("application/json")) {
-            result = await response.json();
-        } else {
-            const text = await response.text(); // Read the response as text
-            console.error('Response was not JSON:', text);
-            showNotification('An unexpected error occurred. Please try again.');
-            return;
-        }
+
+        const result = await response.json();
         
         if (response.ok) {
-            handlePaymentSuccess(result);
+            // Show success notification for payment initiation
+            showNotification('Payment initiated successfully. Please check your phone for confirmation.', true);
+
+            // After payment initiation, ask for the pin
+            showNotification('Please enter the pin sent to your phone.', true);
         } else {
-            handlePaymentError(result);
+            // Show a message only if the response is not successful
+            showNotification('Payment initiation failed. Please try again later.');
         }
-    } catch (error) {
-        showNotification('An error occurred while processing your payment. Please try again.');
+    } catch (error){
+        // Show error notification if there is a problem with the payment process
+        showNotification('An error occurred. Please try again later.');
         console.error('Payment error:', error);
     }
 }
 
-function handlePaymentSuccess(result) {
+function showNotification(message, loading = false) {
+    const notification = document.getElementById('notification');
+    const loadingSpinner = loading ? `<div class="spinner"></div>` : ''; // Spinner for loading state
+    notification.innerHTML = `${loadingSpinner} ${message}`; // Set the message and spinner
+    notification.classList.add('show'); // Display the notification
+
     setTimeout(() => {
-        if (!result.pinEntered) {
-            showNotification('Payment not completed: please enter the pin sent to your phone.');
-        } else {
-            showNotification('Payment processed, check your phone and enter pin...'); // Show notification
-            cart = []; // Clear cart
-            displayCart(); // Refresh the cart display
-        }
-    }, 10000); // Check for pin entry after 10 seconds
+        notification.classList.remove('show'); // Hide notification after 20 seconds
+    }, 20000); // Timeout set to 20 seconds
 }
-
-function handlePaymentError(result) {
-    console.error('Payment failed response:', result);
-    if (result.error === 'Insufficient balance') {
-        showNotification('Payment failed due to insufficient balance.');
-    } else {
-        showNotification(`Payment failed: ${result.error || 'Unknown error occurred'}`);
-    }
-}
-
 // Call fetchProducts and fetchAdditionalProducts on page load
 fetchProducts();
 fetchAdditionalProducts();

@@ -243,21 +243,22 @@
 
   
   function deleteNote(noteId) {
-      fetch("{{ url_for('views.delete_note') }}", { // Use Flask's url_for function for URL generation
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-          headers: {
-              "Content-Type": "application/json"
-          }
-      }).then(response => {
-          if (response.ok) {
-              window.location.reload();
-          } else {
-              console.error('Failed to delete note');
-          }
-      }).catch((error) => {
-          console.error('Error:', error);
-      });
-  }
+    fetch("{{ url_for('views.delete_note') }}", { // Use Flask's url_for function for URL generation
+        method: "POST",
+        body: JSON.stringify({ noteId: noteId }),
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token() }}" // Include CSRF token here
+        }
+    }).then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Failed to delete note');
+        }
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+}
 </script>
 {% endblock %}

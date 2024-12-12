@@ -1125,6 +1125,7 @@ def view_orders():
 
 @views.route('/order/<int:transaction_id>')
 @login_required
+
 def order_details(transaction_id):
     try:
         transaction = PaymentTransaction.query.get_or_404(transaction_id)
