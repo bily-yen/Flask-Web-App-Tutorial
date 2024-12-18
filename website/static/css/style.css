@@ -1648,19 +1648,162 @@ section#wcuindextop {
 .prdetails-link {
   font-size: 12px;  /* Set the font size */
   color: white;  /* Text color - white for contrast */
-  background-color: rgba(0, 98, 255, 0.444);  /* Green background color */
+  background-color: silver;  /* Green background color */
   text-decoration: none;  /* Remove the default underline */
   font-weight: bold;  /* Make the text bold */
   border-radius: 5px;  /* Round corners for the button */
   display: inline-block;  /* Ensure it behaves like a block element while staying inline */
   transition: background-color 0.3s, transform 0.3s; /* Add smooth transition for hover effects */
   margin-left: 0;
-  margin-top: 5px;
+  margin-top: 2px;
   width: min-content;
+  margin-bottom: 5px;
+}
+/* Larger Section Styling */
+#electronics-section {
+  padding: 30px 10%;
+  background-color: powderblue;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
 }
 
+/* Title Styling */
+
+/* Introduction Section */
+.section-intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-intro p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Electronics Types Layout (4 in a row) */
+.electronics-types {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between sections */
+  margin-bottom: 30px;
+}
+
+.electronics-type {
+  flex: 1;
+  padding: 20px;
+  background-color: silver;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.electronics-types h4{
+
+  background-color: transparent;
+
+}
+
+.electronics-type:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.electronics-type h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.electronics-type p {
+  font-size: 16px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* Product Navigation with Scroll Arrows */
+.product-navigation {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: powderblue;
+  border-radius: 5px;
+  width: 999;
+  padding: 0;
+}
+
+/* Scroll Arrows for navigating products */
+.scroll-arrow {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.scroll-arrow:hover {
+  color: #777;
+}
+
+/* Scroll arrow positioning */
+#scroll-left,
+#scroll-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#scroll-left {
+  left: 10px;
+}
+
+#scroll-right {
+  right: 10px;
+}
+
+/* Product Container Styling */
+.product-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: var(--white);
+  box-shadow: 0 2px 10px var(--shadow);
+  scroll-snap-type: x mandatory;
+  width: 99%;
+  
+  /* Hide scrollbar */
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Hide the scrollbar for Webkit-based browsers (Chrome, Safari) */
+.product-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Product Box Image and Name */
+.product-box img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-box p {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
 .prdetails-link:hover {
-  background-color: goldenrod;  /* Darker green on hover */
+  background-color: black;  /* Darker green on hover */
   text-decoration: none;  /* Keep the text unstyled on hover */
   transform: scale(1.05);  /* Slightly enlarge the button on hover */
   color: white;
@@ -1668,12 +1811,10 @@ section#wcuindextop {
 
 .prdetails-link:focus {
   outline: none;  /* Remove the outline when focused (optional) */
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);  /* Add a focus ring for accessibility */
+  box-shadow: 0 0 0 3px white;  /* Add a focus ring for accessibility */
 }
 
-.prdetails-link:active {
-  background-color: #1e7e34;  /* Darker green when the button is clicked */
-}
+
 
 /* Hover effect on product detail container */
 .product-detail-info:hover {

@@ -94,7 +94,7 @@ function displayAccessories(products) {
     productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
 }
 
-function createProductHTML(item, index) {
+function createProductHTML(item) {
     const { id, image, name, price } = item;
     const imgSrc = image ? `/static/${image}` : '/static/SPAPHOTOS/placeholder-image.png';
     
@@ -111,10 +111,10 @@ function createProductHTML(item, index) {
                 <h2>Ksh ${price}.00</h2>
                 <div class='inputs'>
                     <div class='inputbox'>
-                        <label for="quantity-${index}" style="font-weight: bold;font-size:16px; margin-right: 5px;">Quantity:</label>
+                        <label for="quantity-${id}" style="font-weight: bold;font-size:16px; margin-right: 5px;">Quantity:</label>
                         <input 
                             type="number" 
-                            id="quantity-${index}" 
+                            id="quantity-${id}" 
                             min="1" 
                             value="1" 
                             placeholder="1" 
@@ -123,35 +123,34 @@ function createProductHTML(item, index) {
                         />
                     </div>
                 </div>
-                <button onclick='addToCart(${index})'>Add to cart</button>
+                <button onclick='addToCart(${JSON.stringify(item)})'>Add to cart</button>
                 <!-- Link to the product details page -->
                 <a href="${productDetailUrl}" class="prdetails-link">Details</a>
             </div>
         </div>
     `;
-
 }
 
-function addToCart(index) {
-    const quantityInput = document.getElementById(`quantity-${index}`);
+function addToCart(item) {
+    const quantityInput = document.getElementById(`quantity-${item.id}`);
     const quantity = parseInt(quantityInput.value, 10) || 1;
 
     // Check if the product already exists in the cart
-    const existingProductIndex = cart.findIndex(item => item.id === products[index].id);
+    const existingProductIndex = cart.findIndex(cartItem => cartItem.id === item.id);
     
     if (existingProductIndex > -1) {
         // Update the quantity if the product already exists in the cart
         cart[existingProductIndex].quantity += quantity;
     } else {
         // Add the product to the cart if it's not already there
-        cart.push({ ...products[index], quantity });
+        cart.push({ ...item, quantity });
     }
 
     // Display updated cart
     displayCart();
 
     // Display a brief confirmation that the product was added to the cart
-    showCartConfirmation(`${products[index].name} added to cart!`);
+    showCartConfirmation(`${item.name} added to cart!`);
 
     // Move the cart icon slightly
     moveCartIcon();

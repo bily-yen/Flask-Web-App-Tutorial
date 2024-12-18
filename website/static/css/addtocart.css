@@ -174,14 +174,14 @@
 }
 .main-content h3 {
     padding: 5px;
-    color: white;
+    color: black;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 22px;
     margin-top: 0;
     width: max-content;
     overflow: hidden;
     font-weight:300 ;
-    background-color: brown;
+
 }
 
 .main-content h4 {
@@ -266,17 +266,7 @@
 }
 
 /* Section Titles (Heading 3 for sections) */
-.main-content h3 {
-    padding: 5px;
-    color: white;
-    border-radius: 10px;
-    font-size: 18px;
-    margin-top: 0;
-    width: max-content;
-    overflow: hidden;
-    font-weight: 300;
-    background-color: brown;
-}
+
 
 /* For subheadings like h4 */
 .main-content h4 {
@@ -310,13 +300,14 @@
 .furniture-container,
 .clothing-container,
 .phones-container,
-.accessories-container {
+.tools-container {
     display: flex;
     gap: 10px; /* Space between products */
     flex-wrap: nowrap; /* Prevent wrapping of products */
     overflow-x: auto; /* Allow horizontal scrolling for overflow */
     width: 100%; /* Ensure the container takes up full available width */
     scroll-snap-type: x mandatory; /* Enable scroll snapping */
+    background-color: #28a745;
 }
 
 /* Styling for Product Boxes inside the containers */
@@ -327,11 +318,11 @@
 .furniture-container > .product-box,
 .clothing-container > .product-box,
 .phones-container > .product-box,
-.accessories-container > .product-box {
+.tools-container > .product-box {
     flex-shrink: 0; /* Prevent products from shrinking */
     width: 200px; /* Set a specific width for each product box */
     height: 300px; /* Adjust height accordingly */
-    background-color: #ddd; /* Example styling */
+    background-color: black; /* Example styling */
     margin: 0; /* Reset margin if needed */
     border-radius: 8px; /* Example border */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for product boxes */
@@ -541,12 +532,16 @@
 }
 
 #another-product-section,
-#root,
-.product-container,
-.additional-product-container {
+#root,#furniture-product-section,
+#clothing-product-section,#phones-product-section,
+#accessories-product-section {
     -ms-overflow-style: none;  /* For Internet Explorer 10+ */
     scrollbar-width: none; /* For Firefox */
+    background-color: goldenrod;
+    padding-left: 5px;
+    width: 90%;
 }
+
 
 
 
@@ -581,6 +576,7 @@
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%; /* Adjust to fit your layout */
     max-width: 100%; /* Limit to full width */
+    background-color: #b0b0b0;
 }
 
 /* Product Box Styles */
@@ -589,11 +585,12 @@
     flex-direction: column;
     border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width:100%; /* Set a fixed width for boxes */
-    scroll-snap-align: start; /* Snap to the start of each box */
-    height: min-content;
-
-
+    width: 99%; /* Set a fixed width for boxes */
+    height: max-content;
+    background-color: white;
+  
+   
+  
 }
 
 
@@ -630,9 +627,11 @@
 /* Image Styles */
 .img-box {
     width: max-content;
-    height: 100px;
+    height: 120px;
     margin-top: 0;  /* No extra space at the top */
     margin-bottom: 0;  /* No extra space at the bottom */
+    margin-left: 8px;
+    padding: 10px;
 
 }
 
@@ -673,8 +672,8 @@
     flex-direction: row;  /* Align items in a row */
     gap: 0;  /* No gap between input boxes */
     margin: 0;  /* Remove margin */
-    padding: 2px;  /* Remove padding */
-    flex: 1;  /* Ensure the inputs take equal space */
+    padding: 0;  /* Remove padding */
+    flex:auto;
 }
 
 .inputbox {
@@ -683,13 +682,13 @@
     font-size: 12px;
     color: gray;
     font-weight: 900;
-    flex: 0.5;  /* Ensure each input box takes equal width */
+    flex: 2;  /* Ensure each input box takes equal width */
 }
 
 .inputbox input {
-    width: 80%;  /* Make input box span full width of the container */
-    padding: 2px;  /* Padding inside the input field */
-    font-size: 15px;
+    width: 90%;  /* Make input box span full width of the container */
+    padding: 0;  /* Padding inside the input field */
+    font-size: 12px;
     color: gray;
     font-weight: 900;
     border: none;
@@ -703,7 +702,6 @@
     font-size: 14px;  /* Font size */
     color: black;  /* Text color */
     font-weight: 300;  /* Bold font weight */
-    background-color: white;  /* Optional background color */
     border-radius: 5px;  /* Slightly rounded corners */
     flex: 1;  /* Ensure <h2> takes equal space as other elements */
 }
@@ -722,7 +720,7 @@
 }
 
 button:hover {
-    background-color: white;
+    background-color: gray;
 }
 
 #payButton:hover {
@@ -804,6 +802,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
 }
+
 
 /* Cart Item Styles */
 .cart-item {
@@ -1161,3 +1160,122 @@ button:hover {
 .cart-notification.fade-out {
     opacity: 0;
 }
+
+/* General Section Styling */
+section {
+    padding: 30px 10%;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color:powderblue;
+  }
+  
+  /* Title Styling */
+  section h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: brown;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Introduction Section */
+  .section-intro {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .section-intro p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Layout for Product Navigation */
+  .additional-product-navigation, .product-navigation {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Scroll Arrows for navigating products */
+  .scroll-arrow {
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .scroll-arrow:hover {
+    color: #777;
+  }
+  
+  /* Scroll arrow positioning */
+  #scroll-left,
+  #scroll-left-households,
+  #scroll-left-furniture,
+  #scroll-left-clothing,
+  #scroll-left-phones,
+  #scroll-left-accessories {
+    position: absolute;
+    left: 10px;
+  }
+  
+  #scroll-right,
+  #scroll-right-households,
+  #scroll-right-furniture,
+  #scroll-right-clothing,
+  #scroll-right-phones,
+  #scroll-right-accessories {
+    position: absolute;
+    right: 10px;
+  }
+  
+  /* Container for Products (dynamic content) */
+  .additional-product-container, .product-container, .furniture-container, .clothing-container, .phones-container, .tools-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px var(--shadow);
+    scroll-snap-type: x mandatory;
+    width: 90%;
+    scrollbar-width: thin;  /* Firefox */
+    scrollbar-color: transparent transparent; /* Firefox */
+  }
+  
+  /* Hide the scrollbar for Webkit-based browsers (Chrome, Safari) */
+  .additional-product-container::-webkit-scrollbar,
+  .product-container::-webkit-scrollbar,
+  .furniture-container::-webkit-scrollbar,
+  .clothing-container::-webkit-scrollbar,
+  .phones-container::-webkit-scrollbar,
+  .tools-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Product Box Image and Name */
+  .product-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .product-box p {
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* For electronics-type section items */
+  .electronics-types, .additional-product-navigation, .product-navigation {
+    margin-bottom: 30px;
+  }
