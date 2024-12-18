@@ -21,6 +21,50 @@ async function fetchAdditionalProducts() {
     }
 }
 
+async function fetchPhones() {
+    try {
+        const response = await fetch('/api/phones');
+        const phones = await response.json();
+        console.log("Phones fetched:", phones);  // Log to check the fetched data
+        displayPhones(phones);
+    } catch (error) {
+        console.error('Error fetching phones:', error);
+    }
+}
+
+async function fetchFurniture() {
+    try {
+        const response = await fetch('/api/furniture');
+        const furniture = await response.json();
+        console.log("Furniture fetched:", furniture);  // Log to check the fetched data
+        displayFurniture(furniture);
+    } catch (error) {
+        console.error('Error fetching furniture:', error);
+    }
+}
+
+async function fetchClothing() {
+    try {
+        const response = await fetch('/api/clothing');
+        const clothing = await response.json();
+        console.log("Clothing fetched:", clothing);  // Log to check the fetched data
+        displayClothing(clothing);
+    } catch (error) {
+        console.error('Error fetching clothing:', error);
+    }
+}
+
+async function fetchAccessories() {
+    try {
+        const response = await fetch('/api/accessories');
+        const accessories = await response.json();
+        console.log("Accessories fetched:", accessories);  // Log to check the fetched data
+        displayAccessories(accessories);
+    } catch (error) {
+        console.error('Error fetching accessories:', error);
+    }
+}
+
 function displayProducts(products) {
     const productContainer = document.getElementById('root');
     productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
@@ -29,6 +73,25 @@ function displayProducts(products) {
 function displayAdditionalProducts(products) {
     const additionalProductContainer = document.getElementById('another-product-section');
     additionalProductContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
+}
+function displayPhones(products) {
+    const productContainer = document.getElementById('phones-product-section');
+    productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
+}
+
+function displayFurniture(products) {
+    const productContainer = document.getElementById('furniture-product-section');
+    productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
+}
+
+function displayClothing(products) {
+    const productContainer = document.getElementById('clothing-product-section');
+    productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
+}
+
+function displayAccessories(products) {
+    const productContainer = document.getElementById('accessories-product-section');
+    productContainer.innerHTML = products.map((item, index) => createProductHTML(item, index)).join('');
 }
 
 function createProductHTML(item, index) {
@@ -62,7 +125,7 @@ function createProductHTML(item, index) {
                 </div>
                 <button onclick='addToCart(${index})'>Add to cart</button>
                 <!-- Link to the product details page -->
-                <a href="${productDetailUrl}" class="prdetails-link">View Details</a>
+                <a href="${productDetailUrl}" class="prdetails-link">Details</a>
             </div>
         </div>
     `;
@@ -73,21 +136,59 @@ function addToCart(index) {
     const quantityInput = document.getElementById(`quantity-${index}`);
     const quantity = parseInt(quantityInput.value, 10) || 1;
 
+    // Check if the product already exists in the cart
     const existingProductIndex = cart.findIndex(item => item.id === products[index].id);
+    
     if (existingProductIndex > -1) {
+        // Update the quantity if the product already exists in the cart
         cart[existingProductIndex].quantity += quantity;
     } else {
+        // Add the product to the cart if it's not already there
         cart.push({ ...products[index], quantity });
     }
 
+    // Display updated cart
     displayCart();
+
+    // Display a brief confirmation that the product was added to the cart
+    showCartConfirmation(`${products[index].name} added to cart!`);
+
+    // Move the cart icon slightly
+    moveCartIcon();
 }
 
 function removeFromCart(index) {
+    // Remove the item from the cart
     cart.splice(index, 1);
+
+    // Display updated cart
     displayCart();
 }
 
+function showCartConfirmation(message) {
+    // Create a small popup notification near the cart icon
+    const notification = document.createElement('div');
+    notification.classList.add('cart-notification');
+    notification.innerHTML = message;
+    
+    // Append the notification to the body
+    document.body.appendChild(notification);
+    
+    // Set a timeout to remove the notification after 2 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 2000); // Remove the notification after 2 seconds
+}
+
+function moveCartIcon() {
+    const cartIcon = document.querySelector('.cart');
+    cartIcon.classList.add('moved'); // Add the 'moved' class to animate the cart icon
+    
+    // Reset the cart icon position after 2 seconds
+    setTimeout(() => {
+        cartIcon.classList.remove('moved');
+    }, 2000);
+}
 function displayCart() {
     const cartItemContainer = document.getElementById('cartItem');
     const countElement = document.getElementById('count');
@@ -137,15 +238,29 @@ function formatPhoneNumber(event) {
     input.value = phoneNumber;
 }
 
+// Function to show the notification in the center of the modal
 function showNotification(message, loading = false) {
     const notification = document.getElementById('notification');
-    const loadingSpinner = loading ? `<div class="spinner"></div>` : ''; // Spinner for loading state
-    notification.innerHTML = `${loadingSpinner} ${message}`; // Set the message and spinner
-    notification.classList.add('show'); // Display the notification
-
+    const overlay = document.getElementById('overlay');
+    const cartItem = document.getElementById('cartItem'); // Assuming the cart items container has an id 'cartItem'
+    
+    // Show loading spinner if needed
+    const loadingSpinner = loading ? `<div class="spinner"></div>` : ''; 
+    notification.innerHTML = `${loadingSpinner} ${message}`; // Set message and spinner
+    notification.classList.add('show'); // Show notification
+    
+    // Show overlay and make background static
+    overlay.classList.add('show');
+    
+    // Fade the cart content to show it's inactive
+    cartItem.classList.add('faded');
+    
+    // Set timeout to hide notification and restore cart after 20 seconds
     setTimeout(() => {
-        notification.classList.remove('show'); // Hide notification after 20 seconds
-    }, 20000); // Changed from 10000ms (10 seconds) to 20000ms (20 seconds)
+        notification.classList.remove('show'); // Hide notification
+        overlay.classList.remove('show'); // Hide overlay
+        cartItem.classList.remove('faded'); // Restore cart
+    }, 20000); // Show notification for 20 seconds
 }
 
 
@@ -221,5 +336,11 @@ function showNotification(message, loading = false) {
     }, 20000); // Timeout set to 20 seconds
 }
 // Call fetchProducts and fetchAdditionalProducts on page load
-fetchProducts();
-fetchAdditionalProducts();
+
+// Call the fetch functions for each category
+fetchProducts();           // Fetch general products
+fetchAdditionalProducts(); // Fetch additional products
+fetchFurniture();          // Corrected function name
+fetchClothing();           // Corrected function name
+fetchPhones();             // Corrected function name
+fetchAccessories(); 

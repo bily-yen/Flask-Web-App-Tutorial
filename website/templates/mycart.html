@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token for security -->
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="cart.js"></script> <!-- Link to external JS file -->
+</head>
+<body>
+    <!-- Page Header -->
+    <header>
+        <h1>Product Catalog</h1>
+        <a href="/" class="back-button">Back to Shop</a> <!-- Back to the homepage -->
+    </header>
+
+    <!-- Product Display Section -->
+    <section id="productCatalog">
+        <!-- Product items will be dynamically inserted here -->
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cartContainer">
+        <h2>Your Cart</h2>
+        <div id="cartItem">Your cart is empty</div>
+        <div>
+            <h3>Total: <span id="total">Ksh 0.00</span></h3>
+            <h4>Items: <span id="count">0</span></h4>
+        </div>
+        <div>
+            <input type="text" id="phone" placeholder="Enter phone number" oninput="formatPhoneNumber(event)" />
+            <button id="payButton" onclick="processPayment()">Proceed to Payment</button>
+        </div>
+    </section>
+
+    <!-- Notification Section -->
+    <div id="notification" class="notification hidden"></div>
+
+    <script>
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchProducts();
+            fetchAdditionalProducts();
+        });
+    </script>
+</body>
+</html>

@@ -1648,7 +1648,7 @@ section#wcuindextop {
 .prdetails-link {
   font-size: 12px;  /* Set the font size */
   color: white;  /* Text color - white for contrast */
-  background-color: #28a745;  /* Green background color */
+  background-color: rgba(0, 98, 255, 0.444);  /* Green background color */
   text-decoration: none;  /* Remove the default underline */
   font-weight: bold;  /* Make the text bold */
   border-radius: 5px;  /* Round corners for the button */

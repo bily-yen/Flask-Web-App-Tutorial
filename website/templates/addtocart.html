@@ -160,9 +160,45 @@ rel="stylesheet"
     </script>
     
     <style>
+
+        /* Cart Icon Initial Styles */
+.cart {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for moving */
+}
+
+/* Notification Styles */
+#notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the notification */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+}
+
+/* Show notification */
+#notification.show {
+    opacity: 1;
+}
+
+/* Cart Icon moved slightly */
+.cart.moved {
+    transform: translateX(10px); /* Move cart icon 10px to the right */
+}
         /* Style for positioning flash messages */
+
+        
         .flashmessage {
-            position: fixed;
+            position: absolute;
             top: 10px;
             right: 10px;
             z-index: 9999;
@@ -198,79 +234,106 @@ rel="stylesheet"
     </style>
     
    <!-- Section below the navbar -->
-   <section class="equipment-section">
+<section class="equipment-section">
     <h2>
         <span class="checkmark">&#10003;</span> Available Equipment
     </h2>
     <div class="equipment-container">
-        <div class="equipment-card" onclick="location.href='/equipment/printer';">
+        <!-- Clicking these cards will scroll to the respective sections -->
+        <div class="equipment-card" onclick="location.href='#electronics-section';">
             <img src="{{ url_for('static', filename='SPAPHOTOS/printer.jpg') }}" alt="Printer" />
-            <p>Printers</p>
+            <p>Electronics</p>
         </div>
-        <div class="equipment-card" onclick="location.href='/equipment/computer';">
+        <div class="equipment-card" onclick="location.href='#phones-section';">
             <img src="{{ url_for('static', filename='SPAPHOTOS/comp.jpg') }}" alt="Computer" />
-            <p>Computers</p>
+            <p>Phones</p>
         </div>
-        <div class="equipment-card" onclick="location.href='/equipment/scanner';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/scanner2.jpg') }}" alt="Scanner" />
-            <p>Scanners</p>
-        </div>
-        <div class="equipment-card" onclick="location.href='/equipment/projector';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/projector.jpg') }}" alt="Projector" />
-            <p>Projectors</p>
-        </div>
-        <div class="equipment-card" onclick="location.href='/equipment/photocopier';">
+     
+        <div class="equipment-card" onclick="location.href='#households-section';">
             <img src="{{ url_for('static', filename='SPAPHOTOS/photocopier.jpg') }}" alt="Photocopier" />
-            <p>Photocopiers</p>
+            <p>Households</p>
         </div>
-        <div class="equipment-card" onclick="location.href='/equipment/laminator';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/laminator.jpg') }}" alt="Laminator" />
-            <p>Laminators</p>
+        <div class="equipment-card" onclick="location.href='#furniture-section';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/printer.jpg') }}" alt="Sofa" />
+            <p>Furniture</p>
         </div>
-        <div class="equipment-card" onclick="location.href='/equipment/whiteboard';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/Whiteboards.jpg') }}" alt="Whiteboard" />
-            <p>Whiteboards</p>
+        <div class="equipment-card" onclick="location.href='#clothing-section';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/printer.jpg') }}" alt="Clothing" />
+            <p>Clothing</p>
         </div>
-        <div class="equipment-card" onclick="location.href='/equipment/monitor';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/hpultra.jpg') }}" alt="Monitor" />
-            <p>Monitors</p>
-        </div>
-        <div class="equipment-card" onclick="location.href='/equipment/laptop';">
-            <img src="{{ url_for('static', filename='SPAPHOTOS/hpspectre.jpg') }}" alt="Laptop" />
-            <p>Laptops</p>
+        <div class="equipment-card" onclick="location.href='#accessories-section';">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/printer.jpg') }}" alt="Accessories" />
+            <p>Tools & Accessories</p>
         </div>
     </div>
 </section>
 
 <div class="main-content-container">
     <div class="main-content">
-        <h3>
-            New Arrivals
-            <!-- Bubbles -->
-        </h3>
+        <!-- Electronics Section -->
+        <h3 id="electronics-section">Electronics</h3>
         <div class="product-navigation">
             <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left"></i>
-            
             <div class="product-container" id="root">
-
-                
-                <!-- Dynamic product boxes will be injected here -->
+                <!-- Dynamic electronics product boxes will be injected here -->
             </div>
             <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right"></i>
         </div>
-        <h3>
-            popular products
-            <!-- Bubbles -->
-        </h3>
+        
+        <!-- Households Section -->
+        <h3 id="households-section">Households</h3>
         <div class="additional-product-navigation">
             <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-additional"></i>
             <div class="additional-product-container" id="another-product-section">
-                <!-- Additional products will be injected here -->
+                <!-- Dynamic household product boxes will be injected here -->
             </div>
             <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-additional"></i>
         </div>
+        
+        <!-- Furniture Section -->
+        <h3 id="furniture-section">Furniture</h3>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-furniture"></i>
+            <div class="furniture-container" id="furniture-product-section">
+                <!-- Dynamic furniture product boxes will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-furniture"></i>
+        </div>
+        
+        <!-- Clothing Section -->
+        <h3 id="clothing-section">Clothing</h3>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-clothing"></i>
+            <div class="clothing-container" id="clothing-product-section">
+                <!-- Dynamic clothing product boxes will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-clothing"></i>
+        </div>
+
+        <!-- Phones Section -->
+<h3 id="phones-section">Phones</h3>
+<div class="product-navigation">
+    <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-phones"></i>
+    <div class="phones-container" id="phones-product-section">
+        <!-- Dynamic phones product boxes will be injected here -->
+    </div>
+    <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-phones"></i>
+</div>
+        
+        <!-- Accessories Section -->
+        <h3 id="accessories-section">Accessories</h3>
+        <div class="additional-product-navigation">
+            <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-accessories"></i>
+            <div class="tools-container" id="accessories-product-section">
+                <!-- Dynamic accessories product boxes will be injected here -->
+            </div>
+            <i class="fa-solid fa-chevron-right scroll-arrow" id="scroll-right-accessories"></i>
+        </div>
     </div>
 </div>
+
+
+
 
 
 
@@ -326,10 +389,14 @@ rel="stylesheet"
 document.addEventListener("DOMContentLoaded", function() {
     const root = document.getElementById('root');
     const additionalSection = document.getElementById('another-product-section');
+    const furnitureSection = document.getElementById('furniture-product-section');
+    const clothingSection = document.getElementById('clothing-product-section');
+    const phonesSection = document.getElementById('phones-product-section');
+    const accessoriesSection = document.getElementById('accessories-product-section');
 
     const scrollAmount = 100; // Set scroll amount to 100
 
-    // Add event listeners for product scrolling
+    // Add event listeners for scrolling in product sections
     document.getElementById('scroll-left').addEventListener('click', () => {
         root.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
@@ -346,29 +413,78 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('scroll-right-additional').addEventListener('click', () => {
         additionalSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
-});
 
+    // Add event listeners for Furniture section scrolling
+    document.getElementById('scroll-left-furniture').addEventListener('click', () => {
+        furnitureSection.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-furniture').addEventListener('click', () => {
+        furnitureSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Add event listeners for Clothing section scrolling
+    document.getElementById('scroll-left-clothing').addEventListener('click', () => {
+        clothingSection.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-clothing').addEventListener('click', () => {
+        clothingSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Add event listeners for Phones section scrolling
+    document.getElementById('scroll-left-phones').addEventListener('click', () => {
+        phonesSection.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-phones').addEventListener('click', () => {
+        phonesSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Add event listeners for Accessories section scrolling
+    document.getElementById('scroll-left-accessories').addEventListener('click', () => {
+        accessoriesSection.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-accessories').addEventListener('click', () => {
+        accessoriesSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+});
 
 
 </script>
 
     <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
+<!-- Modal for Cart -->
+<div id="cartModal" class="modal">
+    <!-- Overlay background -->
+    
+    <!-- Notification (centered in the modal) -->
+   
+    
+    <!-- Modal Content -->
+    <div class="modal-content">
         <div id="notification" class="notification hidden"></div>
-        <div class="modal-content">
-            <span class="close" onclick="toggleCartModal()">&times;</span>
-            <div class="head">
-                <p>My Cart</p>
-            </div>
-            <div id="cartItem">Your cart is empty</div>
-            <div class="foot">
-                <h3>Total</h3>
-                <h2 id="total">Ksh 0.00</h2>
-                <input type="text" id="phone" placeholder="Enter phone number" oninput="formatPhoneNumber(event)" />
-                <button id="payButton" onclick="processPayment()">Pay</button>
-            </div>
+        <!-- Close button -->
+        <span class="close" onclick="toggleCartModal()">&times;</span>
+        
+        <!-- Cart Header -->
+        <div class="head">
+            <p>My Cart</p>
+        </div>
+        
+        <!-- Cart Items (initially empty) -->
+        <div id="cartItem">Your cart is empty</div>
+        
+        <!-- Cart Footer with Total and Phone Number Input -->
+        <div class="footercart">
+            <h3>Total</h3>
+            <h2 id="total">Ksh 0.00</h2>
+            <input type="text" id="phone" placeholder="Enter phone number" oninput="formatPhoneNumber(event)" />
+            <button id="payButton" onclick="processPayment()">Pay</button>
         </div>
     </div>
+</div>
 
     <script src="{{ url_for('static', filename='js/addtocart.js') }}"></script>
     <script>

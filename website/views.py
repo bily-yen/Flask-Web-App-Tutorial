@@ -25,7 +25,7 @@ from flask_limiter.util import get_remote_address
 from sqlalchemy.orm import joinedload
 
 # Import models and database setup
-from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct, Computer, Printer, Scanner, Projector, Photocopier, Laminator, Whiteboard, Monitor, Laptop, db
+from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct,db
 from dotenv import load_dotenv
 import os
 socketio = SocketIO()
@@ -330,19 +330,6 @@ def product_detail(product_id):
     # Render the template, passing the top-selling products
     return render_template('productdetail.html', product=product, printer=printer, top_selling_products=top_selling_products)
 
-@views.route('/printer/<int:printer_id>', methods=['GET'])
-def printer_detail(printer_id):
-    # Fetch the printer by its ID
-    printer = Printer.query.get_or_404(printer_id)
-    
-    # Fetch top sellers: Printers with quantity < 15
-    top_selling_printers = Printer.query.filter(Printer.quantity < 15).all()
-    
-    # No product in this route, as it's a printer detail page
-    product = None
-    
-    # Render the template, passing the top-selling printers
-    return render_template('productdetail.html', product=product, printer=printer, top_selling_printers=top_selling_printers)
 
 
 
@@ -359,219 +346,59 @@ def get_additional_products_route():
     } for product in products]  # Convert Product objects to dictionaries
     return jsonify(additional_product_list)  # Return as JSON
 
-@views.route('/api/hp-printer', methods=['GET'])
-def get_hp_printers():
-    products = Printer.query.filter_by(brand='HP').all()
-    product_list = [{
+# Route for Furniture products
+@views.route('/api/furniture', methods=['GET'])
+def get_furniture_products_route():
+    furniture_products = Product.query.filter(Product.type == 'Furniture').all()  # Filter by Furniture type
+    furniture_product_list = [{
         'id': product.id,
         'name': product.name,
         'price': product.price,
         'image': product.image,
         'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
+    } for product in furniture_products]
+    return jsonify(furniture_product_list)  # Return as JSON
 
-# Fetch products for Epson
-@views.route('/api/epson', methods=['GET'])
-def get_epson_products():
-    products = Printer.query.filter_by(brand='Epson').all()
-    product_list = [{
+
+# Route for Clothing products
+@views.route('/api/clothing', methods=['GET'])
+def get_clothing_products_route():
+    clothing_products = Product.query.filter(Product.type == 'Clothing').all()  # Filter by Clothing type
+    clothing_product_list = [{
         'id': product.id,
         'name': product.name,
         'price': product.price,
         'image': product.image,
         'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
+    } for product in clothing_products]
+    return jsonify(clothing_product_list)  # Return as JSON
 
-# Fetch products for Ricoh
-@views.route('/api/ricoh', methods=['GET'])
-def get_ricoh_products():
-    products = Printer.query.filter_by(brand='Ricoh').all()
-    product_list = [{
+# Route for Phones products
+@views.route('/api/phones', methods=['GET'])
+def get_phones_products_route():
+    phones_products = Product.query.filter(Product.type == 'Phones').all()  # Filter by Phones type
+    phones_product_list = [{
         'id': product.id,
         'name': product.name,
         'price': product.price,
         'image': product.image,
         'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
+    } for product in phones_products]
+    return jsonify(phones_product_list)  # Return as JSON
 
-# Fetch products for Canon
-@views.route('/api/canon', methods=['GET'])
-def get_canon_products():
-    products = Printer.query.filter_by(brand='Canon').all()
-    product_list = [{
+
+# Route for Accessories products
+@views.route('/api/accessories', methods=['GET'])
+def get_accessories_products_route():
+    accessories_products = Product.query.filter(Product.type == 'Tools & Accessories').all()  # Filter by Accessories type
+    accessories_product_list = [{
         'id': product.id,
         'name': product.name,
         'price': product.price,
         'image': product.image,
         'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
-
-@views.route('/api/hp', methods=['GET'])
-def get_hp_products():
-    products = Computer.query.filter_by(brand='HP').all()  # Fetch HP products from the computers table
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
-
-# Fetch products for Dell
-@views.route('/api/dell', methods=['GET'])
-def get_dell_products():
-    products = Computer.query.filter_by(brand='Dell').all()  # Fetch Dell products from the computers table
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
-
-# Fetch products for Lenovo
-@views.route('/api/lenovo', methods=['GET'])
-def get_lenovo_products():
-    products = Computer.query.filter_by(brand='Lenovo').all()  # Fetch Lenovo products from the computers table
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
-
-# Fetch products for MacOS
-@views.route('/api/macos', methods=['GET'])
-def get_macos_products():
-    products = Computer.query.filter_by(brand='MacOS').all()  # Fetch MacOS products from the computers table
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list)
-
-# Fetch HP scanners
-@views.route('/api/hp-scanners', methods=['GET'])
-def get_hp_scanners():
-    products = Scanner.query.filter_by(brand='HP').all()
-    return format_product_list(products)
-
-# Fetch Epson scanners
-@views.route('/api/epson-scanners', methods=['GET'])
-def get_epson_scanners():
-    products = Scanner.query.filter_by(brand='Epson').all()
-    return format_product_list(products)
-
-# Fetch Ricoh scanners
-@views.route('/api/ricoh-scanners', methods=['GET'])
-def get_ricoh_scanners():
-    products = Scanner.query.filter_by(brand='Ricoh').all()
-    return format_product_list(products)
-
-# Fetch Canon scanners
-@views.route('/api/canon-scanners', methods=['GET'])
-def get_canon_scanners():
-    products = Scanner.query.filter_by(brand='Canon').all()
-    return format_product_list(products)
-
-# Function to format product list for JSON response
-def format_product_list(products):
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list), 200
-
-# Fetch HP projectors
-@views.route('/api/hp-projectors', methods=['GET'])
-def get_hp_projectors():
-    products = Projector.query.filter_by(brand='HP').all()
-    return format_product_list(products)
-
-# Fetch Epson projectors
-@views.route('/api/epson-projectors', methods=['GET'])
-def get_epson_projectors():
-    products = Projector.query.filter_by(brand='Epson').all()
-    return format_product_list(products)
-
-# Fetch BenQ projectors
-@views.route('/api/benq-projectors', methods=['GET'])
-def get_benq_projectors():
-    products = Projector.query.filter_by(brand='BenQ').all()
-    return format_product_list(products)
-
-# Fetch ViewSonic projectors
-@views.route('/api/viewsonic-projectors', methods=['GET'])
-def get_viewsonic_projectors():
-    products = Projector.query.filter_by(brand='ViewSonic').all()
-    return format_product_list(products)
-
-# Fetch Canon projectors
-@views.route('/api/canon-projectors', methods=['GET'])
-def get_canon_projectors():
-    products = Projector.query.filter_by(brand='Canon').all()
-    return format_product_list(products)
-
-# Fetch Ricoh projectors
-@views.route('/api/ricoh-projectors', methods=['GET'])
-def get_ricoh_projectors():
-    products = Projector.query.filter_by(brand='Ricoh').all()
-    return format_product_list(products)
-
-# Function to format product list for JSON response
-def format_product_list(products):
-    product_list = [{
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'image': product.image,
-        'quantity': product.quantity
-    } for product in products]
-    return jsonify(product_list), 200
-
-@views.route('/api/hp-photocopiers', methods=['GET'])
-def get_hp_photocopiers():
-    products = Photocopier.query.filter_by(brand='HP').all()
-    return format_product_list(products)
-
-# Fetch Epson photocopiers
-@views.route('/api/epson-photocopiers', methods=['GET'])
-def get_epson_photocopiers():
-    products = Photocopier.query.filter_by(brand='Epson').all()
-    return format_product_list(products)
-
-# Fetch Ricoh photocopiers
-@views.route('/api/ricoh-photocopiers', methods=['GET'])
-def get_ricoh_photocopiers():
-    products = Photocopier.query.filter_by(brand='Ricoh').all()
-    return format_product_list(products)
-
-# Fetch Canon photocopiers
-@views.route('/api/canon-photocopiers', methods=['GET'])
-def get_canon_photocopiers():
-    products = Photocopier.query.filter_by(brand='Canon').all()
-    return format_product_list(products)
-
-# Fetch additional brands as needed
-# Example: Fetch Xerox photocopiers
-@views.route('/api/xerox-photocopiers', methods=['GET'])
-def get_xerox_photocopiers():
-    products = Photocopier.query.filter_by(brand='Xerox').all()
-    return format_product_list(products)
+    } for product in accessories_products]
+    return jsonify(accessories_product_list)  # Return as JSON
 
 # Function to format product list for JSON response
 def format_product_list(products):
@@ -585,56 +412,27 @@ def format_product_list(products):
     return jsonify(product_list), 200
 
 
-@views.route('/api/epson-laminators', methods=['GET'])
-def get_epson_laminators():
-    products = Laminator.query.filter_by(brand='Epson').all()
-    return format_product_list(products)
+# Function to format product list for JSON response
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
 
-# Fetch Ricoh laminators
-@views.route('/api/ricoh-laminators', methods=['GET'])
-def get_ricoh_laminators():
-    products = Laminator.query.filter_by(brand='Ricoh').all()
-    return format_product_list(products)
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
 
-# Fetch Canon laminators
-@views.route('/api/canon-laminators', methods=['GET'])
-def get_canon_laminators():
-    products = Laminator.query.filter_by(brand='Canon').all()
-    return format_product_list(products)
-
-# Fetch Xerox laminators
-@views.route('/api/xerox-laminators', methods=['GET'])
-def get_xerox_laminators():
-    products = Laminator.query.filter_by(brand='Xerox').all()
-    return format_product_list(products)
-
-# Fetch additional brands
-@views.route('/api/brandA-laminators', methods=['GET'])
-def get_brandA_laminators():
-    products = Laminator.query.filter_by(brand='BrandA').all()
-    return format_product_list(products)
-
-@views.route('/api/brandB-laminators', methods=['GET'])
-def get_brandB_laminators():
-    products = Laminator.query.filter_by(brand='BrandB').all()
-    return format_product_list(products)
-
-@views.route('/api/brandC-laminators', methods=['GET'])
-def get_brandC_laminators():
-    products = Laminator.query.filter_by(brand='BrandC').all()
-    return format_product_list(products)
-
-@views.route('/api/brandD-laminators', methods=['GET'])
-def get_brandD_laminators():
-    products = Laminator.query.filter_by(brand='BrandD').all()
-    return format_product_list(products)
-
-# ... continue for additional brands up to BrandAT ...
-
-@views.route('/api/brandAT-laminators', methods=['GET'])
-def get_brandAT_laminators():
-    products = Laminator.query.filter_by(brand='BrandAT').all()
-    return format_product_list(products)
 
 # Function to format product list for JSON response
 def format_product_list(products):
@@ -649,66 +447,6 @@ def format_product_list(products):
 
 
 
-# Fetch Quartet whiteboards
-@views.route('/api/whiteboard-quartet', methods=['GET'])
-def get_quartet_products():
-    products = Whiteboard.query.filter_by(brand='Quartet').all()
-    return format_product_list(products)
-
-# Fetch Expo whiteboards
-@views.route('/api/whiteboard-expo', methods=['GET'])
-def get_expo_products():
-    products = Whiteboard.query.filter_by(brand='Expo').all()
-    return format_product_list(products)
-
-# Fetch Ghent whiteboards
-@views.route('/api/whiteboard-ghent', methods=['GET'])
-def get_ghent_products():
-    products = Whiteboard.query.filter_by(brand='Ghent').all()
-    return format_product_list(products)
-
-# Fetch Lorell whiteboards
-@views.route('/api/whiteboard-lorell', methods=['GET'])
-def get_lorell_products():
-    products = Whiteboard.query.filter_by(brand='Lorell').all()
-    return format_product_list(products)
-
-# Fetch MasterVision whiteboards
-@views.route('/api/whiteboard-mastervision', methods=['GET'])
-def get_mastervision_products():
-    products = Whiteboard.query.filter_by(brand='Mastervision').all()
-    return format_product_list(products)
-
-# Fetch Officemate whiteboards
-@views.route('/api/whiteboard-officemate', methods=['GET'])
-def get_officemate_products():
-    products = Whiteboard.query.filter_by(brand='Officemate').all()
-    return format_product_list(products)
-
-# Fetch Rubbermaid whiteboards
-@views.route('/api/whiteboard-rubbermaid', methods=['GET'])
-def get_rubbermaid_products():
-    products = Whiteboard.query.filter_by(brand='Rubbermaid').all()
-    return format_product_list(products)
-
-# Fetch Zonon whiteboards
-@views.route('/api/whiteboard-zonon', methods=['GET'])
-def get_zonon_products():
-    products = Whiteboard.query.filter_by(brand='Zonon').all()
-    return format_product_list(products)
-
-# Fetch Bi-Silque whiteboards
-@views.route('/api/whiteboard-bi-silque', methods=['GET'])
-def get_bi_silque_products():
-    products = Whiteboard.query.filter_by(brand='Bi-silque').all()
-    return format_product_list(products)
-
-# Fetch 3M whiteboards
-@views.route('/api/whiteboard-3m', methods=['GET'])
-def get_three_m_products():
-    products = Whiteboard.query.filter_by(brand='3M').all()
-    return format_product_list(products)
-
 # Function to format product list for JSON response
 def format_product_list(products):
     product_list = [{
@@ -719,69 +457,6 @@ def format_product_list(products):
         'quantity': product.quantity
     } for product in products]
     return jsonify(product_list), 200
-
-
-@views.route('/api/epson-monitors', methods=['GET'])
-def get_epson_monitors():
-    products = Monitor.query.filter_by(brand='Epson').all()
-    return format_product_list(products)
-
-
-
-@views.route('/gwena', methods=['GET'])
-def gwena_assignment():
-    return render_template('gwena.html', user=current_user)
-
-
-
-@views.route('/api/ricoh-monitors', methods=['GET'])
-def get_ricoh_monitors():
-    products = Monitor.query.filter_by(brand='Ricoh').all()
-    return format_product_list(products)
-
-@views.route('/api/canon-monitors', methods=['GET'])
-def get_canon_monitors():
-    products = Monitor.query.filter_by(brand='Canon').all()
-    return format_product_list(products)
-
-@views.route('/api/xerox-monitors', methods=['GET'])
-def get_xerox_monitors():
-    products = Monitor.query.filter_by(brand='Xerox').all()
-    return format_product_list(products)
-
-@views.route('/api/dell-laptops', methods=['GET'])
-def get_dell_laptops():
-    products = Laptop.query.filter_by(brand='Dell').all()
-    return format_product_list(products)
-
-@views.route('/api/hp-laptops', methods=['GET'])
-def get_hp_laptops():
-    products = Laptop.query.filter_by(brand='HP').all()
-    return format_product_list(products)
-
-@views.route('/api/lenovo-laptops', methods=['GET'])
-def get_lenovo_laptops():
-    products = Laptop.query.filter_by(brand='Lenovo').all()
-    return format_product_list(products)
-
-@views.route('/api/apple-laptops', methods=['GET'])
-def get_apple_laptops():
-    products = Laptop.query.filter_by(brand='Apple').all()
-    return format_product_list(products)
-
-@views.route('/api/asus-laptops', methods=['GET'])
-def get_asus_laptops():
-    products = Laptop.query.filter_by(brand='Asus').all()
-    return format_product_list(products)
-
-
-
-
-@views.route('/api/laptops', methods=['GET'])
-def get_laptops():
-    products = Laptop.query.all()
-    return jsonify([{'id': p.id, 'name': p.name, 'price': p.price, 'image': p.image, 'quantity': p.quantity} for p in products])
-
 
 @views.route('/myshops', methods=['GET'])
 @login_required
@@ -805,50 +480,6 @@ def claim():
     Return to the admin page.
     """
     return render_template('claim.html', user=current_user)
-
-@views.route('/illustration', methods=['GET'])
-def cover():
-    """
-    Return to the admin page.
-    """
-    return render_template('illustration.html', user=current_user)
-
-
-@views.route('/equipment/printer')
-def printer():
-    return render_template('printer.html')  # Adjust the template as needed
-
-@views.route('/equipment/computer')
-def computer():
-    return render_template('computer.html')  # Adjust the template as needed
-
-@views.route('/equipment/scanner')
-def scanner():
-    return render_template('scanner.html')  # Adjust the template as needed
-
-@views.route('/equipment/projector')
-def projector():
-    return render_template('projector.html')  # Adjust the template as needed
-
-@views.route('/equipment/photocopier')
-def photocopier():
-    return render_template('photocopier.html')  # Adjust the template as needed
-
-@views.route('/equipment/laminator')
-def laminator():
-    return render_template('laminator.html')  # Adjust the template as needed
-
-@views.route('/equipment/whiteboard')
-def whiteboard():
-    return render_template('whiteboard.html')  # Adjust the template as needed
-
-@views.route('/equipment/monitor')
-def monitor():
-    return render_template('monitor.html')  # Adjust the template as needed
-
-@views.route('/equipment/laptop')
-def laptop():
-    return render_template('laptop.html')  # Adjust the template as needed
 
 
 
@@ -1111,6 +742,10 @@ def get_access_token():
         return None
 
 
+@views.route('/cart')
+def my_cart():
+    return render_template('mycart.html')
+
 @views.route('/orders')
 @login_required
 def view_orders():
@@ -1148,168 +783,11 @@ def order_details(transaction_id):
 
 
 
-@views.route('/add_printer', methods=['GET', 'POST'])
-@login_required
-def add_printer_product():
-    # Fetch computers to display on page load
-    printers = Printer.query.all()  # Fetch computers to display
-
-    if request.method == 'POST':
-        name = request.form['name']
-        price = request.form['price']
-        quantity = request.form.get('quantity', type=int)
-        image = request.files.get('image')
-        brand = request.form['brand']
-        specifications = request.form.get('specifications')  # Optional field
-
-        # Check if an image was provided
-        if not image or image.filename == '':
-            flash('No image selected for uploading', 'error')
-            return redirect(request.url)
-
-        # Validate the image file type
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
-
-            relative_image_path = os.path.join('SPAPHOTOS', filename)  # Adjust as necessary
-            
-            # Enumerate existing computers to assign a new ID
-            new_id = len(printers) + 1  # Start new ID from existing count
-            
-            new_printer = Printer(
-                id=new_id,  # Set the new ID
-                name=name,
-                price=float(price),
-                quantity=quantity,
-                image=str(relative_image_path),
-                brand=brand,
-                specifications=specifications
-            )
-
-            db.session.add(new_printer)
-            db.session.commit()
-            flash('Printer product added successfully!', 'success')
-            return redirect(url_for('views.add_printer_product'))  # Redirect to the same page
-        else:
-            flash('Allowed image types are - png, jpg, jpeg', 'error')
-            return redirect(request.url)
-
-    # Render the template with computers data
-    return render_template('add_product.html', printers=printers)
-
-@views.route('/add_comp', methods=['GET', 'POST'])
-@login_required
-def add_computer_product():
-    # Fetch computers to display on page load
-    computers = Computer.query.all()  # Fetch computers to display
-
-    if request.method == 'POST':
-        name = request.form['name']
-        price = request.form['price']
-        quantity = request.form.get('quantity', type=int)
-        image = request.files.get('image')
-        brand = request.form['brand']
-        specifications = request.form.get('specifications')  # Optional field
-
-        # Check if an image was provided
-        if not image or image.filename == '':
-            flash('No image selected for uploading', 'error')
-            return redirect(request.url)
-
-        # Validate the image file type
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
-
-            relative_image_path = os.path.join('SPAPHOTOS', filename)  # Adjust as necessary
-            
-            # Enumerate existing computers to assign a new ID
-            new_id = len(computers) + 1  # Start new ID from existing count
-            
-            new_computer = Computer(
-                id=new_id,  # Set the new ID
-                name=name,
-                price=float(price),
-                quantity=quantity,
-                image=str(relative_image_path),
-                brand=brand,
-                specifications=specifications
-            )
-
-            db.session.add(new_computer)
-            db.session.commit()
-            flash('Computer product added successfully!', 'success')
-            return redirect(url_for('views.add_computer_product'))  # Redirect to the same page
-        else:
-            flash('Allowed image types are - png, jpg, jpeg', 'error')
-            return redirect(request.url)
-
-    # Render the template with computers data
-    return render_template('add_product.html', computers=computers)
-
-@views.route('/add_scanner', methods=['GET', 'POST'])
-@login_required
-def add_scanner_product():
-    # Fetch scanners to display on page load
-    scanners = Scanner.query.all()  # Fetch scanners to display
-
-    if request.method == 'POST':
-        name = request.form['name']
-        price = request.form['price']
-        quantity = request.form.get('quantity', type=int)
-        image = request.files.get('image')
-        brand = request.form['brand']
-        specifications = request.form.get('specifications')  # Optional field
-
-        # Check if an image was provided
-        if not image or image.filename == '':
-            flash('No image selected for uploading', 'error')
-            return redirect(request.url)
-
-        # Validate the image file type
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
-
-            relative_image_path = os.path.join('SPAPHOTOS', filename)  # Adjust as necessary
-            
-            # Enumerate existing scanners to assign a new ID
-            new_id = len(scanners) + 1  # Start new ID from existing count
-            
-            new_scanner = Scanner(
-                id=new_id,  # Set the new ID
-                name=name,
-                price=float(price),
-                quantity=quantity,
-                image=str(relative_image_path),
-                brand=brand,
-                specifications=specifications
-            )
-
-            db.session.add(new_scanner)
-            db.session.commit()
-            flash('Scanner product added successfully!', 'success')
-            return redirect(url_for('views.add_scanner_product'))  # Redirect to the same page
-        else:
-            flash('Allowed image types are - png, jpg, jpeg', 'error')
-            return redirect(request.url)
-
-    # Render the template with scanners data
-    return render_template('add_product.html', scanners=scanners)
-
-
 @views.route('/add_product', methods=['GET', 'POST'])
 @login_required
 def add_product():
     # Fetch products to display on page load
     products = Product.query.all()  # Fetch products to display
-    computers = Computer.query.all()
-    printers = Printer.query.all()
-    scanners = Scanner.query.all()
 
     if request.method == 'POST':
         name = request.form['name']
@@ -1340,7 +818,7 @@ def add_product():
             return redirect(request.url)
 
     # Render the template with products data
-    return render_template('add_product.html', products=products , computers=computers, printers=printers, scanners =scanners)
+    return render_template('add_product.html', products=products)
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -1355,17 +833,4 @@ def get_image(product_class, product_id):
 @views.route('/product_image/<int:product_id>')
 def product_image(product_id):
     return get_image(Product, product_id)
-
-@views.route('/computer_image/<int:product_id>')
-def computer_image(product_id):
-    return get_image(Computer, product_id)
-
-@views.route('/printer_image/<int:product_id>')
-def printer_image(product_id):
-    return get_image(Printer, product_id)
-
-
-@views.route('scanner_image/<int:product_id>')
-def scanner_image(product_id):
-    return get_image(Scanner, product_id)
 
