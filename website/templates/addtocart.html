@@ -60,16 +60,16 @@ rel="stylesheet"
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
-        </button>
-  <div class="logo" style="padding: 2px; position: relative;">
-      <!-- Logo Title -->
-      <a href="/index" class="logo-link" style="background-color: transparent; padding: 0;">
-        <h1 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
-            <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">X</span>as
-        </h1>
-    </a>
-      <!-- Logo Subtitle -->
-      <div style="font-size: 0.8rem; color: black;">Technological Solutions and Supplies</div>
+   >
+    </a>     </button>
+    <div class="logo" style="position: relative;">
+      <!-- Logo Link -->
+      <a href="/index" class="logo-link" style="background-color: transparent; padding: 3px;">
+          <!-- Replace the text-based logo with the GIGO.PNG image -->
+          <img src="{{ url_for('static', filename='SPAPHOTOS/GIGO.PNG') }}" alt="GIGO Logo" style="max-width: 700px; height: auto;"/>
+      </a>
+  </div>
+  
   
       <!-- About Us Notification (Initially Hidden) -->
       <div class="about-us-notification">
@@ -79,7 +79,7 @@ rel="stylesheet"
         </div>
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
-          <a class="nav-item nav-link" id="services-link" href="services">Services</a>
+          <a class="nav-item nav-link" id="services-link" href="/services">Services</a>
   
           <a class="nav-item nav-link" id="addtocartid" href="/products">Products</a>
           <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
@@ -111,12 +111,12 @@ rel="stylesheet"
                   <span class="grey-t">t</span><span class="bold-x">X</span>
               </a>
             {% endif %}
-            
             <div class="cart" onclick="toggleCartModal()">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <p id="count">0</p>
             </div>
         </div>
+       
     </nav>
     
   
@@ -231,6 +231,9 @@ rel="stylesheet"
             color: #721c24;
             border-color: #f5c6cb;
         }
+
+
+        
     </style>
     
    <!-- Section below the navbar -->

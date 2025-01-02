@@ -12,24 +12,19 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: white;
+  background-color: powderblue;
 }
 
 .navbar {
-  background-color:#0056b3; /* White background */
+  
+  background-color:ghostwhite;/* White background */
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(62, 62, 62); /* Add bottom border */
   position: fixed; /* Fixed position */
   top: 0; /* Stay at the top */
   left: 0;
   right: 0; /* Full width */
-  transition: transform 0.3s ease; /* Smooth transition */
   z-index: 1000; /* Make sure it stays above other content */
-  margin-bottom: 3px;
-  padding: 20px 50px; /* Increased padding for top/bottom and left/right */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
 }
 
 .welcome-header h1{
@@ -49,43 +44,47 @@ body {
 .navbar-nav {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Center items vertically */
 }
 
 .navbar-nav a {
   display: flex;
   flex-direction: row;
   align-items: center; /* Center items vertically */
-  padding: 25px;
+  padding: 5px;
   font-size: 12px;
 }
 
+/* Add the retro pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* Styling for the logo container */
 .logo {
-  background-color: white; /* Black background for the entire logo area */
-  padding: 5px; /* Space around the logo */
+  padding: 3px; /* Space around the logo */
   border-radius: 5px; /* Rounded corners for the logo container */
   display: inline-block; /* Make the logo behave like a block element */
   transition: background-color 0.3s ease; /* Smooth transition for background */
+  margin-left: 20px;
 }
 
 /* Styling for the logo heading (TechXas) */
 .logo h1 {
   margin: 0;
   font-weight: bold;
-  font-size: 1.8rem;
+  font-size: 2.5rem; /* Adjust size for more emphasis */
+  font-family: 'Press Start 2P', cursive; /* Apply the retro font */
   position: relative;
-  color: rgb(173, 173, 173); /* Default color of the logo */
+  color: white; /* Default color of the logo */
   transition: color 0.3s ease, transform 0.3s ease;
   text-align: center;
   text-transform: lowercase;
+  letter-spacing: 3px; /* Slightly space out the letters */
 }
 
 /* Styling for the logo subheading */
 .logo h1 span {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Adjust size of the subheading */
+  color: black; /* Add a nice contrasting color */
 }
-
 .logo div {
   font-size: 0.8rem;
   color: white;  /* Default subtitle color */
@@ -166,47 +165,29 @@ body {
 /* Hover effect for the logo container background */
 
 
-.nav-links li a {
-  color: white; /* Black text for links */
-  text-decoration: none; /* Remove underline */
-  font-size: 1.0rem; /* Smaller font size for links */
-  padding: 12px; /* Padding for links */
-  transition: background-color 0.3s; /* Smooth background change on hover */
-}
+
+
 
 
 
 /* Nav Item Styles */
 .nav-item {
-  margin: 0 10px; /* Adjust margins for spacing between items */
+  margin: 0 5px; /* Adjust margins for spacing between items */
 }
 
 .nav-link {
   font-weight: bolder;
   font-style: italic;
-  color: white;
+  color: black;
   padding:5px; /* Adjust padding as needed */
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
+  padding: 20px; /* Padding for links */
 }
 
-/* 3D Effect */
-.nav-link::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transform: translateY(5px);
-  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-}
 
-.nav-link:hover {
-  animation: flashColors 1s ease-in-out forwards;
-}
+
 #login {
 font-size: 42px; /* Adjust the size as needed */
 font-weight: bold;
@@ -518,20 +499,22 @@ ul li {
 
 a {
   text-decoration: none; /* Remove underline */
-  background-color:brown;
+  background-color:goldenrod;
   border-radius: 5px;
+  font-size: 18px;
 }
 /* CSS for the Instagram icon */
 a i {
-  font-size: 14px;  /* Icon size */
+  font-size: 10px;  /* Icon size */
   color: black;  /* Instagram's color */
   transition: transform 0.3s ease, color 0.3s ease;
-  padding: 0;
+  padding: 2px;
 }
 
-a i:hover {
+a :hover {
   transform: scale(1.2);  /* Scales the icon */
   color: white;  /* A darker shade for hover effect */
+  padding: 2px;
 }
 
 .grey-t {
@@ -549,7 +532,6 @@ a i:hover {
   display: flex;
   background-color:whitesmoke; /* Background color */
   padding-top: 35px; /* Padding around the footer */
-  box-shadow: 5px 2px 2px black;
   margin-bottom: 30px;
   margin-top: 20px;
   padding-bottom: 40px;
@@ -563,6 +545,103 @@ a i:hover {
   margin: 0 auto; /* Center the container */
   padding: 0 20px; /* Padding on the sides */
 }
+/* Container for the image section */
+/* Right Side Section for Images */
+.image-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 images per row */
+  margin-top: 20px;
+  background-color: black;
+  padding: 5px;
+  width: 100%;
+}
+
+/* Individual Image Container */
+.image-item-container {
+  display: flex;
+  flex-direction: column; /* Stack image and caption vertically */
+  padding: 5px;
+
+  }
+
+/* Individual Image Styling */
+.image-item {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow around images */
+}
+
+.image-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
+}
+
+/* Caption Styling */
+.image-caption {
+  font-size: 1rem;
+  color: #333; /* Dark gray text */
+  margin-top: 8px;
+  font-weight: bold;
+  text-transform: capitalize; /* Capitalize first letter */
+}
+/* Shop section - general layout for the left and right parts */
+.shop-section {
+  display: flex;                  /* Arrange left and right sections side by side */
+  gap: 30px;                      /* Space between the left and right sections */
+  justify-content: space-between; /* Ensure that the sections are spaced out */
+  align-items: flex-start;        /* Align items to the top */
+  margin: 30px 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Left Side Section */
+.left-side {
+  flex: 1;                       /* Left side takes up 1/3 of the width */
+  padding: 8px;
+  background-color: #f9f9f9;     /* Light background for the left section */
+  border-radius: 10px;           /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+  text-align: center;            /* Center text inside the left section */
+}
+
+.left-side h2 {
+  color: #9a7d1e;                /* Golden color for the heading */
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.left-side p {
+  color: #555;                   /* Dark gray for text */
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.shop-link {
+  display: inline-block;
+  background-color: goldenrod;   /* Golden color for the link */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.shop-link:hover {
+  background-color: darkgoldenrod; /* Darker shade when hovered */
+}
+
+/* Individual Image Styling */
+.image-item {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow around images */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.image-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
+}
 
 .near-footer__top {
   display: flex; /* Flexbox layout for top sections */
@@ -574,11 +653,10 @@ a i:hover {
 .near-footer__section {
   flex: 1; /* Allow sections to grow equally */
   margin: 0 10px; /* Margins between sections */
+  padding: px;
+
 }
-.near-footer__section h5 {
-  color: #757373;
-  font-weight: 700;
-}
+
 
 .near-footer__categories ul {
   list-style-type: none; /* Remove default bullet points */
@@ -624,6 +702,7 @@ a i:hover {
 }
 a:hover {
   text-decoration: underline; /* Underline on hover */
+  font-size: x-large;
 }
 
 .footer__location, .footer__affiliates {
@@ -674,10 +753,9 @@ a:hover {
   justify-content: center; /* Center items */
   flex-wrap: wrap; /* Allow items to wrap */
   margin: 0px 0; /* Add some margin to the top and bottom */
-  background-color: rgb(255, 255, 255);
+  background-color: powderblue;
   padding: 35px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px white; /* Subtle shadow for depth */
 }
 
 .cctechspac h1 {
@@ -1162,6 +1240,7 @@ border-radius: 5px;
   padding: 20px;
   text-align: center;
   border-radius: 8px;
+  background-color: ghostwhite;
 }
 
 .section-item i {
@@ -1547,17 +1626,17 @@ section#wcuindextop {
 }
 
 .hometop-container {
-  margin: 20px;
-  margin-top: 5px;
+  margin-top: 150px;
+  padding: 5px;
 }
 .hometop-item {
   text-align: center;
-  padding: 10px;
-  background: gainsboro;
+  background: silver;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex: 1 1 150px; /* Adjust size as needed */
   margin: 10px;
+
   
 }
 /* General container styles */
@@ -1733,7 +1812,7 @@ section#wcuindextop {
   position: relative;
   background-color: powderblue;
   border-radius: 5px;
-  width: 999;
+  width: 100%;
   padding: 0;
 }
 
@@ -2067,13 +2146,14 @@ color: brown;
 
 }
 .hometop-icon {
-  font-size: 3rem;
+  font-size: 2rem;
   color: black; /* Adjust color as needed */
+  margin-top: 5px;
 }
 .hometop-title {
   margin-top: 10px;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 200;
 }
 .search-bar-container {
   display: flex;
@@ -2224,12 +2304,9 @@ nav{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1vw 8vw;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
-  z-index: 999;
-  border:#757373;
-  border-bottom: #7a94e8 5px;
-  border-style: groove;
+  z-index: 1000;
+  height: 23%;
+ 
 
 }
 
@@ -2241,7 +2318,7 @@ nav img{
 
 
 nav .navigation ul li{
-  margin-left: 20px;
+  margin-left: 2px;
 }
 
 nav .navigation ul li a{
@@ -3356,21 +3433,7 @@ padding: 15px;
     white-space: nowrap;
   }
   
-  /* 3D Effect */
-  .nav-link::before {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transform: translateY(5px);
-    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
-    border-radius: 5px;
-  }
-  
-  .nav-link:hover {
-    text-decoration: underline;
-    animation: flashColors 1.5s ease-in-out forwards;
-  }
+
   #login {
   font-size: 42px; /* Adjust the size as needed */
   font-weight: bold;
@@ -4516,21 +4579,12 @@ section#wcuindextop {
     flex-direction: column;
   }
 
-  .navbar-nav a {
-    font-size: 11px; /* Adjust font size */
-    padding: 8px; /* Adjust padding */
-  }
   .reasons h1{
     margin-right: 20px;
     padding: 5px;
   }
 
-  .nav-link {
-    font-size: 13px; /* Adjust font size */
-    padding: 12px; /* Adjust padding */
-    display: block;
-  }
-
+ 
   .laiheader-top-header {
     padding: 12px; /* Adjust padding */
     margin-top: 55px; /* Reduce margin */
@@ -4727,3 +4781,6 @@ section#wcuindextop {
     }
 
 }
+
+
+

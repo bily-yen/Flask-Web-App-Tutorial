@@ -15,7 +15,9 @@
     font-size: 18px;
 }
 
-
+#product-total {
+    display: none;  /* This will hide the total price element */
+}
 /* Social Link Styles */
 .social-link {
     background-color: brown; /* Brown background for social media links */
@@ -33,7 +35,7 @@
         padding-top: 80px;
         background-color: black;
         margin-bottom: 0;
-        margin-top: 50px;
+        margin-top: 80px;
     }
     .equipment-section h2{
         padding: 25px;
@@ -307,7 +309,6 @@
     overflow-x: auto; /* Allow horizontal scrolling for overflow */
     width: 100%; /* Ensure the container takes up full available width */
     scroll-snap-type: x mandatory; /* Enable scroll snapping */
-    background-color: #28a745;
 }
 
 /* Styling for Product Boxes inside the containers */
@@ -547,17 +548,17 @@
 
 .scroll-arrow {
     margin: 0 15px;
-    font-size: 24px;
+    font-size: 20px;
     color: black;
     cursor: pointer;
-    padding: 10px;
+    padding: 5px;
     background-color: white;
-    border-radius: 10px; /* Add border-radius for rounded corners */
+    border-radius: 5px; /* Add border-radius for rounded corners */
     transition: background-color 0.3s, transform 0.2s; /* Add smooth transition for background-color and scaling effect */
 }
 
 .scroll-arrow:hover {
-    background-color: brown; /* Light background color on hover */
+    background-color: goldenrod; /* Light background color on hover */
     transform: scale(1.1); /* Slightly scale up on hover */
 }
 
@@ -1222,7 +1223,8 @@ section {
   #scroll-left-phones,
   #scroll-left-accessories {
     position: absolute;
-    left: 10px;
+    left: 2px;
+    
   }
   
   #scroll-right,
@@ -1232,7 +1234,7 @@ section {
   #scroll-right-phones,
   #scroll-right-accessories {
     position: absolute;
-    right: 10px;
+    right: 2px;
   }
   
   /* Container for Products (dynamic content) */
@@ -1278,4 +1280,21 @@ section {
   /* For electronics-type section items */
   .electronics-types, .additional-product-navigation, .product-navigation {
     margin-bottom: 30px;
-  }
+  }/* Image Section Container */
+/* Image Section Container */
+.image-section {
+    display: grid;                /* Using grid layout */
+    grid-template-columns: repeat(3, 33.33%); /* 3 images per row, each takes 33.33% of the row */
+    gap: 0;                        /* No gap between images */
+    width: 100%;                   /* Ensures the section spans the full width */
+    margin-top: 30px;              /* Adds space at the top */
+    padding-bottom: 20px;          /* Adds bottom padding */
+}
+
+/* Individual Image Styling */
+.image-item {
+    width: 100%;                   /* Each image takes full width of its container */
+    height: auto;                  /* Maintain aspect ratio */
+    border-radius: 5px;            /* Rounded corners */
+    object-fit: cover;             /* Ensures the image covers the space without stretching */
+}

@@ -349,14 +349,14 @@ def get_additional_products_route():
 # Route for Furniture products
 @views.route('/api/furniture', methods=['GET'])
 def get_furniture_products_route():
-    furniture_products = Product.query.filter(Product.type == 'Furniture').all()  # Filter by Furniture type
+    products = Product.query.filter(Product.type == 'Furniture').all()  # Filter by Furniture type
     furniture_product_list = [{
         'id': product.id,
         'name': product.name,
         'price': product.price,
         'image': product.image,
         'quantity': product.quantity
-    } for product in furniture_products]
+    } for product in products]
     return jsonify(furniture_product_list)  # Return as JSON
 
 
@@ -457,6 +457,31 @@ def format_product_list(products):
         'quantity': product.quantity
     } for product in products]
     return jsonify(product_list), 200
+
+@views.route('/api/update_quantity', methods=['POST'])
+def update_quantity_route():
+    # Parse the incoming request
+    data = request.get_json()  # Expecting {"id": <product_id>, "quantity": <new_quantity>}
+    product_id = data.get('id')
+    new_quantity = data.get('quantity')
+
+    if product_id is None or new_quantity is None:
+        return jsonify({'error': 'Product ID and quantity are required'}), 400
+
+    product = Product.query.get_or_404(product_id)
+    
+    # Update the quantity of the product
+    product.quantity = new_quantity
+    
+    # Commit the changes to the database
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Product quantity updated successfully',
+        'id': product.id,
+        'name': product.name,
+        'new_quantity': product.quantity
+    })
 
 @views.route('/myshops', methods=['GET'])
 @login_required

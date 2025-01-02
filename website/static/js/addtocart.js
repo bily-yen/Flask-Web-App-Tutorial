@@ -1,11 +1,16 @@
 let cart = [];
 let products = [];  // Global products array
+let additionalProducts = [];  // Store additional products
+let phones = [];    // Phones products
+let furniture = []; // Furniture products
+let clothing = [];  // Clothing products
+let accessories = []; // Accessories products
 
 async function fetchProducts() {
     try {
         const response = await fetch('/api/products');
-        products = await response.json();  // Store products globally
-        displayProducts(products);
+        products = await response.json();  // General products
+        displayProducts(products);  // Display general products
     } catch (error) {
         console.error('Error fetching products:', error);
     }
@@ -13,7 +18,7 @@ async function fetchProducts() {
 
 async function fetchAdditionalProducts() {
     try {
-        const response = await fetch('/api/additional'); // Updated endpoint for additional products
+        const response = await fetch('/api/additional');
         const additionalProducts = await response.json();
         displayAdditionalProducts(additionalProducts);
     } catch (error) {
@@ -21,11 +26,12 @@ async function fetchAdditionalProducts() {
     }
 }
 
+
 async function fetchPhones() {
     try {
         const response = await fetch('/api/phones');
-        const phones = await response.json();
-        console.log("Phones fetched:", phones);  // Log to check the fetched data
+        phones = await response.json();  // Store phones products
+        console.log("Phones fetched:", phones);
         displayPhones(phones);
     } catch (error) {
         console.error('Error fetching phones:', error);
@@ -35,8 +41,8 @@ async function fetchPhones() {
 async function fetchFurniture() {
     try {
         const response = await fetch('/api/furniture');
-        const furniture = await response.json();
-        console.log("Furniture fetched:", furniture);  // Log to check the fetched data
+        furniture = await response.json();  // Store furniture products
+        console.log("Furniture fetched:", furniture);
         displayFurniture(furniture);
     } catch (error) {
         console.error('Error fetching furniture:', error);
@@ -46,8 +52,8 @@ async function fetchFurniture() {
 async function fetchClothing() {
     try {
         const response = await fetch('/api/clothing');
-        const clothing = await response.json();
-        console.log("Clothing fetched:", clothing);  // Log to check the fetched data
+        clothing = await response.json();  // Store clothing products
+        console.log("Clothing fetched:", clothing);
         displayClothing(clothing);
     } catch (error) {
         console.error('Error fetching clothing:', error);
@@ -57,8 +63,8 @@ async function fetchClothing() {
 async function fetchAccessories() {
     try {
         const response = await fetch('/api/accessories');
-        const accessories = await response.json();
-        console.log("Accessories fetched:", accessories);  // Log to check the fetched data
+        accessories = await response.json();  // Store accessories products
+        console.log("Accessories fetched:", accessories);
         displayAccessories(accessories);
     } catch (error) {
         console.error('Error fetching accessories:', error);
@@ -99,8 +105,11 @@ function createProductHTML(item) {
     const imgSrc = image ? `/static/${image}` : '/static/SPAPHOTOS/placeholder-image.png';
     
     // Create a URL for the product details page dynamically using the product ID
-    const productDetailUrl = `/product/${id}`;  // This assumes your Flask route for product details is '/product/<int:product_id>'
+    const productDetailUrl = `/product/${id}`;
     
+    // Set the initial quantity value (always starts with 1 but can be modified)
+    const initialQuantity = 1;  // Or get from the cart if needed
+
     return `
         <div class='box'>
             <div class='img-box'>
@@ -116,33 +125,81 @@ function createProductHTML(item) {
                             type="number" 
                             id="quantity-${id}" 
                             min="1" 
-                            value="1" 
+                            value="${initialQuantity}" 
                             placeholder="1" 
                             style="width: 50px; border: 2px solid #ccc; padding: 5px; border-radius: 5px;" 
                             title="Select the quantity you want to order"
-                        />
+                            onchange="updateQuantity(${id}, this.value)"  <!-- Bind the onchange event -->
+                      
                     </div>
                 </div>
                 <button onclick='addToCart(${JSON.stringify(item)})'>Add to cart</button>
-                <!-- Link to the product details page -->
                 <a href="${productDetailUrl}" class="prdetails-link">Details</a>
             </div>
         </div>
     `;
 }
 
+function updateQuantity(productId, newQuantity) {
+    // Ensure the quantity is a valid number and at least 1
+    newQuantity = parseInt(newQuantity, 10) || 1;  // Default to 1 if the input is invalid
+    newQuantity = newQuantity < 1 ? 1 : newQuantity;  // Ensure minimum quantity is 1
+
+    // Find the product in the cart (if it exists)
+    const cartProduct = cart.find(item => item.id === productId);
+    if (cartProduct) {
+        // Update the product quantity in the cart
+        cartProduct.quantity = newQuantity;
+    } else {
+        // If the product is not in the cart, add it with the new quantity
+        const product = [...products, ...additionalProducts, ...phones, ...furniture, ...clothing, ...accessories]
+            .find(item => item.id === productId);
+        if (product) {
+            cart.push({ ...product, quantity: newQuantity });
+        }
+    }
+
+    // Update the displayed total price for the product
+    const product = [...products, ...additionalProducts, ...phones, ...furniture, ...clothing, ...accessories]
+        .find(item => item.id === productId);
+    if (product) {
+        // Update the displayed total price for the product based on the new quantity
+        const totalPriceElement = document.getElementById(`product-total-${productId}`);
+        if (totalPriceElement) {
+            totalPriceElement.innerText = (product.price * newQuantity).toFixed(2);  // Update total price
+        }
+    }
+
+    // Optionally, update cart total or cart UI as needed
+    updateCartUI();
+}
 function addToCart(item) {
     const quantityInput = document.getElementById(`quantity-${item.id}`);
-    const quantity = parseInt(quantityInput.value, 10) || 1;
+    
+    // Log to check the input field and quantity value
+    console.log('Adding to cart:', item.name);
+    console.log('Quantity input:', quantityInput);
+
+    if (!quantityInput) {
+        console.error('Quantity input field not found for product:', item.name);
+        return;  // Exit early if the input field is not found
+    }
+
+
+
+    const quantity = parseInt(quantityInput.value, 10) || 1;  // Default to 1 if input is invalid
+    console.log('Quantity:', quantity);
 
     // Check if the product already exists in the cart
     const existingProductIndex = cart.findIndex(cartItem => cartItem.id === item.id);
     
     if (existingProductIndex > -1) {
         // Update the quantity if the product already exists in the cart
-        cart[existingProductIndex].quantity += quantity;
+        console.log('Updating existing product in cart');
+        cart[existingProductIndex].quantity;
     } else {
         // Add the product to the cart if it's not already there
+        console.log('Adding new product to cart');
         cart.push({ ...item, quantity });
     }
 
@@ -155,6 +212,7 @@ function addToCart(item) {
     // Move the cart icon slightly
     moveCartIcon();
 }
+
 
 function removeFromCart(index) {
     // Remove the item from the cart

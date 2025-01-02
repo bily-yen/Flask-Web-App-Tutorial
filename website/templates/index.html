@@ -10,6 +10,15 @@
   width: 100%;
 }
 
+.btn{
+    padding: 5px;
+    height: max-content;
+    background-color: firebrick;
+}
+
+
+
+
 
  </style>
  
@@ -33,90 +42,238 @@
 </div>
    
 </section>
-<div class="slowmotion_securityh" style="color: brown; margin-top: 170px; font-weight: 900;">
-    <div class="catch_phrase" style="color: brown; font-size: 16px;">
-        Connecting You to Cutting-Edge Solutions    
+<div class="hometop-container d-flex flex-wrap justify-content-around" style="padding-top: 20px;">
+    <!-- Printing Services -->
+    <div class="hometop-item">
+        <i class="fas fa-tv hometop-icon"></i> <!-- TV icon for electronics -->
+        <h5 class="hometop-title">Electronics</h5>
     </div>
-    <h1 class="welcome_header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
-        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px; margin-top: 0;">Welcome to </span>
-        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2); ">X</span>as!
-    </h1>
+
+    <!-- Household Goods -->
+    <div class="hometop-item">
+        <i class="fas fa-couch hometop-icon"></i> <!-- Couch icon for household goods -->
+        <h5 class="hometop-title">Household Goods</h5>
+    </div>
+
+    <!-- Kitchen Appliances -->
+    <div class="hometop-item">
+        <i class="fas fa-blender hometop-icon"></i> <!-- Blender icon for kitchen appliances -->
+        <h5 class="hometop-title">Kitchen Appliances</h5>
+    </div>
+
+    <!-- Office Electronics -->
+    <div class="hometop-item">
+        <i class="fas fa-laptop hometop-icon"></i> <!-- Laptop icon for office electronics -->
+        <h5 class="hometop-title">Office Electronics</h5>
+    </div>
+
+    <!-- Home Appliances -->
+    <div class="hometop-item">
+        <i class="fas fa-snowflake hometop-icon"></i> <!-- Snowflake icon for home appliances -->
+        <h5 class="hometop-title">Home Appliances</h5>
+    </div>
+
+    <!-- Smart Devices -->
+    <div class="hometop-item">
+        <i class="fas fa-mobile-alt hometop-icon"></i> <!-- Mobile icon for smart devices -->
+        <h5 class="hometop-title">Smart Devices</h5>
+    </div>
+
+    <!-- Furniture -->
+    <div class="hometop-item">
+        <i class="fas fa-chair hometop-icon"></i> <!-- Chair icon for furniture -->
+        <h5 class="hometop-title">Furniture</h5>
+    </div>
+
+    <!-- General Household Products -->
+    <div class="hometop-item" style="width: 70px;">
+        <i class="fas fa-boxes hometop-icon"></i> <!-- Box icon for general household products -->
+        <h5 class="hometop-title">General Household</h5>
+    </div>
 </div>
 </section>
 
+<div class="near-footer" style="background-color: ghostwhite;">
+    <div class="container" style="width: 100%; padding: 15px;">
+        <div class="near-footer__top">
+           
+            <!-- Buy Products Section -->
+            <div class="near-footer__section near-footer__techxas" >
+                <h5 style="color:firebrick; font-size: 18px;">Buy Products</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/electronics.jpg') }}" 
+                     alt="Buy Products" 
+                     style="flex: 1; max-width: 50%; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+                <!-- Paragraph Text -->
+                <p style="width: 100%; font-size: 14px;">
+                    At TechXas, we offer a wide selection of products for you to buy. From the latest gadgets to home essentials, 
+                    we have everything you need at affordable prices. Shop now and enjoy top-quality products delivered right to your doorstep. 
+                    Find great deals across multiple categories and make your purchase today.
+                </p>
 
-<header class="header__container">
-    <div class="background background1"></div>
-    <div class="background background2"></div>
-    <div class="background background3"></div>
-    <div class="background background4"></div>
-    <div class="background background5"></div>
-
-    <div class="header__image">
-        <!-- Network text (centered text) -->
-        <!-- Updated section for the Call Us header -->
-        <div id="callUsSection" class="custom-call-us">
-            <div class="call-us-item active">
-                <div class="call-us-section">
-                    <h2>Our vision is sufficient provision</h2>
-                </div>
+                <a href="/products">
+                    <button type="button" style="width: 100%; padding: 5px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">explore</button>
+                </a>
             </div>
+
+            <!-- Sell Items Section -->
+            <div class="near-footer__section near-footer__techxas" >
+                <h5 style="color: firebrick; font-size: 18px;">Sell Used Items</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/sellused.jpg') }}" 
+                     alt="Sell Items" 
+                     style="flex: 1; max-width: 50%; padding: 5px; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+                <!-- Paragraph Text -->
+                <p style="width: 100%; font-size: 14px;">
+                    Looking to sell your items? TechXas makes it easy! You can sell a variety of products, from electronics to household 
+                    goods, and get instant cash for them. We ensure quick and hassle-free transactions. Simply list your items, and our team 
+                    will take care of the rest. Make extra money by selling what you no longer need today!
+                </p>
+                <a href="#visit">
+                    <button type="button" style="width: 50%; padding: 5px; background-color:goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">Visit us or call us</button>
+                </a>
+            </div>
+
+            <!-- Instant Cash for Items Section -->
+            <div class="near-footer__section near-footer__techxas" >
+                <h5 style="color:firebrick; font-size: 18px;">Instant Cash on Items</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/borrow.png') }}" 
+                     alt="Instant Cash on Items" 
+                     style="flex: 1; max-width: 30%; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+              <!-- Paragraph Text -->
+<p style="width: 100%; font-size: 14px;">
+    Need instant cash? Sell your items to TechXas and get paid right away! Whether it's a phone, laptop, or other electronics, 
+    we provide fast cash for your used items with no hidden fees. Enjoy a quick, easy process and get your payment on the spot. 
+    Get the most value for your items today.
+</p>
+
+<p style="width: 100%; font-size: 14px;">
+    Prefer a flexible payment option? TechXas also offers a loan scheme where you can secure a loan based on the value of the items you bring in. 
+    Whether you’re looking for cash upfront or prefer to explore a loan, we ensure a hassle-free process tailored to your needs. 
+    Get the funds you need by using your items as collateral today!
+</p>
+
+<a href="#visit">
+    <button type="button" style="width: 50%; padding: 5px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">Visit us or call us</button>
+</a>
+
+            </div>
+
         </div>
     </div>
-</header>
+</div>
 
-<div class="cctechspac" >
-    <h1>Our Services</h1>
+ <!-- New Section with Eight Images (4 per row) -->
+<!-- Image Section -->
+<div class="image-section">
+    <!-- Image 1 -->
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/electros.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#electronics-section" class="btn">
+        electronics
+    </a>
+</div>
+
+  
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/furniture1.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#furniture-section" class="btn">Furniture</a>
+      </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/uten.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#households-section" class="btn">Households</a>
+    </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/phones.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#phones-section" class="btn">
+        phones
+        </a>
+    </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/clothes.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#clothing-section" class="btn">Clothing</a>
+    </div>
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/tools.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#accessories-section" class="btn">Tools & Accessories</a>
+    </div>
+
+
+</div>
+      
+
+
+
+
+
+<div class="container" >
+    <div class="cctechspac" style="margin-bottom: 0;">
+        <h1 style="color: firebrick;">Our Services</h1>
+    
+    </div>
 
 </div>
 
  
-<div class="container" style="margin-top: 5px; justify-content: center; text-align: center; background-color:goldenrod; border-radius: 5px; padding: 5px;" >
+<div class="container" style="margin-top: 5px; justify-content: center; text-align: center; border-radius: 5px; padding: 5px;" >
    
     <div class="cctechspac" >
         
     
         <div class="imgsections">
-            <h1>★ Printing Solutions</h1>
-            <p>At TechXas, we specialize in high-quality printing services tailored to meet diverse needs. From custom prints to innovative designs, we deliver exceptional results.</p>
-            <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/digitalprinting.jpg') }}" alt="Digital Printing" />
-            <p style="margin-top: 40px; padding: 5px;">We work closely with clients to bring their vision to life, offering printing for accounting books, clothing, linen, and more with precision and creativity.</p>
+            <h1>★ Tech Supply</h1>
+            <p>At TechXas, we offer a comprehensive range of tech supplies, including everything from household gadgets to office essentials. Whether you're looking for the latest electronics or high-quality office equipment, we have what you need to meet your daily needs and business operations.</p>
+            <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/techs.jpg') }}" alt="Tech Supply" />
+            <p style="margin-top: 40px; padding: 5px;">We provide top-tier products from trusted brands, ensuring that every item meets high standards of quality and durability. Get your tech supplies from us and stay ahead in both home and business environments.</p>
         </div>
+        
         <div class="imgsections">
-            <h1>★ Graphic Design</h1>
-        
-            <!-- Text above the image -->
-            <p>
-                From eye-catching logos and complete branding packages to custom illustrations, posters, web pages, and digital artwork, we provide designs that not only capture attention but also communicate your message with precision.
-            </p>
-        
-            <!-- Image -->
-            <img src="{{ url_for('static', filename='SPAPHOTOS/gd.jpg') }}" alt="Graphic Design" />
-        
-            <!-- Text below the image -->
-            <p style="margin-top: 40px; padding: 5px;">
-                Whether for print, digital platforms, or social media, we ensure your brand shines with creativity and strategic design.
-            </p>
+            <h1>★ Storage Facility</h1>
+            <p>Need a safe place to store your belongings? TechXas offers secure, flexible storage solutions for both personal and business needs. From documents and household items to office equipment, we provide the ideal storage options to suit your requirements.</p>
+            <img src="{{ url_for('static', filename='SPAPHOTOS/cont.jpg') }}" alt="Storage Facility" />
+            <p style="margin-top: 40px; padding: 5px;">Our facilities are designed for easy access and peace of mind, ensuring your items are safe and secure. Let us help you with all your storage needs—whether short-term or long-term, we’ve got you covered.</p>
         </div>
+        
         <div class="imgsections">
-            <h1>★ Technical Supply</h1>
-            <p>Our extended catalogue offers a wide range of technical supplies, including stationery, printing equipment, computer accessories, and office essentials.</p>
-            <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/bestsupples.jpg') }}" alt="Best Supplies" />
-            <p style="margin-top: 40px; padding: 5px;">We prioritize authentic products from trusted brands that align with your organization’s standards, promising you all round success.</p>
+            <h1>★ Install Equipment</h1>
+            <p>TechXas provides professional installation services for various types of equipment. Whether it’s setting up office machinery, home electronics, or specialized equipment, we ensure a hassle-free and seamless installation process.</p>
+            <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/mount.jpg') }}" alt="Install Equipment" />
+            <p style="margin-top: 40px; padding: 5px;">Our technicians are trained to handle all kinds of installations, ensuring your equipment is set up properly and functioning to its full potential. Let us take care of the installation so you can focus on your work!</p>
         </div>
             </div>
   </div>
 
   <div class="cctechspac" >
         
-    <h1>Why Choose Us?</h1>
+    <h1 style="color: firebrick;">Why Choose Us?</h1>
     <div class="why-choose-us">
         
         <section class="imgsections" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
             <div class="section-item">
-                <i class="fas fa-gavel"></i> <!-- Integrity Icon (Font Awesome) -->
-                <h2>Integrity</h2>
-                <p>At TechXas, we operate with the highest standards of integrity. We value transparency and trust, ensuring that all our dealings with clients and partners are honest and straightforward.</p>
+                <i class="fas fa-truck"></i> <!-- Delivery Icon (Font Awesome) -->
+                <h2>We Deliver</h2>
+                <p>At TechXas, we pride ourselves on fast and reliable delivery. Whether you’re ordering new products or second-hand items, we ensure your purchase arrives safely and on time. Our delivery service is designed to meet your needs, so you can enjoy your products without delay.</p>
             </div>
         </section>
         
@@ -137,13 +294,13 @@
         </section>
     </div>
     <div class="imgsections" style="margin-top: 50px;">
-        <h1>Join Our Technance Community</h1>
+        <h1 style="color: firebrick;" >Join Our Technance Community</h1>
         <p>Join our Technance community and enjoy exclusive access to TechXas products at discounted rates, plus a stake in the business’s growth and profits.</p>
         <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/allbiz.jpg') }}" alt="Best Supplies" />
         <p style="margin-top: 43px; padding: 5px;">We ensure the highest quality in our products, empowering your business with authentic supplies that meet your needs.</p>
         
         <!-- Join Button -->
-        <a href="#join" class="btn-join" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: brown; color: white; text-decoration: none; border-radius: 5px;">Join Now</a>
+        <a href="#join" class="btn-join" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: firebrick; color: white; text-decoration: none; border-radius: 5px;">Join Now</a>
     </div>
 </div>
 
@@ -159,11 +316,11 @@
         <div class="container" style="width: 100%; padding: 15px;">
             <div class="near-footer__top">
                 <div class="near-footer__section near-footer__techxas">
-                    <h5 style="color: brown; font-size: 18px;" >About Us</h5>
+                    <h5 style="color: firebrick; font-size: 18px;" >About Us</h5>
                     <p style="width: 100%; font-size: 14px;">With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
                 </div>
                 <div class="near-footer__section near-footer__categories">
-                    <h5 style="color: brown; font-size: 18px;" >Our Customers</h5>
+                    <h5 style="color: firebrick; font-size: 18px;" >Our Customers</h5>
                     <div class="customer-grid" style="font-size: 12px;">
                         <div class="customer-item">Schools</div>
                         <div class="customer-item">Hotels</div>
@@ -194,7 +351,7 @@
     </div>
     
     <footer>
-        <div class="footer__top row">
+        <div class="footer__top row" id="visit">
             <div class="footer__section footer__techxas col-md-4">
                 <h5>techXas</h5>
                 <p>Official shop,<br> technological products and solutions</p>

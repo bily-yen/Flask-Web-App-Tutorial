@@ -37,15 +37,7 @@ li{
     list-style: none;
       
 }
-a{
-    text-decoration: none;
-    text-transform: capitalize;
-    font-size: 16px;
-    margin-left: 38px;
-    color: #052f5c;
-    font-weight: 700;
-    padding: 3px;
-}
+
 
 
 
@@ -364,12 +356,7 @@ a{
 .otherservices a.btn:hover {
     background-color:white;
 }
-.otherservices h3,h5
-{
-    font-weight: bolder;
-    color:#052f5c;
-    font-size: medium;
-}
+
   
 
 
