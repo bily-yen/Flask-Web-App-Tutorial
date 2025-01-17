@@ -57,6 +57,8 @@ rel="stylesheet"
   
 </head>
 <body>
+
+
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
@@ -232,7 +234,16 @@ rel="stylesheet"
             border-color: #f5c6cb;
         }
 
-
+        .navbar {
+  background-color: white;  
+  justify-content: space-between;
+  position: fixed; /* Fixed position */
+  top: 0; /* Stay at the top */
+  left: 0;
+  right: 0; /* Full width */
+  z-index: 1000; /* Make sure it stays above other content */
+  margin-top: 0;
+}
         
     </style>
     
@@ -276,29 +287,6 @@ rel="stylesheet"
       <!-- Electronics Section -->
       <section id="electronics-section">
           <h3>Electronics</h3>
-          <div class="section-intro">
-              <p>Explore the latest and greatest in electronics, from smartphones to home appliances. Find the perfect gadget or tech device that suits your needs!</p>
-          </div>
-  
-          <div class="electronics-types">
-              <div class="electronics-type" id="smartphones">
-                  <h4>Smartphones</h4>
-                  <p>Browse our latest collection of smartphones from top brands!</p>
-              </div>
-              <div class="electronics-type" id="laptops">
-                  <h4>Laptops</h4>
-                  <p>Find the perfect laptop for work or play with top-notch performance.</p>
-              </div>
-              <div class="electronics-type" id="home-appliances">
-                  <h4>Home Appliances</h4>
-                  <p>Discover high-quality home appliances to make your life easier.</p>
-              </div>
-              <div class="electronics-type" id="audio-devices">
-                  <h4>Audio Devices</h4>
-                  <p>Upgrade your audio experience with the best sound systems and accessories.</p>
-              </div>
-          </div>
-  
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left"></i>
               <div class="product-container" id="root"></div>
@@ -309,27 +297,7 @@ rel="stylesheet"
       <!-- Households Section -->
       <section id="households-section">
           <h3>Households</h3>
-          <div class="section-intro">
-              <p>Discover a wide range of household products that make your life easier and more convenient.</p>
-          </div>
-          <div class="electronics-types">
-              <div class="electronics-type" id="home-appliances-households">
-                  <h4>Home Appliances</h4>
-                  <p>Find essential home appliances that simplify your daily routines.</p>
-              </div>
-              <div class="electronics-type" id="kitchen-appliances">
-                  <h4>Kitchen Appliances</h4>
-                  <p>Explore kitchen gadgets and appliances that make cooking easier and faster.</p>
-              </div>
-              <div class="electronics-type" id="cleaning-tools">
-                  <h4>Cleaning Tools</h4>
-                  <p>Shop for cleaning tools and accessories to keep your home spotless.</p>
-              </div>
-              <div class="electronics-type" id="furniture-accessories">
-                  <h4>Furniture Accessories</h4>
-                  <p>Discover furniture accessories that add style and comfort to your home.</p>
-              </div>
-          </div>
+         
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-households"></i>
@@ -341,28 +309,7 @@ rel="stylesheet"
       <!-- Furniture Section -->
       <section id="furniture-section">
           <h3>Furniture</h3>
-          <div class="section-intro">
-              <p>Browse through our stylish and comfortable furniture to elevate your home or office decor.</p>
-          </div>
-  
-          <div class="electronics-types">
-              <div class="electronics-type" id="living-room-furniture">
-                  <h4>Living Room Furniture</h4>
-                  <p>Transform your living room with sofas, chairs, and other stylish furniture pieces.</p>
-              </div>
-              <div class="electronics-type" id="office-furniture">
-                  <h4>Office Furniture</h4>
-                  <p>Find ergonomic office furniture for a productive and comfortable workspace.</p>
-              </div>
-              <div class="electronics-type" id="bedroom-furniture">
-                  <h4>Bedroom Furniture</h4>
-                  <p>Discover cozy and functional bedroom furniture that enhances your rest.</p>
-              </div>
-              <div class="electronics-type" id="storage-solutions">
-                  <h4>Storage Solutions</h4>
-                  <p>Explore creative storage solutions to keep your home organized and tidy.</p>
-              </div>
-          </div>
+          
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-furniture"></i>
@@ -374,27 +321,7 @@ rel="stylesheet"
       <!-- Clothing Section -->
       <section id="clothing-section">
           <h3>Clothing</h3>
-          <div class="section-intro">
-              <p>Explore the latest trends in fashion and find your perfect outfit for any occasion.</p>
-          </div>
-          <div class="electronics-types">
-              <div class="electronics-type" id="mens-clothing">
-                  <h4>Men's Clothing</h4>
-                  <p>Shop the latest collection of men's apparel for all occasions.</p>
-              </div>
-              <div class="electronics-type" id="womens-clothing">
-                  <h4>Women's Clothing</h4>
-                  <p>Find the perfect women's outfits for casual, formal, and everything in between.</p>
-              </div>
-              <div class="electronics-type" id="kids-clothing">
-                  <h4>Kids' Clothing</h4>
-                  <p>Discover stylish and comfortable clothes for children of all ages.</p>
-              </div>
-              <div class="electronics-type" id="accessories">
-                  <h4>Accessories</h4>
-                  <p>Complement your outfits with fashionable accessories like bags, shoes, and jewelry.</p>
-              </div>
-          </div>
+          
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-clothing"></i>
@@ -406,28 +333,7 @@ rel="stylesheet"
       <!-- Phones Section -->
       <section id="phones-section">
           <h3>Phones</h3>
-          <div class="section-intro">
-              <p>Discover the latest smartphones and mobile accessories to suit your style and needs.</p>
-          </div>
-          <div class="electronics-types">
-              <div class="electronics-type" id="latest-phones">
-                  <h4>Latest Smartphones</h4>
-                  <p>Browse our newest collection of smartphones with cutting-edge features.</p>
-              </div>
-              <div class="electronics-type" id="budget-phones">
-                  <h4>Budget Smartphones</h4>
-                  <p>Explore affordable smartphones that deliver great value for money.</p>
-              </div>
-              <div class="electronics-type" id="mobile-accessories">
-                  <h4>Mobile Accessories</h4>
-                  <p>Enhance your phone experience with top-rated mobile accessories.</p>
-              </div>
-              <div class="electronics-type" id="smartwatches">
-                  <h4>Smartwatches</h4>
-                  <p>Stay connected and track your health with the latest smartwatches.</p>
-              </div>
-          </div>
-  
+         
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-phones"></i>
               <div class="phones-container" id="phones-product-section"></div>
@@ -438,29 +344,7 @@ rel="stylesheet"
       <!-- Accessories Section -->
       <section id="accessories-section">
           <h3>Accessories</h3>
-          <div class="section-intro">
-              <p>Find the perfect accessories to complement your electronics, home decor, or personal style.</p>
-          </div>
-  
-          <div class="electronics-types">
-              <div class="electronics-type" id="phone-accessories">
-                  <h4>Phone Accessories</h4>
-                  <p>Discover phone cases, chargers, and other accessories to enhance your device.</p>
-              </div>
-              <div class="electronics-type" id="laptop-accessories">
-                  <h4>Laptop Accessories</h4>
-                  <p>Upgrade your laptop with accessories like bags, mousepads, and keyboards.</p>
-              </div>
-              <div class="electronics-type" id="home-decor">
-                  <h4>Home Decor Accessories</h4>
-                  <p>Add style to your home with our collection of decor items and accessories.</p>
-              </div>
-              <div class="electronics-type" id="fashion-accessories">
-                  <h4>Fashion Accessories</h4>
-                  <p>Complete your look with stylish jewelry, bags, hats, and more.</p>
-              </div>
-          </div>
-  
+        
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-accessories"></i>
               <div class="tools-container" id="accessories-product-section"></div>
@@ -473,20 +357,21 @@ rel="stylesheet"
 
 
 
-<footer>
-    <div class="footer__top row">
+  <footer>
+    <div class="footer__top row" id="visit">
         <div class="footer__section footer__techxas col-md-4">
             <h5>techXas</h5>
-            <p>Official shop,<br> technological products and solutions</p>
-            
-<!-- Address Section with Address Icon (Clickable for Google Maps) -->
-<div class="footer__address">
-<a style="background-color: transparent; padding: 0; margin: 0;" href="https://www.google.com/maps/place/Waska+apartments/@-1.3080688,36.8909694,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!2sMVRV%2BQCF,+Nairobi!2m2!1d36.8935393!2d-1.3080605!3m5!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!8m2!3d-1.3080688!4d36.8935443!16s%2Fg%2F11q4fh_t9v?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-    <i style="color:white; padding: 25px; font-size: 16px;" class="fas fa-map-marker-alt"></i> <!-- Font Awesome Map Marker Icon -->
-    <p style="color: white;">Tassia, Thika Road, Waska Building</p>
-</a>
-</div>
+            <p>Official shop, <br> technological products and solutions</p>
+
+            <!-- Address Section with Address Icon (Clickable for Google Maps) -->
+            <div class="footer__address">
+                <a style="background-color: transparent; padding: 0; margin: 0;" href="https://www.google.com/maps/place/Waska+apartments/@-1.3080688,36.8909694,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!2sMVRV%2BQCF,+Nairobi!2m2!1d36.8935393!2d-1.3080605!3m5!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!8m2!3d-1.3080688!4d36.8935443!16s%2Fg%2F11q4fh_t9v?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                    <i style="color:white; padding: 25px; font-size: 16px;" class="fas fa-map-marker-alt"></i> <!-- Font Awesome Map Marker Icon -->
+                    <p style="color: white;">Tassia, Thika Road, Waska Building</p>
+                </a>
+            </div>
         </div>
+
         <div class="footer__section footer__categories col-md-4">
             <h5>Categories</h5>
             <ul>
@@ -495,29 +380,30 @@ rel="stylesheet"
                 <li>Stationery</li>
                 <li>Computers</li>
                 <li>Graphic Design Services</li>
+                <li>Networking Solutions</li> <!-- New Item Added -->
+                <li>Office Supplies</li> <!-- New Item Added -->
             </ul>
         </div>
+
         <div class="footer__section footer__contacts col-md-4">
             <h5>Contacts</h5>
             <p>Email: support@techxas.com</p>
-            <p>Phone: (+254) 7 164 706 65 </p>
-            <h5>Follow Us</h5>
-            <ul class="social-media">
-                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
-                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
-                <br> <br>
-                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
-            </ul>
+            <p>Phone: (+254) 7 164 706 65</p>
+            <p>Fax: (+254) 7 164 706 66</p> <!-- New Item Added -->
+            <p>Working Hours: Mon - Fri, 9 AM - 6 PM</p> <!-- New Item Added -->
+            
+            <h5>About Us</h5>
+            <p>techXas is a leading provider of technological products, offering top-quality solutions and support to businesses and individuals. We specialize in office equipment, IT hardware, and services.</p> <!-- New Content Added -->
         </div>
     </div>
 
     <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
-        
-<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
-    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
-</h1>
-    
-    </footer>
+        <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+            &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+        </h1>
+    </div>
+</footer>
+
 
 
 <script>
@@ -552,6 +438,107 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 </script>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{{ url_for('auth.login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{{ url_for('auth.sign_up') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                placeholder="Enter first name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password1">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password1"
+                name="password1"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password2">Password (Confirm)</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password2"
+                name="password2"
+                placeholder="Confirm password"
+                required
+              />
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Cart Modal -->
 <!-- Modal for Cart -->

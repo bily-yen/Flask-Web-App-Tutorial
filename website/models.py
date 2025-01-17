@@ -130,3 +130,15 @@ class Refund(db.Model):
     RefundDate = db.Column(db.DateTime(timezone=True), default=func.now())
     Status = db.Column(db.String(50), default='Pending')
     Reason = db.Column(db.Text, nullable=True)
+
+class CatalogueRequest(db.Model):
+    __tablename__ = 'catalogue_requests'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    institution = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)
+    submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<CatalogueRequest name={self.name} institution={self.institution} email={self.email}>'

@@ -12,19 +12,18 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: powderblue;
+  background-color: white;
 }
 
 .navbar {
-  
-  background-color:ghostwhite;/* White background */
-  display: flex;
+background-color: white;  
   justify-content: space-between;
   position: fixed; /* Fixed position */
   top: 0; /* Stay at the top */
   left: 0;
   right: 0; /* Full width */
-  z-index: 1000; /* Make sure it stays above other content */
+  z-index: 900; /* Make sure it stays above other content */
+  margin-top: 50px;
 }
 
 .welcome-header h1{
@@ -44,6 +43,62 @@ body {
 .navbar-nav {
   display: flex;
   flex-direction: row;
+  margin-right: 40px;
+
+}
+
+.top-banner {
+  background: linear-gradient(135deg, #0A0068, #2E004F, #000000); /* Deep blue to dark purple to black */  color: white; /* White text for contrast */
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  position: fixed;
+  z-index: 1000;
+  margin-top: 0;
+  width:100% ;
+}
+.top-banner {
+  background: linear-gradient(135deg, #0A0068, #000000); /* Deep blue to black gradient */
+  color: white; /* White text for contrast */
+  text-align: center; /* Centered text */
+  padding: 10px 0; /* Vertical padding */
+  font-family: Arial, sans-serif; /* Clean, modern font */
+}
+
+.top-banner a {
+  color: #FFD700; /* Gold color for the phone number link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.top-banner a:hover {
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.nav-link a{
+  background-color: transparent;
+}
+
+.nav-item{
+  animation: none;
+  transition: none;
+  background-color: transparent;
+  transform: none;
+
+}
+.nav-link {
+  background-color: transparent;
+}
+
+.nav-link:hover{
+  animation: none;
+  transition: none;
+  background-color: transparent;
+  transform: none;
+  color:brown;
+
+
 }
 
 .navbar-nav a {
@@ -212,11 +267,6 @@ animation: none;
 
 /* Adding a hover effect */
 
-
-@keyframes flashColors {
-  25% { color:white; }
-  50% { color: white; }
-}
 
 
 #topfinancehead{
@@ -452,13 +502,17 @@ animation: none;
   color: #0056b3; /* Change icon color on hover */
 }
 footer {
-  background-color: black; /* Dark background for the footer */
-  color: #fff; /* White text */
+  background: linear-gradient(135deg, #0A0068, #1B006E, #2C0074, #3D007A, #000000); /* Deep blue to black with intermediate shades */  color: white; /* White text for contras */
   padding: 5px; /* Padding for spacing */
   text-align: center; /* Center text */
-  padding-bottom: 300px;
-  padding: 50px;
+  padding: 5px;
 }
+
+.footer p,h2,h5{
+  font-size: 12px;
+  font-weight: 800px;
+}
+
 
 .footer__top, .footer__bottom {
   display: flex; /* Flexbox for layout */
@@ -494,27 +548,37 @@ ul li {
 
 .social-media li {
   display: inline; /* Display social media items inline */
-  margin-right: 15px; /* Space between icons */
+  margin-right: 28px; /* Space between icons */
 }
 
 a {
   text-decoration: none; /* Remove underline */
-  background-color:goldenrod;
-  border-radius: 5px;
+  background-color:lightgrey;
+  border-radius: 20px;
   font-size: 18px;
+  padding: 2px;
+  
+}
+
+.near-footer a {
+  text-decoration: none; /* Remove underline */
+  background-color:transparent;
+  border-radius: 20px;
+  font-size: 24px;
+  padding: 20px;
 }
 /* CSS for the Instagram icon */
 a i {
-  font-size: 10px;  /* Icon size */
-  color: black;  /* Instagram's color */
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 16px;  /* Icon size */
+  color: brown;  /* Instagram's color */
   padding: 2px;
 }
 
-a :hover {
-  transform: scale(1.2);  /* Scales the icon */
+a:hover {
   color: white;  /* A darker shade for hover effect */
   padding: 2px;
+  transform: none;
+  transition: none;
 }
 
 .grey-t {
@@ -561,6 +625,7 @@ a :hover {
   display: flex;
   flex-direction: column; /* Stack image and caption vertically */
   padding: 5px;
+  margin: left 15px;
 
   }
 
@@ -648,12 +713,15 @@ a :hover {
   justify-content: space-between; /* Space out the sections evenly */
   margin-bottom: 20px; /* Space below the top sections */
   text-align: center; /* Center align text */
+  background-color: black;
 }
 
 .near-footer__section {
   flex: 1; /* Allow sections to grow equally */
   margin: 0 10px; /* Margins between sections */
   padding: px;
+  background-color:white;
+  padding: 5px;
 
 }
 
@@ -699,10 +767,6 @@ a :hover {
   font-size: 14px; /* Font size for partner names */
   font-weight: 500; /* Slightly bolder text */
   color: black;
-}
-a:hover {
-  text-decoration: underline; /* Underline on hover */
-  font-size: x-large;
 }
 
 .footer__location, .footer__affiliates {
@@ -756,13 +820,13 @@ a:hover {
   background-color: powderblue;
   padding: 35px;
   border-radius: 5px;
+  
 }
 
 .cctechspac h1 {
   color:  brown; /* Change to white for visibility on a black theme */
   font-weight: 800;
   font-size: 16px; /* Slightly larger font size */
-  margin-bottom: 20px; /* Space below the header */
 }
 
 .imgsections {
@@ -1254,7 +1318,7 @@ border-radius: 5px;
 }
 
 .section-item p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -1631,14 +1695,27 @@ section#wcuindextop {
 }
 .hometop-item {
   text-align: center;
-  background: silver;
+  background: rgba(218, 165, 32, 0.450);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex: 1 1 150px; /* Adjust size as needed */
   margin: 10px;
+  margin-top: 50px;
+  padding-top: 2px;
 
   
 }
+.hometop-item h5 {
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex: 1 1 150px; /* Adjust size as needed */
+  margin: 10px;
+  font-weight: 700;
+
+  
+}
+
 /* General container styles */
 .product-detail-container {
   display: flex;
@@ -1727,7 +1804,7 @@ section#wcuindextop {
 .prdetails-link {
   font-size: 12px;  /* Set the font size */
   color: white;  /* Text color - white for contrast */
-  background-color: silver;  /* Green background color */
+  background-color: burlywood;  /* Green background color */
   text-decoration: none;  /* Remove the default underline */
   font-weight: bold;  /* Make the text bold */
   border-radius: 5px;  /* Round corners for the button */
@@ -1741,7 +1818,7 @@ section#wcuindextop {
 /* Larger Section Styling */
 #electronics-section {
   padding: 30px 10%;
-  background-color: powderblue;
+  background-color: black;
   margin-bottom: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -1810,7 +1887,7 @@ section#wcuindextop {
   display: flex;
   align-items: center;
   position: relative;
-  background-color: powderblue;
+  background-color: white;
   border-radius: 5px;
   width: 100%;
   padding: 0;
@@ -1995,7 +2072,7 @@ section#wcuindextop {
   padding: 10px 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: goldenrod;
+  background: linear-gradient(135deg, #0A0068, #2E004F, #000000); /* Deep blue to dark purple to black */  color: white; /* White text for contrast */
   text-align: center;
   cursor: pointer; /* Indicates clickable element */
   transition: background-color 0.3s, transform 0.3s ease; /* Smooth hover effect */
@@ -2147,7 +2224,7 @@ color: brown;
 }
 .hometop-icon {
   font-size: 2rem;
-  color: black; /* Adjust color as needed */
+  color: firebrick;; /* Adjust color as needed */
   margin-top: 5px;
 }
 .hometop-title {
@@ -2317,22 +2394,6 @@ nav img{
 }
 
 
-nav .navigation ul li{
-  margin-left: 2px;
-}
-
-nav .navigation ul li a{
-  text-decoration: wavy;
-  color:goldenrod;
-  font-size: 18px;
-  font-weight: 700;
-  transition: o.35s ease;
-
-}
-nav .navigation ul li a.active,
-nav .navigation ul li a:hover{
-  color:whitesmoke;
-}
 #welcome .welcomeheader{
   padding:30px;
   width: 100%;
@@ -4784,3 +4845,19 @@ section#wcuindextop {
 
 
 
+
+.footer__section p{
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.footer__section ul li{
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.footer h2{
+color: brown;
+
+}
