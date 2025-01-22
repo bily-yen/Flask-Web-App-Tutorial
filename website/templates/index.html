@@ -420,6 +420,42 @@ background-color: rgba(238, 232, 170, 0.727);
 }
 
 
+.image-item{
+    width: 100%;
+    height: 400px;
+}
+
+.btn {
+    padding: 5px;
+    height: max-content;
+    background-color: black;
+    border: none; /* Removes any default borders */
+    outline: none; /* Removes the outline when the button is focused */
+    transition: none; /* Disables any hover/transition effects */
+    background-color: transparent; /* Ensures the color stays the same on hover or focus */
+
+            
+}
+
+.btn:hover, .btn:focus {
+    background-color: transparent; /* Ensures the color stays the same on hover or focus */
+    outline: none; /* Prevents outline on focus */
+    box-shadow: none; /* Removes any box-shadow that might appear on hover/focus */
+    color: white;
+    font-size: 18px;
+}
+
+.footer_section  p{
+  font-size: 12px;
+  font-weight: 800px;
+}
+
+
+
+
+
+
+
 
  </style>
  
@@ -465,6 +501,7 @@ background-color: rgba(238, 232, 170, 0.727);
             <p><strong>IYEPA</strong> (Member of the Kenya Private Sector Alliance-KEPSA) therefore exists as the business association to support a diverse range of micro and small enterprises run by entrepreneurs and professionals aged between 18-40 years. Having both the entrepreneur and the enterprise in mind, it is dedicated to playing a pivotal role in creating a robust business ecosystem that is favourable to the success of young entrepreneurs and professionals. IYEPA is therefore founded on a holistic framework that includes a variety of effective activities and services tailored to provide non-financial support services particularly marketing services, access to new and existing markets as well as participation in both public and private sector policy and decision making processes.</p>
                         
    
+<<<<<<< HEAD
        
         </div>
    
@@ -777,8 +814,190 @@ background-color: rgba(238, 232, 170, 0.727);
         <a href="/products#phones-section">
             <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/i.jpg') }}" alt="Fruits" style="width: 100%; height: auto; border-radius: 5px;">
         </a>
+=======
+</section>
+<div class="hometop-container d-flex flex-wrap justify-content-around" style="padding-top: 35px; margin-left:10px;">
+    <!-- Printing Services -->
+    <div class="hometop-item">
+        <i class="fas fa-tv hometop-icon"></i> <!-- TV icon for electronics -->
+        <h5 class="hometop-title">Electronics</h5>
+    </div>
+
+    <!-- Household Goods -->
+    <div class="hometop-item">
+        <i class="fas fa-couch hometop-icon"></i> <!-- Couch icon for household goods -->
+        <h5 class="hometop-title">Household Goods</h5>
+    </div>
+
+    <!-- Kitchen Appliances -->
+    <div class="hometop-item">
+        <i class="fas fa-blender hometop-icon"></i> <!-- Blender icon for kitchen appliances -->
+        <h5 class="hometop-title">Kitchen Appliances</h5>
+    </div>
+
+    <!-- Office Electronics -->
+    <div class="hometop-item">
+        <i class="fas fa-laptop hometop-icon"></i> <!-- Laptop icon for office electronics -->
+        <h5 class="hometop-title">Office Electronics</h5>
+    </div>
+
+    <!-- Home Appliances -->
+    <div class="hometop-item">
+        <i class="fas fa-snowflake hometop-icon"></i> <!-- Snowflake icon for home appliances -->
+        <h5 class="hometop-title">Home Appliances</h5>
+    </div>
+
+    <!-- Smart Devices -->
+    <div class="hometop-item">
+        <i class="fas fa-mobile-alt hometop-icon"></i> <!-- Mobile icon for smart devices -->
+        <h5 class="hometop-title">Smart Devices</h5>
+    </div>
+
+    <!-- Furniture -->
+    <div class="hometop-item">
+        <i class="fas fa-chair hometop-icon"></i> <!-- Chair icon for furniture -->
+        <h5 class="hometop-title">Furniture</h5>
+    </div>
+
+    <!-- General Household Products -->
+    <div class="hometop-item" style="width: 70px;">
+        <i class="fas fa-boxes hometop-icon"></i> <!-- Box icon for general household products -->
+        <h5 class="hometop-title">General Household</h5>
     </div>
 </div>
+</section>
+
+<div class="near-footer" style="background-color: white;">
+    <div class="container" style="width: 100%; padding: 15px;">
+        <div class="near-footer__top">
+           
+            <!-- Buy Products Section -->
+            <div class="near-footer__section near-footer__techxas" >
+                <h5 style="color:firebrick; font-size: 18px;">Buy Products</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/electronics.jpg') }}" 
+                     alt="Buy Products" 
+                     style="flex: 1; max-width: 55%; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+                <!-- Paragraph Text -->
+                <p style="width: 100%; font-size: 14px;">
+                    At TechXas, we offer a wide selection of products for you to buy. From the latest gadgets to home essentials, 
+                    we have everything you need at affordable prices. Shop now and enjoy top-quality products delivered right to your doorstep. 
+                    Find great deals across multiple categories and make your purchase today.
+                </p>
+
+                <a href="/products">
+                    <button type="button" style="width:25%; padding: 5px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer; padding: 5px;">explore</button>
+                </a>
+            </div>
+
+            <!-- Sell Items Section -->
+            <div class="near-footer__section near-footer__techxas" >
+                <h5 style="color: firebrick; font-size: 18px;">Sell Used Items</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/sellused.jpg') }}" 
+                     alt="Sell Items" 
+                     style="flex: 1; max-width: 60%; padding: 5px; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+                <!-- Paragraph Text -->
+                <p style="width: 100%; font-size: 14px;">
+                    Looking to sell your items? TechXas makes it easy! You can sell a variety of products, from electronics to household 
+                    goods, and get instant cash for them. We ensure quick and hassle-free transactions. Simply list your items, and our team 
+                    will take care of the rest. Make extra money by selling what you no longer need today!
+                </p>
+                <a href="#visit">
+                    <button type="button" style="width: 20%; padding: 5px; background-color:goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer; padding: 5px;">sell
+                    </button>
+                </a>
+            </div>
+
+            <!-- Instant Cash for Items Section -->
+            <div class="near-footer__section near-footer__techxas"  >
+                <h5 style="color:firebrick; font-size: 18px;">Instant Cash on Items</h5>
+                
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='SPAPHOTOS/borrow.png') }}" 
+                     alt="Instant Cash on Items" 
+                     style="flex: 1; max-width: 28%; border-radius: 5px; justify-content: center; margin-left: auto; margin-right: auto;">
+                     
+              <!-- Paragraph Text -->
+<p style="width: 100%; font-size: 14px;">
+    Need instant cash? Sell your items to TechXas and get paid right away! Whether it's a phone, laptop, or other electronics, 
+    we provide fast cash for your used items with no hidden fees. Enjoy a quick, easy process and get your payment on the spot. 
+    Get the most value for your items today.
+</p>
+
+<p style="width: 100%; font-size: 14px;">
+    Prefer a flexible payment option? TechXas also offers a loan scheme where you can secure a loan based on the value of the items you bring in. 
+    Whether you’re looking for cash upfront or prefer to explore a loan, we ensure a hassle-free process tailored to your needs. 
+    Get the funds you need by using your items as collateral today!
+</p>
+
+<a href="#visit">
+    <button type="button" style="width:30%; padding: 5px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer; padding: 5px;">borrow</button>
+</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ <!-- New Section with Eight Images (4 per row) -->
+<!-- Image Section -->
+<div class="image-section" style="background-color: black;">
+    <!-- Image 1 -->
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/electros.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#electronics-section" class="btn">
+        electronics
+    </a>
+</div>
+
+  
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/furniture1.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#furniture-section" class="btn">Furniture</a>
+      </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/uten.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#households-section" class="btn">Households</a>
+    </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/phones.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#phones-section" class="btn">
+        phones
+        </a>
+    </div>
+
+
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/clothes.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#clothing-section" class="btn">Clothing</a>
+    </div>
+    <div class="image-item-container">
+        <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/tools.jpg') }}" alt="Description">
+      <!-- Link to Electronics Section with Hover Effect -->
+      <a href="/products#accessories-section" class="btn">Tools & Accessories</a>
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
+    </div>
+
+
+</div>
+<<<<<<< HEAD
 
 <style>
     /* Ensure images take up 4 per row */
@@ -823,6 +1042,160 @@ background-color: rgba(238, 232, 170, 0.727);
         </div>
     </div>
 </footer>
+=======
+       
+
+<div class="container" style="background: none; max-width: 1200px;">
+    <h1 class="heading" style="color: brown; font-size: 18px; text-align: center; margin-top: 20px; font-weight: 700;"></h1>
+
+    <div class="box-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; padding: 2rem; gap: 2rem;">
+        
+        <!-- New Products Section -->
+        <div class="box" style="background-color: rgba(218, 165, 32, 0.450); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: black; font-weight: 700; font-size: 16px; margin: 0 0 0.5rem;">New Products</h2>
+            <p style="color: black; margin: 0;">We offer a range of brand-new products from trusted brands that guarantee quality and reliability. Explore our new arrivals to find top-rated electronics, home goods, and more.</p>
+        </div>
+    
+        <!-- Refurbished Products Section -->
+        <div class="box" style="background-color: rgba(218, 165, 32, 0.450); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: black; font-weight: 700; font-size: 16px; margin: 0 0 0.5rem;">Refurbished Products</h2>
+            <p style="color: black; margin: 0;">Our refurbished products are carefully inspected and restored to like-new condition. We specialize in EX UK and EX Japan electronics, ensuring high-quality goods at affordable prices.</p>
+        </div>
+    
+        <!-- Second-Hand Items Section -->
+        <div class="box" style="background-color: rgba(218, 165, 32, 0.450); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 1.5rem; flex: 1 1 calc(30% - 1rem); min-width: 250px;">
+            <h2 style="color: black; font-weight: 700; font-size: 16px; margin: 0 0 0.5rem;">Second-Hand Items</h2>
+            <p style="color: black; margin: 0;">Looking to buy or sell pre-loved items? Our second-hand goods are tested for functionality and quality, ensuring you get great deals. Visit our "Sell to Us" page to list your items.</p>
+        </div>
+    
+    </div>
+</div>
+
+
+    <div class="near-footer" style="background-color: ghostwhite;background-color: transparent;">
+        <div class="container" style="width: 100%; padding: 45px; margin-top: 0;">
+            <div class="near-footer__top" style="background-color: transparent;">
+                <div class="near-footer__section near-footer__techxas">
+                    <h5 style="color: firebrick; font-size: 18px;" >About Us</h5>
+                    <p style="width: 100%; font-size: 14px;">With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
+                </div>
+                <div class="near-footer__section near-footer__categories">
+                    <h5 style="color: firebrick; font-size: 18px;" >Our Customers</h5>
+                    <div class="customer-grid" style="font-size: 12px;">
+                        <div class="customer-item">Schools</div>
+                        <div class="customer-item">Hotels</div>
+                        <div class="customer-item">Hospitals</div>
+                        <div class="customer-item">Corporates</div>
+                        <div class="customer-item">Small Businesses</div>
+                        <div class="customer-item">Government Offices</div>
+                        <div class="customer-item">Non-Profit Organizations</div>
+                        <div class="customer-item">Creative Agencies</div>
+                        <div class="customer-item">Retail Stores</div>
+                    </div>
+                </div>
+                <div class="verbal-marketing" style="flex: 1; margin-left: 10px; background-color:ghostwhite;">
+                    <h3>Request Our Catalogue</h3>
+                    <p>Enter your details below to receive our latest catalogue.</p>
+                    <form  style="background-color: ghostwhite; padding: 8px;" method="POST" action="{{ url_for('views.submit_catalogue_request') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        
+                        <div class="form-group">
+                            <label style="color: black; width: 75%;"  for="name">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your name"
+                                required
+                            />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="color: black;width: 80%; " for="institution">Institution</label>
+                            <input 
+                                type="text"
+                                class="form-control"
+                                id="institution"
+                                name="institution"
+                                placeholder="Enter your institution"
+                                required
+                            />
+                        </div>
+                        
+                        <div class="form-group" style="margin: 0;">
+                            <label style="color: black; width: 75%; " for="email">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                required
+                            />
+                        </div>
+                        
+                        <div class="text-center" style="background-color: goldenrod;">
+                            <button type="submit" class="btn btn-primary">Get Catalogue</button>
+                        </div>
+                    </form>
+                    </div>
+            </div>
+            
+
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer__top row" id="visit">
+            <div class="footer__section footer__techxas col-md-4">
+                <h5>techXas</h5>
+                <p>Official shop, <br> technological products and solutions</p>
+    
+                <!-- Address Section with Address Icon (Clickable for Google Maps) -->
+                <div class="footer__address">
+                    <a style="background-color: transparent; padding: 0; margin: 0;" href="https://www.google.com/maps/place/Waska+apartments/@-1.3080688,36.8909694,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!2sMVRV%2BQCF,+Nairobi!2m2!1d36.8935393!2d-1.3080605!3m5!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!8m2!3d-1.3080688!4d36.8935443!16s%2Fg%2F11q4fh_t9v?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                        <i style="color:white; padding: 25px; font-size: 16px;" class="fas fa-map-marker-alt"></i> <!-- Font Awesome Map Marker Icon -->
+                        <p style="color: white;">Tassia, Thika Road, Waska Building</p>
+                    </a>
+                </div>
+            </div>
+    
+            <div class="footer__section footer__categories col-md-4">
+                <h5>Categories</h5>
+                <ul>
+                    <li>Printers</li>
+                    <li>Ink & Toners</li>
+                    <li>Stationery</li>
+                    <li>Computers</li>
+                    <li>Graphic Design Services</li>
+                    <li>Networking Solutions</li> <!-- New Item Added -->
+                    <li>Office Supplies</li> <!-- New Item Added -->
+                </ul>
+            </div>
+    
+            <div class="footer__section footer__contacts col-md-4">
+                <h5>Contacts</h5>
+                <p>Email: support@techxas.com</p>
+                <p>Phone: (+254) 7 164 706 65</p>
+                <p>Fax: (+254) 7 164 706 66</p> <!-- New Item Added -->
+                <p>Working Hours: Mon - Fri, 9 AM - 6 PM</p> <!-- New Item Added -->
+                
+                <h5>About Us</h5>
+                <p>techXas is a leading provider of technological products, offering top-quality solutions and support to businesses and individuals. We specialize in office equipment, IT hardware, and services.</p> <!-- New Content Added -->
+            </div>
+        </div>
+    
+        <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+            <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+                &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+            </h1>
+        </div>
+    </footer>
+    
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 
 
 
@@ -835,6 +1208,31 @@ background-color: rgba(238, 232, 170, 0.727);
 
 
 <script>
+
+    // JavaScript to handle background image transitions
+document.addEventListener('DOMContentLoaded', function() {
+    const backgrounds = document.querySelectorAll('.header__container .background');
+    let currentIndex = 0;  // Start from the first background
+
+    function cycleBackgrounds() {
+        // Remove active class from the current background
+        backgrounds[currentIndex].classList.remove('active');
+        
+        // Update index to next background, loop back to 0 after last image
+        currentIndex = (currentIndex + 1) % backgrounds.length;
+        
+        // Add active class to the new background
+        backgrounds[currentIndex].classList.add('active');
+    }
+
+    // Set the first background as active initially
+    backgrounds[currentIndex].classList.add('active');
+    
+    // Cycle backgrounds every 6 seconds (adjust the time as needed)
+    setInterval(cycleBackgrounds, 6000);  // Change every 6 seconds
+});
+
+
       document.addEventListener('DOMContentLoaded', () => {
         const scrollArrow = document.getElementById('scroll-arrow');
         const productList = document.getElementById('container-product-list');

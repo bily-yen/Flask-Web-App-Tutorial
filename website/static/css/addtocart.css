@@ -176,6 +176,7 @@
 }
 .main-content h3 {
     padding: 5px;
+<<<<<<< HEAD
     color: black;
     border-radius: 10px;
     font-size: 22px;
@@ -208,6 +209,40 @@
     padding: 5px;
 }
 
+=======
+    color:black;
+    font-size: 18px;
+    margin-top: 0;
+    width: 100%;
+    overflow: hidden;
+    font-weight:600 ;
+
+
+}
+
+.main-content h4 {
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 0;
+    width: max-content;
+    overflow: hidden;
+    font-weight:300 ;
+    background-color: black;
+}
+
+.product-navigation,
+.additional-product-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent overflowing of product containers */
+    width: 100%;
+    padding: 5px;
+}
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 .product-container,
 .additional-product-container {
     display: flex;
@@ -261,7 +296,11 @@
     margin-left: auto;
     gap: 6px;
     padding-left: 20px;
+<<<<<<< HEAD
     background-color: gainsboro;
+=======
+    background-color: white;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
     display: flex; /* Ensure flex container layout */
     flex-direction: column; /* Stack the sections vertically */
     margin-top: 10px;
@@ -660,12 +699,20 @@
     white-space: nowrap;  /* Prevent text wrapping */
     overflow: hidden;
     text-overflow: ellipsis;  /* Truncate text if it's too long */
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 14px;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
     font-weight: 400;
     color: black;
     flex: 1;  /* Ensure the paragraph takes equal height with other elements */
     height: max-content;
     padding-bottom: 10px;
+<<<<<<< HEAD
+=======
+    padding: 5px;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
 
 .inputs {
@@ -701,8 +748,13 @@
 .bottom h2 {
     margin-top: 0;
     font-size: 14px;  /* Font size */
+<<<<<<< HEAD
     color: black;  /* Text color */
     font-weight: 300;  /* Bold font weight */
+=======
+    color: blue;  /* Text color */
+    font-weight: 800;  /* Bold font weight */
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
     border-radius: 5px;  /* Slightly rounded corners */
     flex: 1;  /* Ensure <h2> takes equal space as other elements */
 }
@@ -1168,19 +1220,33 @@ section {
     margin-bottom: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
     background-color:powderblue;
+=======
+    background-color:black;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   }
   
   /* Title Styling */
   section h3 {
     font-size: 28px;
     font-weight: bold;
+<<<<<<< HEAD
     color: brown;
     margin-bottom: 20px;
     text-align: center;
     background-color: whitesmoke;
     padding: 10px;
     border-radius: 5px;
+=======
+   
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: palegoldenrod;
+    padding: 25px;
+    color: brown;
+    width: 100%;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   }
   
   /* Introduction Section */

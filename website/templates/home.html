@@ -13,4 +13,94 @@
         </a>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+</div>
+
+<footer>
+    <div class="footer__top row">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop,<br> technological products and solutions</p>
+        </div>
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65 </p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <br> <br>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        
+<h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+    &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+</h1>
+    
+    </footer>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  document.getElementById('add-note-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const noteContent = document.getElementById('note').value;
+      const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+
+      fetch("{{ url_for('views.add_note') }}", {
+          method: "POST",
+          body: JSON.stringify({ note: noteContent }),
+          headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": csrfToken // Include the CSRF token in headers
+          }
+      }).then(response => {
+          if (response.ok) {
+              window.location.reload(); // Reload the page to show the new note
+          } else {
+              console.error('Failed to add note');
+          }
+      }).catch((error) => {
+          console.error('Error:', error);
+      });
+  });
+
+  
+  function deleteNote(noteId) {
+    fetch("{{ url_for('views.delete_note') }}", { // Use Flask's url_for function for URL generation
+        method: "POST",
+        body: JSON.stringify({ noteId: noteId }),
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token() }}" // Include CSRF token here
+        }
+    }).then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Failed to delete note');
+        }
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+}
+</script>
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 {% endblock %}

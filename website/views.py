@@ -6,12 +6,6 @@ import logging
 import base64
 from datetime import datetime, timedelta, timezone
 from threading import Timer
-from flask import jsonify
-from flask_socketio import emit
-from flask_socketio import SocketIO
-from . import socketio
-
-
 import requests
 from requests.auth import HTTPBasicAuth
 from werkzeug.utils import secure_filename
@@ -23,15 +17,29 @@ from flask_login import login_required, current_user
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from sqlalchemy.orm import joinedload
+from flask_socketio import emit
 
 # Import models and database setup
+<<<<<<< HEAD
 from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct,db
+=======
+from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct,CatalogueRequest, db
+
+# Initialize dotenv for environment variables
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 from dotenv import load_dotenv
-import os
-socketio = SocketIO()
+load_dotenv()  # Make sure to load environment variables from .env file
 
+# Import socketio object from your app package (already initialized in __init__.py)
+from . import socketio
 
+# Import mail from your app package where it's initialized (usually in __init__.py)
+from website import mail
 # Load environment variables from .env file
+
+from flask_mail import Message
+import logging
+
 load_dotenv()
 
 mpesa_endpoint = os.getenv('MPESA_ENDPOINT')
@@ -72,6 +80,8 @@ def sanitize_input(input_data):
     if input_data:
         return re.sub(r'<.*?>', '', input_data)
     return input_data
+
+
 
 
 # Route to handle adding a new refund
@@ -262,6 +272,109 @@ def index():
     """
     return render_template('index.html')
 
+<<<<<<< HEAD
+=======
+# Route to handle form submission
+from flask import render_template, request, redirect, url_for, flash
+from datetime import datetime
+from flask_mail import Message
+from . import mail  # Assuming you have configured mail in your app
+
+@views.route('/submit-email', methods=['POST'])
+def submit_catalogue_request():
+    # Get form data
+    name = request.form['name']
+    institution = request.form['institution']
+    email = request.form['email']
+
+    # Check if the email already exists in the database
+    existing_request = CatalogueRequest.query.filter_by(email=email).first()
+    if existing_request:
+        flash('This email has already been used to request a catalogue.', 'warning')
+        return redirect(url_for('views.index'))  # Correctly redirect to the index route
+
+    # Create a new CatalogueRequest object and store it in the database
+    catalogue_request = CatalogueRequest(
+        name=name,
+        institution=institution,
+        email=email,
+        submitted_at=datetime.utcnow()
+    )
+
+    try:
+        db.session.add(catalogue_request)
+        db.session.commit()
+        flash('Thank you! Your catalogue request has been received.', 'success')
+
+        # Send email to the user
+        try:
+            subject_user = "Catalogue Request Confirmation"
+            body_user = f"""
+            Hello {name},
+
+            Thank you for requesting our catalogue. We have received your request.
+
+            Name: {name}
+            Institution: {institution}
+            Email: {email}
+
+            We will send the catalogue to your email shortly.
+
+            Best regards,
+            Your TechMart Team
+            """
+
+            msg_user = Message(
+                subject=subject_user,
+                recipients=[email],  # Send to the user's email
+                body=body_user
+            )
+            mail.send(msg_user)
+            logging.info(f"Catalogue request confirmation email sent to {email}")
+
+        except Exception as e:
+            logging.error(f"Error sending email to user: {e}")
+            flash('Request was successful, but there was an error sending the confirmation email.', 'danger')
+
+        # Send email to the admin about the new request
+        try:
+            admin_email = "bilyokwaro95@gmail.com"  # Admin email
+
+            subject_admin = "New Catalogue Request"
+            body_admin = f"""
+            New Catalogue Request:
+
+            Name: {name}
+            Institution: {institution}
+            Email: {email}
+
+            Please process this request.
+
+            Best regards,
+            Your TechMart Team
+            """
+
+            msg_admin = Message(
+                subject=subject_admin,
+                recipients=[admin_email],  # Send to admin's email
+                body=body_admin
+            )
+            mail.send(msg_admin)
+            logging.info(f"New catalogue request notification sent to admin at {admin_email}")
+
+        except Exception as e:
+            logging.error(f"Error sending email to admin: {e}")
+            flash('Catalogue request was received, but there was an error notifying the admin.', 'danger')
+
+    except Exception as e:
+        db.session.rollback()  # Rollback in case of an error
+        flash(f'An error occurred: {str(e)}', 'danger')
+
+    return redirect(url_for('views.index'))  # Correctly redirect to the index route after submission
+
+
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 @views.route('/services', methods=['GET'])
 def services():
     """
@@ -564,6 +677,9 @@ def delete_note():
         return jsonify({}), 200
     except Exception as e:
         return jsonify({'message': f'Error: {str(e)}'}), 500
+
+
+
     
 
 
@@ -650,6 +766,7 @@ def mpesa_express():
         except ValueError:
             return jsonify({'error': 'Invalid amount format'}), 400
 
+        # Access token for MPESA API
         access_token = get_access_token()
         if not access_token:
             logging.error('Failed to retrieve access token')
@@ -660,6 +777,7 @@ def mpesa_express():
             "Content-Type": "application/json"
         }
 
+        # Prepare MPESA request data
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
         endpoint = os.getenv('MPESA_ENDPOINT')
         business_shortcode = os.getenv('BUSINESS_SHORTCODE')
@@ -680,6 +798,7 @@ def mpesa_express():
             "Amount": amount
         }
 
+        # Send the request to MPESA API
         response = requests.post(endpoint, json=request_data, headers=headers)
         response.raise_for_status()
         response_data = response.json()
@@ -721,7 +840,90 @@ def mpesa_express():
 
             db.session.commit()
 
-            return jsonify({'success': True, 'message': 'Payment initiated successfully'}), 200
+            # Send email to the user with order details
+            try:
+                # Prepare the email content for the user
+                subject_user = "Your Payment Order Confirmation"
+                body_user = f"""
+                Hello {current_user.first_name},
+
+                Thank you for your purchase. Your payment was successfully processed.
+
+                Order ID: {transaction.id}
+                Amount: {amount}
+                Phone: {phone}
+                Products:
+                """
+
+                # Add products details for the user
+                for item in products:
+                    product = Product.query.get(item[0])
+                    body_user += f"\n- {product.name} x {item[1]}"
+
+                body_user += f"""
+
+                If you have any questions, feel free to reach out to our support team.
+
+                Best regards,
+                Your TechMart Team
+                """
+
+                # Send the email to the user
+                msg_user = Message(
+                    subject=subject_user,
+                    recipients=[current_user.email],  # Send to the logged-in user's email
+                    body=body_user
+                )
+                mail.send(msg_user)
+                logging.info(f"Payment confirmation email sent to {current_user.email}")
+
+            except Exception as e:
+                logging.error(f"Error sending email to user: {e}")
+                return jsonify({'error': 'Payment processed, but failed to send confirmation email to user'}), 500
+
+            # Send email to the admin (new incoming order)
+            try:
+                admin_email = "bilyokwaro95@gmail.com"  # Admin email (directly set)
+
+                # Prepare the email content for the admin
+                subject_admin = "New Incoming Order"
+                body_admin = f"""
+                New Order Received:
+
+                Order ID: {transaction.id}
+                Amount: {amount}
+                Phone: {phone}
+                Products:
+                """
+
+                # Add products details for the admin
+                for item in products:
+                    product = Product.query.get(item[0])
+                    body_admin += f"\n- {product.name} x {item[1]}"
+
+                body_admin += f"""
+
+                Please process this order as soon as possible.
+
+                Best regards,
+                Your TechMart Team
+                """
+
+                # Send the email to the admin
+                msg_admin = Message(
+                    subject=subject_admin,
+                    recipients=[admin_email],  # Send to admin's email
+                    body=body_admin
+                )
+                mail.send(msg_admin)
+                logging.info(f"New order notification sent to admin at {admin_email}")
+
+            except Exception as e:
+                logging.error(f"Error sending email to admin: {e}")
+                return jsonify({'error': 'Payment processed, but failed to send admin notification'}), 500
+
+            return jsonify({'success': True, 'message': 'Payment initiated, confirmation email sent to user, and admin notified'}), 200
+
         else:
             description = response_data.get('ResponseDescription', 'No description provided')
             if 'insufficient funds' in description.lower():
@@ -780,10 +982,13 @@ def get_access_token():
 def my_cart():
     return render_template('mycart.html')
 
+<<<<<<< HEAD
 @views.route('/cv')
 def mycv():
     return render_template('illustration.html')
 
+=======
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 @views.route('/orders')
 @login_required
 def view_orders():

@@ -57,6 +57,7 @@ rel="stylesheet"
   
 </head>
 <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg" style="background-color: white; position: fixed;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
@@ -578,6 +579,197 @@ background-color: rgba(238, 232, 170, 0.727);
 /* Style for the icon */
         
     </style>
+=======
+
+
+    <nav class="navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+   >
+    </a>     </button>
+    <div class="logo" style="position: relative;">
+      <!-- Logo Link -->
+      <a href="/index" class="logo-link" style="background-color: transparent; padding: 3px;">
+          <!-- Replace the text-based logo with the GIGO.PNG image -->
+          <img src="{{ url_for('static', filename='SPAPHOTOS/GIGO.PNG') }}" alt="GIGO Logo" style="max-width: 700px; height: auto;"/>
+      </a>
+  </div>
+  
+  
+      <!-- About Us Notification (Initially Hidden) -->
+      <div class="about-us-notification">
+          <p>We are a leading provider of tech solutions, specializing in printing, graphic design, and more.</p>
+      </div>
+  </div>
+        </div>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
+          <a class="nav-item nav-link" id="services-link" href="/services">Services</a>
+  
+          <a class="nav-item nav-link" id="addtocartid" href="/products">Products</a>
+          <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
+          
+            <a href="https://facebook.com" target="_blank" >
+              <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" style=" margin-left: 8px;">
+              <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" style=" margin-left: 8px;">
+              <i class="fab fa-instagram"></i>
+          </a>
+            {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
+                {% if request.path == '/loandata' %}
+                    <div class="text-center">
+                        <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
+                           style="width: 100%; height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                           <i class="bi bi-file-earmark"></i> Add Repayment
+                        </a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
+                
+                <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">
+                  <span class="grey-t">t</span><span class="bold-x">X</span>
+              </a>
+            {% endif %}
+            <div class="cart" onclick="toggleCartModal()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p id="count">0</p>
+            </div>
+        </div>
+       
+    </nav>
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
+    
+  
+    <div class="flashmessage">
+        {% if current_user.is_authenticated %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="messages-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const alerts = document.querySelectorAll('.alert');
+    
+            if (alerts.length) {
+                // Automatically hide the first alert after 5 seconds
+                setTimeout(function () {
+                    const firstAlert = alerts[0];
+    
+                    // Smooth fade out by removing the 'show' class and adding the 'fade' class
+                    firstAlert.classList.remove('show');
+                    firstAlert.classList.add('fade');
+    
+                    // Remove alert element after the fade-out completes (500ms)
+                    setTimeout(() => firstAlert.remove(), 500);
+                }, 5000);  // Adjust delay as per your needs (5000ms = 5 seconds)
+            }
+        });
+    </script>
+    
+    <style>
+
+        /* Cart Icon Initial Styles */
+.cart {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for moving */
+}
+
+/* Notification Styles */
+#notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the notification */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+}
+
+/* Show notification */
+#notification.show {
+    opacity: 1;
+}
+
+/* Cart Icon moved slightly */
+.cart.moved {
+    transform: translateX(10px); /* Move cart icon 10px to the right */
+}
+        /* Style for positioning flash messages */
+
+        
+        .flashmessage {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            max-width: 400px;
+        }
+    
+        .messages-container {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .alert {
+            margin-bottom: 10px;
+            transition: opacity 0.5s ease-out;
+        }
+    
+        .alert.fade {
+            opacity: 0;
+        }
+    
+        /* Optional: Success and Error message custom styles */
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+    
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .navbar {
+  background-color: white;  
+  justify-content: space-between;
+  position: fixed; /* Fixed position */
+  top: 0; /* Stay at the top */
+  left: 0;
+  right: 0; /* Full width */
+  z-index: 1000; /* Make sure it stays above other content */
+  margin-top: 0;
+}
+        
+    </style>
     
    <!-- Section below the navbar -->
 <section class="equipment-section">
@@ -619,6 +811,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Electronics Section -->
       <section id="electronics-section">
           <h3>Electronics</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Explore the latest and greatest in electronics, from smartphones to home appliances. Find the perfect gadget or tech device that suits your needs!</p>
           </div>
@@ -642,6 +835,8 @@ background-color: rgba(238, 232, 170, 0.727);
               </div>
           </div>
   
+=======
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left"></i>
               <div class="product-container" id="root"></div>
@@ -652,6 +847,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Households Section -->
       <section id="households-section">
           <h3>Households</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Discover a wide range of household products that make your life easier and more convenient.</p>
           </div>
@@ -673,6 +869,9 @@ background-color: rgba(238, 232, 170, 0.727);
                   <p>Discover furniture accessories that add style and comfort to your home.</p>
               </div>
           </div>
+=======
+         
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-households"></i>
@@ -684,6 +883,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Furniture Section -->
       <section id="furniture-section">
           <h3>Furniture</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Browse through our stylish and comfortable furniture to elevate your home or office decor.</p>
           </div>
@@ -706,6 +906,9 @@ background-color: rgba(238, 232, 170, 0.727);
                   <p>Explore creative storage solutions to keep your home organized and tidy.</p>
               </div>
           </div>
+=======
+          
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-furniture"></i>
@@ -717,6 +920,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Clothing Section -->
       <section id="clothing-section">
           <h3>Clothing</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Explore the latest trends in fashion and find your perfect outfit for any occasion.</p>
           </div>
@@ -738,6 +942,9 @@ background-color: rgba(238, 232, 170, 0.727);
                   <p>Complement your outfits with fashionable accessories like bags, shoes, and jewelry.</p>
               </div>
           </div>
+=======
+          
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-clothing"></i>
@@ -749,6 +956,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Phones Section -->
       <section id="phones-section">
           <h3>Phones</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Discover the latest smartphones and mobile accessories to suit your style and needs.</p>
           </div>
@@ -771,6 +979,9 @@ background-color: rgba(238, 232, 170, 0.727);
               </div>
           </div>
   
+=======
+         
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-phones"></i>
               <div class="phones-container" id="phones-product-section"></div>
@@ -781,6 +992,7 @@ background-color: rgba(238, 232, 170, 0.727);
       <!-- Accessories Section -->
       <section id="accessories-section">
           <h3>Accessories</h3>
+<<<<<<< HEAD
           <div class="section-intro">
               <p>Find the perfect accessories to complement your electronics, home decor, or personal style.</p>
           </div>
@@ -804,6 +1016,9 @@ background-color: rgba(238, 232, 170, 0.727);
               </div>
           </div>
   
+=======
+        
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
           <div class="product-navigation">
               <i class="fa-solid fa-chevron-left scroll-arrow" id="scroll-left-accessories"></i>
               <div class="tools-container" id="accessories-product-section"></div>
@@ -817,6 +1032,7 @@ background-color: rgba(238, 232, 170, 0.727);
 
 
   <footer>
+<<<<<<< HEAD
     <div class="footer__top row">
         <!-- Our Stores Section -->
         <div class="footer__section footer__stores col-md-3">
@@ -878,6 +1094,50 @@ background-color: rgba(238, 232, 170, 0.727);
     <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
         <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
             &copy; 2024 <span style="font-size: 0.9rem;">C</span>onsumer<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">C</span>oop. All rights reserved.
+=======
+    <div class="footer__top row" id="visit">
+        <div class="footer__section footer__techxas col-md-4">
+            <h5>techXas</h5>
+            <p>Official shop, <br> technological products and solutions</p>
+
+            <!-- Address Section with Address Icon (Clickable for Google Maps) -->
+            <div class="footer__address">
+                <a style="background-color: transparent; padding: 0; margin: 0;" href="https://www.google.com/maps/place/Waska+apartments/@-1.3080688,36.8909694,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!2sMVRV%2BQCF,+Nairobi!2m2!1d36.8935393!2d-1.3080605!3m5!1s0x182f13c2f5cc9555:0x1aace8d58f652c4!8m2!3d-1.3080688!4d36.8935443!16s%2Fg%2F11q4fh_t9v?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                    <i style="color:white; padding: 25px; font-size: 16px;" class="fas fa-map-marker-alt"></i> <!-- Font Awesome Map Marker Icon -->
+                    <p style="color: white;">Tassia, Thika Road, Waska Building</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer__section footer__categories col-md-4">
+            <h5>Categories</h5>
+            <ul>
+                <li>Printers</li>
+                <li>Ink & Toners</li>
+                <li>Stationery</li>
+                <li>Computers</li>
+                <li>Graphic Design Services</li>
+                <li>Networking Solutions</li> <!-- New Item Added -->
+                <li>Office Supplies</li> <!-- New Item Added -->
+            </ul>
+        </div>
+
+        <div class="footer__section footer__contacts col-md-4">
+            <h5>Contacts</h5>
+            <p>Email: support@techxas.com</p>
+            <p>Phone: (+254) 7 164 706 65</p>
+            <p>Fax: (+254) 7 164 706 66</p> <!-- New Item Added -->
+            <p>Working Hours: Mon - Fri, 9 AM - 6 PM</p> <!-- New Item Added -->
+            
+            <h5>About Us</h5>
+            <p>techXas is a leading provider of technological products, offering top-quality solutions and support to businesses and individuals. We specialize in office equipment, IT hardware, and services.</p> <!-- New Content Added -->
+        </div>
+    </div>
+
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+            &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
         </h1>
     </div>
 </footer>

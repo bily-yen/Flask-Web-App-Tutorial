@@ -16,6 +16,7 @@ body {
 }
 
 .navbar {
+<<<<<<< HEAD
   color: black; /* Black text */
   display: flex;
   align-items: center;
@@ -28,6 +29,16 @@ body {
   z-index: 1000; /* Make sure it stays above other content */
   padding: 0;
   margin-bottom: -50px;
+=======
+background-color: white;  
+  justify-content: space-between;
+  position: fixed; /* Fixed position */
+  top: 0; /* Stay at the top */
+  left: 0;
+  right: 0; /* Full width */
+  z-index: 900; /* Make sure it stays above other content */
+  margin-top: 50px;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
 
 .welcome-header h1{
@@ -47,13 +58,73 @@ body {
 .navbar-nav {
   display: flex;
   flex-direction: row;
+<<<<<<< HEAD
   margin-left: 180px;
   margin-right: auto;
+=======
+  margin-right: 40px;
+
+}
+
+.top-banner {
+  background: linear-gradient(135deg, #0A0068, #2E004F, #000000); /* Deep blue to dark purple to black */  color: white; /* White text for contrast */
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  position: fixed;
+  z-index: 1000;
+  margin-top: 0;
+  width:100% ;
+}
+.top-banner {
+  background: linear-gradient(135deg, #0A0068, #000000); /* Deep blue to black gradient */
+  color: white; /* White text for contrast */
+  text-align: center; /* Centered text */
+  padding: 10px 0; /* Vertical padding */
+  font-family: Arial, sans-serif; /* Clean, modern font */
+}
+
+.top-banner a {
+  color: #FFD700; /* Gold color for the phone number link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.top-banner a:hover {
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.nav-link a{
+  background-color: transparent;
+}
+
+.nav-item{
+  animation: none;
+  transition: none;
+  background-color: transparent;
+  transform: none;
+
+}
+.nav-link {
+  background-color: transparent;
+}
+
+.nav-link:hover{
+  animation: none;
+  transition: none;
+  background-color: transparent;
+  transform: none;
+  color:brown;
+
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
 
 .navbar-nav a {
   display: flex;
   flex-direction: row;
+<<<<<<< HEAD
   font-size: 16px;
 }
 
@@ -70,17 +141,52 @@ body {
   text-align: center;
 }
 
+=======
+  align-items: center; /* Center items vertically */
+  padding: 5px;
+  font-size: 12px;
+}
+
+/* Add the retro pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Styling for the logo container */
+.logo {
+  padding: 3px; /* Space around the logo */
+  border-radius: 5px; /* Rounded corners for the logo container */
+  display: inline-block; /* Make the logo behave like a block element */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+  margin-left: 20px;
+}
+
+/* Styling for the logo heading (TechXas) */
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 .logo h1 {
-  font-size: 1.5rem; /* Overall font size for the logo */
   margin: 0;
-  color: #757373;
+  font-weight: bold;
+  font-size: 2.5rem; /* Adjust size for more emphasis */
+  font-family: 'Press Start 2P', cursive; /* Apply the retro font */
+  position: relative;
+  color: white; /* Default color of the logo */
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  text-transform: lowercase;
+  letter-spacing: 3px; /* Slightly space out the letters */
 }
 
+/* Styling for the logo subheading */
+.logo h1 span {
+  font-size: 1.5rem; /* Adjust size of the subheading */
+  color: black; /* Add a nice contrasting color */
+}
 .logo div {
-  font-size: 0.8rem; /* Smaller font size for the subtitle */
-  color: white; /* Lighter color for subtitle */
+  font-size: 0.8rem;
+  color: white;  /* Default subtitle color */
+  transition: color 0.3s ease;
+  padding: 5px;
 }
 
+<<<<<<< HEAD
 .nav-links {
   list-style-type: none;
   display: flex;
@@ -91,7 +197,85 @@ body {
 
 .nav-links li a:hover {
   border-radius: 5px; /* Rounded corners */
+=======
+/* Hover effect for the logo */
+.logo:hover h1 {  /* Change to red on hover */
+  transform: scale(1.1);  /* Slightly enlarge the logo text */
+  animation: pulse 0.5s ease forwards;  /* Adding pulse animation */
 }
+
+.logo:hover div {
+  animation: fadeInText 0.5s ease forwards; /* Text fade effect */
+}
+
+/* Hover effect for the notification */
+.about-us-notification {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px); /* Initially shifted down */
+  padding: 15px;
+  background-color: #0056b3;  /* Black background */
+  color: white;  /* White text */
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s, transform 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Optional shadow */
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
+}
+
+/* Show the notification when the logo is hovered */
+.logo:hover{
+  color: #0056b3;
+  background-color: #0056b3;
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Smoothly slide up and appear */
+  animation: raiseNotification 0.3s ease forwards; /* Notification animation */
+} 
+
+
+
+/* Optional: Add a red border or accent around the notification */
+
+/* Keyframes for Logo Pulse */
+@keyframes pulse {
+  0% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+
+
+/* Keyframes for Notification Raise Effect */
+@keyframes raiseNotification {
+  0% {
+    transform: translateY(10px); /* Start below */
+    opacity: 0; /* Initially invisible */
+  }
+  100% {
+    transform: translateY(0); /* Raise to normal position */
+    opacity: 1; /* Fade in */
+  }
+}
+
+/* Hover effect for the logo container background */
+
+
+
+
+
+
 
 /* Nav Item Styles */
 .nav-item {
@@ -99,33 +283,33 @@ body {
 }
 
 .nav-link {
+<<<<<<< HEAD
   font-size: 14px; /* Slightly larger font size for better readability */
   font-weight:500 ;
   font-style: italic;
   color: black;
   padding: 1px 5px; /* Adjust padding as needed */
+=======
+  font-weight: bolder;
+  font-style: italic;
+  color: black;
+  padding:5px; /* Adjust padding as needed */
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
+  padding: 20px; /* Padding for links */
 }
 
-/* 3D Effect */
-.nav-link::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transform: translateY(5px);
-  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-}
 
+<<<<<<< HEAD
 .nav-link:hover {
   animation: flashColors 1.5s ease-in-out forwards;
 
 }
+=======
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 #login {
 font-size: 42px; /* Adjust the size as needed */
 font-weight: bold;
@@ -151,6 +335,7 @@ animation: none;
 /* Adding a hover effect */
 
 
+<<<<<<< HEAD
 @keyframes flashColors {
   0% { color: black; }
   25% { color: gray; }
@@ -158,6 +343,8 @@ animation: none;
   100% { color: black; }
 }
 
+=======
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 
 #topfinancehead{
   margin-top: 50px;
@@ -304,10 +491,95 @@ animation: none;
   cursor: pointer; /* Makes the icon clickable */
 }
 
+/* Styling for the slowmotion_securityh class and its section */
+.slowmotion_securityh {
+  text-align: center;
+  color: black;
+}
+
+/* Styling for the welcome_header with slow-motion animation */
+.slowmotion_securityh .welcome_header {
+  margin: 0;
+  font-weight: bold;
+  font-size: 2rem;
+  position: relative;
+  color: grey;
+  display: inline-block; /* Ensure it's treated as inline-block for proper animation */
+  animation: danceUpDown 4s ease-in-out infinite; /* Animation for dancing up and down */
+}
+
+/* Keyframes for the "dance up and down" animation */
+@keyframes danceUpDown {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  25% {
+    transform: translateY(0); /* Move up slightly */
+  }
+  50% {
+    transform: translateY(0); /* Back to the initial position */
+  }
+  75% {
+    transform: translateY(10px); /* Move down slightly */
+  }
+  100% {
+    transform: translateY(0); /* Back to the initial position */
+  }
+}
+
+/* Optional styling for the catch_phrase */
+.catch_phrase {
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 2px; /* Adds some space below the catchphrase */
+}
+.header__image {
+  position: relative; /* Set the position of the container to relative */
+  width: 100%;
+}
+
+.header__image img {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensures the image fills the container without extra space below */
+}
+
+.network-text {
+  position: absolute; /* Position the text absolutely within the container */
+  top: 50%; /* Vertically center the text */
+  left: 50%; /* Horizontally center the text */
+  transform: translate(-50%, -50%); /* Fine-tune the centering */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold; /* Ensure the text is bold */
+  color: brown; /* Set text color to red */
+  text-transform: uppercase; /* Transform the text to uppercase */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial subtle shadow */
+  text-align: center; /* Center align the text */
+  padding: 10px;
+  max-width: 80%; /* Prevent text from overflowing */
+  line-height: 1.5;
+
+  animation: moveShadow 2s infinite alternate; /* Apply moving box shadow animation */
+}
+
+/* Keyframes for moving box shadow */
+@keyframes moveShadow {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial shadow */
+  }
+  50% {
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the right and down */
+  }
+  100% {
+    text-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the left and up */
+  }
+}
+
 .nexticon i:hover {
   color: #0056b3; /* Change icon color on hover */
 }
 footer {
+<<<<<<< HEAD
   background-color: darkgreen; /* Dark background for the footer */
   color: #fff; /* White text */
   padding: 5px; /* Padding for spacing */
@@ -315,7 +587,19 @@ footer {
   padding-bottom: 300px;
   padding: 50px;
   margin-top: 20px;
+=======
+  background: linear-gradient(135deg, #0A0068, #1B006E, #2C0074, #3D007A, #000000); /* Deep blue to black with intermediate shades */  color: white; /* White text for contras */
+  padding: 5px; /* Padding for spacing */
+  text-align: center; /* Center text */
+  padding: 5px;
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
+
+.footer p,h2,h5{
+  font-size: 12px;
+  font-weight: 800px;
+}
+
 
 .footer__top, .footer__bottom {
   display: flex; /* Flexbox for layout */
@@ -446,22 +730,54 @@ ul li {
 
 .social-media li {
   display: inline; /* Display social media items inline */
-  margin-right: 15px; /* Space between icons */
+  margin-right: 28px; /* Space between icons */
 }
 
 a {
-  color: white; /* Light blue color for links */
   text-decoration: none; /* Remove underline */
-  background-color:brown;
-  padding: 5px;
-  border-radius: 5px;
+  background-color:lightgrey;
+  border-radius: 20px;
+  font-size: 18px;
+  padding: 2px;
+  
 }
 
+.near-footer a {
+  text-decoration: none; /* Remove underline */
+  background-color:transparent;
+  border-radius: 20px;
+  font-size: 24px;
+  padding: 20px;
+}
+/* CSS for the Instagram icon */
+a i {
+  font-size: 16px;  /* Icon size */
+  color: brown;  /* Instagram's color */
+  padding: 2px;
+}
+
+a:hover {
+  color: white;  /* A darker shade for hover effect */
+  padding: 2px;
+  transform: none;
+  transition: none;
+}
+
+.grey-t {
+  color: grey;
+  font-weight: normal;
+  text-transform: lowercase;  /* This will ensure the text is always in lowercase */
+  font-size: smaller;
+}
+
+.bold-x {
+  color: black;
+  font-weight: bold;
+}
 .near-footer {
   display: flex;
   background-color:whitesmoke; /* Background color */
   padding-top: 35px; /* Padding around the footer */
-  box-shadow: 5px 2px 2px black;
   margin-bottom: 30px;
   margin-top: 20px;
   padding-bottom: 40px;
@@ -475,22 +791,122 @@ a {
   margin: 0 auto; /* Center the container */
   padding: 0 20px; /* Padding on the sides */
 }
+/* Container for the image section */
+/* Right Side Section for Images */
+.image-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 images per row */
+  margin-top: 20px;
+  background-color: black;
+  padding: 5px;
+  width: 100%;
+}
+
+/* Individual Image Container */
+.image-item-container {
+  display: flex;
+  flex-direction: column; /* Stack image and caption vertically */
+  padding: 5px;
+  margin: left 15px;
+
+  }
+
+/* Individual Image Styling */
+.image-item {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow around images */
+}
+
+.image-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
+}
+
+/* Caption Styling */
+.image-caption {
+  font-size: 1rem;
+  color: #333; /* Dark gray text */
+  margin-top: 8px;
+  font-weight: bold;
+  text-transform: capitalize; /* Capitalize first letter */
+}
+/* Shop section - general layout for the left and right parts */
+.shop-section {
+  display: flex;                  /* Arrange left and right sections side by side */
+  gap: 30px;                      /* Space between the left and right sections */
+  justify-content: space-between; /* Ensure that the sections are spaced out */
+  align-items: flex-start;        /* Align items to the top */
+  margin: 30px 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Left Side Section */
+.left-side {
+  flex: 1;                       /* Left side takes up 1/3 of the width */
+  padding: 8px;
+  background-color: #f9f9f9;     /* Light background for the left section */
+  border-radius: 10px;           /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+  text-align: center;            /* Center text inside the left section */
+}
+
+.left-side h2 {
+  color: #9a7d1e;                /* Golden color for the heading */
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.left-side p {
+  color: #555;                   /* Dark gray for text */
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.shop-link {
+  display: inline-block;
+  background-color: goldenrod;   /* Golden color for the link */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.shop-link:hover {
+  background-color: darkgoldenrod; /* Darker shade when hovered */
+}
+
+/* Individual Image Styling */
+.image-item {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow around images */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.image-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
+}
 
 .near-footer__top {
   display: flex; /* Flexbox layout for top sections */
   justify-content: space-between; /* Space out the sections evenly */
   margin-bottom: 20px; /* Space below the top sections */
   text-align: center; /* Center align text */
+  background-color: black;
 }
 
 .near-footer__section {
   flex: 1; /* Allow sections to grow equally */
   margin: 0 10px; /* Margins between sections */
+  padding: px;
+  background-color:white;
+  padding: 5px;
+
 }
-.near-footer__section h5 {
-  color: #757373;
-  font-weight: 700;
-}
+
 
 .near-footer__categories ul {
   list-style-type: none; /* Remove default bullet points */
@@ -533,9 +949,6 @@ a {
   font-size: 14px; /* Font size for partner names */
   font-weight: 500; /* Slightly bolder text */
   color: black;
-}
-a:hover {
-  text-decoration: underline; /* Underline on hover */
 }
 
 .footer__location, .footer__affiliates {
@@ -585,18 +998,17 @@ a:hover {
   flex-direction: row;
   justify-content: center; /* Center items */
   flex-wrap: wrap; /* Allow items to wrap */
-  margin: 20px 0; /* Add some margin to the top and bottom */
-  background-color: rgb(255, 255, 255);
-  padding: 45px;
+  margin: 0px 0; /* Add some margin to the top and bottom */
+  background-color: powderblue;
+  padding: 35px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px white; /* Subtle shadow for depth */
+  
 }
 
 .cctechspac h1 {
   color:  brown; /* Change to white for visibility on a black theme */
   font-weight: 800;
   font-size: 16px; /* Slightly larger font size */
-  margin-bottom: 20px; /* Space below the header */
 }
 
 /* Right Side Section for Images */
@@ -629,6 +1041,7 @@ a:hover {
 }
 
 
+<<<<<<< HEAD
 /* Caption Styling */
 .image-caption {
   font-size: 1rem;
@@ -636,6 +1049,15 @@ a:hover {
   margin-top: 8px;
   font-weight: bold;
   text-transform: capitalize; /* Capitalize first letter */
+=======
+.imgsections p {
+  margin-top: 5px; /* Space between image and text */
+  color:black; /* Change to white for visibility */
+  line-height: 1.2; /* Improve readability */
+  font-weight:300;
+  font-size: 14px;
+
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
 /* Media queries for responsive design */
 @media (max-width: 768px) {
@@ -959,14 +1381,18 @@ border-radius: 5px;
   color: var(--text-light);
   text-align: center;
 }
+
+/* Container for the header */
 .header__container {
+  position: relative;
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--max-width); /* For responsiveness */
   margin: auto;
   padding-block: 8rem 2rem;
   padding-inline: 1rem;
   display: grid;
   gap: 2rem;
+<<<<<<< HEAD
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   overflow: hidden; /* Hide any overflow caused by the pseudo-element */
   height: 100%;
@@ -976,62 +1402,186 @@ border-radius: 5px;
   20%, 50% { background-image: url('/static/SPAPHOTOS/rot4.jpg'); }
   50%, 80% { background-image: url('/static/SPAPHOTOS/rot6.jpg'); }
   80%, 100% { background-image: url('/static/SPAPHOTOS/rot8.jpg'); }
+=======
+  overflow: hidden;
+  background-size: cover; /* Ensure images cover the entire container */
+  background-position: center; /* Center the background images */
+  background-repeat: no-repeat; /* Avoid tiling */
+  height: 100vh; /* Full height */
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 }
 
-.header__container {
-  position: relative;
-  height: 400px; /* Adjust as needed */
-  animation: backgroundCycle 12s infinite; /* Adjust timing for total duration */
-}
-
-.header__container::before {
-  content: "";
+/* Common styles for all background images */
+.header__container .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-position: center;
   background-size: cover;
-  filter: blur(2px);
-  z-index: -1;
-  transform: scale(1.1);
-}
-.header__container::-webkit-scrollbar {
-  display: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;  /* Start fully transparent */
+  transition: opacity 2s ease-in-out; /* Smooth opacity transition */
 }
 
+/* Background 1: officesupplydark */
+.header__container .background1 {
+  background-image: url('/static/SPAPHOTOS/officesupplydark.jpg');
+}
+
+/* Background 2: image2 */
+.header__container .background2 {
+  background-image: url('/static/SPAPHOTOS/image2.png');
+}
+
+/* Background 3: image3 */
+.header__container .background3 {
+  background-image: url('/static/SPAPHOTOS/image3.jpg');
+}
+
+/* Background 4: image4 */
+.header__container .background4 {
+  background-image: url('/static/SPAPHOTOS/image4.webp');
+}
+
+/* Background 5: image5 */
+.header__container .background5 {
+  background-image: url('/static/SPAPHOTOS/image5.webp');
+}
+
+/* Active background visibility */
+.header__container .active {
+  opacity: 1;
+}
 .header__image {
-  position: relative;
-  isolation: isolate;
-  width: 90%;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative; /* Position the container relative to hold absolutely positioned images */
+  width: 100%;
+  height: 400px; /* Adjust as needed */
+  overflow: hidden; /* Hide images that go outside the container */
 }
 
-.header__image::before {
+
+
+/* Network text styling */
+.network-text {
   position: absolute;
-  content: "";
-  width: 100%;
-  max-width: 550px;
-  aspect-ratio: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  border-radius: 100%;
-  opacity: 0.5;
-  z-index: -1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+/* Custom styling for the Call Us section */
+/* Basic styling for the Call Us section */
+.custom-call-us {
+  position: absolute;
+  bottom: 10%; /* Position it near the bottom of the header */
+  left: 50%;
+  transform: translateX(-50%); /* Center the section horizontally */
+  z-index: 2; /* Ensure it's above other content */
+  width: 100%;
+  text-align: center;
 }
 
-.header__image img {
-  max-width: 520px;
-  margin-inline: auto;
-  border-radius: 20px;
+/* Styling for the Call Us header section */
+.call-us-section h2 {
+  font-size: .9rem;
+  font-weight: bold;
+  color: white; /* Text color for header */
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: black; /* Background color for readability */
+  border-radius: 5px;
 }
+
+.why-choose-us {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.imgsections {
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: ghostwhite;
+}
+
+.section-item i {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.section-item h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.section-item p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Styling for the contact details (phone number and email) */
+.contact-details {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+/* Styling for the phone number */
+.phone-number {
+  color: white; /* White text for contrast */
+  font-size: 1.0rem;
+  font-weight: bold;
+  text-decoration: underline; /* Optional: underline to highlight the number */
+  margin-top: 10px;
+  padding: 15px;
+  background-color: black;
+}
+
+/* Styling for the email address */
+.email-address {
+  color: white; /* White text for contrast */
+  font-size: 1.0rem;
+  font-weight: bold;
+  text-decoration: underline; /* Optional: underline to highlight the email */
+  margin-top: 10px;
+  padding: 15px;
+  background-color: black;
+  border-radius: 10px;
+
+}
+
+/* Icons for phone and email */
+.fas {
+  margin-right: 10px; /* Space between icon and text */
+  color: black; /* White color for icons */
+}
+
+/* Optional: Add a background transition or slide animation for the call us section */
+.custom-call-us .call-us-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  padding: 10px;
+}
+
+/* Optional: Hide the default carousel controls if not needed */
+.custom-call-us .carousel-control-prev, .custom-call-us .carousel-control-next {
+  display: none;
+}
+
+
+
+
 
 .header__image__card {
   position: absolute;
@@ -1095,6 +1645,36 @@ border-radius: 5px;
   background-color: brown;
   font-weight: 700;
   color: white;
+}
+.network-text {
+  position: absolute; /* Position the text absolutely within the container */
+  top: 50%; /* Vertically center the text */
+  left: 50%; /* Horizontally center the text */
+  transform: translate(-50%, -50%); /* Fine-tune the centering */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold; /* Ensure the text is bold */
+  color: brown; /* Set text color to red */
+  text-transform: uppercase; /* Transform the text to uppercase */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial subtle shadow */
+  text-align: center; /* Center align the text */
+  padding: 10px;
+  max-width: 80%; /* Prevent text from overflowing */
+  line-height: 1.5;
+
+  animation: moveShadow 2s infinite alternate; /* Apply moving box shadow animation */
+}
+
+/* Keyframes for moving box shadow */
+@keyframes moveShadow {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Initial shadow */
+  }
+  50% {
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the right and down */
+  }
+  100% {
+    text-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8); /* Shadow moves to the left and up */
+  }
 }
 
 .header__content h1 {
@@ -1317,31 +1897,547 @@ section#wcuindextop {
 }
 
 .hometop-container {
-  margin: 20px;
-  margin-top: 5px;
+  margin-top: 150px;
+  padding: 5px;
 }
 .hometop-item {
   text-align: center;
-  padding: 10px;
-  background: whitesmoke;
+  background: rgba(218, 165, 32, 0.450);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex: 1 1 150px; /* Adjust size as needed */
   margin: 10px;
+  margin-top: 50px;
+  padding-top: 2px;
+
   
 }
+.hometop-item h5 {
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex: 1 1 150px; /* Adjust size as needed */
+  margin: 10px;
+  font-weight: 700;
+
+  
+}
+
+/* General container styles */
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  font-family: Arial, sans-serif;
+}
+
+/* Product Header */
+
+/* Product detail container (image and text) */
+.product-detail-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+/* Product image styling */
+.product-detail-img {
+  width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Carousel Box Styling (For text and special features) */
+.carousel-box {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-right: 20px;
+  flex: 1;
+}
+
+/* Product detail text section */
+.product-detail-text {
+  margin-left: 20px;
+}
+
+/* Styling for product details (price, quantity, etc.) */
+.product-detail-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e6f7ff; /* Soft blue background */
+  border-radius: 8px;
+}
+
+/* Special features section */
+.special-features {
+  margin-top: 20px;
+}
+
+.special-features h3 {
+  font-size: 1.6em;
+  color: white;
+  background-color: #ff6347; /* Tomato red background */
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.special-features p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Price and quantity styling */
+.product-detail-text p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 12px;
+}
+/* Style for the product detail link as a green button */
+.prdetails-link {
+  font-size: 12px;  /* Set the font size */
+  color: white;  /* Text color - white for contrast */
+  background-color: burlywood;  /* Green background color */
+  text-decoration: none;  /* Remove the default underline */
+  font-weight: bold;  /* Make the text bold */
+  border-radius: 5px;  /* Round corners for the button */
+  display: inline-block;  /* Ensure it behaves like a block element while staying inline */
+  transition: background-color 0.3s, transform 0.3s; /* Add smooth transition for hover effects */
+  margin-left: 0;
+  margin-top: 2px;
+  width: min-content;
+  margin-bottom: 5px;
+}
+/* Larger Section Styling */
+#electronics-section {
+  padding: 30px 10%;
+  background-color: black;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Title Styling */
+
+/* Introduction Section */
+.section-intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-intro p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Electronics Types Layout (4 in a row) */
+.electronics-types {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between sections */
+  margin-bottom: 30px;
+}
+
+.electronics-type {
+  flex: 1;
+  padding: 20px;
+  background-color: silver;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.electronics-types h4{
+
+  background-color: transparent;
+
+}
+
+.electronics-type:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.electronics-type h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.electronics-type p {
+  font-size: 16px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* Product Navigation with Scroll Arrows */
+.product-navigation {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0;
+}
+
+/* Scroll Arrows for navigating products */
+.scroll-arrow {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.scroll-arrow:hover {
+  color: #777;
+}
+
+/* Scroll arrow positioning */
+#scroll-left,
+#scroll-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#scroll-left {
+  left: 10px;
+}
+
+#scroll-right {
+  right: 10px;
+}
+
+/* Product Container Styling */
+.product-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: var(--white);
+  box-shadow: 0 2px 10px var(--shadow);
+  scroll-snap-type: x mandatory;
+  width: 99%;
+  
+  /* Hide scrollbar */
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Hide the scrollbar for Webkit-based browsers (Chrome, Safari) */
+.product-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Product Box Image and Name */
+.product-box img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-box p {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+.prdetails-link:hover {
+  background-color: black;  /* Darker green on hover */
+  text-decoration: none;  /* Keep the text unstyled on hover */
+  transform: scale(1.05);  /* Slightly enlarge the button on hover */
+  color: white;
+}
+
+.prdetails-link:focus {
+  outline: none;  /* Remove the outline when focused (optional) */
+  box-shadow: 0 0 0 3px white;  /* Add a focus ring for accessibility */
+}
+
+
+
+/* Hover effect on product detail container */
+.product-detail-info:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.product-detail-info {
+  display: flex;               /* Set the container to be a flexbox */
+  justify-content: space-between; /* Space between image and text */
+  width: 80%;                    /* Adjust the width of the container as needed */
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.product-detail-img {
+  width: 30%;  /* Adjust the size of the image */
+  height: auto;
+  object-fit: cover;  /* Ensures the image maintains aspect ratio */
+}
+
+.product-detail-text {
+  flex: 1;  /* Take up the remaining space */
+  margin-left: 20px;  /* Space between image and text */
+}
+
+.product-detail-details {
+  margin-top: 10px;
+}
+
+.product-detail-header {
+  color: #333;
+  text-align: start;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-left: 0;
+  margin-top: 15px;
+  text-transform: uppercase;
+  background-color: gainsboro; /* Set background color to Gainsboro */
+  padding: 10px; /* Optional: add some padding to give space around the text */
+  width: 100%;
+  
+
+}
+.top-sellers-container {
+  margin-top: 30px;
+  padding: 20px 0;
+  width: 80%; /* Limit the width to 80% */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* To position the buttons inside the container */
+}
+
+.top-sellers-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.top-sellers-items {
+  display: flex; /* Align items in a row */
+  overflow: hidden; /* Hide the scrollbar */
+  white-space: nowrap; /* Prevent wrapping of items */
+  gap: 20px; /* Add some space between items */
+  padding: 10px;
+  transition: transform 0.3s ease; /* Smooth transition when scrolling */
+}
+
+.top-seller-item {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  width: 120px; /* Set a smaller width for each item */
+  overflow: hidden;
+  border: 1px solid #ddd; /* Add a border around each item */
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners for the items */
+  text-align: center;
+  background-color: #f8f8f8; /* Light background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Container for navigation links */
+.navigation-container {
+  display: flex; /* Ensures elements are aligned in a row */
+  justify-content: space-between; /* Space between the cards */
+  gap: 20px; /* Optional: Adjust space between cards */
+  margin-top: 150px;
+}
+
+/* Style for each equipment card */
+.equipment-card {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0A0068, #2E004F, #000000); /* Deep blue to dark purple to black */  color: white; /* White text for contrast */
+  text-align: center;
+  cursor: pointer; /* Indicates clickable element */
+  transition: background-color 0.3s, transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for each card */
+.equipment-card:hover {
+  background-color: goldenrod; /* Light gray on hover */
+  transform: translateY(-5px); /* Slight upward movement */
+  text-decoration: underline;
+  text-decoration-thickness: 3px; /* Makes the underline thicker */
+  text-decoration-color: white; /* Changes the underline color to white */
+}
+/* Text styling inside each card */
+.equipment-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.top-seller-item:hover {
+  transform: translateY(-5px); /* Slight upward movement on hover */
+}
+
+.top-seller-img {
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  height: auto;
+  border-radius: 4px; /* Rounded corners for images */
+  margin-bottom: 10px;
+}
+
+.top-seller-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.top-seller-item strong {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Back and Next buttons */
+.top-seller-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 10;
+}
+
+.top-seller-nav button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.top-seller-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.top-seller-nav button:focus {
+  outline: none;
+}
+
+/* For the hidden scrollbar */
+.top-sellers-items::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+/* Discount Section Styles */
+.discount-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.discount-item {
+  width: 45%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.discount-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.discount-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+.refurbished {
+  background-color: #ffeb3b; /* Yellow for refurbished */
+}
+
+.new {
+  background-color: #4caf50; /* Green for new items */
+  color: white;
+}
+
+.discount-item h3 {
+  color: #fff;
+}
+
+/* Delivery Section Styles */
+.delivery-info {
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #e3f2fd;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-info h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e88e5; /* Blue for delivery info */
+}
+
+.delivery-info p {
+  font-size: 16px;
+  color: #333;
+}
+.product-detail-container h1{
+color: brown;
+}
+
 .hometop-item h5{
-  color: goldenrod;
+  color: #0f1528;
+  font-size: 14px;
 
 }
 .hometop-icon {
-  font-size: 3rem;
-  color: black; /* Adjust color as needed */
+  font-size: 2rem;
+  color: firebrick;; /* Adjust color as needed */
+  margin-top: 5px;
 }
 .hometop-title {
   margin-top: 10px;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 200;
 }
 .search-bar-container {
   display: flex;
@@ -1484,6 +2580,22 @@ h6 {
   color: rgb(24, 24, 49);
 }
 
+<<<<<<< HEAD
+=======
+/* Navigation */
+nav{
+  position: fixed;
+  width: 100%;
+  background-color: #757373;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1000;
+  height: 23%;
+ 
+
+}
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 
 nav img{
   width: 160px;
@@ -1492,9 +2604,12 @@ nav img{
 }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
 #welcome .welcomeheader{
   padding:30px;
   width: 100%;
@@ -3031,21 +4146,7 @@ padding: 15px;
     white-space: nowrap;
   }
   
-  /* 3D Effect */
-  .nav-link::before {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transform: translateY(5px);
-    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.6);
-    border-radius: 5px;
-  }
-  
-  .nav-link:hover {
-    text-decoration: underline;
-    animation: flashColors 1.5s ease-in-out forwards;
-  }
+
   #login {
   font-size: 42px; /* Adjust the size as needed */
   font-weight: bold;
@@ -4191,21 +5292,12 @@ section#wcuindextop {
     flex-direction: column;
   }
 
-  .navbar-nav a {
-    font-size: 11px; /* Adjust font size */
-    padding: 8px; /* Adjust padding */
-  }
   .reasons h1{
     margin-right: 20px;
     padding: 5px;
   }
 
-  .nav-link {
-    font-size: 13px; /* Adjust font size */
-    padding: 12px; /* Adjust padding */
-    display: block;
-  }
-
+ 
   .laiheader-top-header {
     padding: 12px; /* Adjust padding */
     margin-top: 55px; /* Reduce margin */
@@ -4400,5 +5492,24 @@ section#wcuindextop {
     display: flex;
     flex-direction: column;
     }
+
+}
+
+
+
+
+.footer__section p{
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.footer__section ul li{
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.footer h2{
+color: brown;
 
 }

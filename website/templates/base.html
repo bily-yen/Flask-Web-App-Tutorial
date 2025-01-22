@@ -52,6 +52,7 @@ rel="stylesheet"
 
     <title>{% block title %}Home{% endblock %}</title>
 
+<<<<<<< HEAD
     <style>
         .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
         display: block;
@@ -427,9 +428,105 @@ background-color: rgba(238, 232, 170, 0.727);
   
       <div class="logo" style="padding: 0 50px; text-align: center; margin-left: 50px;">
           <img src="{{ url_for('static', filename='SPAPHOTOS/IYEPA.PNG') }}" alt="TOPA Logo" style="width: 200px; height: auto; display: block; margin: 0 auto;" />
+=======
+
+    <style>
+  
+      /* Style for positioning flash messages */
+      .flashmessage {
+          position: fixed;
+          top: 10px;
+          right: 10px;
+          z-index: 9999;
+          max-width: 400px;
+      }
+  
+      .messages-container {
+          margin: 0;
+          padding: 0;
+      }
+  
+      .alert {
+          margin-bottom: 10px;
+          transition: opacity 0.5s ease-out;
+      }
+  
+      .alert.fade {
+          opacity: 0;
+      }
+  
+      /* Optional: Success and Error message custom styles */
+      .alert-success {
+          background-color: #d4edda;
+          color: #155724;
+          border-color: #c3e6cb;
+      }
+  
+      .alert-danger {
+          background-color: #f8d7da;
+          color: #721c24;
+          border-color: #f5c6cb;
+      }
+  
+
+  
+      .btn {
+      padding: 5px;
+      height: max-content;
+      background-color: black;
+      border: none; /* Removes any default borders */
+      outline: none; /* Removes the outline when the button is focused */
+      transition: none; /* Disables any hover/transition effects */
+      background-color: transparent; /* Ensures the color stays the same on hover or focus */
+  
+              
+  }
+  
+  .btn:hover, .btn:focus {
+      background-color: transparent; /* Ensures the color stays the same on hover or focus */
+      outline: none; /* Prevents outline on focus */
+      box-shadow: none; /* Removes any box-shadow that might appear on hover/focus */
+      color: white;
+      font-size: 18px;
+  }
+  
+  
+  </style>
+  
+</head>
+
+  <body>
+
+    <!-- Gradient Banner Above Navbar -->
+    <div class="top-banner">
+      <p>Welcome to Tech-Martin! Enjoy exclusive deals today!  <a style="color: white; background-color: transparent;" href="tel:+254716470665">+254 716 470 665</a></p>
+    </div>
+    
+
+    <nav class="navbar navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+ >
+  </a>     </button>
+  <div class="logo" style="position: relative;">
+    <!-- Logo Link -->
+    <a href="/index" class="logo-link" style="background-color: transparent; padding: 3px;">
+        <!-- Replace the text-based logo with the GIGO.PNG image -->
+        <img src="{{ url_for('static', filename='SPAPHOTOS/GIGO.PNG') }}" alt="GIGO Logo" style="max-width: 700px; height: auto;"/>
+    </a>
+</div>
+
+
+    <!-- About Us Notification (Initially Hidden) -->
+    <div class="about-us-notification">
+        <p>We are a leading provider of tech solutions, specializing in printing, graphic design, and more.</p>
+    </div>
+</div>
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
       </div>
   
       <div class="navbar-nav">
+<<<<<<< HEAD
           <a class="nav-item nav-link" id="home-link" href="/home">Home</a>
   
           <!-- Dropdown for Events -->
@@ -480,48 +577,86 @@ background-color: rgba(238, 232, 170, 0.727);
   <!-- Custom CSS for Hover Dropdown -->
 
   
+=======
+        <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
+        <a class="nav-item nav-link" id="services-link" href="/services">Services</a>
 
-    <div class="flashmessage" >
-      {% if current_user.is_authenticated %}
-          {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                  <div class="messages-container">
-                      {% for category, message in messages %}
-                          {% if category == 'error' %}
-                              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                  {{ message }}
-                                  <button type="button" class="close" data-dismiss="alert">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          {% elif category == 'success' %}
-                              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  {{ message }}
-                                  <button type="button" class="close" data-dismiss="alert" style="display: flex; margin-left: 1px; padding: 5px; width: max-content; color: white; justify-content: center;">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          {% endif %}
-                      {% endfor %}
+        <a class="nav-item nav-link" id="addtocartid" href="/products">Products</a>
+        <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
+        
+          <a href="https://facebook.com" target="_blank" >
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" style=" margin-left: 8px;">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" style=" margin-left: 8px;">
+            <i class="fab fa-instagram"></i>
+        </a>
+          {% if current_user.is_authenticated %}
+
+          
+              <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+              <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
+
+              {% if request.path == '/loandata' %}
+                  <div class="text-center">
+                      <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
+                         style="width: 100%; height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                         <i class="bi bi-file-earmark"></i> Add Repayment
+                      </a>
                   </div>
               {% endif %}
-          {% endwith %}
-      {% endif %}
-  </div>
+          {% else %}
+              <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
+              
+              <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">
+                <span class="grey-t">t</span><span class="bold-x">X</span>
+            </a>
+          {% endif %}
+      </div>
+  </nav>
   
-  <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          setTimeout(function() {
-              var alerts = document.querySelectorAll(".alert");
-              alerts.forEach(function(alert) {
-                  alert.classList.add("fade-out");
-                  alert.addEventListener("transitionend", function() {
-                      alert.remove();
-                  });
-              });
-          }, 2000); // 2 seconds
-      });
-  </script>
+  <div class="flashmessage">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="messages-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const alerts = document.querySelectorAll('.alert');
+
+        if (alerts.length) {
+            // Automatically hide the first alert after 5 seconds
+            setTimeout(function () {
+                const firstAlert = alerts[0];
+
+                // Smooth fade out by removing the 'show' class and adding the 'fade' class
+                firstAlert.classList.remove('show');
+                firstAlert.classList.add('fade');
+
+                // Remove alert element after the fade-out completes (500ms)
+                setTimeout(() => firstAlert.remove(), 500);
+            }, 5000);  // Adjust delay as per your needs (5000ms = 5 seconds)
+        }
+    });
+</script>
+>>>>>>> 7ede7b1b3e108efa3571a01923e2b7bec95b4ea4
+
 
     <div class="container">{% block content %} {% endblock %}</div>
     <!-- login Modal -->
@@ -738,6 +873,22 @@ background-color: rgba(238, 232, 170, 0.727);
           $('#navbar').collapse('toggle');
       });
   });
+
+    const logo = document.querySelector('.logo');
+    const aboutUs = document.querySelector('.about-us-notification');
+
+    logo.addEventListener('mouseover', () => {
+        aboutUs.style.display = 'block';
+        aboutUs.style.opacity = 1;
+        aboutUs.style.visibility = 'visible';
+    });
+
+    logo.addEventListener('mouseleave', () => {
+        aboutUs.style.display = 'none';
+        aboutUs.style.opacity = 0;
+        aboutUs.style.visibility = 'hidden';
+    });
+
       </script>
       {% endblock %}
     </body>
