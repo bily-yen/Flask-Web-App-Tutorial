@@ -1,0 +1,704 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- Blog Page Content -->
+ <style>
+    
+    img {
+  display: flex;
+  width: 100%;
+}
+
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.printing-image img {
+    width: 100%; /* Set the image width to 50% */
+    height: 400px; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    margin-bottom: 15px;
+    border-radius: 5px;
+    margin-left: 0;
+}
+
+.services-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap between columns */
+    flex-wrap: wrap;
+}
+.services-list h3{
+ font-size: 20px;
+
+}
+
+.column {
+    flex: 1 1 30%; /* Each column will take 30% of the container width */
+    width: 280px; /* Ensures the columns don't get too narrow on small screens */
+}
+
+ul {
+    list-style-type: none; /* Removes default list bullet */
+    padding: 0;
+}
+
+
+li::before {
+    color: #0056b3; /* Customize dot color */
+}
+img {
+  display: flex;
+  width: 100%;
+}
+/* Add styles for the store items with underlines */
+.store-item {
+    margin-bottom: 10px; /* Space between items */
+    padding: 20px 0; /* Padding for top and bottom */
+    position: relative; /* Positioning context for the pseudo-element */
+}
+
+.store-item::after {
+    content: ''; /* Creates an empty pseudo-element */
+    position: absolute;
+    bottom: 0; /* Aligns it to the bottom of the item */
+    left: 0;
+    width: 100%; /* Ensures the line spans the full width */
+    height: 4px; /* The thickness of the border effect */
+    background: linear-gradient(135deg, red 25%, blue 25%, green 25%, gold 50%, red 50%, firebrick 75%, gold 75%);
+    background-size: 20px 20px; /* Adjusts the size of the strokes (the size of each color block) */
+}
+
+/* Style for the icon */
+.fab {
+    font-size: 24px; /* Size of the icon */
+    background-color: #3b5998; /* Facebook blue color for background */
+    color: white; /* Color of the icon */
+    padding: 10px; /* Add padding around the icon */
+    border-radius: 50%; /* Makes the background round */
+    display: inline-block; /* Ensures it's treated as an inline element */
+    text-align: center; /* Centers the icon inside the background */
+    width: 50px; /* Set width for consistent size */
+    height: 50px; /* Set height for consistent size */
+    line-height: 30px; /* Vertically centers the icon in the circle */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for a 3D effect */
+}
+.social-media a{
+background-color: transparent;
+
+}
+
+
+/* Topa Landing Page */
+.topa-landing-page {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 75px 70px;
+    background-color: #ffffff;
+}
+
+/* Carousel Section (What is TOPA?, Image, and Explanation) */
+.topa-carousel {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.topa-carousel-text {
+    margin-bottom: 20px;
+}
+
+.topa-carousel-text h1 {
+    font-size: 26px;
+    color: #2d3e50;
+    transform: scaleX(1.5); /* This stretches the text 1.5 times its original width */
+margin-left: 150px;}
+
+.topa-carousel-image img {
+    width: 90%;
+    height: 90%;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.topa-carousel-explanation {
+    text-align: left;
+    line-height: 1.8;
+    color: black;
+
+}
+.topa-carousel-explanation h2{
+
+    font-size:18px ;
+    color: green;
+
+}
+.topa-carousel-explanation p{
+
+    font-size:14px ;
+    padding:14px 1px ;
+    font-weight: 600;
+    color: black;
+
+    
+    
+
+}
+
+/* Agro Products Section (Images in a Row on the Right) */
+.topa-agro-products {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    height: min-content;
+    background-color: gainsboro;
+    padding: 8px 0;
+    border-radius: 4px;
+    
+}
+
+.agro-product-box {
+    text-align: center;
+    width: 80%;
+}
+
+.agro-product-box img {
+    width: 70%;
+    height: 70%;
+    border-radius: 2px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.agro-product-box p {
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+}
+
+.agro-product-box h1 {
+    color: #3b5998;
+    font-size: 24px;
+    text-align: left;
+}
+.green-text {
+    color: #4B8C47;
+    font-weight: bold;
+}
+
+
+.trending-tag span {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #3b5998; /* Golden color */
+        animation: budgeInOut 2s ease-in-out infinite;
+        padding: 5px 10px;
+        margin-left: -190px;
+    }
+
+    /* Budge In and Out Animation */
+    @keyframes budgeInOut {
+        0% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale(1.1);
+        }
+        50% {
+            transform: scale(1);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .image-item{
+    width: 90%;
+    height: 200px;
+    margin: 0;
+}
+
+.image-item-container a {
+    background-color: transparent; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: black;
+    font-weight: 600;
+
+
+
+}
+.image-item-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.image-item-container a:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: transparent;
+    color:gray;
+}
+
+#btn {
+background-color: transparent;
+margin: 0;
+padding: 5px 0;
+}
+
+.more {
+    background-color: rgba(238, 232, 170, 0.848);
+    height: min-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.more:hover{
+
+background-color: rgba(238, 232, 170, 0.727);
+}
+
+.more h2{
+    font-size: 16px;
+    color:green ;
+    font-weight: 800;
+
+    
+
+}
+.more h3{
+    font-size: 18px;
+    color: black;
+
+    
+
+}
+
+
+.more p{
+    font-size:14px ;
+    font-weight: 600;
+    color: brown;
+
+
+}
+
+.moreone p{
+    font-size:14px ;
+    width: 99%;
+    padding: 10px;
+    font-weight: 600;
+
+
+}
+.moreone{
+    width: 50%;
+
+}
+
+.more a{
+ background-color:black;
+ 
+
+    
+
+}
+
+.more a:hover{
+ background-color: transparent;
+ text-decoration: none;
+ color: black;
+
+
+    
+
+}
+
+ </style>
+ 
+ 
+ <div class="formhead">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+</div>
+</div>
+   
+</section>
+  <!-- Consulting Section -->
+  <section id="consulting-section" class="service-section consulting">
+    <div class="content">
+        <h2>Consulting</h2>
+        <img src="{{ url_for('static', filename='SPAPHOTOS/gof.jpg') }}" alt="African Cooperative" />
+
+        <p style="color: black; font-size: 18px;">Our consulting services help you navigate the complexities of business management, offering expert guidance tailored to your unique needs. From strategic planning to operational optimization, we are here to help you succeed.</p>
+    </div>
+
+    <!-- New Section for the Grid of Images -->
+    <div class="image-grid">
+        <div class="grid-item">
+            <div class="verbal-marketing" style="flex: 1; margin-right: 20px;">
+                <h3>Request Our Catalogue</h3>
+                <p>Enter your details below to receive our latest catalogue.</p>
+                <form id="catalogue-form" action="/submit-email" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <input type="text" name="institution" placeholder="Your Institution" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <button type="submit" style="width: 100%; padding: 10px; background-color: goldenrod; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer;">Get Catalogue</button>
+                </form>
+            </div>        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/img2.jpg') }}" alt="Image 2" />
+        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/img3.jpg') }}" alt="Image 3" />
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 16px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos consectetur eligendi neque unde rerum, mollitia aut fugit quod obcaecati earum et blanditiis amet accusamus repudiandae optio! Ad cumque rerum est.</p>
+            <p style="font-size: 14px; color: firebrick;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos consectetur eligendi neque unde rerum, mollitia aut fugit quod obcaecati earum et blanditiis amet accusamus repudiandae optio! Ad cumque rerum est.</p>
+ 
+        </div>
+    </div>
+</section>
+
+<!-- Support Section -->
+<section id="support-section" class="service-section support">
+    <div class="content">
+        <h2>Customer Support</h2>
+        <img src="{{ url_for('static', filename='SPAPHOTOS/customercare.jpg') }}" alt="Customer Support" />
+        <p style="color: black; font-size: 18px;">We provide exceptional customer support, ensuring that your concerns are addressed promptly and effectively. Our dedicated team is available to assist with any questions or issues, offering both phone and online support for your convenience.</p>
+    </div>
+
+    <!-- New Section for the Grid of Images -->
+    <div class="image-grid">
+        <div class="grid-item">
+            <p style="font-size: 16px;">
+                Our team is always available to provide you with the support and assistance you need. Whether you're facing a product-related issue, need help troubleshooting, or have questions about our services, we are committed to resolving any concerns you may have. Our knowledgeable and friendly support staff is here to guide you through every step of the process, ensuring that you receive prompt, clear, and effective solutions. We understand that your time is valuable, which is why we aim to make your experience as smooth and stress-free as possible. No matter the challenge, you can count on us to be there for you every step of the way.
+            </p>
+        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/img5.jpg') }}" alt="Support Image 2" />
+            <p style="font-size: 16px; color: black; font-weight: 400; padding: 5px;">
+                Visit us anytime at our physical location: <br>
+                1234 Business St, Suite 101, Nairobi, Kenya
+            </p>
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 16px;">
+                For any assistance or inquiries, please don't hesitate to get in touch with our support team through the following methods:
+                <ul>
+                    <li><strong>Phone:</strong> <a href="tel:+254716470665">+254 716 470 665</a></li>
+                    <li><strong>Email:</strong> <a href="mailto:bilyokwaro95@gmail.com">bilyokwaro95@gmail.com</a></li>
+                </ul>
+            </p>        </div>
+        <div class="grid-item">
+
+        </div>
+    </div>
+</section>
+<!-- IT Solutions Section -->
+<section id="it-solutions-section" class="service-section it-solutions">
+    <div class="content">
+        <h2>IT Solutions</h2>
+        <img src="{{ url_for('static', filename='SPAPHOTOS/itsln.jpg') }}" alt="IT Solutions" />
+
+        <p style="color: black; font-size: 18px;">Our IT solutions are designed to streamline your business operations. We offer a range of services including network management, cloud computing, and cybersecurity, helping you stay ahead in the ever-evolving tech landscape.</p>
+    </div>
+
+    <!-- New Section for the Grid of Images or Services -->
+    <div class="image-grid">
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/computer.jpg') }}" alt="Cloud Computing" />
+        </div>
+        <div class="grid-item">
+            <p><h1 style="color: firebrick;">Will the internet save our global farm markets?</h1></p>
+        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/comptwo.jpg') }}" alt="Cybersecurity" />
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 16px;">Our team of experts ensures that your network infrastructure is optimized and secure, providing reliable, scalable solutions that grow with your business needs.</p>
+            <p style="font-size: 14px; color: firebrick;">Protect your business with cutting-edge cybersecurity solutions, safeguarding your sensitive data and preventing potential threats before they happen.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Logistics Section -->
+<!-- Logistics Section -->
+<section id="logistics-section" class="service-section logistics">
+    <div class="content">
+        <h2>Logistics</h2>
+        <img style="width: 90%;" src="{{ url_for('static', filename='SPAPHOTOS/van.jpg') }}" alt="Logistics Services" />
+
+        <p style="color: black; font-size: 18px;">
+            Our logistics services provide efficient and reliable transportation, warehousing, and supply chain management. We ensure that your products are delivered on time and in perfect condition, supporting your business growth and customer satisfaction.
+        </p>
+       
+      
+    </div>
+
+    <!-- New Section for the Grid of Images and Details -->
+    <div class="image-grid">
+        <div class="grid-item">
+            <p style="font-size: 16px;">
+                Our logistics solutions include end-to-end services that cover the entire supply chain, from transportation to warehousing. We have a dedicated team working around the clock to ensure your goods are delivered efficiently and safely, while keeping you informed every step of the way.
+            </p>
+        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/warehse.jpg') }}" alt="Warehousing" />
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 16px;">
+                We specialize in managing complex logistics operations for businesses of all sizes. Our services are flexible and scalable, ensuring that your logistics needs are met regardless of the scale of your business. From small shipments to large-scale distribution, we handle it all.
+            </p>
+        </div>
+        <div class="grid-item">
+            <img src="{{ url_for('static', filename='SPAPHOTOS/transport.jpg') }}" alt="Transportation" />
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 16px;">
+                With advanced tracking systems and a network of trusted partners, we ensure that all shipments arrive on time and in excellent condition. Our focus on reliability and customer satisfaction makes us a trusted logistics partner for many businesses.
+            </p>
+        </div>
+        <div class="grid-item">
+            <p style="font-size: 14px; color: firebrick; font-weight: 800;">
+                From warehousing to last-mile delivery, we are your comprehensive logistics solution provider, working with you to achieve efficiency and cost-effectiveness at every stage.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+    
+<footer>
+    <div class="footer__top row">
+        <!-- Our Stores Section -->
+        <div class="footer__section footer__stores col-md-3">
+            <h5>Our Stores</h5>
+            <ul>
+                <li class="store-item">The Lakeview Hub - Nairobi, Kenyatta Avenue</li>
+                <li class="store-item">Mountain Alliance Market - Mombasa, Moi Avenue</li>
+                <li class="store-item">Green Harvest Depot - Kisumu, Oginga Odinga Street</li>
+            </ul>
+        </div>
+
+        <!-- Supplies Section -->
+        <div class="footer__section footer__supplies col-md-3">
+            <h5>Essential Supplies</h5>
+            <ul>
+                <li>Milk</li>
+                <li>Flour</li>
+                <li>Cooking Oil</li>
+                <li>Rice</li>
+                <li>Sugar</li>
+                <li>Beans</li>
+            </ul>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="footer__section footer__categories col-md-3">
+            <h5>Categories</h5>
+            <ul>
+                <li>Household Goods</li>
+                <li>Groceries</li>
+                <li>Health & Wellness</li>
+                <li>Electronics</li>
+                <li>Membership Services</li>
+            </ul>
+        </div>
+
+        <!-- Contacts Section -->
+        <div class="footer__section footer__contacts col-md-3">
+            <h5>Contacts</h5>
+            <p>Email: support@consumercoop.com</p>
+            <p>Phone: (+254) 7 164 706 65</p>
+            <p>Location: Nairobi, Kenya</p>
+            <h5>Follow Us</h5>
+            <ul class="social-media">
+                <li><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> </a></li>
+                <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> </a></li>
+            </ul>
+            <h5>Operating Hours</h5>
+            <ul>
+                <li>Mon-Fri: 8:00 AM - 6:00 PM</li>
+                <li>Sat: 9:00 AM - 5:00 PM</li>
+                <li>Sun: Closed</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Copyright Section -->
+    <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
+        <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
+            &copy; 2024 <span style="font-size: 0.9rem;">C</span>onsumer<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">C</span>oop. All rights reserved.
+        </h1>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const scrollArrow = document.getElementById('scroll-arrow');
+        const productList = document.getElementById('container-product-list');
+
+        scrollArrow.addEventListener('click', () => {
+            const scrollAmount = 300; // Amount to scroll each time the arrow is clicked
+            productList.scrollBy({
+                left: scrollAmount, // Scroll to the right
+                behavior: 'smooth'  // Smooth scrolling
+            });
+        });
+    });
+    </script>
+        <script>
+            let scrollContainer = document.querySelector(".gallery")
+            let backbtn = document.getElementById("backbtn")
+            let nextbtn = document.getElementById("nextbtn")
+
+            scrollContainer.addEventListener("wheel",(evt)=>{
+                evt.preventDefault();
+                scrollContainer.scrollLeft += evt.deltaY;
+                scrollContainer.style.scrollBehavior = "animate"
+            });
+            nextbtn.addEventListener("click", ()=>{
+                scrollContainer.style.scrollBehavior = "smooth"
+                scrollContainer.scrollLeft += 300;
+            });
+            backbtn.addEventListener("click", ()=>{
+                scrollContainer.style.scrollBehavior = "smooth"
+                scrollContainer.scrollLeft -= 300;
+            })
+
+
+
+        
+
+        </script>
+         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const modalTrigger = document.getElementById('login'); // The element that triggers the modal
+              const modalId = '#loginModal'; // The ID of the modal
+              let clickCount = 0;
+              let clickTimer = null;
+              const DOUBLE_CLICK_DELAY = 300; // Time in milliseconds to detect double-click
+          
+              function showModal() {
+                const modal = document.querySelector(modalId);
+                if (modal) {
+                  $(modal).modal('show'); // Use jQuery to show the modal
+                }
+              }
+          
+              modalTrigger.addEventListener('click', function(event) {
+                clickCount++;
+          
+                if (clickCount === 1) {
+                  // Set up a timer to reset clickCount if the second click doesn't occur in time
+                  clickTimer = setTimeout(function() {
+                    clickCount = 0; // Reset clickCount
+                  }, DOUBLE_CLICK_DELAY);
+                } else if (clickCount === 2) {
+                  // Clear the timer and show the modal
+                  clearTimeout(clickTimer);
+                  clickCount = 0;
+                  showModal();
+                }
+          
+                event.preventDefault(); // Prevent default action of the link
+              });
+            });
+          </script>
+       
+        <script>
+       const bedroomInput = document.getElementById('bedroom_numbers');
+       const bedroomTypedText = document.getElementById('typed-text-bedrooms');
+       const dateInput = document.getElementById('moving_date');
+       const dateTypedText = document.getElementById('typed-text-date');
+
+       bedroomInput.addEventListener('input', function() {
+       bedroomTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+});
+
+       dateInput.addEventListener('input', function() {
+       dateTypedText.textContent = this.value || " "; // " " ensures that the space stays visible
+    // Additional logic for date input, if needed
+});
+
+      bedroomInput.addEventListener('blur', function() {
+      bedroomTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
+
+     dateInput.addEventListener('blur', function() {
+     dateTypedText.textContent = ""; // Clear typed text when input box loses focus
+});
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+let timeout; // Variable to hold the timeout ID
+
+window.addEventListener('scroll', function() {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (st > lastScrollTop) {
+        // Scrolling down
+        navbar.classList.add('hidden');
+        
+        // Clear any existing timeout to prevent multiple hide actions
+        clearTimeout(timeout);
+
+        // Set a timeout to remove the hidden class after 1 second
+        timeout = setTimeout(() => {
+            navbar.classList.remove('hidden'); // Reappear after 1 second
+        }, 1000); // 1000 milliseconds = 1 second
+    } else {
+        // Scrolling up
+        navbar.classList.remove('hidden'); // Immediately show the navbar
+    }
+
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+});
+
+        </script>
+
+    
+           
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+            <script src="https://unpkg.com/scrollreveal"></script>
+            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+      
+           
+            {% endblock %}

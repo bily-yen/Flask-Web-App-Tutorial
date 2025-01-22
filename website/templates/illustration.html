@@ -1,228 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/addtocart.css') }}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    
     <style>
         body {
-            background-color: white;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-        .feature {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    border-bottom: 2px solid #ccc; /* Add a light grey border at the bottom */
-    padding-bottom: 15px; /* Space below content */
-    margin-bottom: 20px; /* Space between features */
-}
-        .cctechspac h1 {
-            color: black;
+        .cvTitle {
+            color: #343a40;
             font-weight: 800;
-            font-size: 21px;
+            font-size: 28px;
         }
-
-        .components {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            flex-wrap: wrap; /* Allow items to wrap */
+        .cvSubtitle {
+            margin: 10px 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
         }
-
-        .componentsheader h1 {
-            color: black;
-            font-size: 21px;
+        .cvContent {
+            margin-bottom: 20px;
         }
-
-        .imgsections {
-            flex: 1 1 30%; /* Allow items to take up to 30% of the width */
+        .cvSection {
+            margin: 20px 0;
+        }
+        .cvFeature {
+            margin-bottom: 15px;
             padding: 15px;
-            box-sizing: border-box; /* Ensure padding doesn't affect the total width */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
         }
-
-        .imgsections img {
-            width: 70%; /* Make images responsive */
-            height: auto; /* Maintain aspect ratio */
+        .cvFeature h3 {
+            font-weight: 700;
+            font-size: 20px;
         }
-
-        .imgsections p {
-            margin-top: 10px; /* Space between image and text */
-            text-align: center; /* Center align text */
+        .cvConclusion {
+            margin-top: 40px;
+            color: #dc3545;
+            font-weight: 700;
         }
-
-        /* Additional styling for specific images */
-        #img0 {
-            /* Add specific styles for image 1 here */
-            margin: 0;
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 15px;
         }
-
-        #img2 {
-            /* Add specific styles for image 2 here */
-            padding: 5px;
-            margin-left: 25px;
-            margin-right: auto;
-            padding-top: 20px;
-            margin-bottom: 30px;
-        }
-
-        #img3 {
-            padding: 5px;
-            margin-left: 25px;
-            margin-right: auto;
-            padding-top: 20px;
-            margin-bottom: 10px;
-        }
-        .conclusion h3{
-            padding: 15px;
+        .address {
+            margin: 20px 0;
+            font-style: italic;
+            color: #6c757d;
         }
     </style>
 
-    <title>{% block title %}Home{% endblock %}</title>
+    <title>Bily Otieno Okwaro - CV</title>
 </head>
 
 <body>
-    <div class="container" >
-        <div class="cctechspac" >
-            <h4 style="font-size: 18px;">Judgement Yard, <br>Dandora Ph2, Cinema</h4>
-            <h1>Digital Ecosystems And Consumer Cooperatives</h1> <br>
-            <h2 style="margin: 0; font-size: 18px;font-weight: 500; font-style: italic;">what is this consumer cooperative?</h2>
-            <p>An opportunity to distinguish oursleves from traditional economic models that are profit oriented by extending our services to the community with regard to ethical and technological considerations.
-                <br> <br>Usaidizi new business model proposes a more inclusive way of doing business in the market place, where Consumer and Community needs take priority as compared to making wealth fast or unfairly or both. The model suggests that consumers should come together to form a legally and ethically bound organ that liberates them from unsustainable/uninclusive models.</p>
-                <div class="componentsheader">
-                    <div class="hometop-item" style="width:30% ; margin-top: 20px;" >
-                        <i class="fas fa-lightbulb hometop-icon"></i>
-                        <h5 class="hometop-title"style="width:100% ;" >Focus areas</h5>
-                    </div>
-                </div>
-                <div class="components"  style=" padding: 20px; margin-left: -50px;">
-                    <div class="imgsections">
-                        <img id="img1" src="{{ url_for('static', filename='SPAPHOTOS/People.jpg') }}" alt="header" />
-                        <p style="margin-top: 30px; padding: 5px;">This initiative aims to engage individuals from diverse backgrounds, recognizing that each person brings unique skills and experiences. By fostering collaboration among professionals, learners, and community advocates, we create a rich environment for growth. This collective effort strengthens our community and ensures everyone has a voice in our success. Through an inclusive approach, we can build a platform that reflects cooperative values, paving the way for meaningful contributions.</p>
-                    </div>
+    <div class="container">
         
-                    <div class="imgsections">
-                        <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/sisi-sote.jpg') }}" alt="header" />
-                        <p style="margin-top: 40px; padding: 5px;">A key aspect of our initiative is the commitment to sharing resources among participants. By pooling our skills, knowledge, and materials, we maximize our impact and foster community. This resource-sharing approach encourages participants to contribute their expertise or tools, creating a support system that empowers everyone. Together, we can tackle challenges effectively and innovate solutions that reflect our cooperative values.</p>
-                    </div>
+        <div class="address">
+            <h1 class="cvTitle">Bily Otieno Okwaro</h1>
+            <p>Email: <a href="mailto:bilyokwaro95@gmail.com">bilyokwaro95@gmail.com</a> <br> LinkedIn: <a href="https://www.linkedin.com/in/bily-okwaro-19a792299/" target="_blank">https://www.linkedin.com/in/bily-okwaro-19a792299/</a> <br> GitHub: <a href="https://github.com/bily-yen" target="_blank">https://github.com/bily-yen</a></p>
+        </div>
         
-                    <div class="imgsections">
-                        <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/families.png') }}" alt="header" />
-                        <p  style="margin-top: 43px; padding: 5px;">Establishing an online digital hub is crucial for expanding our market base and enhancing visibility. This centralized platform streamlines access to products and services, attracting a broader audience. To incentivize participation, we propose discounted prices for members, fostering loyalty and attracting new participants. By offering exclusive deals, we stimulate sales and promote belonging, driving sustainable growth and strengthening our market position.</p>
-                    </div>
-                </div>
-             
+        <h4 class="cvSubtitle">Active Student</h4>
 
-            
-            <div class="model-definition">
-                <h2 style="margin: 0; font-size: 18px;font-weight: 500; font-style: italic;" >From Local to Global: Leveraging Technology for Consumer Cooperatives</h2>
-                <h2></h2>
-                <p>In addition to this concept, we are compelled to open a window for the discussion of a possible unified digital platform that can be dedicated to establishing and operating USAidizi mentioned earlier in the discussion. 
-                   <br> The Supposed platform comes branded as a ‘Digital Ecosystem’ a design that harmonizes different aspects of the cooperative's operations within a single digital space. By linking the marketing website and corporate finance site, members can easily navigate between product promotions and financial resources, enhancing user engagement and operational efficiency. This interconnected approach facilitates comprehensive service delivery, allowing members to access information and make transactions without unnecessary barriers.
-                    </p>
-                  <br> <br> <br> <br> <br> <br> <br> <br>
-               <p style="color: goldenrod; font-weight: 800; margin-top: 20px;">(user-interface and a few links)</p>
-                </p>
-            </div>
-            <div class="overview-container" style=" margin-left: 20px; display: flex; flex-direction: row;">
-            
-            <div class="overview" style="margin: 0; margin-top: 15px; display: flex; flex-direction: row;">
-                <img id="img0" src="{{ url_for('static', filename='SPAPHOTOS/CAPTURE5.jpg') }}" alt="Digital Ecosystem Illustration" style="width: 100%; max-width: 800px; height: auto; margin: 20px 0;">
-               
-            
+        <div class="cvContent">
+            <p>Motivated and driven individual currently pursuing a degree in GIS at the Tech University of Kenya, with a passion for technology and development. I am actively exploring opportunities to apply my skills in technology and strategic leadership to optimize business processes. I am particularly interested in integrating technology to improve operations, team productivity, and performance. Outside of my academic and professional pursuits, I have a strong interest in barbering, which helps me develop attention to detail and customer service skills.</p>
+        </div>
+        
+        
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Education</h2>
+
+            <div class="cvFeature">
+                <h3>Tech University of Kenya</h3>
+                <p><strong>Degree:</strong> GIS (Geographic Information Systems) <br> <strong>GPA:</strong> 4.3 <br> <strong>Duration:</strong> 2019 - <span id="currentYear"></span></p>
             </div>
 
-            <div class="moreexp" style="margin-left: 20px; padding: 50px; margin-top:50px ;">
-                <p style="font-weight: 700; color: grey;">visuals</p> <br> A mock illustration of <br> user interface of the e-commerce <br> and marketing platform
+            <div class="cvFeature">
+                <h3>Maseno School</h3>
+                <p><strong>Qualification:</strong> B Plain <br> <strong>Duration:</strong> 2015 - 2018</p>
             </div>
         </div>
 
-            <div class="overview"  >
-                <div class="visualized-page"></div>
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Skills</h2>
+            <ul>
+                <li>Data processing,analysis and visualization with GIS software like ArcGIS, QGIS</li>
+                <li>Building web applications with Python (Flask)</li>
+                <li>Web development: HTML, CSS, JavaScript</li>
+                <li>Data analysis and visualization python pandas</li>
+                <li>Strong communication and collaboration skills</li>
+                <li>Business model design and development</li>
+            </ul>
+        </div>
+
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Projects</h2>
+        
+
+            <div class="cvFeature">
+                <h3>Web Application prototypes for Consumer Cooperatives</h3>
+                <p>Worked on developing a web application prototype, focusing on improving digital transactions and membership management. Built using Python (Flask) and front-end technologies (HTML, CSS, JavaScript).</p>
             </div>
-            <h1>Case-study</h1>
-            <h2>Lake O'Land</h2>
-            <div class="Case-study">
-                <p>E-Commerce and Marketing: Land O’Lakes established a robust online presence that facilitated direct sales to consumers. Through their e-commerce platform, customers were able to conveniently purchase a wide array of products, including dairy items, crop inputs, and animal nutrition supplies. This online marketplace not only provided consumers with easy access to high-quality products but also allowed Land O’Lakes to gather valuable consumer data that informed its marketing strategies and product development. <br> <br> Corporate Ventures: The cooperative implemented a digital platform aimed at enhancing financial support for its members. This platform provided access to financial tools and resources that helped farmers make informed decisions about loans, investments, and other financial aspects of their operations. By offering online financial services, Land O’Lakes empowered its members to manage their finances more effectively, leading to improved productivity and sustainability.</p>
+
+            <div class="cvFeature">
+                <h3>eCommerce Systems & SaaS Apps</h3>
+                <p>Developed and maintained eCommerce systems and simple SaaS applications, focusing on improving user experience, optimizing workflows, and implementing robust backend solutions. The projects are currently hosted on GitHub for collaboration and further development.</p>
+            </div>
+
+            <div class="cvFeature">
+                <h3>Web Mapping</h3>
+                <p>Designed web maps for internal institutional mapping, creating interactive, user-friendly visualizations for various geographic data points.</p>
+            </div>
+            
+            <div class="cvFeature">
+                <h3>Data Processing</h3>
+                <p>Processed raw CSV data to prepare and clean geographic information, ensuring accurate data for visualization and analysis.</p>
+            </div>
+
+
+
+        </div>
+
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Work Experience & Volunteer Work</h2>
+            
+            <div class="cvFeature">
+                <h3>Exploring Opportunities with IYEPA (Inter-County Young Entrepreneurs and Professionals Association)</h3>
+                <p>Currently undergoing an assessment by IYEPA, where I am actively involved in implementing a consumer cooperative model supported by a digital platform. My responsibilities include:</p>
+                <ul>
+                    <li>Designing business models and corresponding frameworks for consumer cooperatives to ensure effective operation and sustainability.</li>
+                    <li>Writing detailed proposals and creating budgets for the development and implementation of the digital ecosystem supporting MSMEs.</li>
+                    <li>Collaborating with professionals and stakeholders to design and integrate a user-friendly digital platform for cooperative management using Flask framework.</li>
+                    <li>Coordinating the development of digital solutions that streamline membership management, transactions, and services, enhancing market access for young entrepreneurs.</li>
+                </ul>
+                <p>Through this project, I am contributing to the creation of an affordable, scalable ecosystem that supports MSMEs and fosters business growth and sustainability in Kenya.</p>
+            </div>
+
+            <div class="cvFeature">
+                <h3>Barbering (Personal Interest)</h3>
+                <p>Passionate about barbering, I enjoy honing my skills in this trade as a hobby. This interest has allowed me to build relationships, develop a keen attention to detail, and enhance my customer service skills. I believe the discipline and precision required in this field also complement my professional development in technology and project management.</p>
             </div>
         </div>
 
-        <div class="conclusion" style="width: 100%;">
-            <div class="hometop-item" style="width:50% ;" >
-                <i class="fas fa-lightbulb hometop-icon"></i>
-                <h5 class="hometop-title"style="width:70% ;" >features of the digital platform</h5>
-            </div>
-            <p>A few of the key features have been designed or at least in the early stages of development.</p>
-            
-            <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/orderpnp.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px;margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">Automation</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Inventory Management<br>Making Orders <br> </p>
-                    <p>Powerful programming languages have been implemented to enable automations.This
-                        ensures that accounting books and geral logistics are controlled smoothly
-                    </p>
-                </div>
-            </div>
-            <br> <br> <br> <br>
-            
-            <div class="feature" style="margin-top: 50px; display: flex; flex-direction: column;margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/msape.jpg') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px;margin-left: 30px;  ">
-                <div>
-                    <h3 style="font-weight: 700; font-size: 18px;">Mobile Money Payments</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Prompt USSD codes<br></p>
-                    <p>Utilizing services like <strong>M-Pesa</strong>, this feature enables quick and secure transactions, allowing members to purchase products directly from their mobile devices. This integration increases convenience and accessibility, ensuring that members can engage with the cooperative anytime, anywhere.</p>
-                </div>
-            </div> 
-             <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/db.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">Database connection</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Data-Driven Decision Making <br></p>
-                       <p> By utilizing advanced data analytics and digital tools, Land O’Lakes optimized its supply chain and operational processes. The cooperative collected data from its members regarding agricultural practices, market trends, and consumer preferences. This data-driven approach enabled Land O’Lakes to make informed decisions about product offerings, pricing strategies, and resource allocation, ultimately enhancing its competitive advantage.
-                        </p>
-                </div>
-            </div>  
-            <div class="feature" style="display: flex; flex-direction: column; margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/loanrec.png') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; ">
-                <div>
-                    <h3 style="font-weight: 700; font-size: 18px;">Platform integration</h3>
-                    <p style="font-weight: 700; color: goldenrod;">Online Market Hub<br>Microfinance venture</p>
-                    <p>We provide the platform for members to easily access the Microfinance venture through clickable links that redirects members to the other corporate services offered by Usaidizi Ventures</p>
-                   </div>
-            </div>
-            <br> <br> <br> <br> <br> <br> <br> <br> <br>
-              <div class="feature" style=" margin-top: 30px; display: flex; flex-direction: column;margin-left: 20px;">
-                <img src="{{ url_for('static', filename='SPAPHOTOS/sisi-sote.jpg') }}" alt="Mobile Money Icon" style="width: 300px; height: auto; margin-right: 15px; margin-left: 30px; border-radius: 10px; ">
-                <div>
-                    <h3 style="font-weight: 700;font-size: 18px;">community based portal</h3>
-                    <p style="margin-top: 10px; font-weight: 700; color: goldenrod;">public education <br>collective efforts(environmental programms)</p>
-                    <p>We are entirely dedicated to ensure that our involvement with community service is steady and fruitful.Our programms extend to a wide range of National concerns which include climate change and equity fo all. <br> <p>
-                </div>
-            </div>
-            </div>
-            <div class="conclusionfnote" >
-                <div class="hometop-item" style="width:30% ;" >
-                    <i class="fas fa-lightbulb hometop-icon"></i>
-                    <h5 class="hometop-title"style="width:70% ;" >Remarks</h5>
-                </div>
-                
-                <p>The team, deeply passionate about fostering inclusive and sustainable business practices, is eager to learn and contribute to the USAidizi project. Though still in its early stages, we are dedicated to its vision of empowering consumers through cooperative models and technology. Our experience working on the e-commerce aspects of this initiative has fueled our commitment, but we recognize that with proper guidance and collaboration, this project can truly flourish.
-
-                  <br>  We humbly seek mentorship and support from experienced professionals who can provide invaluable insights and strategic direction. Additionally, any form of financing—be it hardware, software, or advisory—would significantly enhance our ability to develop and implement this digital ecosystem. Together, we can build a platform that not only meets the needs of consumers but also sets a precedent for ethical business practices in our marketplace.
-                    
-                    <br> <br>Thank you for considering our plea, and we look forward to the opportunity to collaborate on this transformative journey.</p>
-                </div>
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Certifications</h2>
+            <p>No certifications as of yet. However, I am exploring certification opportunities to further build my expertise in GIS and web development.</p>
         </div>
-       
+
+        <div class="cvSection">
+            <h2 class="cvSubtitle">Languages</h2>
+            <ul>
+                <li>English (Fluent)</li>
+                <li>Kiswahili (Fluent)</li>
+            </ul>
+        </div>
+
+        <div class="cvConclusion">
+            <h3>Conclusion</h3>
+            <p>I am passionate about using technology to drive positive change. With a growing expertise in GIS and web development, I aim to contribute to projects that support community-driven initiatives and create impactful digital solutions for businesses and organizations.</p>
+        </div>
+        
     </div>
 
-    </div>
+    <script>
+        // Set the current year dynamically
+        document.getElementById("currentYear").innerText = new Date().getFullYear();
+    </script>
 </body>
 </html>

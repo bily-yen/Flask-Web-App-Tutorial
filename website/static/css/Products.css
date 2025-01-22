@@ -43,10 +43,8 @@ nav{
   align-items: center;
   justify-content: space-between;
   padding: 1vw 8vw;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
   z-index: 999;
   border:#757373;
-  border-bottom: #7a94e8 5px;
   border-style: groove;
   margin-bottom: 40px;
 

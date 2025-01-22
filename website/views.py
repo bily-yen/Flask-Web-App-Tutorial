@@ -25,8 +25,7 @@ from flask_limiter.util import get_remote_address
 from sqlalchemy.orm import joinedload
 
 # Import models and database setup
-from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct, db
-
+from .models import Note, LoanRecord, Refund, Product, PaymentTransaction, OrderItem, TransactionProduct,db
 from dotenv import load_dotenv
 import os
 socketio = SocketIO()
@@ -256,20 +255,21 @@ def newloanrecord():
         return redirect(url_for('views.loanrecordbook'))
 
 # Route to display the index page
-@views.route('/index', methods=['GET'])
+@views.route('/home', methods=['GET'])
 def index():
     """
     Display the index page.
     """
     return render_template('index.html')
 
-# Route to display the products page
-@views.route('/products', methods=['GET'])
-def products():
+@views.route('/services', methods=['GET'])
+def services():
     """
-    Display the products page.
+    Display the index page.
     """
-    return render_template('products.html')
+    return render_template('services.html')
+
+
 
 # Route to handle adding a new note
 @views.route('/add-note', methods=['POST'])
@@ -301,13 +301,7 @@ def backtoadmin():
     """
     return render_template('home.html', user=current_user)
 
-@views.route('/myproducts', methods=['GET'])
-def myproducts():
-    """
-    Return to the admin page.
-    """
-    products = Product.query.all()
-    return render_template('myproducts.html', products=products, user=current_user)
+
 
 
 @views.route('/api/products', methods=['GET'])
@@ -322,6 +316,24 @@ def get_products_route():
     } for product in products]  # Convert Product objects to dictionaries
     return jsonify(product_list)  # Return as JSON
 
+@views.route('/product/<int:product_id>', methods=['GET'])
+def product_detail(product_id):
+    # Fetch the product by its ID
+    product = Product.query.get_or_404(product_id)
+    
+    # Fetch top sellers: Products with quantity < 15
+    top_selling_products = Product.query.filter(Product.quantity < 15).all()
+    
+    # No printer in this route, as it's a product detail page
+    printer = None
+    
+    # Render the template, passing the top-selling products
+    return render_template('productdetail.html', product=product, printer=printer, top_selling_products=top_selling_products)
+
+
+
+
+
 @views.route('/api/additional', methods=['GET'])
 def get_additional_products_route():
     products = Product.query.filter(Product.quantity < 10).all()  # Adjust the condition as needed
@@ -334,6 +346,142 @@ def get_additional_products_route():
     } for product in products]  # Convert Product objects to dictionaries
     return jsonify(additional_product_list)  # Return as JSON
 
+# Route for Furniture products
+@views.route('/api/furniture', methods=['GET'])
+def get_furniture_products_route():
+    products = Product.query.filter(Product.type == 'Furniture').all()  # Filter by Furniture type
+    furniture_product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(furniture_product_list)  # Return as JSON
+
+
+# Route for Clothing products
+@views.route('/api/clothing', methods=['GET'])
+def get_clothing_products_route():
+    clothing_products = Product.query.filter(Product.type == 'Clothing').all()  # Filter by Clothing type
+    clothing_product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in clothing_products]
+    return jsonify(clothing_product_list)  # Return as JSON
+
+# Route for Phones products
+@views.route('/api/phones', methods=['GET'])
+def get_phones_products_route():
+    phones_products = Product.query.filter(Product.type == 'Phones').all()  # Filter by Phones type
+    phones_product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in phones_products]
+    return jsonify(phones_product_list)  # Return as JSON
+
+
+# Route for Accessories products
+@views.route('/api/accessories', methods=['GET'])
+def get_accessories_products_route():
+    accessories_products = Product.query.filter(Product.type == 'Tools & Accessories').all()  # Filter by Accessories type
+    accessories_product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in accessories_products]
+    return jsonify(accessories_product_list)  # Return as JSON
+
+# Function to format product list for JSON response
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
+
+
+# Function to format product list for JSON response
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
+
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
+
+
+# Function to format product list for JSON response
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
+
+
+
+# Function to format product list for JSON response
+def format_product_list(products):
+    product_list = [{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'image': product.image,
+        'quantity': product.quantity
+    } for product in products]
+    return jsonify(product_list), 200
+
+@views.route('/api/update_quantity', methods=['POST'])
+def update_quantity_route():
+    # Parse the incoming request
+    data = request.get_json()  # Expecting {"id": <product_id>, "quantity": <new_quantity>}
+    product_id = data.get('id')
+    new_quantity = data.get('quantity')
+
+    if product_id is None or new_quantity is None:
+        return jsonify({'error': 'Product ID and quantity are required'}), 400
+
+    product = Product.query.get_or_404(product_id)
+    
+    # Update the quantity of the product
+    product.quantity = new_quantity
+    
+    # Commit the changes to the database
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Product quantity updated successfully',
+        'id': product.id,
+        'name': product.name,
+        'new_quantity': product.quantity
+    })
 
 @views.route('/myshops', methods=['GET'])
 @login_required
@@ -342,6 +490,15 @@ def myshops():
     Return to the admin page.
     """
     return render_template('myshops.html', user=current_user)
+    
+
+
+@views.route('/consumer', methods=['GET'])
+def consumer ():
+    """
+    Return to the admin page.
+    """
+    return render_template('consumer.html', user=current_user)
     
 
 @views.route('/aboutus', methods=['GET'])
@@ -358,17 +515,10 @@ def claim():
     """
     return render_template('claim.html', user=current_user)
 
-@views.route('/illustration', methods=['GET'])
-def cover():
-    """
-    Return to the admin page.
-    """
-    return render_template('illustration.html', user=current_user)
 
 
 
-
-@views.route('/addto', methods=['GET'])
+@views.route('/products', methods=['GET'])
 def addtocart():
     """
     Return to the admin page.
@@ -626,6 +776,14 @@ def get_access_token():
         return None
 
 
+@views.route('/cart')
+def my_cart():
+    return render_template('mycart.html')
+
+@views.route('/cv')
+def mycv():
+    return render_template('illustration.html')
+
 @views.route('/orders')
 @login_required
 def view_orders():
@@ -640,6 +798,7 @@ def view_orders():
 
 @views.route('/order/<int:transaction_id>')
 @login_required
+
 def order_details(transaction_id):
     try:
         transaction = PaymentTransaction.query.get_or_404(transaction_id)
@@ -661,9 +820,13 @@ def order_details(transaction_id):
         return jsonify({'error': 'Internal server error'}), 500
 
 
+
 @views.route('/add_product', methods=['GET', 'POST'])
 @login_required
 def add_product():
+    # Fetch products to display on page load
+    products = Product.query.all()  # Fetch products to display
+
     if request.method == 'POST':
         name = request.form['name']
         price = request.form['price']
@@ -687,22 +850,25 @@ def add_product():
             db.session.add(new_product)
             db.session.commit()
             flash('Product added successfully!', 'success')
-            return redirect(url_for('views.add_product'))  # Or redirect to the inventory page
+            return redirect(url_for('views.add_product'))  # Redirect to the same page
         else:
             flash('Allowed image types are - png, jpg, jpeg', 'error')
             return redirect(request.url)
 
-    products = Product.query.all()  # Fetch products to display in the inventory
+    # Render the template with products data
     return render_template('add_product.html', products=products)
-
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@views.route('/product_image/<int:product_id>')
-def product_image(product_id):
-    product = Product.query.get_or_404(product_id)
+def get_image(product_class, product_id):
+    product = product_class.query.get_or_404(product_id)
     filename = os.path.basename(product.image)
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename)
+
+@views.route('/product_image/<int:product_id>')
+def product_image(product_id):
+    return get_image(Product, product_id)
+

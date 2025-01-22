@@ -9,9 +9,420 @@
   display: flex;
   width: 100%;
 }
+/* Add styles for the store items with underlines */
+.store-item {
+    margin-bottom: 10px; /* Space between items */
+    padding: 20px 0; /* Padding for top and bottom */
+    position: relative; /* Positioning context for the pseudo-element */
+}
+
+.store-item::after {
+    content: ''; /* Creates an empty pseudo-element */
+    position: absolute;
+    bottom: 0; /* Aligns it to the bottom of the item */
+    left: 0;
+    width: 100%; /* Ensures the line spans the full width */
+    height: 4px; /* The thickness of the border effect */
+    background: linear-gradient(135deg, red 25%, blue 25%, green 25%, gold 50%, red 50%, firebrick 75%, gold 75%);
+    background-size: 20px 20px; /* Adjusts the size of the strokes (the size of each color block) */
+}
+
+/* Style for the icon */
+.fab {
+    font-size: 24px; /* Size of the icon */
+    background-color: #3b5998; /* Facebook blue color for background */
+    color: white; /* Color of the icon */
+    padding: 10px; /* Add padding around the icon */
+    border-radius: 50%; /* Makes the background round */
+    display: inline-block; /* Ensures it's treated as an inline element */
+    text-align: center; /* Centers the icon inside the background */
+    width: 50px; /* Set width for consistent size */
+    height: 50px; /* Set height for consistent size */
+    line-height: 30px; /* Vertically centers the icon in the circle */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for a 3D effect */
+}
+.social-media a{
+background-color: transparent;
+
+}
+
+
+/* Topa Landing Page */
+.topa-landing-page {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 75px 70px;
+    background-color: #ffffff;
+}
+
+/* Carousel Section (What is TOPA?, Image, and Explanation) */
+.topa-carousel {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.topa-carousel-text {
+    margin-bottom: 20px;
+}
+
+.topa-carousel-text h1 {
+    font-size: 26px;
+    color: #2d3e50;
+    transform: scaleX(1.5); /* This stretches the text 1.5 times its original width */
+margin-left: 150px;}
+
+.topa-carousel-image img {
+    width: 90%;
+    height: 90%;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.topa-carousel-explanation {
+    text-align: left;
+    line-height: 1.8;
+    color: black;
+
+}
+.topa-carousel-explanation h2{
+
+    font-size:18px ;
+    color: green;
+
+}
+.topa-carousel-explanation p{
+
+    font-size:14px ;
+    padding:14px 1px ;
+    font-weight: 600;
+    color: black;
+
+    
+    
+
+}
+
+/* Agro Products Section (Images in a Row on the Right) */
+.topa-agro-products {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    height: min-content;
+    background-color: gainsboro;
+    padding: 8px 0;
+    border-radius: 4px;
+    
+}
+
+.agro-product-box {
+    text-align: center;
+    width: 80%;
+}
+
+.agro-product-box img {
+    width: 70%;
+    height: 70%;
+    border-radius: 2px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.agro-product-box p {
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+}
+
+.agro-product-box h1 {
+    color: #3b5998;
+    font-size: 24px;
+    text-align: left;
+}
+.green-text {
+    color: #4B8C47;
+    font-weight: bold;
+}
+
+
+.trending-tag span {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #3b5998; /* Golden color */
+        animation: budgeInOut 2s ease-in-out infinite;
+        padding: 5px 10px;
+        margin-left: -190px;
+    }
+
+    /* Budge In and Out Animation */
+    @keyframes budgeInOut {
+        0% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale(1.1);
+        }
+        50% {
+            transform: scale(1);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .image-item{
+    width: 90%;
+    height: 200px;
+    margin: 0;
+}
+
+.image-item-container a {
+    background-color: transparent; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: black;
+    font-weight: 600;
+
+
+
+}
+.image-item-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.image-item-container a:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: transparent;
+    color:gray;
+}
+
+#btn {
+background-color: transparent;
+margin: 0;
+padding: 5px 0;
+}
+
+.more {
+    background-color: rgba(238, 232, 170, 0.848);
+    height: min-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.more:hover{
+
+background-color: rgba(238, 232, 170, 0.727);
+}
+
+.more h2{
+    font-size: 16px;
+    color:green ;
+    font-weight: 800;
+
+    
+
+}
+.more h3{
+    font-size: 18px;
+    color: black;
+
+    
+
+}
+
+
+.more p{
+    font-size:14px ;
+    font-weight: 600;
+    color: brown;
+
+
+}
+
+.moreone p{
+    font-size:14px ;
+    width: 99%;
+    padding: 10px;
+    font-weight: 600;
+
+
+}
+.moreone{
+    width: 50%;
+
+}
+
+.more a{
+ background-color:black;
+ 
+
+    
+
+}
+
+.more a:hover{
+ background-color: transparent;
+ text-decoration: none;
+ color: black;
+
+
+    
+
+}
+    /* Style for the firebrick star */
+    .star {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: firebrick;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: bulgeAnimation 2s ease-in-out infinite;
+        }
+
+        /* Bulging effect using scale */
+        @keyframes bulgeAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2); /* Bulges in */
+            }
+            100% {
+                transform: scale(1); /* Goes back to normal */
+            }
+        }
+
+
+/* Main Section Style */
+.upper-main-sec {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: nowrap; /* Ensure all boxes stay in a single row */
+}
+
+/* Box Style */
+.box {
+  width: 30%; /* Each box takes 30% of the row width */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  overflow-y: auto;
+}
+
+/* Image Style */
+.section-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Box Title Style */
+.box-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #003366; /* Added color for emphasis */
+}
+
+/* Paragraph Style */
+.box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color:white;
+  margin-bottom: 15px;
+}
+
+/* Unordered List Style */
+.box ul {
+  font-size: 14px;
+  line-height: 1.6;
+  color: black;
+  padding-left: 20px;
+  font-weight: 400;
+}
+
+.box ul li {
+  margin-bottom: 8px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+  .upper-main-sec {
+    flex-wrap: nowrap; /* Ensure still in a single row on slightly smaller screens */
+  }
+
+  .box {
+    width: 32%; /* Adjust box width slightly to fit better */
+  }
+}
+
+/* Smaller screens */
+@media (max-width: 768px) {
+  .upper-main-sec {
+    flex-wrap: nowrap; /* Keep in a single row even on small screens */
+    justify-content: space-around; /* Adjust spacing between items */
+  }
+
+  .box {
+    width: 32%; /* Adjust box width slightly to fit better */
+  }
+}
+.topa-agro-products {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.agro-info {
+    margin-top: 20px;
+}
+
+.goal-list {
+    list-style-type: none; /* Disable default list bullets */
+    color: #4B8C47;
+    font-weight: 500;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.goal-list li {
+    margin-bottom: 10px;
+    margin: 0;
+}
+
+.goal-list li::before {
+    content: "•"; /* Dot bullet for each list item */
+    color: #4B8C47; /* Color of the bullet */
+    font-size: 20px; /* Size of the bullet */
+}
+
+.goal-list a {
+    color: goldenrod;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.goal-list a:hover {
+    text-decoration: underline;
+}
+
 
 
  </style>
+ 
  
  
  <div class="formhead">
@@ -31,202 +442,387 @@
     {% endif %}
 </div>
 </div>
+
+<section class="topa-landing-page">
+    <!-- Carousel Section (What is TOPA?, Image, and Explanation) -->
+    <div class="topa-carousel">
+        <div class="topa-carousel-text">
+           
+            <div class="securityh ">
+                <h1 class="welcome-header" style="margin: 0; font-weight: bold; font-size: 1.8rem; position: relative; color: grey;">
+                    Welcome to IYEPA
+                </h1></div>
+        </div>
+        <div class="topa-carousel-image">
+            <img  src="{{ url_for('static', filename='SPAPHOTOS/seminar.jpg') }}" alt="African Cooperative" />
+        </div>
+        <div class="topa-carousel-explanation">
+            <h2>Who We Are</h2>
+            <p>Presently, Micro, Small to Medium Enterprises (MSMEs) are the backbone of the Kenyan economy yet they continue to grapple for business growth and sustainability. Alternatives Africa (Alternatives) has therefore established the <strong>Inter-County Young Entrepreneurs and Professionals Association (IYEPA)</strong> as the Affordable Ecosystem Affiliate that identifies and addresses the marketing and policy challenges of young entrepreneurs and professionals.</p>
+
+            <p>Briefly, Alternatives Africa (Alternatives) is a youth-founded Non-profit Social Enterprise (Company Limited by Guarantee) that focuses on youth socioeconomic development in both rural and urban areas. Through a trichotomic model that includes a Cooperative Society and a Business Association, Alternatives has designed an Affordable Ecosystem that offers both financial and non-financial support services to youth-led micro and small enterprises. The objective is to accelerate business profitability and growth, improve individual economic livelihoods as well as create employment for other unemployed youth (youth-led job creation), with the end goal of addressing the youth unemployment challenge.</p>
+            
+            <p><strong>IYEPA</strong> (Member of the Kenya Private Sector Alliance-KEPSA) therefore exists as the business association to support a diverse range of micro and small enterprises run by entrepreneurs and professionals aged between 18-40 years. Having both the entrepreneur and the enterprise in mind, it is dedicated to playing a pivotal role in creating a robust business ecosystem that is favourable to the success of young entrepreneurs and professionals. IYEPA is therefore founded on a holistic framework that includes a variety of effective activities and services tailored to provide non-financial support services particularly marketing services, access to new and existing markets as well as participation in both public and private sector policy and decision making processes.</p>
+                        
    
-</section>
-<div class="securityh " style=" color: black; margin-top: 170px;">
-    <div class="catch-phrase " style="color: black;">
-        Connecting You to Cutting-Edge Solutions    </div>
-    <h1 class="welcome-header" style="margin: 0; font-weight: bold; font-size: 2rem; position: relative; color: grey;">
-        <span style="font-size: 1rem; margin-left: 20px; margin-right: 15px;">Welcome to </span>
-        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as!
+       
+        </div>
+   
+        </div>
+    
+
+  <!-- Agro Products Section (Images in a Row on the Right) -->
+  <div class="topa-agro-products">
+    <img style="margin-left: auto; margin-right: auto; " src="{{ url_for('static', filename='SPAPHOTOS/HOM.png') }}" alt="IYEPA Image" />
+
+    <div class="agro-product-box">
+        <h1 style="text-align: center; font-size: 18px; color: black;">our community goals</h1>
+
+        <div class="agro-info">
+            <ul class="goal-list">
+                <li><a href="#">Provide a unified voice for young entrepreneurs and professionals, guided by membership insights.</a></li>
+                <li><a href="#">Foster a climate for investment in youth-owned MSMEs, supporting both profit and impact.</a></li>
+                <li><a href="#">Create a platform for engagement and collaboration with multi-sectoral stakeholders through inclusive business frameworks.</a></li>
+                <li><a href="#">Offer a platform for information exchange, affordable marketing, and advocacy for youth-friendly policies, legislation, and regulation.</a></li>
+                <li><a href="#">Develop mutually beneficial relationships through networking and trade in a supportive enterprise ecosystem.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    
+</section> 
+
+<div class="securityh ">
+    <h1 class="welcome-header" style="margin: 0; font-weight: bold; font-size: 1.8rem; position: relative; color: grey;">
+        our extended community
     </h1></div>
       
         
     </div>
-</section>
-
-
-<header class="header__container">
-    <div class="header__image">
-       
+<section class="upper-main-sec">
+    <div class="box" id="box1" style="background-color: #0cb4ce;">
+        <img style="width: 25%; margin-left: auto; margin-right: auto;" src="{{ url_for('static', filename='SPAPHOTOS/IYEPA.png') }}" alt="Alternatives" />
+        <div class="box-title">IYEPA - Inter-County Young Entrepreneurs and Professionals Association</div>
+            <p>IYEPA is committed to supporting the growth and development of youth-led micro and small enterprises, particularly in the agribusiness sector, to create a favorable environment for their success. The following objectives guide IYEPA's efforts:</p>
+        <ul>
+            <li>Promote a positive perception of agriculture that appeals to the youth;</li>
+            <li>Provide affordable financial and non-financial business support services (including training and access to markets) across the agricultural value chain;</li>
+            <li>Facilitate access to modern agricultural equipment and ICT for innovative, home-grown solutions that are profitable and competitive;</li>
+            <li>Encourage value addition and the establishment of cottage industries based on Kenya's comparative advantages in its forty-seven (47) Counties;</li>
+            <li>Organize inter-county and inter-country exchange programs for exposure and knowledge sharing in the agricultural and other relevant sectors.</li>
+        </ul>
         
-        <img src="{{ url_for('static', filename='SPAPHOTOS/tonerinterior.jpg') }}" alt="header" />
-    </div>
     
-</div>
-
-  </header>
-
+    </div>
   
-  <div class="hometop-container d-flex flex-wrap justify-content-around">
-    <div class="hometop-item">
-        <i class="fas fa-cogs hometop-icon"></i> <!-- Changed to engine (cogs) icon -->
-        <h5 class="hometop-title">Toners</h5>
+    <div class="box" id="box2" style="background-color: #0cb4ce">
+        <img style="width: 55%; margin-top: 25px; padding-bottom: 30px; margin-left: auto; margin-right: auto;" src="{{ url_for('static', filename='SPAPHOTOS/ALTERNATIVE.png') }}" alt="Alternatives" />
+        <div style="text-align: center;" class="box-title">Alternatives Africa</div>
+        <p><strong>Alternatives Africa</strong>, founded in 2014, is a non-profit focused on empowering young entrepreneurs in both rural and urban areas. The organization provides a comprehensive ecosystem for youth-owned micro and small enterprises, offering affordable financial and business support, access to capital, and tailored development programs.</p>
+        <p>Key platforms within this ecosystem include:</p>
+        <ul>
+            <li>Mimi na Wewe Youth Savings and Credit Cooperative (MWY SACCO) - 2015</li>
+            <li>Inter-County Young Entrepreneurs and Professionals’ Association (IYEPA) - 2016</li>
+            <li>Alternatives Agrohub - 2015</li>
+            <li>Youth Economic Dialogues (YED) - 2015</li>
+            <li>Alternatives Socio-economic Enterprise Development Fund (A SEED) - 2022</li>
+        </ul>
+        <a 
+        style="color: bisque; font-weight: 700; display: inline-block; transition: transform 0.3s ease-in-out;" 
+        class="nav-item nav-link" 
+        id="home-link" 
+        href="https://alternatives.co.ke"
+        onmouseover="this.style.transform='scale(1.1)'" 
+        onmouseout="this.style.transform='scale(1)'"
+      >
+        visit page
+      </a>
+      
     </div>
-    <div class="hometop-item">
-        <i class="fas fa-tint hometop-icon"></i> <!-- Changed to spray can for ink bottle -->
-        <h5 class="hometop-title">Ink</h5>
+    
+  
+    <div class="box" id="box3" style="background-color: #0cb4ce">
+        <img style="width: 25%; margin-left: auto; margin-right: auto;" src="{{ url_for('static', filename='SPAPHOTOS/AGRO.png') }}" alt="Alternatives" />
+        <div class="box-title">Agro Sector Milestones and Initiatives</div>
+        <p>Alternatives Africa has made significant strides in the agricultural sector through the **Alternatives Agrohub**, supporting youth-led enterprises and creating employment. Key achievements include:</p>
+        <ul>
+            <li>Representation in the **ASNET-led CAP-F** under the African Union's CAADP program.</li>
+            <li>Facilitating the **Farmpreneur Programme**, focusing on the onion value-chain.</li>
+            <li>Hosting the first **Indo-Kenya 3D Virtual Agro Expo** with 600 global participants.</li>
+        </ul>
+        <p>Alternatives continues to advocate for youth-friendly policies, including:</p>
+        <ul>
+            <li>Partnering with **KEPSA** to create youth-focused agriculture policies.</li>
+            <li>Promoting **agro-processing and value addition** in mango, potato, and onion sectors.</li>
+            <li>Engaging with **global stakeholders** to foster innovation and partnerships in the agro-sector.</li>
+        </ul>
     </div>
-    <div class="hometop-item">
-        <i class="fas fa-copy hometop-icon"></i>
-        <h5 class="hometop-title">Masters</h5>
+    
+  </section>
+  
+<div class="linking" style="margin-left: 100px;">
+
+    <h1 style="margin-left: 90px; font-size: 16px; color: black;">want to know more about membership</h1>
+
+    <div class="buttons" style="margin-left: 50px; margin-top: 20px;">
+        <a href="tel:+254791398100" style="text-decoration: none; background-color: transparent;">
+            <button style="padding: 10px 20px; font-size: 14px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-right: 10px;">
+                Call Us
+            </button>
+        </a>
+        
+        <a href="https://www.google.com/maps?q=Kingdom+Business+Network+Building,+Ngong+Road,+off+Kabarnet" target="_blank" style="text-decoration: none; background-color: transparent;">
+            <button style="padding: 10px 20px; font-size: 14px; background-color: #008CBA; color: white; border: none; cursor: pointer;">
+                Visit Our Office
+            </button>
+        </a>
     </div>
-    <div class="hometop-item">
-        <i class="fas fa-print hometop-icon"></i>
-        <h5 class="hometop-title">Printers</h5>
+
+</div>
+
+
+
+<div class="container" style="display: flex; margin-top: 50px; padding-bottom: 40px;">
+    <div class="moreone">
+        <p><strong style="color: green; margin-bottom:0 width: 70px;" >How to Join IYEPA initiative</strong></p>
+        <p>Joining our collective is simple! Whether you’re an individual entrepreneur, a small business, or part of a larger organization, we offer several ways for you to get involved and leverage technology for growth. By joining us, you gain access to innovative tools, networks, and resources designed to enhance your operations, marketing, and outreach.</p>
+        <img src="{{ url_for('static', filename='SPAPHOTOS/o.jpg') }}" alt="Join Our Agro-Tech Initiative" style="flex: 1; width: 550px; height: 500px; margin-right: 50px; margin-top: 45px;">
+
+        <p>Once you join, you’ll have access to our comprehensive ecosystem aimed at transforming your business and driving sustainable growth across Africa. Let’s work together to unlock new opportunities and bring about positive change in the agro-tech space!</p>
     </div>
-    <div class="hometop-item">
-        <i class="fas fa-file-alt hometop-icon"></i>
-        <h5 class="hometop-title">Papers</h5>
+    
+    <div class="container">
+        <div class="moreone" style="flex: 1; max-width: 600px; width: 100%; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; background-color: #fff;">
+            <form method="POST" action="{{ url_for('auth.sign_up') }}" style="display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+                <!-- Email Address -->
+                <div class="form-group">
+                    <label for="email" style="font-weight: bold; color: #333;">Email Address</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- First Name -->
+                <div class="form-group">
+                    <label for="firstName" style="font-weight: bold; color: #333;">First Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Enter first name"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label for="lastName" style="font-weight: bold; color: #333;">Last Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Enter last name"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="phoneNumber" style="font-weight: bold; color: #333;">Phone Number</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="Enter your phone number"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- National ID -->
+                <div class="form-group">
+                    <label for="nationalId" style="font-weight: bold; color: #333;">National ID</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nationalId"
+                        name="nationalId"
+                        placeholder="Enter your National ID"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password1" style="font-weight: bold; color: #333;">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password1"
+                        name="password1"
+                        placeholder="Enter password"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="password2" style="font-weight: bold; color: #333;">Confirm Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password2"
+                        name="password2"
+                        placeholder="Confirm password"
+                        required
+                        style="padding: 12px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc; width: 100%; background-color: #f8f8f8; color: #333; box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);"
+                    />
+                </div>
+            
+                <div class="form-group">
+                    <label style="font-weight: bold; color: #333;">Why do you want to join IYEPA?</label>
+                    <textarea name="reason" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Share your reasons for wanting to join IYEPA..."></textarea>
+                </div>
+            
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" style="background-color: green; border: none; padding: 5px; font-size: 14px; color: white; border-radius: 5px; cursor: pointer;">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            
+            
+        </div>
     </div>
-    <div class="hometop-item">
-        <i class="fas fa-marker hometop-icon"></i>
-        <h5 class="hometop-title">Markers</h5>
+    
+    
+</div>
+
+
+ <!-- New Section with Eight Images (4 per row) -->
+<!-- Image Section -->
+<div id="gallery"  class="image-section" style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <!-- Image 1 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#electronics-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/q.jpg') }}" alt="Parts" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#furniture-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/w.jpg') }}" alt="Cereals" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#households-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/e.jpg') }}" alt="Beans" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 4 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#phones-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/r.jpg') }}" alt="Fruits" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 5 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#electronics-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/t.jpg') }}" alt="Parts" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 6 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#furniture-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/y.jpg') }}" alt="Cereals" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 7 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#households-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/u.jpg') }}" alt="Beans" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
+    </div>
+
+    <!-- Image 8 -->
+    <div class="image-item-container" style="flex: 1 0 23%; max-width: 23%; margin: 10px;">
+        <a href="/products#phones-section">
+            <img class="image-item" src="{{ url_for('static', filename='SPAPHOTOS/i.jpg') }}" alt="Fruits" style="width: 100%; height: auto; border-radius: 5px;">
+        </a>
     </div>
 </div>
-</div>
- 
-<div class="container" style="justify-content: center; text-align: center; background-color:black; border-radius: 5px; padding: 2px;" >
-    <div class="cctechspac" >
-        
+
+<style>
+    /* Ensure images take up 4 per row */
+    .image-item-container {
+        flex: 1 0 23%; /* 4 images per row */
+        max-width: 23%;
+        margin: 10px;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 768px) {
+        .image-item-container {
+            flex: 1 0 48%; /* 2 items per row on smaller screens */
+            max-width: 48%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .image-item-container {
+            flex: 1 0 100%; /* 1 item per row on extra small screens */
+            max-width: 100%;
+        }
+
+      
+   
+
+    }
+
     
-        <div class="imgsections">
-            <h1>Comprehensive Printing Solutions</h1>
-            <p>At TechXas, we offer a wide array of printing solutions designed to meet the diverse needs of our community. Our expertise in printing technology enables us to provide high-quality products and services, including custom prints and innovative designs.</p>
-            <img id="img2" src="{{ url_for('static', filename='SPAPHOTOS/digitalprinting.jpg') }}" alt="Digital Printing" />
-            <p style="margin-top: 40px; padding: 5px;">We are committed to fostering creativity and originality in every project. By collaborating with our clients, we ensure that each print reflects their unique vision and brand identity, delivering exceptional results that elevate their presence.</p>
+</style>
+<footer  style="padding: 0; background-color: #003366; ">
+    <div class="footer__top row" style="display: flex; flex-direction: column; padding: 5px;">
+        <!-- Visit Us Section -->
+        <div class="footer__section footer__visit-us col-md-12" style="padding-bottom: 20px; border-bottom: 1px solid #ccc; width: 50%; margin: 0 auto;">
+            <h5>Visit Us</h5>
+            <p>We are located at the Kingdom Business Network building on Ngong Road, off Kabarnet. Welcome to visit and discuss about youth over coffee.</p>
         </div>
-        
-        <div class="imgsections">
-            <h1>Diverse Technical Supplies</h1>
-            <p>Providing a broad range of technical supplies—from office equipment to school stationery—is essential for supporting various sectors, including businesses and educational institutions. Our collection features a variety of reputable brands, ensuring that customers have access to quality products that meet their needs.</p>
-            <img id="img3" src="{{ url_for('static', filename='SPAPHOTOS/bestsupples.jpg') }}" alt="Best Supplies" />
-            <p style="margin-top: 43px; padding: 5px;">We prioritize the originality and authenticity of our products, allowing clients to choose items that truly represent their standards. Our commitment to quality ensures that you receive the best supplies to empower your organization and enhance your operations.</p>
-        </div>
-            </div>
-  </div>
 
-
- 
-
-  <h2 id="services" class="index-section-title">Our Services</h2>
-    <div class="container first">
-        
-        <div class="box-container" style="background-color: brown;">
-
-            <div class="box">
-                <h3>Printing Solutions</h3>
-                <p>Need high-quality printing services? <br>
-                We offer a range of printing options, from business cards to banners. <br>
-                Contact us for personalized solutions.</p>
-            </div>
-        
-            <div class="box">
-                <h3>Equipment Supply</h3>
-                <p>Looking for reliable printing equipment? 
-                We supply printers, toners, and all essential accessories.<br>
-                Get in touch for the best deals!</p>
-            </div>
-        
-            <div class="box">
-                <h3>Design Services</h3>
-                <p>Our creative team is here to help with graphic design services. 
-                Whether it's for marketing materials or custom prints, we’ve got you covered.</p>
-            </div>
-        
-            <div class="box">
-                <h3>Computer Accessories</h3>
-                <p>Enhance your workspace with our range of computer accessories. 
-                From keyboards to monitors, find everything you need in one place.</p>
-            </div>
-        
-            <div class="box">
-                <h3>Installation Services</h3>
-                <p>We provide installation services for all your printing and computer equipment. 
-                Let us handle the setup so you can start using your equipment right away.</p>
-            </div>
-        
-            <div class="box">
-                <h3>Maintenance & Support</h3>
-                <p>Ensure your equipment runs smoothly with our maintenance services. 
-                Our support team is ready to assist with any issues you may encounter.</p>
-            </div>
-        
-        </div>
-    
-    </div>
-    </div>
-
-    <div class="near-footer">
-        <div class="container">
-            <div class="near-footer__top">
-                <div class="near-footer__section near-footer__techxas">
-                    <h5 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
-                        <span style="font-size: 1rem; margin-right: 15px;">About </span>
-                        <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
-                    </h5>
-                    <p>With over 20 years of experience in providing top-notch technological products and innovative solutions, techXas is dedicated to meeting the diverse needs of our customers. As we extend our services to a digital platform, we continue to prioritize quality and customer satisfaction. Our experienced team is committed to helping you find the right products that empower your business and enhance your everyday life.</p>
-                </div>
-                <div class="near-footer__section near-footer__categories">
-                    <h5 style="color: #757373">Our Customers</h5>
-                    <div class="customer-grid">
-                        <div class="customer-item">Schools</div>
-                        <div class="customer-item">Hotels</div>
-                        <div class="customer-item">Hospitals</div>
-                        <div class="customer-item">Corporates</div>
-                        <div class="customer-item">Small Businesses</div>
-                        <div class="customer-item">Government Offices</div>
-                        <div class="customer-item">Non-Profit Organizations</div>
-                        <div class="customer-item">Creative Agencies</div>
-                        <div class="customer-item">Retail Stores</div>
-                    </div>
-                </div>
-            </div>
-            
-
-            </div>
+        <!-- Call Us Section -->
+        <div class="footer__section footer__call-us col-md-12" style="padding-top: 20px; ">
+            <p><i  class="fas fa-phone-alt" style="color: #003366; margin-right: 10px; font-size: 20px;  background-color: white; padding: 8px; border-radius: 20px;"></i> +254 791 398 100</p>
         </div>
     </div>
-    
-    <footer>
-        <div class="footer__top row">
-            <div class="footer__section footer__techxas col-md-4">
-                <h5>techXas</h5>
-                <p>Official shop,<br> technological products and solutions</p>
-            </div>
-            <div class="footer__section footer__categories col-md-4">
-                <h5>Categories</h5>
-                <ul>
-                    <li>Printers</li>
-                    <li>Ink & Toners</li>
-                    <li>Stationery</li>
-                    <li>Computers</li>
-                    <li>Graphic Design Services</li>
-                </ul>
-            </div>
-            <div class="footer__section footer__contacts col-md-4">
-                <h5>Contacts</h5>
-                <p>Email: support@techxas.com</p>
-                <p>Phone: (+254) 7 164 706 65 </p>
-                <h5>Follow Us</h5>
-                <ul class="social-media">
-                    <li><a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <br> <br>
-                    <li><a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="footer__copyright" style="background-color:white;padding: 5px; margin-top: 30px;">
-            
-    <h1 style="margin: 0; font-weight: bold; color: black; font-size: 0.9rem; position: relative; text-align: center;">
-        &copy; 2024 <span style="font-size: 0.9rem;">t</span>ech<span style="font-size: 1.3rem; text-shadow: px 1px 1px rgba(0,0,0,0.2);">X</span>as. All rights reserved.
-    </h1>
-        
-        </footer>
-
-
+</footer>
 
 
 

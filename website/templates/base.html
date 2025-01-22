@@ -51,52 +51,434 @@ rel="stylesheet"
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <title>{% block title %}Home{% endblock %}</title>
+
+    <style>
+        .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        padding: 0;
+        background-color: green;
+        
+    }
+
+    /* Red underline on hover for dropdown items */
+    .dropdown-menu .dropdown-item:hover {
+        text-decoration: underline;
+        text-decoration-color: red; /* Red underline */
+        text-decoration-thickness: 2px; /* Optional: control thickness of the underline */
+    }
+
+    .dropdown-item a:hover{
+      background-color: transparent;
+
+
+    }
+
+    .dropdown-menu a{
+   padding: 5px;
+   font-size:12px ;
+   font-weight: 700;
+   color: white;
+
+        
+    }
+
+
+    .dropdown-menu a:hover{
+      background-color: transparent;
+      text-decoration: underline;
+      text-decoration-color: red;
+      text-decoration-thickness: 2px;
+      background-color: transparent; /* Keeps background transparent */
+      transform: scale(0.98); /* Shrinks the item slightly */
+      transition: transform 0.2s ease; /* Smooth transition */
+      color: white;
+
+
+    }
+    .dropdown-toggle::after {
+      display: none; /* Hides the dropdown arrow */
+  }
+  /* Add styles for the store items with underlines */
+.store-item {
+    margin-bottom: 10px; /* Space between items */
+    padding: 20px 0; /* Padding for top and bottom */
+    position: relative; /* Positioning context for the pseudo-element */
+}
+
+.store-item::after {
+    content: ''; /* Creates an empty pseudo-element */
+    position: absolute;
+    bottom: 0; /* Aligns it to the bottom of the item */
+    left: 0;
+    width: 100%; /* Ensures the line spans the full width */
+    height: 4px; /* The thickness of the border effect */
+    background: linear-gradient(135deg, red 25%, blue 25%, green 25%, gold 50%, red 50%, firebrick 75%, gold 75%);
+    background-size: 20px 20px; /* Adjusts the size of the strokes (the size of each color block) */
+}
+
+/* Style for the icon */
+.fab {
+    font-size: 24px; /* Size of the icon */
+    background-color:  #003366; /* Facebook blue color for background */
+    color: white; /* Color of the icon */
+    padding: 10px; /* Add padding around the icon */
+    border-radius: 50%; /* Makes the background round */
+    display: inline-block; /* Ensures it's treated as an inline element */
+    text-align: center; /* Centers the icon inside the background */
+    width: 50px; /* Set width for consistent size */
+    height: 50px; /* Set height for consistent size */
+    line-height: 30px; /* Vertically centers the icon in the circle */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for a 3D effect */
+}
+.social-media a{
+background-color: transparent;
+
+}
+
+
+/* Topa Landing Page */
+.topa-landing-page {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 75px 70px;
+    background-color: #ffffff;
+}
+
+/* Carousel Section (What is TOPA?, Image, and Explanation) */
+.topa-carousel {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.topa-carousel-text {
+    margin-bottom: 20px;
+}
+
+.topa-carousel-text h1 {
+    font-size: 26px;
+    color: #2d3e50;
+    transform: scaleX(1.5); /* This stretches the text 1.5 times its original width */
+margin-left: 150px;}
+
+.topa-carousel-image img {
+    width: 90%;
+    height: 90%;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.topa-carousel-explanation {
+    text-align: left;
+    line-height: 1.8;
+    color: black;
+
+}
+.topa-carousel-explanation h2{
+
+    font-size:18px ;
+    color: green;
+
+}
+.topa-carousel-explanation p{
+
+    font-size:14px ;
+    padding:14px 1px ;
+    font-weight: 600;
+    color: black;
+
+    
+    
+
+}
+
+/* Agro Products Section (Images in a Row on the Right) */
+.topa-agro-products {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    height: min-content;
+    background-color: gainsboro;
+    padding: 8px 0;
+    border-radius: 4px;
+    
+}
+
+.agro-product-box {
+    text-align: center;
+    width: 80%;
+}
+
+.agro-product-box img {
+    width: 70%;
+    height: 70%;
+    border-radius: 2px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.agro-product-box p {
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+}
+
+.agro-product-box h1 {
+    color: #3b5998;
+    font-size: 24px;
+    text-align: left;
+}
+.green-text {
+    color: #4B8C47;
+    font-weight: bold;
+}
+
+
+.trending-tag span {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #3b5998; /* Golden color */
+        animation: budgeInOut 2s ease-in-out infinite;
+        padding: 5px 10px;
+        margin-left: -190px;
+    }
+
+    /* Budge In and Out Animation */
+    @keyframes budgeInOut {
+        0% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale(1.1);
+        }
+        50% {
+            transform: scale(1);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .image-item{
+    width: 90%;
+    height: 200px;
+    margin: 0;
+}
+
+.image-item-container a {
+    background-color: transparent; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    color: black;
+    font-weight: 600;
+
+
+
+}
+.image-item-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.image-item-container a:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: transparent;
+    color:gray;
+}
+
+#btn {
+background-color: transparent;
+margin: 0;
+padding: 5px 0;
+}
+
+.more {
+    background-color: rgba(238, 232, 170, 0.848);
+    height: min-content;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.more:hover{
+
+background-color: rgba(238, 232, 170, 0.727);
+}
+
+.more h2{
+    font-size: 16px;
+    color:green ;
+    font-weight: 800;
+
+    
+
+}
+.more h3{
+    font-size: 18px;
+    color: black;
+
+    
+
+}
+
+
+.more p{
+    font-size:14px ;
+    font-weight: 600;
+    color: brown;
+
+
+}
+
+.moreone p{
+    font-size:14px ;
+    width: 99%;
+    padding: 10px;
+    font-weight: 600;
+
+
+}
+.moreone{
+    width: 50%;
+
+}
+
+.more a{
+ background-color:black;
+ 
+
+    
+
+}
+
+.more a:hover{
+ background-color: transparent;
+ text-decoration: none;
+ color: black;
+
+
+    
+
+}
+
+
+    .partners {
+        padding: 60px 20px;
+    }
+
+    .partners .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .partners-title {
+        text-align: center;
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .partners-grid-item {
+        width: 100%;
+        height: auto;
+    }
+
+    .partners-grid-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .auth-links-row a{
+      background-color: transparent;
+ text-decoration: none;
+ color: black;
+ margin-top: 20px;
+
+    }  
+    
+    .auth-links-row a:hover{
+ background-color: transparent;
+ text-decoration: none;
+ color: firebrick;
+
+    }  
+  </style>
 </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" style="background-color: white;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="logo" style="padding: 10px;">
-          <h1 style="margin: 0; font-weight: bold; font-size: 2rem; position: relative;">
-              <span style="font-size: 1.5rem;">t</span>ech<span style="font-size: 2.5rem; text-shadow: px 1px 2px rgba(0,0,0,0.2);">X</span>as
-          </h1>
-          <div style="font-size: 0.8rem; color: black">Technological Solutions and Supplies </div>
+  
+      <div class="logo" style="padding: 0 50px; text-align: center; margin-left: 50px;">
+          <img src="{{ url_for('static', filename='SPAPHOTOS/IYEPA.PNG') }}" alt="TOPA Logo" style="width: 200px; height: auto; display: block; margin: 0 auto;" />
       </div>
+  
       <div class="navbar-nav">
-        <a class="nav-item nav-link" id="homelinkbase" href="/index">Home</a>
-        <a class="nav-item nav-link" id="services-link" href="#services">Services</a>
-
-        <a class="nav-item nav-link" id="addtocartid" href="/addto">Products</a>
-        <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
-        
-          <a href="https://facebook.com" target="_blank" >
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://twitter.com" target="_blank" style=" margin-left: 8px;">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" style=" margin-left: 8px;">
-            <i class="fab fa-instagram"></i>
-        </a>
-          {% if current_user.is_authenticated %}
-              <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-              <a class="nav-item nav-link" id="admin" href="/btadmin">Back to Admin</a>
-              {% if request.path == '/loandata' %}
-                  <div class="text-center">
-                      <a class="btn btn-danger btn-lg" href="#home_relocationblog" role="button"
-                         style="width: 100%; height: max-content; background-color: goldenrod; color: darkblue; text-align: center; padding: 5px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold;">
-                         <i class="bi bi-file-earmark"></i> Add Repayment
-                      </a>
-                  </div>
-              {% endif %}
-          {% else %}
-              <a class="nav-item nav-link" id="signUp" href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a>
-              <a class="nav-item nav-link" id="login" href="#" data-toggle="modal" data-target="#loginModal">RR</a>
-          {% endif %}
+          <a class="nav-item nav-link" id="home-link" href="/home">Home</a>
+  
+          <!-- Dropdown for Events -->
+          <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Events
+              </a>
+              <div class="dropdown-menu" aria-labelledby="eventsDropdown">
+                  <a class="dropdown-item" href="">Environmental Conservation</a>
+                  <a class="dropdown-item" href="#">Seminars</a>
+                  <a class="dropdown-item" href="#">Exhibitions</a>
+                  <a class="dropdown-item" href="#">Workshops</a>
+              </div>
+          </div>
+  
+          <!-- About Us Link -->
+          <a class="nav-item nav-link" id="about-us" href="/aboutus">About Us</a>
+  
+          <!-- Gallery Link -->
+          <a class="nav-item nav-link" href="#gallery">Gallery</a>
+      </div>
+  
+      <!-- Social Media Icons -->
+      <div class="nav-item social-icons" style="margin-left: 200px; margin-right: 0; display: flex; align-items: center;">
+          <a href="https://facebook.com" target="_blank" class="nav-link" style="color: white; padding: 5px; margin-left: 0;">
+              <i style="background-color: #003366; font-size: 12px;" class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="nav-link" style="color: white; padding: 5px; margin-left: 10px;">
+              <i style="background-color: #003366; font-size: 12px;" class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="nav-link" style="color: white; padding: 5px; margin-left: 10px;">
+              <i style="background-color: #003366; font-size: 12px;" class="fab fa-instagram"></i>
+          </a>
       </div>
   </nav>
+  
+    
+  <!-- Font Awesome (for social media icons) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Bootstrap JS (must be included after jQuery) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom CSS for Hover Dropdown -->
+
   
 
     <div class="flashmessage" >
@@ -148,7 +530,7 @@ rel="stylesheet"
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <h5 style="color: black;" class="modal-title" id="loginModalLabel">Login</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -181,7 +563,7 @@ rel="stylesheet"
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+              <h5 style="color: black;" class="modal-title" id="signupModalLabel">Sign Up</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

@@ -1,112 +1,93 @@
+import os
+import urllib.parse
+import locale
+import logging
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_socketio import SocketIO  # Import SocketIO
-import pymysql
-import urllib.parse
-import os
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from logging.handlers import RotatingFileHandler
-import logging
-import locale
+from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_wtf import CSRFProtect
-from flask_migrate import Migrate
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_socketio import SocketIO
+from logging.handlers import RotatingFileHandler
 
 # Initialize extensions globally
 db = SQLAlchemy()
 login_manager = LoginManager()
 csrf = CSRFProtect()
-limiter = Limiter(
-    key_func=get_remote_address,
-    storage_uri='redis://localhost:6379/0'
-)
-socketio = SocketIO()  # Initialize SocketIO
+limiter = Limiter(key_func=get_remote_address, storage_uri='redis://localhost:6379/0')
+socketio = SocketIO()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
 
-    # Load configurations
+    # Configuration
     DB_USER = os.environ.get('DB_USER', 'root')
-    DB_PASSWORD = urllib.parse.quote(os.environ.get('MYSQL_PASSWORD', 'password'))
+    DB_PASSWORD = urllib.parse.quote_plus(os.environ.get('MYSQL_PASSWORD', 'chronnix@123'))
     DB_HOST = os.environ.get('DB_HOST', 'localhost')
-    DB_NAME = os.environ.get('DB_NAME', 'credentials')
+    DB_NAME = os.environ.get('DB_NAME', 'topa')
     DB_NAME_TONERS = os.environ.get('DB_NAME_TONERS', 'toners')
-    SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', 'your_default_secret_key')
-    UPLOAD_FOLDER = r'static\SPAPHOTOS'  # Use a relative path for the upload folder
-    
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-    
-    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'webp'])
-    def allowed_file(filename):
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', os.urandom(24))
+    UPLOAD_FOLDER = r'static\SPAPHOTOS'
 
     app.config.update(
         SECRET_KEY=SECRET_KEY,
-        DEBUG=os.environ.get('FLASK_DEBUG', 'false').lower() in ['true', '1', 't', 'y', 'yes'],
         SQLALCHEMY_DATABASE_URI=f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}',
         SQLALCHEMY_BINDS={
             'toners': f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME_TONERS}'
         },
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        UPLOAD_FOLDER=UPLOAD_FOLDER,
+        MAX_CONTENT_LENGTH=16 * 1024 * 1024,
         SESSION_COOKIE_SECURE=not app.debug,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE='Strict',
         CSRF_ENABLED=True,
-        CSRF_COOKIE_SECURE=not app.debug,
-        CSRF_COOKIE_SAMESITE='Strict'
     )
 
-    # Set up logging
+    # Logging
     handler = logging.StreamHandler()
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-
+    app.logger.addHandler(handler)
     if not app.debug:
         file_handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=1)
-        file_handler.setLevel(logging.INFO)
-        file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        file_handler.setFormatter(handler.formatter)
         app.logger.addHandler(file_handler)
-    else:
-        handler.setLevel(logging.DEBUG)
-        app.logger.addHandler(handler)
-    
     app.logger.setLevel(logging.DEBUG)
 
     # Initialize extensions
     db.init_app(app)
-    migrate = Migrate(app, db)
     csrf.init_app(app)
-    login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
     limiter.init_app(app)
-    
-    # Initialize SocketIO with the Flask app
-    socketio.init_app(app)  # Initialize SocketIO
-
-    # Enable CORS with credentials support
+    migrate.init_app(app, db)
+    socketio.init_app(app)
     CORS(app, supports_credentials=True)
 
-    # Import blueprints and register them
+    # Register blueprints
     from .views import views
     from .auth import auth
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    # Import models and create database tables
+    # Import models
     from .models import User, Note, LoanRecord
-    
     with app.app_context():
         db.create_all()
 
-    # User loader for Flask-Login
+    # Login user loader
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Set locale for currency formatting
-    locale.setlocale(locale.LC_ALL, '')
+    # Locale setup
+    try:
+        locale.setlocale(locale.LC_ALL, '')
+    except locale.Error as e:
+        app.logger.warning(f"Locale could not be set: {e}")
 
     def currency(value):
         try:
@@ -114,7 +95,6 @@ def create_app():
         except (ValueError, TypeError):
             return value
 
-    # Register the custom currency filter
     app.jinja_env.filters['currency'] = currency
-    
-    return app, socketio  # Return both app and socketio
+
+    return app, socketio

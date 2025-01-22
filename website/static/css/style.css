@@ -16,21 +16,18 @@ body {
 }
 
 .navbar {
-  background-color: white; /* White background */
   color: black; /* Black text */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(62, 62, 62); /* Add bottom border */
-  position: fixed; /* Fixed position */
+  border-bottom: 0.2px solid rgb(174, 173, 173);
   top: 0; /* Stay at the top */
   left: 0;
   right: 0; /* Full width */
   transition: transform 0.3s ease; /* Smooth transition */
   z-index: 1000; /* Make sure it stays above other content */
-  margin-bottom: 3px;
-  padding: 20px 50px; /* Increased padding for top/bottom and left/right */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.242); /* Subtle shadow */
+  padding: 0;
+  margin-bottom: -50px;
 }
 
 .welcome-header h1{
@@ -50,15 +47,27 @@ body {
 .navbar-nav {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Center items vertically */
+  margin-left: 180px;
+  margin-right: auto;
 }
 
 .navbar-nav a {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Center items vertically */
-  padding: 25px;
   font-size: 16px;
+}
+
+#home-link,
+#services-link,
+#about-us,
+#addtocartid,
+#membershipDropdown,
+#eventsDropdown {
+  font-size: 14px; /* Font size for all links and dropdowns */
+  padding: 5px; /* Space around the link */
+  color: black;
+  margin-left: 0;
+  text-align: center;
 }
 
 .logo h1 {
@@ -75,33 +84,26 @@ body {
 .nav-links {
   list-style-type: none;
   display: flex;
-  gap: 15px; /* Space between links */
+  background-color: white;
 }
 
-.nav-links li a {
-  color: white; /* Black text for links */
-  text-decoration: none; /* Remove underline */
-  font-size: 0.9rem; /* Smaller font size for links */
-  padding: 8px 12px; /* Padding for links */
-  transition: background-color 0.3s; /* Smooth background change on hover */
-}
+
 
 .nav-links li a:hover {
-  background-color: orange; /* Light background on hover */
   border-radius: 5px; /* Rounded corners */
 }
 
 /* Nav Item Styles */
 .nav-item {
-  margin: 0 10px; /* Adjust margins for spacing between items */
+  margin: 0 5px; /* Adjust margins for spacing between items */
 }
 
 .nav-link {
   font-size: 14px; /* Slightly larger font size for better readability */
-  font-weight: bold;
+  font-weight:500 ;
   font-style: italic;
   color: black;
-  padding: 10px 15px; /* Adjust padding as needed */
+  padding: 1px 5px; /* Adjust padding as needed */
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -121,8 +123,8 @@ body {
 }
 
 .nav-link:hover {
-  text-decoration: underline;
   animation: flashColors 1.5s ease-in-out forwards;
+
 }
 #login {
 font-size: 42px; /* Adjust the size as needed */
@@ -151,8 +153,8 @@ animation: none;
 
 @keyframes flashColors {
   0% { color: black; }
-  25% { color: goldenrod; }
-  50% { color: goldenrod; }
+  25% { color: gray; }
+  50% { color: gray; }
   100% { color: black; }
 }
 
@@ -306,12 +308,13 @@ animation: none;
   color: #0056b3; /* Change icon color on hover */
 }
 footer {
-  background-color: gray; /* Dark background for the footer */
+  background-color: darkgreen; /* Dark background for the footer */
   color: #fff; /* White text */
   padding: 5px; /* Padding for spacing */
   text-align: center; /* Center text */
   padding-bottom: 300px;
   padding: 50px;
+  margin-top: 20px;
 }
 
 .footer__top, .footer__bottom {
@@ -326,6 +329,101 @@ footer {
   width: 100%; /* Minimum width for smaller screens */
   padding: 40px; /* Padding within sections */
 }
+
+
+/* Full-screen sections */
+.service-section {
+  height: 100vh; /* Each section will take up the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  padding: 20px;
+
+}
+
+
+
+
+/* Specific Section Styles */
+.consulting {
+  background-color: #e0f7fa;
+  color: #00796b;
+}
+
+.support {
+  background-color: #f1f8e9;
+  color: #388e3c;
+}
+
+.it-solutions {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.logistics {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+#consulting-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.content {
+  flex: 1;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.grid-item li{
+  padding: 8px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.grid-item a{
+  background-color: goldenrod;
+  padding: 8px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Styling for content inside each section */
+.service-section .content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.service-section h2 {
+  font-size:  18px; ;
+  margin-bottom: 20px;
+  color: brown;
+  padding: 8px 40px;
+  background-color: rgba(238, 232, 170, 0.845);
+  border-radius: 5px;
+
+}
+
+.service-section p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
 
 h5 {
   font-size: 1.25rem; /* Slightly larger headings */
@@ -501,38 +599,44 @@ a:hover {
   margin-bottom: 20px; /* Space below the header */
 }
 
-.imgsections {
-  flex: 1 1 30%; /* Allow items to take up to 30% of the width */
-  padding: 45px;
-  box-sizing: border-box; /* Ensure padding doesn't affect total width */
-  text-align: center; /* Center align text within sections */
-  background-color: rgba(255, 255, 255, 0.1); /* Light background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  margin: 5px; /* Margin between sections */
-  transition: transform 0.3s; /* Smooth hover effect */
+/* Right Side Section for Images */
+.image-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 images per row */
+  margin-top: 20px;
+  background-color: gainsboro;
+  padding: 5px;
+  width: 100%;
 }
 
-.imgsections:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover */
+/* Individual Image Container */
+.image-item-container {
+  display: flex;
+  flex-direction: column; /* Stack image and caption vertically */
+  padding: 5px;
+  margin-bottom: 20px;
+
+
+
+  }
+
+/* Individual Image Styling */
+.image-item {
+  width: 50%;
+  height: auto;
+  padding: 5px;
+  background-color: white;
 }
 
-.imgsections img {
-  width: 100%; /* Make images responsive */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Rounded corners for images */
-}
 
-.imgsections p {
-  margin-top: 15px; /* Space between image and text */
-  color: black; /* Change to white for visibility */
-  line-height: 1.5; /* Improve readability */
+/* Caption Styling */
+.image-caption {
+  font-size: 1rem;
+  color: #333; /* Dark gray text */
+  margin-top: 8px;
+  font-weight: bold;
+  text-transform: capitalize; /* Capitalize first letter */
 }
-
-.conclusion h3 {
-  padding: 15px;
-  color: white; /* Change to white for visibility */
-}
-
 /* Media queries for responsive design */
 @media (max-width: 768px) {
   .imgsections {
@@ -868,10 +972,10 @@ border-radius: 5px;
   height: 100%;
 }
 @keyframes backgroundCycle {
-  0%, 20% { background-image: url('/static/SPAPHOTOS/tonerinterior.jpg'); }
-  20%, 50% { background-image: url('/static/SPAPHOTOS/gen-supply.jpg'); }
-  50%, 80% { background-image: url('/static/SPAPHOTOS/officesupplydark.jpg'); }
-  80%, 100% { background-image: url('/static/SPAPHOTOS/tonerinterior.jpg'); }
+  0%, 20% { background-image: url('/static/SPAPHOTOS/rot2.jpg'); }
+  20%, 50% { background-image: url('/static/SPAPHOTOS/rot4.jpg'); }
+  50%, 80% { background-image: url('/static/SPAPHOTOS/rot6.jpg'); }
+  80%, 100% { background-image: url('/static/SPAPHOTOS/rot8.jpg'); }
 }
 
 .header__container {
@@ -1380,22 +1484,6 @@ h6 {
   color: rgb(24, 24, 49);
 }
 
-/* Navigation */
-nav{
-  position: fixed;
-  width: 100%;
-  background-color: #757373;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1vw 8vw;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
-  z-index: 999;
-  border:#757373;
-  border-bottom: #7a94e8 5px;
-  border-style: groove;
-
-}
 
 nav img{
   width: 160px;
@@ -1404,22 +1492,9 @@ nav img{
 }
 
 
-nav .navigation ul li{
-  margin-left: 20px;
-}
 
-nav .navigation ul li a{
-  text-decoration: wavy;
-  color:goldenrod;
-  font-size: 18px;
-  font-weight: 700;
-  transition: o.35s ease;
 
-}
-nav .navigation ul li a.active,
-nav .navigation ul li a:hover{
-  color:whitesmoke;
-}
+
 #welcome .welcomeheader{
   padding:30px;
   width: 100%;
@@ -1472,6 +1547,8 @@ nav .navigation ul li a:hover{
 
   
  }
+
+ 
 
 
 /* features */
@@ -1744,6 +1821,440 @@ nav .navigation ul li a:hover{
   text-decoration: none;
   font-weight: 800; /* Changed font weight to 800 */
 }
+* General container styles */
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  font-family: Arial, sans-serif;
+}
+
+/* Product Header */
+
+/* Product detail container (image and text) */
+.product-detail-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+/* Product image styling */
+.product-detail-img {
+  width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Carousel Box Styling (For text and special features) */
+.carousel-box {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-right: 20px;
+  flex: 1;
+}
+
+/* Product detail text section */
+.product-detail-text {
+  margin-left: 20px;
+}
+
+/* Styling for product details (price, quantity, etc.) */
+.product-detail-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e6f7ff; /* Soft blue background */
+  border-radius: 8px;
+}
+
+/* Special features section */
+.special-features {
+  margin-top: 20px;
+}
+
+.special-features h3 {
+  font-size: 1.6em;
+  color: white;
+  background-color: #ff6347; /* Tomato red background */
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.special-features p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Price and quantity styling */
+.product-detail-text p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 12px;
+}
+/* Style for the product detail link as a green button */
+.prdetails-link {
+  font-size: 12px;  /* Set the font size */
+  color: white;  /* Text color - white for contrast */
+  background-color: silver;  /* Green background color */
+  text-decoration: none;  /* Remove the default underline */
+  font-weight: bold;  /* Make the text bold */
+  border-radius: 5px;  /* Round corners for the button */
+  display: inline-block;  /* Ensure it behaves like a block element while staying inline */
+  transition: background-color 0.3s, transform 0.3s; /* Add smooth transition for hover effects */
+  margin-left: 0;
+  margin-top: 2px;
+  width: min-content;
+  margin-bottom: 5px;
+}
+/* Larger Section Styling */
+#electronics-section {
+  padding: 30px 10%;
+  background-color: powderblue;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Title Styling */
+
+/* Introduction Section */
+.section-intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-intro p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Electronics Types Layout (4 in a row) */
+.electronics-types {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between sections */
+  margin-bottom: 30px;
+}
+
+.electronics-type {
+  flex: 1;
+  padding: 20px;
+  background-color: silver;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.electronics-types h4{
+
+  background-color: transparent;
+
+}
+
+.electronics-type:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.electronics-type h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.electronics-type p {
+  font-size: 16px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* Product Navigation with Scroll Arrows */
+.product-navigation {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: powderblue;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0;
+}
+
+/* Scroll Arrows for navigating products */
+.scroll-arrow {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.scroll-arrow:hover {
+  color: #777;
+}
+
+/* Scroll arrow positioning */
+#scroll-left,
+#scroll-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#scroll-left {
+  left: 10px;
+}
+
+#scroll-right {
+  right: 10px;
+}
+
+/* Product Container Styling */
+.product-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: var(--white);
+  box-shadow: 0 2px 10px var(--shadow);
+  scroll-snap-type: x mandatory;
+  width: 99%;
+  
+  /* Hide scrollbar */
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Hide the scrollbar for Webkit-based browsers (Chrome, Safari) */
+.product-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Product Box Image and Name */
+.product-box img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-box p {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+.prdetails-link:hover {
+  background-color: black;  /* Darker green on hover */
+  text-decoration: none;  /* Keep the text unstyled on hover */
+  transform: scale(1.05);  /* Slightly enlarge the button on hover */
+  color: white;
+}
+
+.prdetails-link:focus {
+  outline: none;  /* Remove the outline when focused (optional) */
+  box-shadow: 0 0 0 3px white;  /* Add a focus ring for accessibility */
+}
+
+
+
+/* Hover effect on product detail container */
+.product-detail-info:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.product-detail-info {
+  display: flex;               /* Set the container to be a flexbox */
+  justify-content: space-between; /* Space between image and text */
+  width: 80%;                    /* Adjust the width of the container as needed */
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.product-detail-img {
+  width: 30%;  /* Adjust the size of the image */
+  height: auto;
+  object-fit: cover;  /* Ensures the image maintains aspect ratio */
+}
+
+.product-detail-text {
+  flex: 1;  /* Take up the remaining space */
+  margin-left: 20px;  /* Space between image and text */
+}
+
+.product-detail-details {
+  margin-top: 10px;
+}
+
+.product-detail-header {
+  color: #333;
+  text-align: start;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-left: 0;
+  margin-top: 15px;
+  text-transform: uppercase;
+  background-color: gainsboro; /* Set background color to Gainsboro */
+  padding: 10px; /* Optional: add some padding to give space around the text */
+  width: 100%;
+  
+
+}
+.top-sellers-container {
+  margin-top: 30px;
+  padding: 20px 0;
+  width: 80%; /* Limit the width to 80% */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* To position the buttons inside the container */
+}
+
+.top-sellers-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.top-sellers-items {
+  display: flex; /* Align items in a row */
+  overflow: hidden; /* Hide the scrollbar */
+  white-space: nowrap; /* Prevent wrapping of items */
+  gap: 20px; /* Add some space between items */
+  padding: 10px;
+  transition: transform 0.3s ease; /* Smooth transition when scrolling */
+}
+
+.top-seller-item {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  width: 120px; /* Set a smaller width for each item */
+  overflow: hidden;
+  border: 1px solid #ddd; /* Add a border around each item */
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners for the items */
+  text-align: center;
+  background-color: #f8f8f8; /* Light background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Container for navigation links */
+.navigation-container {
+  display: flex; /* Ensures elements are aligned in a row */
+  justify-content: space-between; /* Space between the cards */
+  gap: 20px; /* Optional: Adjust space between cards */
+  margin-top: 150px;
+}
+
+/* Style for each equipment card */
+.equipment-card {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: goldenrod;
+  text-align: center;
+  cursor: pointer; /* Indicates clickable element */
+  transition: background-color 0.3s, transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for each card */
+.equipment-card:hover {
+  background-color: goldenrod; /* Light gray on hover */
+  transform: translateY(-5px); /* Slight upward movement */
+  text-decoration: underline;
+  text-decoration-thickness: 3px; /* Makes the underline thicker */
+  text-decoration-color: white; /* Changes the underline color to white */
+}
+/* Text styling inside each card */
+.equipment-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.top-seller-item:hover {
+  transform: translateY(-5px); /* Slight upward movement on hover */
+}
+
+.top-seller-img {
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  height: auto;
+  border-radius: 4px; /* Rounded corners for images */
+  margin-bottom: 10px;
+}
+
+.top-seller-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.top-seller-item strong {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Back and Next buttons */
+.top-seller-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 10;
+}
+
+.top-seller-nav button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.top-seller-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.top-seller-nav button:focus {
+  outline: none;
+}
+
+/* For the hidden scrollbar */
+.top-sellers-items::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+/* Discount Section Styles */
 
 .order-details-back-link:hover {
   text-decoration: underline;
